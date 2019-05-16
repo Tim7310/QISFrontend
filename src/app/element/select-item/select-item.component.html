@@ -1,3 +1,15 @@
+<mat-form-field>
+  <mat-select [formControl]="itemCtrl" placeholder="Item" #singleSelect>
+    <mat-option>
+      <ngx-mat-select-search [formControl]="itemFilterCtrl"></ngx-mat-select-search>
+    </mat-option>
+
+    <mat-option *ngFor="let item of filteredItems | async" [value]="item">
+      {{item.itemName}}
+    </mat-option>
+  </mat-select>
+</mat-form-field>
 <p>
-  select-item works!
-</p>
+    Selected Bank: {{itemCtrl.value?.itemName}}
+  </p>
+

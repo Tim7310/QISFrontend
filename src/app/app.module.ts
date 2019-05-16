@@ -42,6 +42,8 @@ import { HttpClientModule } from '@angular/common/http';
 import {FlexLayoutModule} from '@angular/flex-layout';
 import { CdkTableModule } from '@angular/cdk/table';
 import { SelectItemComponent } from './element/select-item/select-item.component';
+import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
+import { ItemService } from './services/item.service';
 
 @NgModule({
   declarations: [
@@ -127,9 +129,10 @@ import { SelectItemComponent } from './element/select-item/select-item.component
     MatTabsModule,
     MatToolbarModule,
     MatTooltipModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    NgxMatSelectSearchModule
   ],
-  providers: [],
+  providers: [ItemService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

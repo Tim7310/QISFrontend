@@ -1,4 +1,4 @@
-<mat-grid-list cols="24" rowHeight="15px" class="bg-light s-bottom mb-1" >
+<mat-grid-list cols="24" rowHeight="15px" class="bg-light s-bottom mb-1 animated fadeIn" >
   <mat-grid-tile colspan="10" rowspan="4" style="text-align:center;font-size:12px;">
       {{itemInfo.itemName}}
   </mat-grid-tile>
@@ -9,12 +9,12 @@
   </mat-grid-tile>
   <mat-grid-tile colspan="3" rowspan="4">
     <mat-form-field class="input-num">
-      <input matInput type="number" placeholder="Quantity" [value]="0">
+      <input matInput type="number" placeholder="Quantity" [formControl]="quantity">
     </mat-form-field>
   </mat-grid-tile>
   <mat-grid-tile colspan="3" rowspan="4">
     <mat-form-field class="input-num">
-      <input matInput type="number" placeholder="Discount" [value]="0" >
+      <input matInput type="number" placeholder="Discount" [formControl]="discount" >
     </mat-form-field>
   </mat-grid-tile>
   <mat-grid-tile colspan="3" rowspan="4">

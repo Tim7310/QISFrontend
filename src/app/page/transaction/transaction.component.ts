@@ -17,9 +17,9 @@ export class TransactionComponent implements OnInit {
     }
   }
   deleteItem(value) {
-    return this.items.filter(function(ele){
-        return ele != value;
-    });
+    this.items.splice( this.items.indexOf(value), 1 );
+    console.log(value);
+    console.log(this.items);
   }
   ngOnInit() {
   }

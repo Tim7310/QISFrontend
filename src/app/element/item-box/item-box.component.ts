@@ -1,6 +1,5 @@
-import { Component, OnInit, Input, Output } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { itemList } from 'src/app/services/service.interface';
-import { EventEmitter } from 'events';
 import { FormControl } from '@angular/forms';
 
 @Component({
@@ -11,15 +10,20 @@ import { FormControl } from '@angular/forms';
 export class ItemBoxComponent implements OnInit {
   @Input() itemInfo: itemList[];
   @Output() deleteThis = new EventEmitter();
-  item: FormControl = new FormControl();
+  public discount: FormControl = new FormControl();
+  public quantity: FormControl = new FormControl();
+  
   deleteItem(){
-    this.deleteThis.emit(this.item.value);
+    this.deleteThis.emit(this.itemInfo);
+
   }
 
   constructor() { }
 
   ngOnInit() {
-    this.item.setValue(this.itemInfo[10]);
+    this.discount.setValue(0);
+    this.quantity.setValue(0);
+    this.discount.valueChanges.subscribe(data => console.log(data));
   }
 
 }

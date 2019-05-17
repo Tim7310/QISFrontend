@@ -1,5 +1,5 @@
-import { Component, OnInit, AfterViewInit, OnDestroy, ViewChild } from '@angular/core';
-import { Bank, BANKS, itemList } from 'src/app/services/service.interface';
+import { Component, OnInit, AfterViewInit, OnDestroy, ViewChild, Output, EventEmitter, Input } from '@angular/core';
+import { itemList } from 'src/app/services/service.interface';
 import { FormControl } from '@angular/forms';
 import { ReplaySubject, Subject } from 'rxjs';
 import { take, takeUntil } from 'rxjs/operators';
@@ -12,6 +12,8 @@ import { ItemService } from 'src/app/services/item.service';
   styleUrls: ['./select-item.component.scss']
 })
 export class SelectItemComponent implements OnInit, AfterViewInit, OnDestroy {
+  @Output() selectTrig = new EventEmitter();
+  @Input() itemURL: string;
   items = [];
 
   /** control for the selected bank */
@@ -20,7 +22,7 @@ export class SelectItemComponent implements OnInit, AfterViewInit, OnDestroy {
   /** control for the MatSelect filter keyword */
   public itemFilterCtrl: FormControl = new FormControl();
 
-  /** list of banks filtered by search keyword */
+  /** list of item filtered by search keyword */
   public filteredItems: ReplaySubject<itemList[]> = new ReplaySubject<itemList[]>(1);
 
   @ViewChild('singleSelect') singleSelect: MatSelect;
@@ -28,11 +30,15 @@ export class SelectItemComponent implements OnInit, AfterViewInit, OnDestroy {
   /** Subject that emits when the component has been destroyed. */
   protected _onDestroy = new Subject<void>();
 
+  getSelectedValue(){
+      this.selectTrig.emit(this.itemCtrl.value);
+  }
 
   constructor(public itemService: ItemService) { }
 
   ngOnInit() {
-    this.itemService.getItem("AccountItems")
+    //get item list and pass the data to items variable
+    this.itemService.getItem(this.itemURL)
     .subscribe(data => this.items = data);
     // set initial selection
     this.itemCtrl.setValue(this.items[10]);

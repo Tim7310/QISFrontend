@@ -44,11 +44,16 @@ import { CdkTableModule } from '@angular/cdk/table';
 import { SelectItemComponent } from './element/select-item/select-item.component';
 import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
 import { ItemService } from './services/item.service';
+import { ErrorService } from './services/error.service';
+import { TransactionComponent } from './page/transaction/transaction.component';
+import { ItemBoxComponent } from './element/item-box/item-box.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     SelectItemComponent,
+    TransactionComponent,
+    ItemBoxComponent,
   ],
   exports: [
     CdkTableModule,
@@ -132,7 +137,7 @@ import { ItemService } from './services/item.service';
     FlexLayoutModule,
     NgxMatSelectSearchModule
   ],
-  providers: [ItemService],
+  providers: [ItemService, ErrorService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

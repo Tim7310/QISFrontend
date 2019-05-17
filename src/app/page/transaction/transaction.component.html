@@ -1,10 +1,18 @@
 <div class="container-fluid">
   <div class="row">
-    <div class="col-sm-6 bg-primary">
+    <div class="col-5 mt-2">
         <select-item itemURL="AccountItems" (selectTrig)="getItem($event)"></select-item>
     </div>
-    <div class="col-sm-6 bg-info">
-      {{item?.itemName}}
+    <div class="col-7 mt-2 pl-2 ">
+      <div class="bg-info item-box-container">
+        <div class="item-box-label bg-info s-bottom mb-1"></div>
+        <div class="pr-3 pl-3 item-list-con" #scrollMe [scrollTop]="scrollMe.scrollHeight">
+            <item-box *ngFor="let item of items" 
+              [itemInfo]="item" (deleteThis)="deleteItem($event)">
+            </item-box>
+        </div>
+        <div class="item-footer s-top bg-info mt-1"></div>
+      </div> 
     </div>
   </div>
 </div>

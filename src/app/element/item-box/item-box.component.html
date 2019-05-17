@@ -1,3 +1,28 @@
-<p>
-  item-box works!
-</p>
+<mat-grid-list cols="24" rowHeight="15px" class="bg-light s-bottom mb-1" >
+  <mat-grid-tile colspan="10" rowspan="4" style="text-align:center;font-size:12px;">
+      {{itemInfo.itemName}}
+  </mat-grid-tile>
+  <mat-grid-tile colspan="3" rowspan="4">
+    <mat-form-field class="input-num">
+      <input matInput type="number" placeholder="Price" [value]="itemInfo.itemPrice" disabled>
+    </mat-form-field>
+  </mat-grid-tile>
+  <mat-grid-tile colspan="3" rowspan="4">
+    <mat-form-field class="input-num">
+      <input matInput type="number" placeholder="Quantity" [value]="0">
+    </mat-form-field>
+  </mat-grid-tile>
+  <mat-grid-tile colspan="3" rowspan="4">
+    <mat-form-field class="input-num">
+      <input matInput type="number" placeholder="Discount" [value]="0" >
+    </mat-form-field>
+  </mat-grid-tile>
+  <mat-grid-tile colspan="3" rowspan="4">
+    <mat-form-field class="input-num" style="font-weight:bolder;">
+      <input matInput type="number" placeholder="Total" value="0" disabled>
+    </mat-form-field>
+  </mat-grid-tile>
+  <mat-grid-tile colspan="2" rowspan="4">
+    <mat-icon class="delete-btn" (click)="deleteItem()">delete_forever</mat-icon>
+  </mat-grid-tile>
+</mat-grid-list>

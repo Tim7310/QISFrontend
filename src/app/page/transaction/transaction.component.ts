@@ -7,11 +7,19 @@ import { itemList } from 'src/app/services/service.interface';
   styleUrls: ['./transaction.component.scss']
 })
 export class TransactionComponent implements OnInit {
-  private item: itemList[];
+  private items: itemList[] = [];
 
   constructor() { }
   getItem(value){
-    this.item = value;
+    let found = this.items.find(item => item.itemId === value.itemId);
+    if(found === undefined){
+      this.items.push(value);
+    }
+  }
+  deleteItem(value) {
+    return this.items.filter(function(ele){
+        return ele != value;
+    });
   }
   ngOnInit() {
   }

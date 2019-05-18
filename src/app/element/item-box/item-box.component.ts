@@ -1,6 +1,6 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, SimpleChanges, OnChanges } from '@angular/core';
 import { itemList } from 'src/app/services/service.interface';
-import { FormControl } from '@angular/forms';
+import { FormControl, FormGroup, FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'item-box',
@@ -8,22 +8,40 @@ import { FormControl } from '@angular/forms';
   styleUrls: ['./item-box.component.scss']
 })
 export class ItemBoxComponent implements OnInit {
-  @Input() itemInfo: itemList[];
+  @Input() itemInfo: itemList;
+  itemForm : FormGroup;
+  @Input() discount: number;
   @Output() deleteThis = new EventEmitter();
-  public discount: FormControl = new FormControl();
-  public quantity: FormControl = new FormControl();
+  
   
   deleteItem(){
     this.deleteThis.emit(this.itemInfo);
-
   }
 
-  constructor() { }
+  constructor(private fb: FormBuilder) {
+    this.itemForm = this.fb.group({
+      discount: [this.discount],
+      quantity: [1],
+      total: [] 
+    });
+   }
 
   ngOnInit() {
-    this.discount.setValue(0);
-    this.quantity.setValue(0);
-    this.discount.valueChanges.subscribe(data => console.log(data));
+    this.computeTotal()
+    // this.computeTotal();
+    this.itemForm.controls['quantity'].valueChanges.subscribe(data => this.computeTotal());
+    this.itemForm.controls['discount'].valueChanges.subscribe(data => this.computeTotal());
+  }
+  ngOnChanges(changes: SimpleChanges): void {
+    let disc = changes.discount.currentValue;
+    this.itemForm.get("discount").setValue(disc);
+  }
+  
+  computeTotal(){
+    let compTotal =  this.itemInfo.itemPrice * this.itemForm.get('quantity').value;
+    let disc = this.itemForm.get('discount').value / 100 * compTotal;
+    compTotal = compTotal - disc;
+    this.itemForm.controls['total'].setValue(compTotal);
   }
 
 }

@@ -1,4 +1,5 @@
-<mat-grid-list cols="24" rowHeight="15px" class="bg-light s-bottom mb-1 animated fadeIn" >
+<mat-grid-list  cols="24" rowHeight="15px" class="bg-light s-bottom mb-1 animated fadeIn" >
+  <form [formGroup]="itemForm" >
   <mat-grid-tile colspan="10" rowspan="4" style="text-align:center;font-size:12px;">
       {{itemInfo.itemName}}
   </mat-grid-tile>
@@ -9,20 +10,21 @@
   </mat-grid-tile>
   <mat-grid-tile colspan="3" rowspan="4">
     <mat-form-field class="input-num">
-      <input matInput type="number" placeholder="Quantity" [formControl]="quantity">
+      <input matInput type="number" placeholder="Quantity" formControlName="quantity">
     </mat-form-field>
   </mat-grid-tile>
   <mat-grid-tile colspan="3" rowspan="4">
     <mat-form-field class="input-num">
-      <input matInput type="number" placeholder="Discount" [formControl]="discount" >
+      <input matInput type="number" placeholder="Discount" formControlName="discount" >
     </mat-form-field>
   </mat-grid-tile>
   <mat-grid-tile colspan="3" rowspan="4">
     <mat-form-field class="input-num" style="font-weight:bolder;">
-      <input matInput type="number" placeholder="Total" value="0" disabled>
+      <input matInput type="number" placeholder="Total" formControlName="total" >
     </mat-form-field>
   </mat-grid-tile>
   <mat-grid-tile colspan="2" rowspan="4">
     <mat-icon class="delete-btn" (click)="deleteItem()">delete_forever</mat-icon>
   </mat-grid-tile>
+</form>
 </mat-grid-list>

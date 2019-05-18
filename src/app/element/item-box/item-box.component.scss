@@ -20,3 +20,6 @@ input[type=number]::-webkit-outer-spin-button {
 .delete-btn:hover{
     transform: scale(1.2,1.2);
 }
+mat-grid-list{
+    border-left: 5px #673ab7 solid;
+}

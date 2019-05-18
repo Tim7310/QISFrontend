@@ -5,10 +5,25 @@
     </div>
     <div class="col-7 mt-2 pl-2 ">
       <div class="bg-info item-box-container">
-        <div class="item-box-label bg-info s-bottom mb-1"></div>
+        <div class="item-box-label bg-info s-bottom mb-1">
+          <mat-grid-list cols="20" rowHeight="60px">
+            <mat-grid-tile colspan="9" rowspan="1" class="text-light ls-2 bold-3 ts-2">
+              ITEM LIST
+            </mat-grid-tile>
+            <mat-grid-tile colspan="4" rowspan="1" class="text-light ls-1">
+              Add Discount:
+            </mat-grid-tile>
+            <mat-grid-tile colspan="7" rowspan="1">
+                <button *ngFor="let discbtn of discountBtn"
+                mat-raised-button (click)="addDiscount(discbtn)" class="discountBtn ml-1">
+                  {{discbtn}}
+                </button>
+            </mat-grid-tile>
+          </mat-grid-list>         
+        </div>
         <div class="pr-3 pl-3 item-list-con" #scrollMe [scrollTop]="scrollMe.scrollHeight">
             <item-box *ngFor="let item of items" 
-              [itemInfo]="item" (deleteThis)="deleteItem($event)">
+              [itemInfo]="item" (deleteThis)="deleteItem($event)" [discount]="discount">
             </item-box>
         </div>
         <div class="item-footer s-top bg-info mt-1"></div>

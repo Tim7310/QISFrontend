@@ -33,3 +33,10 @@
 ::-webkit-scrollbar-thumb:hover {
     background: #673ab7; 
 }
+button {
+    outline: none;
+}
+.discountBtn{
+    line-height: 30px;
+    min-width: 30px !important;
+}

@@ -1,9 +1,9 @@
 <div class="container-fluid">
   <div class="row">
-    <div class="col-5 mt-2">
+    <div class="col-md-5 mt-2">
         <select-item itemURL="AccountItems" (selectTrig)="getItem($event)"></select-item>
     </div>
-    <div class="col-7 mt-2 pl-2 ">
+    <div class="col-md-7 mt-2 pl-2 ">
       <div class="bg-info item-box-container">
         <div class="item-box-label bg-info s-bottom mb-1">
           <mat-grid-list cols="20" rowHeight="60px">
@@ -23,10 +23,44 @@
         </div>
         <div class="pr-3 pl-3 item-list-con" #scrollMe [scrollTop]="scrollMe.scrollHeight">
             <item-box *ngFor="let item of items" 
-              [itemInfo]="item" (deleteThis)="deleteItem($event)" [discount]="discount">
+              [itemInfo]="item" (deleteThis)="deleteItem($event)" [discount]="discount"
+              (getTotal)="itemTotal($event)">
             </item-box>
         </div>
-        <div class="item-footer s-top bg-info mt-1"></div>
+        <div class="item-footer s-top bg-info mt-1 container-fluid">
+          <div class="row">
+            <div class="col-md-9 ">asdasdas</div>
+            <div class="col-md-3">
+              <mat-grid-list cols="10" rowHeight="10px" gutterSize="0px">
+                <mat-grid-tile colspan="6" rowspan="3">
+                  <span>Sub Total: </span> 
+                </mat-grid-tile>
+                <mat-grid-tile colspan="4" rowspan="3">
+                  <span>123</span>
+                </mat-grid-tile>
+                <mat-grid-tile colspan="6" rowspan="3">
+                  <span>Discounted: </span> 
+                </mat-grid-tile>
+                <mat-grid-tile colspan="4" rowspan="3">
+                  <span>123</span>
+                </mat-grid-tile>
+                <mat-grid-tile colspan="6" rowspan="3">
+                  <span>Change: </span> 
+                </mat-grid-tile>
+                <mat-grid-tile colspan="4" rowspan="3">
+                  <span>123</span>
+                </mat-grid-tile>
+                <mat-grid-tile colspan="10" rowspan="1"></mat-grid-tile>
+                <mat-grid-tile colspan="10" rowspan="2" class="bg-dark text-light">
+                  <span class="total-label ls-1">TOTAL:</span>
+                </mat-grid-tile>
+                <mat-grid-tile colspan="10" rowspan="5" class="bg-dark text-light">
+                  <span class="ls-1 ts-3 bold-1">{{totalVal}}</span>
+                </mat-grid-tile>
+              </mat-grid-list>
+            </div>
+          </div>
+        </div>
       </div> 
     </div>
   </div>

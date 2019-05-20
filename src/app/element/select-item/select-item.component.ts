@@ -91,7 +91,7 @@ export class SelectItemComponent implements OnInit, AfterViewInit, OnDestroy {
     } else {
       search = search.toLowerCase();
     }
-    // filter the banks
+    // filter the items
     this.filteredItems.next(
       this.items.filter(item => item.itemName.toLowerCase().indexOf(search) > -1)
     );

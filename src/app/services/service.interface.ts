@@ -17,5 +17,6 @@ export interface itemList{
 
 export interface total{
     id: number,
-    price: number
+    price: number,
+    subtotal:number
 }

@@ -11,7 +11,9 @@ export class TransactionComponent implements OnInit{
   discount: number = 0;
   discountBtn = [5,10,15,20];
   total: total[] = [];
-  totalVal:number = 0;
+  totalVal:any = 0;
+  subTotal:any = 0;
+  discounted:any = 0;
 
   constructor() { 
     this.totalVal = 0;
@@ -30,11 +32,8 @@ export class TransactionComponent implements OnInit{
   }
   deleteItem(value) {
     this.items.splice( this.items.indexOf(value), 1 );
-    let _filt;
     let filt = this.total.filter(data => data.id === value.itemId);
-    _filt = Object.values(filt.indexOf);
-    console.log(_filt);
-    //this.total.splice( this.total.indexOf(filt), 1 );  
+    this.total.splice( this.total.indexOf(filt[0]), 1 );  
     let itemCount = this.items.length;
     if(itemCount === 0){
       this.discount = 0;
@@ -47,7 +46,6 @@ export class TransactionComponent implements OnInit{
   itemTotal(value){
     let found = this.total.find(total => total === value);
     if(found != undefined){
-      console.log(found);
       this.total.splice( this.total.indexOf(value), 1 );      
     }   
     this.total.push(value);
@@ -56,11 +54,16 @@ export class TransactionComponent implements OnInit{
   }
   computeTotal(){
     let num: number = 0;
+    let num2: number = 0;
     this.total.forEach(function (value) {
-      num = num + value.price;
+      num += value.price;
+      num2 += value.subtotal;
     });
-    this.totalVal = num; 
-    
+    let num3 = num2 - num;
+    this.totalVal = num.toFixed(2);
+    this.subTotal = num2.toFixed(2);
+    this.discounted = num3.toFixed(2) ;
+    //console.log(this.total);  
   }
 
 }

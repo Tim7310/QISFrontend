@@ -13,7 +13,7 @@ export class ItemBoxComponent implements OnInit, OnChanges {
   @Input() discount: number;
   @Output() deleteThis = new EventEmitter();
   @Output() getTotal = new EventEmitter(); 
-  total: total = {id: 0, price: 0}; 
+  total: total = {id: 0, price: 0, subtotal: 0}; 
   
   deleteItem(){
     this.deleteThis.emit(this.itemInfo);
@@ -30,7 +30,8 @@ export class ItemBoxComponent implements OnInit, OnChanges {
   ngOnInit() {
     this.computeTotal()
     this.total.id = this.itemInfo.itemId;
-    this.total.price= this.itemInfo.itemPrice;
+    this.total.price = this.itemInfo.itemPrice;
+    this.total.subtotal = this.itemInfo.itemPrice;
     this.getTotal.emit(this.total)
     // this.computeTotal();
     this.itemForm.controls['quantity'].valueChanges.subscribe(data => this.computeTotal());
@@ -51,6 +52,7 @@ export class ItemBoxComponent implements OnInit, OnChanges {
   }
   emitTotal(value){
     this.total.price = value;
+    this.total.subtotal = this.itemInfo.itemPrice * this.itemForm.get('quantity').value;
     this.getTotal.emit(this.total);
   }
 

@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { ClarityModule } from '@clr/angular';
 import {
   MatAutocompleteModule,
   MatButtonModule,
@@ -92,6 +93,7 @@ import { ItemBoxComponent } from './element/item-box/item-box.component';
     FlexLayoutModule
   ],
   imports: [
+    ClarityModule,
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,

@@ -1,6 +1,5 @@
 import { Component, OnInit, SimpleChanges } from '@angular/core';
 import { itemList, total } from 'src/app/services/service.interface';
-
 @Component({
   selector: 'transaction',
   templateUrl: './transaction.component.html',
@@ -14,11 +13,14 @@ export class TransactionComponent implements OnInit{
   totalVal:any = 0;
   subTotal:any = 0;
   discounted:any = 0;
-
+  transType:string = undefined;
+  transTypeBTN = ["CASH", "ACCOUNT", "HMO", "APE" ];
+  
   constructor() { 
     this.totalVal = 0;
   }
   ngOnInit() {
+    console.log(this.transTypeBTN);
   }
   ngOnChanges(changes: SimpleChanges): void {
     let totalChange = changes.total.currentValue;
@@ -64,6 +66,9 @@ export class TransactionComponent implements OnInit{
     this.subTotal = num2.toFixed(2);
     this.discounted = num3.toFixed(2) ;
     //console.log(this.total);  
+  }
+  changeTrans(type){
+    this.transType = type;
   }
 
 }

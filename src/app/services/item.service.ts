@@ -7,7 +7,8 @@ import { ErrorService } from './error.service';
 
 @Injectable()
 export class ItemService {
-readonly url: string = "http://10.137.167.250:8086";
+//readonly url: string = "http://10.137.167.250:8086";
+readonly url: string = "http://localhost:8086";
 
   constructor(private http: HttpClient, public ehs: ErrorService) { }
   

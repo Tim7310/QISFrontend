@@ -29,7 +29,61 @@
         </div>
         <div class="item-footer s-top bg-info mt-1 container-fluid">
           <div class="row">
-            <div class="col-md-8 ">asdasdas</div>
+            <div class="col-md-8">
+              <mat-grid-list cols="20" rowrHeight="10px">
+                <mat-grid-tile *ngIf="transType === undefined" colspan="20" rowspan="6">
+<!-- Transaction type button label -->
+                  <div class="bg-dark p-1 pl-3 pr-3 ls-1 text-light"> 
+                    Select Transaction Type: 
+                  </div>
+<!-- Transaction type button container -->
+                  <div class="transbtn">
+                    <button mat-raised-button class="m-1 animated jackInTheBox" 
+                    color="primary" *ngFor="let btn of transTypeBTN "
+                      (click)="changeTrans(btn)">{{btn}}
+                    </button>
+                  </div>  
+                </mat-grid-tile>
+<!-- back button: to reselect transaction type -->
+                <mat-grid-tile *ngIf="transType !== undefined" colspan="20" rowspan="2">
+                    <button mat-raised-button class="edge animated fadeInRight back"
+                    (click)="changeTrans(undefined)" >
+                    <mat-icon>arrow_back_ios</mat-icon> Back</button>
+                    <span class="ls-1 bold-1 text-light">{{transType}}</span>
+                </mat-grid-tile>
+<!-- main container of CASHIER transaction type -->
+                <mat-grid-tile *ngIf="transType === 'CASH'" colspan="20" rowspan="3">
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                          <span class="input-group-text bg-dark text-light">
+                            Amount Received</span>
+                        </div>
+                        <input type="number" class="form-control bg-dark text-light" 
+                          style="width: 50px !important">
+                        <div class="input-group-append">
+                          <span class="input-group-text bg-dark text-light">.00</span>
+                        </div>
+                      </div>
+                </mat-grid-tile>
+<!-- main container of APE and ACCOUNT transaction type -->
+                <mat-grid-tile *ngIf="transType === 'ACCOUNT' || transType === 'APE'" 
+                colspan="20" rowspan="3">
+                 
+                </mat-grid-tile>
+<!-- save and save print container -->
+                <mat-grid-tile *ngIf="transType !== undefined" colspan="20" rowspan="2" >
+                    <button mat-raised-button (click)="onClick" color="accent" 
+                    class="mr-2 animated fadeIn">
+                        <clr-icon shape="floppy" ></clr-icon> SAVE
+                    </button>
+                    <button mat-raised-button (click)="onClick" color="primary" 
+                    class="animated fadeIn">
+                        <clr-icon shape="printer" ></clr-icon> SAVE & PRINT
+                    </button>
+                </mat-grid-tile>
+              </mat-grid-list>
+            </div>
+<!-- total, subtotal, discount, change container -->
             <div class="col-md-4">
               <mat-grid-list cols="10" rowHeight="10px" gutterSize="0px">
                 <mat-grid-tile colspan="6" rowspan="3">

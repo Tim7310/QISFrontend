@@ -23,7 +23,10 @@ export class ItemBoxComponent implements OnInit, OnChanges {
     this.itemForm = this.fb.group({
       discount: [this.discount],
       quantity: [1],
-      total: [] 
+      total: [{
+        value: null,
+        disabled: true
+      }] 
     });
    }
 

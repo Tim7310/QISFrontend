@@ -1,7 +1,17 @@
 <div class="container-fluid">
   <div class="row">
     <div class="col-md-5 mt-2">
-        <select-item itemURL="AccountItems" (selectTrig)="getItem($event)"></select-item>
+      <!-- cash item selection -->
+      <select-item itemURL="NonAccountItems" 
+        placeholder="CASH Items" (selectTrig)="getItem($event)">
+      </select-item>     
+      <!-- Account item Selection -->
+      <select-item itemURL="AccountItems" 
+          placeholder="ACCOUNT Items" (selectTrig)="getItem($event)">
+      </select-item> 
+      <select-patient patientURL="Cash1" 
+        placeholder="Patient List" (selectTrig)="getPatient($event)">
+      </select-patient>     
     </div>
     <div class="col-md-7 mt-2 pl-2 ">
       <div class="bg-info item-box-container">
@@ -52,29 +62,66 @@
                     <span class="ls-1 bold-1 text-light">{{transType}}</span>
                 </mat-grid-tile>
 <!-- main container of CASHIER transaction type -->
-                <mat-grid-tile *ngIf="transType === 'CASH'" colspan="20" rowspan="3">
-                    <div class="input-group">
-                        <div class="input-group-prepend">
-                          <span class="input-group-text bg-dark text-light">
-                            Amount Received</span>
-                        </div>
-                        <input type="number" class="form-control bg-dark text-light" 
-                          style="width: 50px !important">
-                        <div class="input-group-append">
-                          <span class="input-group-text bg-dark text-light">.00</span>
-                        </div>
-                      </div>
+                <mat-grid-tile *ngIf="transType === 'CASH'" colspan="20" rowspan="5">
+                  <div class="moneycon">
+                    <label class="mr-2 text-light">Denomination: </label>
+                    <button mat-raised-button class="moneybtn mr-1"
+                    *ngFor="let money of moneyBtn" (click)="addMoney(money)">
+                      {{money}}
+                    </button>
+                  </div>
+                  <div class="input-group" style="width: 300px !important">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text bg-success text-light">
+                        Amount Received</span>
+                    </div>
+                    <input type="number" class="form-control" [formControl]="receivedAmount">
+                    <div class="input-group-append">
+                      <button class="btn btn-secondary" type="button" (click)="changeCurrency()">
+                         {{currency}}
+                      </button>
+                    </div>
+                  </div>
+                  <span *ngIf="arError !== undefined"
+                  class="badge badge-danger arError animated rubberBand">
+                    <clr-icon shape="exclamation-triangle"></clr-icon>
+                    {{arError}}&nbsp;
+                  </span>
                 </mat-grid-tile>
 <!-- main container of APE and ACCOUNT transaction type -->
                 <mat-grid-tile *ngIf="transType === 'ACCOUNT' || transType === 'APE'" 
-                colspan="20" rowspan="3">
+                colspan="20" rowspan="5">
                  
+                </mat-grid-tile>
+<!-- main container of HMo transaction type -->
+                <mat-grid-tile *ngIf="transType === 'HMO'" colspan="20" rowspan="5">
+                  <div  class="input-group input-group-sm mb-3"
+                        style="top: 0px;">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text">LOE Number</span>
+                    </div>
+                    <input type="text" class="form-control">
+                  </div><br>
+                  <div  class="input-group input-group-sm mb-3"
+                        style="top: 35px;">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text">Account Number</span>
+                    </div>
+                    <input type="text" class="form-control">
+                  </div>
+                  <div  class="input-group input-group-sm mb-3"
+                        style="top: 70px;">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text">Approval Code</span>
+                    </div>
+                    <input type="text" class="form-control">
+                  </div>
                 </mat-grid-tile>
 <!-- save and save print container -->
                 <mat-grid-tile *ngIf="transType !== undefined" colspan="20" rowspan="2" >
-                    <button mat-raised-button (click)="onClick" color="accent" 
+                    <button mat-raised-button (click)="save()" color="accent" 
                     class="mr-2 animated fadeIn">
-                        <clr-icon shape="floppy" ></clr-icon> SAVE
+                        <clr-icon shape="floppy"></clr-icon> SAVE
                     </button>
                     <button mat-raised-button (click)="onClick" color="primary" 
                     class="animated fadeIn">
@@ -84,7 +131,7 @@
               </mat-grid-list>
             </div>
 <!-- total, subtotal, discount, change container -->
-            <div class="col-md-4">
+            <div class="col-md-4 mt-3">
               <mat-grid-list cols="10" rowHeight="10px" gutterSize="0px">
                 <mat-grid-tile colspan="6" rowspan="3">
                   <span>Sub Total: </span> 
@@ -99,10 +146,10 @@
                   <span>{{discounted}}</span>
                 </mat-grid-tile>
                 <mat-grid-tile colspan="6" rowspan="3">
-                  <span>Change: </span> 
+                  <span *ngIf="transType === 'CASH'">Change: </span> 
                 </mat-grid-tile>
                 <mat-grid-tile colspan="4" rowspan="3">
-                  <span>123</span>
+                  <span *ngIf="transType === 'CASH'">{{change}}</span>
                 </mat-grid-tile>
                 <mat-grid-tile colspan="10" rowspan="1"></mat-grid-tile>
                 <mat-grid-tile colspan="10" rowspan="2" class="bg-dark text-light">

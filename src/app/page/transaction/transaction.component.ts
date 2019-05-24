@@ -1,5 +1,7 @@
 import { Component, OnInit, SimpleChanges } from '@angular/core';
-import { itemList, total } from 'src/app/services/service.interface';
+import { itemList, total, transaction, patient } from 'src/app/services/service.interface';
+import { FormControl } from '@angular/forms';
+
 @Component({
   selector: 'transaction',
   templateUrl: './transaction.component.html',
@@ -8,23 +10,28 @@ import { itemList, total } from 'src/app/services/service.interface';
 export class TransactionComponent implements OnInit{
   private items: itemList[] = [];
   discount: number = 0;
-  discountBtn = [5,10,15,20];
+  discountBtn = [ 5, 10, 15, 20 ];
+  moneyBtn = [ 50, 100, 200, 500, 1000 ];
   total: total[] = [];
   totalVal:any = 0;
   subTotal:any = 0;
   discounted:any = 0;
   transType:string = undefined;
   transTypeBTN = ["CASH", "ACCOUNT", "HMO", "APE" ];
-  
+  receivedAmount = new FormControl();
+  change:number = 0;
+  arError: string = undefined;
+  currency: string = "PHP";
+  transaction: transaction;
+  patient: patient;
+
   constructor() { 
     this.totalVal = 0;
   }
   ngOnInit() {
-    console.log(this.transTypeBTN);
-  }
-  ngOnChanges(changes: SimpleChanges): void {
-    let totalChange = changes.total.currentValue;
-    console.log(totalChange);
+    // change computation 
+    this.receivedAmount.valueChanges
+    .subscribe(data => this.updateChange(data));    
   }
   getItem(value){
     let found = this.items.find(item => item.itemId === value.itemId);
@@ -52,7 +59,6 @@ export class TransactionComponent implements OnInit{
     }   
     this.total.push(value);
     this.computeTotal();
-    //console.log(this.total);
   }
   computeTotal(){
     let num: number = 0;
@@ -64,11 +70,36 @@ export class TransactionComponent implements OnInit{
     let num3 = num2 - num;
     this.totalVal = num.toFixed(2);
     this.subTotal = num2.toFixed(2);
-    this.discounted = num3.toFixed(2) ;
-    //console.log(this.total);  
+    this.discounted = num3.toFixed(2);
+    this.receivedAmount.setValue(this.totalVal); 
   }
   changeTrans(type){
     this.transType = type;
+    this.currency = "PHP";
   }
-
+  addMoney(money){
+    this.receivedAmount.setValue(money);
+  }
+  updateChange(data){
+    if(data < this.totalVal){
+      this.arError = "Please Input higher amount";
+    }else{
+      this.change = data - this.totalVal;
+      this.arError = undefined;
+    }
+  }
+  changeCurrency(){
+    if(this.currency === "PHP"){
+      this.currency = "USD";
+    }else{
+      this.currency = "PHP";
+    }
+  }
+  save(){
+    this.transaction = {items: this.items};
+    console.log(this.transaction);
+  }
+  getPatient(value){
+    this.patient = value;
+  }
 }

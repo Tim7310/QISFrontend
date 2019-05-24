@@ -1,4 +1,13 @@
-import { Component, OnInit, AfterViewInit, OnDestroy, ViewChild, Output, EventEmitter, Input } from '@angular/core';
+import { 
+  Component, 
+  OnInit, 
+  AfterViewInit, 
+  OnDestroy, 
+  ViewChild, 
+  Output, 
+  EventEmitter, 
+  Input } 
+from '@angular/core';
 import { itemList } from 'src/app/services/service.interface';
 import { FormControl } from '@angular/forms';
 import { ReplaySubject, Subject } from 'rxjs';
@@ -14,6 +23,7 @@ import { ItemService } from 'src/app/services/item.service';
 export class SelectItemComponent implements OnInit, AfterViewInit, OnDestroy {
   @Output() selectTrig = new EventEmitter();
   @Input() itemURL: string;
+  @Input() placeholder: string;
   items = [];
 
   /** control for the selected bank */
@@ -75,7 +85,8 @@ export class SelectItemComponent implements OnInit, AfterViewInit, OnDestroy {
         // the form control (i.e. _initializeSelection())
         // this needs to be done after the filteredBanks are loaded initially
         // and after the mat-option elements are available
-        this.singleSelect.compareWith = (a: itemList, b: itemList) => a && b && a.itemId === b.itemId;
+        this.singleSelect.compareWith = 
+        (a: itemList, b: itemList) => a && b && a.itemId === b.itemId;
       });
   }
 

@@ -48,6 +48,9 @@ import { ItemService } from './services/item.service';
 import { ErrorService } from './services/error.service';
 import { TransactionComponent } from './page/transaction/transaction.component';
 import { ItemBoxComponent } from './element/item-box/item-box.component';
+import { Global } from './global.variable';
+import { SelectPatientComponent } from './element/select-patient/select-patient.component';
+import { PatientService } from './services/patient.service';
 
 @NgModule({
   declarations: [
@@ -55,6 +58,7 @@ import { ItemBoxComponent } from './element/item-box/item-box.component';
     SelectItemComponent,
     TransactionComponent,
     ItemBoxComponent,
+    SelectPatientComponent,
   ],
   exports: [
     CdkTableModule,
@@ -139,7 +143,11 @@ import { ItemBoxComponent } from './element/item-box/item-box.component';
     FlexLayoutModule,
     NgxMatSelectSearchModule
   ],
-  providers: [ItemService, ErrorService],
+  providers: [
+    ItemService, 
+    ErrorService,
+    PatientService,
+    Global],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

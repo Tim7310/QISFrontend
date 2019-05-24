@@ -14,9 +14,33 @@ export interface itemList{
     creationDate: Date,
     dateUpdate: Date,
 }
-
 export interface total{
     id: number,
     price: number,
     subtotal:number
+}
+export interface transaction{
+    items: itemList[],
+}
+export interface patient{
+    patientID: number,
+    patientRef: number, 
+    fullName: any,
+    firstName: any,
+    middleName: any,
+    lastName: any,
+    address: any,
+    position: any,
+    companyName: any,
+    birthdate: Date,
+    gender: any,
+    notes: any,
+    patientType:  any,    
+    email: any,
+    age: number,
+    patientBiller: any,
+    sid: any,
+    dateUpdate: Date,
+    creationDate: Date,
+    contactNo: number
 }

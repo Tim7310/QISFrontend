@@ -4,8 +4,7 @@
       <ngx-mat-select-search [formControl]="itemFilterCtrl"></ngx-mat-select-search>
     </mat-option>
 
-    <mat-option *ngFor="let item of filteredItems | async" [value]="item" 
-    (click)="getSelectedValue()">
+    <mat-option *ngFor="let item of filteredItems | async" [value]="item" >
       {{item.itemName}}
     </mat-option>
   </mat-select>

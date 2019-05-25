@@ -1,22 +1,98 @@
 <div class="container-fluid">
   <div class="row">
     <div class="col-md-5 mt-2">
-      <!-- cash item selection -->
+<!-- cash item selection -->
       <select-item itemURL="NonAccountItems" 
         placeholder="CASH Items" (selectTrig)="getItem($event)">
       </select-item>     
-      <!-- Account item Selection -->
+<!-- Account item Selection -->
       <select-item itemURL="AccountItems" 
           placeholder="ACCOUNT Items" (selectTrig)="getItem($event)">
       </select-item> 
-      <select-patient patientURL="Cash1" 
-        placeholder="Patient List" (selectTrig)="getPatient($event)">
-      </select-patient>     
+<!-- patient selection -->
+      <div class="row mt-3">      
+        <div class="col-8">
+          <select-patient patientURL="Cash1" 
+            placeholder="Patient List" (selectTrig)="getPatient($event)">
+          </select-patient> 
+        </div>
+        <div class="col-4">
+          <button mat-raised-button (click)="onClick" 
+                  class="mt-2 bg-info text-light ls-1">
+              <clr-icon shape="plus"></clr-icon>&nbsp; New Patient
+          </button>
+        </div>
+      </div>
+ <!-- patient information container -->
+      <mat-grid-list *ngIf="patient !== undefined"
+      cols="20" rowHeight="5px" class="animated bounceIn mt-2" gutterSize="0px">
+        <mat-grid-tile colspan="20" rowspan="10" >
+          <div class="bg-dark patHeadCon" >
+            <div  class="bg-info patHead shadow p-2 pl-4 pr-4 text-light " >
+                <clr-icon shape="assign-user"></clr-icon> 
+                <span class=" ls-2"> PATIENT INFO</span>
+            </div>
+            <span class="patclose" (click)="resetPatient()">
+              <clr-icon shape="times" size="25"></clr-icon>
+            </span>
+          </div>
+        </mat-grid-tile>  
+        <mat-grid-tile colspan="20" rowspan="1" ></mat-grid-tile>      
+        <mat-grid-tile colspan="20" rowspan="8" class="bg-info" >
+          <div class="patinfo">
+            <span class="bold-1 ls-1">NAME: </span>
+            &nbsp;&nbsp;<span class="text-light ls-1">{{patient?.fullName}}</span>
+          </div>
+        </mat-grid-tile>
+        <mat-grid-tile colspan="7" rowspan="8" class="bg-info" >
+          <div class="patinfo">
+            <span class="bold-1 ls-1">AGE: </span>
+            &nbsp;&nbsp;<span class="text-light ls-1">{{patient?.age}}</span>
+          </div>
+        </mat-grid-tile>
+        <mat-grid-tile colspan="13" rowspan="8" class="bg-info" >
+          <div class="patinfo">
+            <span class="bold-1 ls-1">BirthDate: </span>
+            &nbsp;&nbsp;<span class="text-light ls-1">{{patient?.birthdate}}</span>
+          </div>
+        </mat-grid-tile>
+        <mat-grid-tile colspan="7" rowspan="8" class="bg-info" >
+          <div class="patinfo">
+            <span class="bold-1 ls-1">Gender: </span>
+            &nbsp;&nbsp;<span class="text-light ls-1">{{patient?.gender}}</span>
+          </div>
+        </mat-grid-tile>
+        <mat-grid-tile colspan="13" rowspan="8" class="bg-info" >
+          <div class="patinfo">
+            <span class="bold-1 ls-1">Position: </span>
+            &nbsp;&nbsp;<span class="text-light ls-1">{{patient?.position}}</span>
+          </div>
+        </mat-grid-tile>   
+        <mat-grid-tile colspan="20" rowspan="8" class="bg-info" >
+          <div class="patinfo">
+            <span class="bold-1 ls-1">Address: </span>
+            &nbsp;&nbsp;<span class="text-light ls-1">{{patient?.address}}</span>
+          </div>
+        </mat-grid-tile>
+        <mat-grid-tile colspan="20" rowspan="8" class="bg-info" >
+          <div class="patinfo">
+            <span class="bold-1 ls-1">Company: </span>
+            &nbsp;&nbsp;<span class="text-light ls-1">{{patient?.companyName}}</span>
+          </div>
+        </mat-grid-tile>
+        <mat-grid-tile colspan="20" rowspan="1"></mat-grid-tile> 
+        <mat-grid-tile colspan="20" rowspan="10" class="bg-dark">
+          <button mat-raised-button (click)="onClick">
+            <clr-icon shape="pencil"></clr-icon> Edit
+          </button>
+        </mat-grid-tile> 
+      </mat-grid-list> 
     </div>
+
     <div class="col-md-7 mt-2 pl-2 ">
       <div class="bg-info item-box-container">
         <div class="item-box-label bg-info s-bottom mb-1">
-          <mat-grid-list cols="20" rowHeight="60px">
+          <mat-grid-list cols="20" rowHeight="60px" >
             <mat-grid-tile colspan="9" rowspan="1" class="text-light ls-2 bold-3 ts-2">
               ITEM LIST
             </mat-grid-tile>
@@ -31,6 +107,7 @@
             </mat-grid-tile>
           </mat-grid-list>         
         </div>
+<!-- selected items -->
         <div class="pr-3 pl-3 item-list-con" #scrollMe [scrollTop]="scrollMe.scrollHeight">
             <item-box *ngFor="let item of items" 
               [itemInfo]="item" (deleteThis)="deleteItem($event)" [discount]="discount"

@@ -40,16 +40,10 @@ export class SelectPatientComponent implements OnInit, AfterViewInit, OnDestroy 
   /** Subject that emits when the component has been destroyed. */
   protected _onDestroy = new Subject<void>();
 
-  getSelectedValue(){
-      this.selectTrig.emit(this.patientCtrl.value);
-  }
 
   constructor(public patientService: PatientService) { }
 
   ngOnInit() {
-    //get patient list and pass the data to patient variable
-    this.patientService.getPatient(this.patientURL)
-    .subscribe(data => this.patient= data);
     // set initial selection
     this.patientCtrl.setValue(this.patient[10]);
 
@@ -62,6 +56,14 @@ export class SelectPatientComponent implements OnInit, AfterViewInit, OnDestroy 
       .subscribe(() => {
         this.filterItems();
       });
+    //get patient list and pass the data to patient variable
+    this.patientService.getPatient(this.patientURL)
+    .subscribe(data => this.patient= data);
+
+    //emit patient value when select value change
+    this.patientCtrl.valueChanges.subscribe(
+      value => this.selectTrig.emit(value)
+    );
   }
 
   ngAfterViewInit() {

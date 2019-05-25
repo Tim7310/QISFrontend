@@ -47,9 +47,6 @@ export class SelectItemComponent implements OnInit, AfterViewInit, OnDestroy {
   constructor(public itemService: ItemService) { }
 
   ngOnInit() {
-    //get item list and pass the data to items variable
-    this.itemService.getItem(this.itemURL)
-    .subscribe(data => this.items = data);
     // set initial selection
     this.itemCtrl.setValue(this.items[10]);
 
@@ -62,6 +59,14 @@ export class SelectItemComponent implements OnInit, AfterViewInit, OnDestroy {
       .subscribe(() => {
         this.filterItems();
       });
+
+    //get item list and pass the data to items variable
+    this.itemService.getItem(this.itemURL)
+    .subscribe(data => this.items = data);
+
+    this.itemCtrl.valueChanges.subscribe(
+      value => this.selectTrig.emit(value)
+    );
   }
 
   ngAfterViewInit() {

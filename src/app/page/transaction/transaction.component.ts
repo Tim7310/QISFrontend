@@ -19,7 +19,7 @@ export class TransactionComponent implements OnInit{
   transType:string = undefined;
   transTypeBTN = ["CASH", "ACCOUNT", "HMO", "APE" ];
   receivedAmount = new FormControl();
-  change:number = 0;
+  change:any = 0;
   arError: string = undefined;
   currency: string = "PHP";
   transaction: transaction;
@@ -82,9 +82,11 @@ export class TransactionComponent implements OnInit{
   }
   updateChange(data){
     if(data < this.totalVal){
+      this.change = 0;
       this.arError = "Please Input higher amount";
     }else{
       this.change = data - this.totalVal;
+      this.change = this.change.toFixed(2);
       this.arError = undefined;
     }
   }
@@ -101,5 +103,8 @@ export class TransactionComponent implements OnInit{
   }
   getPatient(value){
     this.patient = value;
+  }
+  resetPatient(){
+    this.patient = undefined;
   }
 }

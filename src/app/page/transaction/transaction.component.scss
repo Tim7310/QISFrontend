@@ -79,3 +79,27 @@ mat-grid-tile[colspan='4'] span{
     position: absolute;
     width:400px
 }
+.patHead{
+    position: absolute; 
+    top: -15px; 
+    left: 10px; 
+}
+.patHeadCon{
+    position: absolute; 
+    bottom: 0px;
+    width: 100%; 
+    height: 40px;
+}
+.bg-dark{
+    color:white;
+}
+.patinfo{
+    position: absolute;
+    left:10px;
+}
+.patclose{
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
+    cursor: pointer;
+}

@@ -1,0 +1,13 @@
+<mat-form-field style="width: 100%">
+    <mat-select [formControl]="companyCtrl" [placeholder]="placeholder" #singleSelect>
+      <mat-option>
+        <ngx-mat-select-search [formControl]="companyFilterCtrl"></ngx-mat-select-search>
+      </mat-option>
+      <mat-option *ngIf="selected !== undefined" [value]="selected.companyID" selected>
+        {{selected.nameCompany}}
+      </mat-option>
+      <mat-option *ngFor="let company of filteredCompany | async" [value]="company" >
+        {{company.nameCompany}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>

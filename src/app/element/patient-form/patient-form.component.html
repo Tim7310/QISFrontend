@@ -1,4 +1,82 @@
-<mat-grid-list cols="2" rowHeight="100px" gutterSize="'0px'">
-    <mat-grid-tile [colspan]="1" [rowspan]="1">Tile 1</mat-grid-tile>
-    <mat-grid-tile [colspan]="1" [rowspan]="1">Tile 2</mat-grid-tile>
-</mat-grid-list>
+<form >
+    <mat-grid-list cols="12" rowHeight="17px" gutterSize="0px">
+        <mat-grid-tile colspan="8" rowspan="4">
+            <company-select 
+                companyURL="getCompany" 
+                placeholder="Company List / Doctor"
+                (selectTrig)="getCompany($event)"
+                [selected]="patCompany">
+            </company-select>
+        </mat-grid-tile>
+        <mat-grid-tile colspan="4" rowspan="4">
+            <mat-form-field class="right">
+                <input matInput placeholder="Applied Position">
+            </mat-form-field>
+        </mat-grid-tile>
+        <mat-grid-tile colspan="5" rowspan="4">
+            <mat-form-field class="left">
+                <input matInput placeholder="First name">
+            </mat-form-field>
+        </mat-grid-tile>
+        <mat-grid-tile colspan="2" rowspan="4">
+            <mat-form-field class="left">
+                <input matInput placeholder="Middle Name">
+            </mat-form-field>
+        </mat-grid-tile>
+        <mat-grid-tile colspan="5" rowspan="4">
+            <mat-form-field class="right">
+                <input matInput placeholder="Last Name">
+            </mat-form-field>
+        </mat-grid-tile>
+        <mat-grid-tile colspan="10" rowspan="4">
+            <mat-form-field class="left">
+                <input matInput placeholder="Address">
+            </mat-form-field>
+        </mat-grid-tile>
+        <mat-grid-tile colspan="2" rowspan="4">
+            <mat-form-field class="right">
+                <mat-select placeholder="Gender">
+                    <mat-option value=""></mat-option>
+                    <mat-option value="Male">Male</mat-option>
+                    <mat-option value="Female">Female</mat-option>
+                </mat-select>
+            </mat-form-field>
+        </mat-grid-tile>
+        <mat-grid-tile colspan="5" rowspan="4">
+            <mat-form-field class="left">
+                <input matInput [matDatepickerFilter]="myFilter" 
+                [matDatepicker]="picker" placeholder="Choose a date">
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+        </mat-grid-tile>
+        <mat-grid-tile colspan="2" rowspan="4">
+            <mat-form-field class="left">
+                <input matInput placeholder="Age" type="number">
+            </mat-form-field>
+        </mat-grid-tile>
+        <mat-grid-tile colspan="5" rowspan="4">
+            <mat-form-field class="right">
+                <input matInput placeholder="Contact Number">
+            </mat-form-field>
+        </mat-grid-tile>
+        <mat-grid-tile colspan="4" rowspan="4">
+            <mat-form-field class="left">
+                <input matInput placeholder="Email Address">
+            </mat-form-field>
+        </mat-grid-tile>
+        <mat-grid-tile colspan="4" rowspan="4">
+            <company-select 
+                companyURL="getCompany" 
+                placeholder="Company List / Doctor"
+                (selectTrig)="getBiller($event)">
+            </company-select>
+        </mat-grid-tile>
+        <mat-grid-tile colspan="4" rowspan="4">
+            <mat-form-field class="right">
+                <input matInput placeholder="Senior ID / PWD ID">
+            </mat-form-field>
+        </mat-grid-tile>
+    </mat-grid-list>
+</form>
+<button mat-raised-button (click)="onClick()">Action</button>

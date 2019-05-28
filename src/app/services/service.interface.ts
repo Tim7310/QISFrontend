@@ -44,3 +44,8 @@ export interface patient{
     creationDate: Date,
     contactNo: number
 }
+export interface company{
+    companyID: number,
+    nameCompany: string,
+    companyAddress: string
+}

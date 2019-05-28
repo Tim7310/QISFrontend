@@ -51,8 +51,8 @@ import { ItemBoxComponent } from './element/item-box/item-box.component';
 import { Global } from './global.variable';
 import { SelectPatientComponent } from './element/select-patient/select-patient.component';
 import { PatientService } from './services/patient.service';
-import { AddPatientComponent } from './element/add-patient/add-patient.component';
 import { PatientFormComponent } from './element/patient-form/patient-form.component';
+import { CompanySelectComponent } from './element/company-select/company-select.component';
 
 @NgModule({
   declarations: [
@@ -61,8 +61,8 @@ import { PatientFormComponent } from './element/patient-form/patient-form.compon
     TransactionComponent,
     ItemBoxComponent,
     SelectPatientComponent,
-    AddPatientComponent,
     PatientFormComponent,
+    CompanySelectComponent,
   ],
   exports: [
     CdkTableModule,

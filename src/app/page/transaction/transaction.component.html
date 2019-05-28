@@ -12,7 +12,7 @@
 <!-- patient selection -->
       <div class="row mt-3">      
         <div class="col-8">
-          <select-patient patientURL="Cash1" 
+          <select-patient patientURL="getPatient" 
             placeholder="Patient List" (selectTrig)="getPatient($event)">
           </select-patient> 
         </div>
@@ -118,7 +118,7 @@
           <div class="row">
             <div class="col-md-8">
               <mat-grid-list cols="20" rowrHeight="10px">
-                <mat-grid-tile *ngIf="transType === undefined" colspan="20" rowspan="6">
+                <mat-grid-tile *ngIf="transType === undefined" colspan="20" rowspan="7">
 <!-- Transaction type button label -->
                   <div class="bg-dark p-1 pl-3 pr-3 ls-1 text-light"> 
                     Select Transaction Type: 

@@ -17,7 +17,7 @@
           </select-patient> 
         </div>
         <div class="col-4">
-          <button mat-raised-button (click)="onClick" 
+          <button mat-raised-button (click)="newPatient()" 
                   class="mt-2 bg-info text-light ls-1">
               <clr-icon shape="plus"></clr-icon>&nbsp; New Patient
           </button>
@@ -82,7 +82,7 @@
         </mat-grid-tile>
         <mat-grid-tile colspan="20" rowspan="1"></mat-grid-tile> 
         <mat-grid-tile colspan="20" rowspan="10" class="bg-dark">
-          <button mat-raised-button (click)="onClick">
+          <button mat-raised-button (click)="editPatient()">
             <clr-icon shape="pencil"></clr-icon> Edit
           </button>
         </mat-grid-tile> 

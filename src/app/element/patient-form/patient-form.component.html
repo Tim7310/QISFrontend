@@ -1,4 +1,10 @@
-<form >
+<div mat-dialog-title>Patient Form
+    <button mat-button (click)="close()">
+        <clr-icon shape="times" ></clr-icon>
+    </button>  
+</div>
+<div mat-dialog-content>
+<form [formGroup]="patientForm">
     <mat-grid-list cols="12" rowHeight="17px" gutterSize="0px">
         <mat-grid-tile colspan="8" rowspan="4">
             <company-select 
@@ -10,59 +16,94 @@
         </mat-grid-tile>
         <mat-grid-tile colspan="4" rowspan="4">
             <mat-form-field class="right">
-                <input matInput placeholder="Applied Position">
+                <input matInput placeholder="Applied Position" formControlName="position">
             </mat-form-field>
         </mat-grid-tile>
         <mat-grid-tile colspan="5" rowspan="4">
             <mat-form-field class="left">
-                <input matInput placeholder="First name">
+                <input matInput placeholder="First name" formControlName="firstName">
+                <mat-hint>*Required Field</mat-hint>
+                <mat-error *ngIf="patientForm.get('firstName').hasError('required')">
+                   First Name is <strong>required</strong>
+                </mat-error>
             </mat-form-field>
         </mat-grid-tile>
         <mat-grid-tile colspan="2" rowspan="4">
             <mat-form-field class="left">
-                <input matInput placeholder="Middle Name">
+                <input matInput placeholder="Middle Name" formControlName="middleName">
+                <mat-hint>*Required Field</mat-hint>
+                <mat-error *ngIf="patientForm.get('middleName').hasError('required')">
+                   Middle Name is <strong>required</strong>
+                </mat-error>
             </mat-form-field>
         </mat-grid-tile>
         <mat-grid-tile colspan="5" rowspan="4">
             <mat-form-field class="right">
-                <input matInput placeholder="Last Name">
+                <input matInput placeholder="Last Name" formControlName="lastName">
+                <mat-hint>*Required Field</mat-hint>
+                <mat-error *ngIf="patientForm.get('lastName').hasError('required')">
+                   Last Name is <strong>required</strong>
+                </mat-error>
             </mat-form-field>
         </mat-grid-tile>
         <mat-grid-tile colspan="10" rowspan="4">
             <mat-form-field class="left">
-                <input matInput placeholder="Address">
+                <input matInput placeholder="Address" formControlName="address">
+                <mat-hint>*Required Field</mat-hint>
+                <mat-error *ngIf="patientForm.get('address').hasError('required')">
+                   Address is <strong>required</strong>
+                </mat-error>
             </mat-form-field>
         </mat-grid-tile>
         <mat-grid-tile colspan="2" rowspan="4">
             <mat-form-field class="right">
-                <mat-select placeholder="Gender">
+                <mat-select placeholder="Gender" formControlName="gender">
                     <mat-option value=""></mat-option>
-                    <mat-option value="Male">Male</mat-option>
-                    <mat-option value="Female">Female</mat-option>
+                    <mat-option value="MALE">Male</mat-option>
+                    <mat-option value="FEMALE">Female</mat-option>
                 </mat-select>
+                <mat-hint>*Required Field</mat-hint>
+                <mat-error *ngIf="patientForm.get('gender').hasError('required')">
+                   Gender is <strong>required</strong>
+                </mat-error>
             </mat-form-field>
         </mat-grid-tile>
         <mat-grid-tile colspan="5" rowspan="4">
             <mat-form-field class="left">
                 <input matInput [matDatepickerFilter]="myFilter" 
-                [matDatepicker]="picker" placeholder="Choose a date">
+                [matDatepicker]="picker" placeholder="Choose a date" formControlName="bday">
                 <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                 <mat-datepicker #picker></mat-datepicker>
+                <mat-hint>*Required Field</mat-hint>
+                <mat-error *ngIf="patientForm.get('bday').hasError('required')">
+                   Birth Date is <strong>required</strong>
+                </mat-error>
             </mat-form-field>
         </mat-grid-tile>
         <mat-grid-tile colspan="2" rowspan="4">
             <mat-form-field class="left">
-                <input matInput placeholder="Age" type="number">
+                <input matInput placeholder="Age" type="number" formControlName="age">
+                <mat-hint>*Required Field</mat-hint>
+                <mat-error *ngIf="patientForm.get('age').hasError('required')">
+                   Age is <strong>required</strong>
+                </mat-error>
             </mat-form-field>
         </mat-grid-tile>
         <mat-grid-tile colspan="5" rowspan="4">
             <mat-form-field class="right">
-                <input matInput placeholder="Contact Number">
+                <input matInput placeholder="Contact Number" formControlName="contact">
+                <mat-hint>*Required Field</mat-hint>
+                <mat-error *ngIf="patientForm.get('contact').hasError('required')">
+                   Contact is <strong>required</strong>
+                </mat-error>
             </mat-form-field>
         </mat-grid-tile>
         <mat-grid-tile colspan="4" rowspan="4">
             <mat-form-field class="left">
-                <input matInput placeholder="Email Address">
+                <input matInput placeholder="Email Address" formControlName="email">
+                <mat-error *ngIf="patientForm.get('email').hasError('email')">
+                    Enter valid <strong>Email</strong>
+                </mat-error>
             </mat-form-field>
         </mat-grid-tile>
         <mat-grid-tile colspan="4" rowspan="4">
@@ -74,9 +115,14 @@
         </mat-grid-tile>
         <mat-grid-tile colspan="4" rowspan="4">
             <mat-form-field class="right">
-                <input matInput placeholder="Senior ID / PWD ID">
+                <input matInput placeholder="Senior ID / PWD ID" formControlName="sid">
             </mat-form-field>
         </mat-grid-tile>
     </mat-grid-list>
 </form>
-<button mat-raised-button (click)="onClick()">Action</button>
+</div>
+<div mat-dialog-actions>
+    <button mat-raised-button [disabled]="!patientForm.valid" (click)="savePatient()">
+        Submit
+    </button>
+</div>

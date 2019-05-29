@@ -1,6 +1,8 @@
 import { Component, OnInit, SimpleChanges } from '@angular/core';
 import { itemList, total, transaction, patient } from 'src/app/services/service.interface';
 import { FormControl } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
+import { PatientFormComponent } from 'src/app/element/patient-form/patient-form.component';
 
 @Component({
   selector: 'transaction',
@@ -25,7 +27,7 @@ export class TransactionComponent implements OnInit{
   transaction: transaction;
   patient: patient;
 
-  constructor() { 
+  constructor(public dialog: MatDialog) { 
     this.totalVal = 0;
   }
   ngOnInit() {
@@ -106,5 +108,25 @@ export class TransactionComponent implements OnInit{
   }
   resetPatient(){
     this.patient = undefined;
+  }
+  newPatient(): void{
+    const dialogRef = this.dialog.open(PatientFormComponent, {
+      width: '90%',
+      data: undefined
+    });
+
+    // dialogRef.afterClosed().subscribe(result => {
+    //   console.log('The dialog was closed');
+    // });
+  }
+  editPatient(): void{
+    const dialogRef = this.dialog.open(PatientFormComponent, {
+      width: '90%',
+      data: this.patient
+    });
+
+    // dialogRef.afterClosed().subscribe(result => {
+    //   console.log('The dialog was closed');
+    // });
   }
 }

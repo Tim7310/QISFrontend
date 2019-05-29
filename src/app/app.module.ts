@@ -34,6 +34,7 @@ import {
   MatTabsModule,
   MatToolbarModule,
   MatTooltipModule,
+  MAT_DIALOG_DATA,
 } from '@angular/material';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -145,13 +146,17 @@ import { CompanySelectComponent } from './element/company-select/company-select.
     MatToolbarModule,
     MatTooltipModule,
     FlexLayoutModule,
-    NgxMatSelectSearchModule
+    NgxMatSelectSearchModule,
   ],
   providers: [
     ItemService, 
     ErrorService,
     PatientService,
-    Global],
-  bootstrap: [AppComponent]
+    Global,
+    PatientFormComponent,
+    {provide:MAT_DIALOG_DATA,useValue:{}}
+    ],
+  bootstrap: [AppComponent],
+  entryComponents: [PatientFormComponent]
 })
 export class AppModule { }

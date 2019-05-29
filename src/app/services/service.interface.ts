@@ -32,7 +32,7 @@ export interface patient{
     address: any,
     position: any,
     companyName: any,
-    birthdate: Date,
+    birthdate: any,
     gender: any,
     notes: any,
     patientType:  any,    
@@ -40,9 +40,9 @@ export interface patient{
     age: number,
     patientBiller: any,
     sid: any,
-    dateUpdate: Date,
-    creationDate: Date,
-    contactNo: number
+    dateUpdate: any,
+    creationDate: any,
+    contactNo: any
 }
 export interface company{
     companyID: number,

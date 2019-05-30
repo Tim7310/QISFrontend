@@ -1,5 +1,5 @@
-<div mat-dialog-title>Patient Form
-    <button mat-button (click)="close()">
+<div mat-dialog-title>{{title}}
+    <button mat-button (click)="close()" class="close">
         <clr-icon shape="times" ></clr-icon>
     </button>  
 </div>
@@ -71,11 +71,11 @@
         <mat-grid-tile colspan="5" rowspan="4">
             <mat-form-field class="left">
                 <input matInput [matDatepickerFilter]="myFilter" 
-                [matDatepicker]="picker" placeholder="Choose a date" formControlName="bday">
+                [matDatepicker]="picker" placeholder="Choose a date" formControlName="birthdate">
                 <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                 <mat-datepicker #picker></mat-datepicker>
                 <mat-hint>*Required Field</mat-hint>
-                <mat-error *ngIf="patientForm.get('bday').hasError('required')">
+                <mat-error *ngIf="patientForm.get('birthdate').hasError('required')">
                    Birth Date is <strong>required</strong>
                 </mat-error>
             </mat-form-field>
@@ -91,9 +91,9 @@
         </mat-grid-tile>
         <mat-grid-tile colspan="5" rowspan="4">
             <mat-form-field class="right">
-                <input matInput placeholder="Contact Number" formControlName="contact">
+                <input matInput placeholder="Contact Number" formControlName="contactNo">
                 <mat-hint>*Required Field</mat-hint>
-                <mat-error *ngIf="patientForm.get('contact').hasError('required')">
+                <mat-error *ngIf="patientForm.get('contactNo').hasError('required')">
                    Contact is <strong>required</strong>
                 </mat-error>
             </mat-form-field>
@@ -107,22 +107,23 @@
             </mat-form-field>
         </mat-grid-tile>
         <mat-grid-tile colspan="4" rowspan="4">
-            <company-select 
-                companyURL="getCompany" 
-                placeholder="Company List / Doctor"
-                (selectTrig)="getBiller($event)">
-            </company-select>
+            <mat-form-field class="right">
+                <input matInput placeholder="Biller" formControlName="patientBiller">
+            </mat-form-field>
         </mat-grid-tile>
         <mat-grid-tile colspan="4" rowspan="4">
             <mat-form-field class="right">
                 <input matInput placeholder="Senior ID / PWD ID" formControlName="sid">
             </mat-form-field>
         </mat-grid-tile>
+        <mat-grid-tile colspan="12" rowspan="5">
+            <button mat-raised-button 
+            [disabled]  = "!patientForm.valid" 
+            (click)     = "savePatient()"
+            color       = "primary">
+                Submit
+            </button>
+        </mat-grid-tile>
     </mat-grid-list>
 </form>
-</div>
-<div mat-dialog-actions>
-    <button mat-raised-button [disabled]="!patientForm.valid" (click)="savePatient()">
-        Submit
-    </button>
 </div>

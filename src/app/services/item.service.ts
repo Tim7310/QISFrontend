@@ -33,8 +33,8 @@ export class ItemService {
         catchError(this.ehs.handleError)
     )
   }   
-  getCompanyByName(company: string): Observable<company>{
-    return this.http.get<company>(this.global.url+"/getCompany/"+ company)
+  getCompanyByID(id: number): Observable<company>{
+    return this.http.get<company>(this.global.url+"/getCompany/"+ id)
     .pipe(
         retry(1),
         catchError(this.ehs.handleError)

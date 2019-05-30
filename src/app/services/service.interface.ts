@@ -23,7 +23,7 @@ export interface transaction{
     items: itemList[],
 }
 export interface patient{
-    patientID: number,
+    patientID: any,
     patientRef: number, 
     fullName: any,
     firstName: any,
@@ -42,7 +42,8 @@ export interface patient{
     sid: any,
     dateUpdate: any,
     creationDate: any,
-    contactNo: any
+    contactNo: any,
+    companyID: number
 }
 export interface company{
     companyID: number,

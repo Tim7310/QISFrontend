@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { patient } from './service.interface';
 import { Observable } from 'rxjs';
 import { retry, catchError } from 'rxjs/operators';
@@ -10,8 +10,8 @@ import { Global } from '../global.variable';
 export class PatientService {
 
     constructor(
-        private http: HttpClient, 
-        public ehs: ErrorService,
+        private http  : HttpClient, 
+        public  ehs   : ErrorService,
         private global: Global
       ) { }
   
@@ -21,5 +21,18 @@ export class PatientService {
         retry(1),
         catchError(this.ehs.handleError)
     )
-  }    
+  }  
+  public httpOptions = {
+    headers: new HttpHeaders({
+      'Content-Type':  'application/json',
+      'Authorization': 'my-auth-token'
+    })
+  };
+  addPatient (patient: patient): Observable<patient> {
+    return this.http.post<patient>(this.global.url + "/addPatient", patient, this.httpOptions)
+      .pipe(
+        retry(1),
+        catchError(this.ehs.handleError)
+      );
+  }  
 }

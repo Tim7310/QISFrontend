@@ -82,6 +82,8 @@ export class PatientFormComponent implements OnInit {
   }
 
   ngOnInit() {
+    const randomNum = this.math.randomNumber();
+    this.patientForm.get('patientRef').setValue(randomNum);
     console.log(this.patCompany);
   }
   getCompany(value){

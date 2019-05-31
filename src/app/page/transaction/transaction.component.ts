@@ -39,7 +39,7 @@ export class TransactionComponent implements OnInit{
     let found = this.items.find(item => item.itemId === value.itemId);
     if(found === undefined){
       this.items.push(value);
-    }
+    }    
   }
   deleteItem(value) {
     this.items.splice( this.items.indexOf(value), 1 );
@@ -61,6 +61,7 @@ export class TransactionComponent implements OnInit{
     }   
     this.total.push(value);
     this.computeTotal();
+    console.log(this.total);
   }
   computeTotal(){
     let num: number = 0;
@@ -74,6 +75,7 @@ export class TransactionComponent implements OnInit{
     this.subTotal = num2.toFixed(2);
     this.discounted = num3.toFixed(2);
     this.receivedAmount.setValue(this.totalVal); 
+    
   }
   changeTrans(type){
     this.transType = type;

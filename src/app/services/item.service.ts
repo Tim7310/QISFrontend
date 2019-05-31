@@ -8,15 +8,11 @@ import { Global } from '../global.variable';
 
 @Injectable()
 export class ItemService {
-  COMPANY: company[];
   constructor(
     private http: HttpClient, 
     public ehs: ErrorService,
     private global: Global
-  ) { 
-    this.getCompany("getCompany")
-    .subscribe(data => this.COMPANY = data);
-   }
+  ) { }
   //  get item list
   getItem(type: string): Observable<itemList[]>{
     return this.http.get<itemList[]>(this.global.url+"/"+type)

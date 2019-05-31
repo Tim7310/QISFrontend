@@ -10,7 +10,7 @@ import { FormControl, FormGroup, FormBuilder } from '@angular/forms';
 export class ItemBoxComponent implements OnInit, OnChanges {
   @Input() itemInfo: itemList;
   itemForm : FormGroup;
-  @Input() discount: number;
+  @Input() discount: number = 0;
   @Output() deleteThis = new EventEmitter();
   @Output() getTotal = new EventEmitter(); 
   total: total = {id: 0, price: 0, subtotal: 0}; 
@@ -33,9 +33,10 @@ export class ItemBoxComponent implements OnInit, OnChanges {
   ngOnInit() {
     this.computeTotal()
     this.total.id = this.itemInfo.itemId;
-    this.total.price = this.itemInfo.itemPrice;
     this.total.subtotal = this.itemInfo.itemPrice;
     this.getTotal.emit(this.total)
+    this.itemForm.controls['discount'].setValue(this.discount);
+    console.log(this.itemForm.controls['discount'].value);
     // this.computeTotal();
     this.itemForm.controls['quantity'].valueChanges.subscribe(data => this.computeTotal());
     this.itemForm.controls['discount'].valueChanges.subscribe(data => this.computeTotal());
@@ -52,6 +53,7 @@ export class ItemBoxComponent implements OnInit, OnChanges {
     let disc = this.itemForm.get('discount').value / 100 * compTotal;
     compTotal = compTotal - disc;
     this.itemForm.controls['total'].setValue(compTotal);
+    this.total.price = compTotal;
   }
   emitTotal(value){
     this.total.price = value;

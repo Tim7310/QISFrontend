@@ -9,12 +9,17 @@ import { Global } from '../global.variable';
 @Injectable()
 export class PatientService {
 
-    constructor(
-        private http  : HttpClient, 
-        public  ehs   : ErrorService,
-        private global: Global
-      ) { }
-  
+  constructor(
+    private http  : HttpClient, 
+    public  ehs   : ErrorService,
+    private global: Global
+  ) { }
+  public httpOptions = {
+    headers: new HttpHeaders({
+      'Content-Type':  'application/json',
+      'Authorization': 'my-auth-token'
+    })
+  };
   getPatient(type: string): Observable<patient[]>{
     return this.http.get<patient[]>(this.global.url +"/"+type)
     .pipe(
@@ -22,12 +27,6 @@ export class PatientService {
         catchError(this.ehs.handleError)
     )
   }  
-  public httpOptions = {
-    headers: new HttpHeaders({
-      'Content-Type':  'application/json',
-      'Authorization': 'my-auth-token'
-    })
-  };
   addPatient (patient: patient): Observable<patient> {
     return this.http.post<patient>(this.global.url + "/addPatient", patient, this.httpOptions)
       .pipe(

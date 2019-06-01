@@ -14,7 +14,20 @@ export class MathService {
         .toISOString().split("T")[0];
     return dateString;
   }
-  randomNumber(min:number = 0, max:number = 100000000) {
-    return Math.floor(Math.random() * (max - min)) + min;
+  
+  randomNumber(min:number = 0, max:number = 100000000): number {
+    var rn = Math.floor(Math.random() * (max - min)) + min;
+    return rn;
   }
+  checkRef(data){
+    let pat = data;
+    let rn;
+    do{
+      rn = this.randomNumber();
+      var found = pat.find(data => data.patientRef == rn);
+    }
+    while(found !== undefined);
+    return rn;
+  }
+  
 }

@@ -54,6 +54,7 @@ import { SelectPatientComponent } from './element/select-patient/select-patient.
 import { PatientService } from './services/patient.service';
 import { PatientFormComponent } from './element/patient-form/patient-form.component';
 import { CompanySelectComponent } from './element/company-select/company-select.component';
+import { ConfirmComponent } from './element/confirm/confirm.component';
 
 @NgModule({
   declarations: [
@@ -64,6 +65,7 @@ import { CompanySelectComponent } from './element/company-select/company-select.
     SelectPatientComponent,
     PatientFormComponent,
     CompanySelectComponent,
+    ConfirmComponent,
   ],
   exports: [
     CdkTableModule,
@@ -157,6 +159,9 @@ import { CompanySelectComponent } from './element/company-select/company-select.
     {provide:MAT_DIALOG_DATA,useValue:{}}
     ],
   bootstrap: [AppComponent],
-  entryComponents: [PatientFormComponent]
+  entryComponents: [
+    PatientFormComponent,
+    ConfirmComponent
+  ]
 })
 export class AppModule { }

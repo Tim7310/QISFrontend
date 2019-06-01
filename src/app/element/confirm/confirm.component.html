@@ -1,0 +1,12 @@
+<mat-grid-list cols="2" rowHeight="10px">
+    <mat-grid-tile colspan="2" rowspan="4">
+      <h1 matDialogTitle>{{Title}}</h1>
+    </mat-grid-tile>
+    <mat-grid-tile colspan="2" rowspan="3">
+      {{Content}}
+    </mat-grid-tile>
+    <mat-grid-tile colspan="2" rowspan="3">
+      <button mat-button matDialogClose >Cancel</button>
+      <button mat-raised-button color="primary" cdkFocusInitial (click)="ok()">OK</button> 
+    </mat-grid-tile>
+</mat-grid-list>

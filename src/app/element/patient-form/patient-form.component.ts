@@ -1,10 +1,11 @@
 import { Component, OnInit, Input, Inject } from '@angular/core';
 import { company, patient } from 'src/app/services/service.interface';
 import { FormBuilder, Validators } from '@angular/forms';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatDialogRef, MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
 import { ItemService } from 'src/app/services/item.service';
 import { MathService } from 'src/app/services/math.service';
 import { PatientService } from 'src/app/services/patient.service';
+import { ConfirmComponent } from '../confirm/confirm.component';
 
 @Component({
   selector: 'patient-form',
@@ -15,21 +16,23 @@ export class PatientFormComponent implements OnInit {
   patientForm: any;
   title;
   patient: any;
+  _confirm: any;
   myFilter = (d: Date): boolean => {
     const day = d.getDay();
     return day !== 10;
   }
-  private patCompany: any;
+  patCompany: any;
 
   constructor(
     private fb: FormBuilder, 
     private iS: ItemService,
     public math: MathService,
     private pat: PatientService,
+    public dialog: MatDialog,
     public dialogRef: MatDialogRef<PatientFormComponent>,
     @Inject(MAT_DIALOG_DATA) public patInfo: any ) 
     { 
-     
+      
     //console.log(this.patInfo)
     if(this.patInfo.lastName || this.patInfo.firstName){
       this.iS.getCompanyByID(this.patInfo.companyID)
@@ -71,9 +74,9 @@ export class PatientFormComponent implements OnInit {
         'email'         : ['', Validators.email],
         'patientBiller' : [''],
         'sid'           : [''],
-        'patientRef'    : ['12312312'],
-        'dateUpdate'    : ['10-10-10'],
-        'creationDate'  : ['10-10-10'],
+        'patientRef'    : [''],
+        'dateUpdate'    : ['00-00-00'],
+        'creationDate'  : ['00-00-00'],
         'patientType'   : [''],
         'notes'         : ['']
       });
@@ -82,32 +85,48 @@ export class PatientFormComponent implements OnInit {
   }
 
   ngOnInit() {
-    const randomNum = this.math.randomNumber();
-    this.patientForm.get('patientRef').setValue(randomNum);
-    console.log(this.patCompany);
+    if(!this.patInfo.patientRef){
+      //Generate random numbers and check patient ref for duplicate  
+      this.pat.getPatient("getPatient")
+      .subscribe(data =>
+        this.getRN(this.math.checkRef(data)) 
+      );
+      var d = Date.now();
+      console.log(this.math.convertDate(d));
+
+    } 
   }
+  getRN(data){
+    this.patientForm.get('patientRef').setValue(data);
+  }
+  //get company select emited value
   getCompany(value){
     this.patientForm.get("companyName").setValue(value.nameCompany);
   }
-  getBiller(value){
-    this.patientForm.get("biller").setValue(value.nameCompany);
-  }
   savePatient(){
+    // convert date to default date string
     if(this.patientForm.get("birthdate").value.toDateString){
       const bdate = this.patientForm.get("birthdate").value;
       var bday = this.math.convertDate(bdate);
       this.patientForm.get("birthdate").setValue(bday);
     }
+    //open confirm dialog
+    const dialogRef = this.dialog.open(ConfirmComponent, {
+      width: '20%',
+      data: {Title: "Are you sure?", Content: "New Patient will be save to database."}
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      if(result == "ok"){
+        // save new patient
+        this.pat.addPatient(this.patientForm.value).subscribe(
+          (data: patient) => {
+            console.log(data);
+          },
+          (error: any) => console.log(error)
+        );
+        this.dialogRef.close({status: "ok", data: this.patientForm.value});
+      }
+    });  
     
-    this.pat.addPatient(this.patientForm.value).subscribe(
-      (data: patient) => {
-        console.log(data);
-      },
-      (error: any) => console.log(error)
-    );
-    
-  }
-  close(){
-    this.dialogRef.close();
   }
 }

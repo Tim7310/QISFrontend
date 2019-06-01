@@ -3,6 +3,8 @@ import { itemList, total, transaction, patient } from 'src/app/services/service.
 import { FormControl } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { PatientFormComponent } from 'src/app/element/patient-form/patient-form.component';
+import { ConfirmComponent } from 'src/app/element/confirm/confirm.component';
+import { MatSnackBar } from '@angular/material';
 
 @Component({
   selector: 'transaction',
@@ -10,7 +12,7 @@ import { PatientFormComponent } from 'src/app/element/patient-form/patient-form.
   styleUrls: ['./transaction.component.scss']
 })
 export class TransactionComponent implements OnInit{
-  private items: itemList[] = [];
+  items: itemList[] = [];
   discount: number = 0;
   discountBtn = [ 5, 10, 15, 20 ];
   moneyBtn = [ 50, 100, 200, 500, 1000 ];
@@ -27,7 +29,7 @@ export class TransactionComponent implements OnInit{
   transaction: transaction;
   patient: patient;
 
-  constructor(public dialog: MatDialog) { 
+  constructor(public dialog: MatDialog, private _snackBar: MatSnackBar) { 
     this.totalVal = 0;
   }
   ngOnInit() {
@@ -116,10 +118,11 @@ export class TransactionComponent implements OnInit{
       width: '90%',
       data: undefined
     });
-
-    // dialogRef.afterClosed().subscribe(result => {
-    //   console.log('The dialog was closed');
-    // });
+    dialogRef.afterClosed().subscribe(result => {
+      if(result.status == "ok"){
+        this.openSnackBar("Patient Successfully Added", "close")
+      }  
+    });    
   }
   editPatient(): void{
     const dialogRef = this.dialog.open(PatientFormComponent, {
@@ -131,4 +134,10 @@ export class TransactionComponent implements OnInit{
     //   console.log('The dialog was closed');
     // });
   }
+  openSnackBar(message: string, action: string) {
+    this._snackBar.open(message, action, {
+      duration: 3000,
+    });
+  }
+
 }

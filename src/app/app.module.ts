@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, LOCALE_ID } from '@angular/core';
 import { ClarityModule } from '@clr/angular';
 import {
   MatAutocompleteModule,
@@ -55,6 +55,7 @@ import { PatientService } from './services/patient.service';
 import { PatientFormComponent } from './element/patient-form/patient-form.component';
 import { CompanySelectComponent } from './element/company-select/company-select.component';
 import { ConfirmComponent } from './element/confirm/confirm.component';
+import { CompanyFormComponent } from './element/company-form/company-form.component';
 
 @NgModule({
   declarations: [
@@ -66,6 +67,7 @@ import { ConfirmComponent } from './element/confirm/confirm.component';
     PatientFormComponent,
     CompanySelectComponent,
     ConfirmComponent,
+    CompanyFormComponent,
   ],
   exports: [
     CdkTableModule,
@@ -161,7 +163,8 @@ import { ConfirmComponent } from './element/confirm/confirm.component';
   bootstrap: [AppComponent],
   entryComponents: [
     PatientFormComponent,
-    ConfirmComponent
+    ConfirmComponent,
+    CompanyFormComponent
   ]
 })
 export class AppModule { }

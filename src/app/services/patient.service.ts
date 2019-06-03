@@ -14,12 +14,7 @@ export class PatientService {
     public  ehs   : ErrorService,
     private global: Global
   ) { }
-  public httpOptions = {
-    headers: new HttpHeaders({
-      'Content-Type':  'application/json',
-      'Authorization': 'my-auth-token'
-    })
-  };
+  
   getPatient(type: string): Observable<patient[]>{
     return this.http.get<patient[]>(this.global.url +"/"+type)
     .pipe(
@@ -27,11 +22,29 @@ export class PatientService {
         catchError(this.ehs.handleError)
     )
   }  
+  getOnePatient(type: string): Observable<patient>{
+    return this.http.get<patient>(this.global.url +"/"+type)
+    .pipe(
+        retry(1),
+        catchError(this.ehs.handleError)
+    )
+  }  
   addPatient (patient: patient): Observable<patient> {
-    return this.http.post<patient>(this.global.url + "/addPatient", patient, this.httpOptions)
+    return this.http.post<patient>(
+      this.global.url + "/addPatient", 
+      patient, this.global.httpOptions)
       .pipe(
         retry(1),
         catchError(this.ehs.handleError)
       );
   }  
+  updatePatient (patient: patient): Observable<patient> {
+    return this.http.post<patient>(
+      this.global.url + "/updatePatient", 
+      patient, this.global.httpOptions)
+      .pipe(
+        retry(1),
+        catchError(this.ehs.handleError)
+      );
+  } 
 }

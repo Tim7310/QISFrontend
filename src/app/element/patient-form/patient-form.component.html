@@ -21,7 +21,8 @@
         </mat-grid-tile>
         <mat-grid-tile colspan="5" rowspan="4">
             <mat-form-field class="left">
-                <input matInput placeholder="First name" formControlName="firstName">
+                <input matInput cdkFocusInitial
+                placeholder="First name" formControlName="firstName">
                 <mat-hint>*Required Field</mat-hint>
                 <mat-error *ngIf="patientForm.get('firstName').hasError('required')">
                    First Name is <strong>required</strong>
@@ -108,7 +109,7 @@
         </mat-grid-tile>
         <mat-grid-tile colspan="4" rowspan="4">
             <mat-form-field class="right">
-                <input matInput placeholder="Biller" formControlName="patientBiller">
+                <input matInput placeholder="notes" formControlName="notes">
             </mat-form-field>
         </mat-grid-tile>
         <mat-grid-tile colspan="4" rowspan="4">

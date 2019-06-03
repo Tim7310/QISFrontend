@@ -1,0 +1,23 @@
+<h1 matDialogTitle>Add Company</h1>
+<form [formGroup]="company">
+  <mat-dialog-content>
+      <mat-form-field style="width: 300px">
+        <input matInput cdkFocusInitial
+        placeholder="Company Name" 
+        formControlName="nameCompany" >
+      </mat-form-field><br>
+      <mat-form-field style="width: 300px">
+        <input matInput
+        placeholder="Company Address ( Optional )" 
+        formControlName="companyAddress" >
+      </mat-form-field>
+  </mat-dialog-content>
+</form>
+<mat-dialog-actions>
+    <button mat-button matDialogClose>cancel</button>
+    <button mat-raised-button 
+    color      = "primary" 
+    (click)    = "add()"
+    [disabled] = "!company.valid" 
+    >Add</button>   
+</mat-dialog-actions>

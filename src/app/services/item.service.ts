@@ -35,5 +35,14 @@ export class ItemService {
         retry(1),
         catchError(this.ehs.handleError)
     )
-  }   
+  } 
+  addCompany(company: company): Observable<company>{
+    return this.http.post<company>(
+      this.global.url+"/addCompany",
+      company, this.global.httpOptions)
+    .pipe(
+        retry(1),
+        catchError(this.ehs.handleError)
+    )
+  }     
 }

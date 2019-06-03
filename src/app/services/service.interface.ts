@@ -20,7 +20,12 @@ export interface total{
     subtotal:number
 }
 export interface transaction{
-    items: itemList[],
+    transactionID: number,
+    transactionRef: number,
+    patientId: number,
+    userId: number,
+    transactionType: string,
+    biller: string
 }
 export interface patient{
     patientID: any,
@@ -38,7 +43,6 @@ export interface patient{
     patientType:  any,    
     email: any,
     age: number,
-    patientBiller: any,
     sid: any,
     dateUpdate: any,
     creationDate: any,

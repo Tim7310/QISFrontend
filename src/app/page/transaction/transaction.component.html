@@ -118,9 +118,9 @@
           <div class="row">
             <div class="col-md-8">
               <mat-grid-list cols="20" rowrHeight="10px">
-                <mat-grid-tile *ngIf="transType === undefined" colspan="20" rowspan="7">
+                <mat-grid-tile *ngIf="transType === undefined" colspan="20" rowspan="9">
 <!-- Transaction type button label -->
-                  <div class="bg-dark p-1 pl-3 pr-3 ls-1 text-light"> 
+                  <div class="bg-dark p-1 pl-3 pr-3 ls-1 text-light transBtnlabel"> 
                     Select Transaction Type: 
                   </div>
 <!-- Transaction type button container -->
@@ -130,6 +130,11 @@
                       (click)="changeTrans(btn)">{{btn}}
                     </button>
                   </div>  
+                  <div class="otherBtn">
+                    <button mat-raised-button (click)="addCompany()">Add Company</button>
+                    <button mat-raised-button (click)="cancel()" 
+                    class="bg-danger text-light">Cancel</button>
+                  </div>
                 </mat-grid-tile>
 <!-- back button: to reselect transaction type -->
                 <mat-grid-tile *ngIf="transType !== undefined" colspan="20" rowspan="2">

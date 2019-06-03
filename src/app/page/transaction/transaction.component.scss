@@ -9,7 +9,7 @@
 }
 .item-list-con{
     height: 295px;
-    overflow-y: scroll;
+    overflow-y: auto;
 }
 .item-footer{
     width: 100%;
@@ -57,7 +57,7 @@ mat-grid-tile[colspan='4'] span{
 }
 .transbtn{
     position: absolute;
-    bottom: 10px;
+    top:70px;
 }
 .back{
     position: absolute;
@@ -102,4 +102,12 @@ mat-grid-tile[colspan='4'] span{
     right: 10px;
     bottom: 10px;
     cursor: pointer;
+}
+.otherBtn{
+    position: absolute;
+    bottom: 10px;
+}
+.transBtnlabel{
+    position: absolute;
+    top: 20px;
 }

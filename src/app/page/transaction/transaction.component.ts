@@ -5,6 +5,8 @@ import { MatDialog } from '@angular/material/dialog';
 import { PatientFormComponent } from 'src/app/element/patient-form/patient-form.component';
 import { ConfirmComponent } from 'src/app/element/confirm/confirm.component';
 import { MatSnackBar } from '@angular/material';
+import { CompanyFormComponent } from 'src/app/element/company-form/company-form.component';
+import { PatientService } from 'src/app/services/patient.service';
 
 @Component({
   selector: 'transaction',
@@ -29,7 +31,10 @@ export class TransactionComponent implements OnInit{
   transaction: transaction;
   patient: patient;
 
-  constructor(public dialog: MatDialog, private _snackBar: MatSnackBar) { 
+  constructor(
+    public dialog: MatDialog, 
+    private _snackBar: MatSnackBar,
+    private pat: PatientService) { 
     this.totalVal = 0;
   }
   ngOnInit() {
@@ -104,8 +109,7 @@ export class TransactionComponent implements OnInit{
     }
   }
   save(){
-    this.transaction = {items: this.items};
-    console.log(this.transaction);
+    
   }
   getPatient(value){
     this.patient = value;
@@ -120,7 +124,9 @@ export class TransactionComponent implements OnInit{
     });
     dialogRef.afterClosed().subscribe(result => {
       if(result.status == "ok"){
-        this.openSnackBar("Patient Successfully Added", "close")
+        this.openSnackBar(result.message, "close");
+        this.pat.getOnePatient("checkRef/" + result.data.patientRef)
+        .subscribe(data => this.patient = data[0]);
       }  
     });    
   }
@@ -130,14 +136,31 @@ export class TransactionComponent implements OnInit{
       data: this.patient
     });
 
-    // dialogRef.afterClosed().subscribe(result => {
-    //   console.log('The dialog was closed');
-    // });
+    dialogRef.afterClosed().subscribe(result => {
+      if(result.status == "ok"){
+        this.openSnackBar(result.message, "close");
+        this.pat.getOnePatient("checkRef/" + result.data.patientRef)
+        .subscribe(data => this.patient = data[0]);
+      }  
+    });    
   }
   openSnackBar(message: string, action: string) {
     this._snackBar.open(message, action, {
       duration: 3000,
     });
+  }
+  addCompany(){
+    const dialogRef = this.dialog.open(CompanyFormComponent, {
+      
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      if(result.status == "ok"){
+        this.openSnackBar(result.message, "close");
+      }  
+    });   
+  }
+  cancel(){
+    location.reload();
   }
 
 }

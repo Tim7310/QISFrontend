@@ -6,6 +6,7 @@ import { ItemService } from 'src/app/services/item.service';
 import { MathService } from 'src/app/services/math.service';
 import { PatientService } from 'src/app/services/patient.service';
 import { ConfirmComponent } from '../confirm/confirm.component';
+import { formatDate, DatePipe } from '@angular/common';
 
 @Component({
   selector: 'patient-form',
@@ -21,6 +22,7 @@ export class PatientFormComponent implements OnInit {
     const day = d.getDay();
     return day !== 10;
   }
+  d = new DatePipe('en-US');
   patCompany: any;
 
   constructor(
@@ -37,8 +39,9 @@ export class PatientFormComponent implements OnInit {
     if(this.patInfo.lastName || this.patInfo.firstName){
       this.iS.getCompanyByID(this.patInfo.companyID)
       .subscribe(data => this.patCompany = data[0]);
-
+                 
       this.patientForm = this.fb.group({
+        'patientID'     : [this.patInfo.patientID],
         'companyName'   : [this.patInfo.companyName],
         'position'      : [this.patInfo.position],
         'firstName'     : [this.patInfo.firstName, Validators.required],
@@ -50,7 +53,6 @@ export class PatientFormComponent implements OnInit {
         'age'           : [this.patInfo.age, Validators.required],
         'contactNo'     : [this.patInfo.contactNo, Validators.required],
         'email'         : [this.patInfo.email],
-        'patientBiller' : [this.patInfo.patientBiller],
         'sid'           : [this.patInfo.sid],
         'patientRef'    : [this.patInfo.patientRef],
         'dateUpdate'    : [this.patInfo.dateUpdate],
@@ -72,11 +74,10 @@ export class PatientFormComponent implements OnInit {
         'age'           : ['', Validators.required],
         'contactNo'     : ['', Validators.required],
         'email'         : ['', Validators.email],
-        'patientBiller' : [''],
         'sid'           : [''],
         'patientRef'    : [''],
         'dateUpdate'    : ['00-00-00'],
-        'creationDate'  : ['00-00-00'],
+        'creationDate'  : [this.d.transform(new Date(),"yyyy-MM-dd")],
         'patientType'   : [''],
         'notes'         : ['']
       });
@@ -91,9 +92,6 @@ export class PatientFormComponent implements OnInit {
       .subscribe(data =>
         this.getRN(this.math.checkRef(data)) 
       );
-      var d = Date.now();
-      console.log(this.math.convertDate(d));
-
     } 
   }
   getRN(data){
@@ -110,23 +108,52 @@ export class PatientFormComponent implements OnInit {
       var bday = this.math.convertDate(bdate);
       this.patientForm.get("birthdate").setValue(bday);
     }
-    //open confirm dialog
-    const dialogRef = this.dialog.open(ConfirmComponent, {
-      width: '20%',
-      data: {Title: "Are you sure?", Content: "New Patient will be save to database."}
-    });
-    dialogRef.afterClosed().subscribe(result => {
-      if(result == "ok"){
-        // save new patient
-        this.pat.addPatient(this.patientForm.value).subscribe(
-          (data: patient) => {
-            console.log(data);
-          },
-          (error: any) => console.log(error)
-        );
-        this.dialogRef.close({status: "ok", data: this.patientForm.value});
-      }
-    });  
+    if(this.patInfo.patientID){
+      //open confirm dialog
+      const dialogRef = this.dialog.open(ConfirmComponent, {
+        width: '20%',
+        data: {Title: "Are you sure?", Content: "This Patient will be updated!!!"}
+      });
+      dialogRef.afterClosed().subscribe(result => {
+        if(result == "ok"){
+          // save new patient
+          this.pat.updatePatient(this.patientForm.value).subscribe(
+            (data: patient) => {
+              console.log(data);
+            },
+            (error: any) => console.log(error)
+          );
+          this.dialogRef.close({
+            message : "Patient information updated successfully",
+            status  : "ok", 
+            data    : this.patientForm.value
+          });
+        }
+      }); 
+    }else{
+      //open confirm dialog
+      const dialogRef = this.dialog.open(ConfirmComponent, {
+        width: '20%',
+        data: {Title: "Are you sure?", Content: "New Patient will be save to database."}
+      });
+      dialogRef.afterClosed().subscribe(result => {
+        if(result == "ok"){
+          // save new patient
+          this.pat.addPatient(this.patientForm.value).subscribe(
+            (data: patient) => {
+              console.log(data);
+            },
+            (error: any) => console.log(error)
+          );
+          this.dialogRef.close({
+            message : "Patient Successfully Added",
+            status  : "ok", 
+            data    : this.patientForm.value
+          });
+        }
+      });  
+    }
+    
     
   }
 }

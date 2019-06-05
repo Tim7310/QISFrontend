@@ -17,7 +17,23 @@ export class TransactionService {
     private global: Global
   ) { }
 
-  addPatient (trans: transaction): Observable<transaction> {
+  getTransactions( type ): Observable<transaction[]>{
+    return this.http.get<transaction[]>(this.global.url + "/" + type)
+    .pipe(
+        retry(1),
+        catchError(this.ehs.handleError)
+    )
+  }
+
+  getOneTrans( type ): Observable<transaction>{
+    return this.http.get<transaction>(this.global.url + "/" + type)
+    .pipe(
+        retry(1),
+        catchError(this.ehs.handleError)
+    )
+  }
+  
+  addTrans(trans: transaction): Observable<transaction> {
     return this.http.post<transaction>(
       this.global.url + "/addPatient", 
       trans, this.global.httpOptions)

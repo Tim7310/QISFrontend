@@ -3,9 +3,10 @@
     <mat-option>
       <ngx-mat-select-search [formControl]="itemFilterCtrl"></ngx-mat-select-search>
     </mat-option>
-
-    <mat-option *ngFor="let item of filteredItems | async" [value]="item" >
+  <mat-optgroup *ngFor="let items of filteredItems | async" [label]="items.name">
+    <mat-option *ngFor="let item of items.items" [value]="item" >
       {{item.itemName}}
     </mat-option>
+  </mat-optgroup>
   </mat-select>
 </mat-form-field>

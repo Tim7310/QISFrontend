@@ -1,14 +1,10 @@
 <div class="container-fluid">
   <div class="row">
     <div class="col-md-5 mt-2">
-<!-- cash item selection -->
-      <select-item itemURL="NonAccountItems" 
-        placeholder="CASH Items" (selectTrig)="getItem($event)">
+<!-- Item selection -->
+      <select-item itemURL="AllItems" 
+        placeholder="Select Items" (selectTrig)="getItem($event)">
       </select-item>     
-<!-- Account item Selection -->
-      <select-item itemURL="AccountItems" 
-          placeholder="ACCOUNT Items" (selectTrig)="getItem($event)">
-      </select-item> 
 <!-- patient selection -->
       <div class="row mt-3">      
         <div class="col-8">
@@ -127,9 +123,12 @@
                   <div class="transbtn">
                     <button mat-raised-button class="m-1 animated jackInTheBox" 
                     color="primary" *ngFor="let btn of transTypeBTN "
-                      (click)="changeTrans(btn)">{{btn}}
+                      (click)="changeTrans(btn)"
+                      [disabled]="patient === undefined || items.length == 0"
+                    >{{btn}}
                     </button>
                   </div>  
+                  <div></div>
                   <div class="otherBtn">
                     <button mat-raised-button (click)="addCompany()">Add Company</button>
                     <button mat-raised-button (click)="cancel()" 
@@ -201,11 +200,15 @@
                 </mat-grid-tile>
 <!-- save and save print container -->
                 <mat-grid-tile *ngIf="transType !== undefined" colspan="20" rowspan="2" >
-                    <button mat-raised-button (click)="save()" color="accent" 
+                    <button mat-raised-button 
+                    [disabled]="patient === undefined || items.length == 0"
+                    (click)="save()" color="accent" 
                     class="mr-2 animated fadeIn">
                         <clr-icon shape="floppy"></clr-icon> SAVE
                     </button>
-                    <button mat-raised-button (click)="onClick" color="primary" 
+                    <button mat-raised-button
+                    [disabled]="patient === undefined || items.length == 0" 
+                    (click)="onClick" color="primary" 
                     class="animated fadeIn">
                         <clr-icon shape="printer" ></clr-icon> SAVE & PRINT
                     </button>

@@ -19,12 +19,22 @@ export class MathService {
     var rn = Math.floor(Math.random() * (max - min)) + min;
     return rn;
   }
-  checkRef(data){
+  patcheckRef(data){
     let pat = data;
     let rn;
     do{
       rn = this.randomNumber();
       var found = pat.find(data => data.patientRef == rn);
+    }
+    while(found !== undefined);
+    return rn;
+  }
+  transcheckRef(data){
+    let trans = data;
+    let rn;
+    do{
+      rn = this.randomNumber();
+      var found = trans.find(data => data.transactionRef == rn);
     }
     while(found !== undefined);
     return rn;

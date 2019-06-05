@@ -36,7 +36,6 @@ export class ItemBoxComponent implements OnInit, OnChanges {
     this.total.subtotal = this.itemInfo.itemPrice;
     this.getTotal.emit(this.total)
     this.itemForm.controls['discount'].setValue(this.discount);
-    console.log(this.itemForm.controls['discount'].value);
     // this.computeTotal();
     this.itemForm.controls['quantity'].valueChanges.subscribe(data => this.computeTotal());
     this.itemForm.controls['discount'].valueChanges.subscribe(data => this.computeTotal());

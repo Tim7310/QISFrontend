@@ -90,7 +90,7 @@ export class PatientFormComponent implements OnInit {
       //Generate random numbers and check patient ref for duplicate  
       this.pat.getPatient("getPatient")
       .subscribe(data =>
-        this.getRN(this.math.checkRef(data)) 
+        this.getRN(this.math.patcheckRef(data)) 
       );
     } 
   }

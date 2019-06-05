@@ -8,7 +8,7 @@ import {
   EventEmitter, 
   Input } 
 from '@angular/core';
-import { itemList } from 'src/app/services/service.interface';
+import { itemList, packList, itemGroup } from 'src/app/services/service.interface';
 import { FormControl } from '@angular/forms';
 import { ReplaySubject, Subject } from 'rxjs';
 import { take, takeUntil } from 'rxjs/operators';
@@ -24,7 +24,7 @@ export class SelectItemComponent implements OnInit, AfterViewInit, OnDestroy {
   @Output() selectTrig = new EventEmitter();
   @Input() itemURL: string;
   @Input() placeholder: string;
-  items = [];
+  items: itemGroup[] = [];
 
   /** control for the selected bank */
   public itemCtrl: FormControl = new FormControl();
@@ -33,7 +33,7 @@ export class SelectItemComponent implements OnInit, AfterViewInit, OnDestroy {
   public itemFilterCtrl: FormControl = new FormControl();
 
   /** list of item filtered by search keyword */
-  public filteredItems: ReplaySubject<itemList[]> = new ReplaySubject<itemList[]>(1);
+  public filteredItems: ReplaySubject<itemGroup[]> = new ReplaySubject<itemGroup[]>(1);
 
   @ViewChild('singleSelect') singleSelect: MatSelect;
 
@@ -44,73 +44,123 @@ export class SelectItemComponent implements OnInit, AfterViewInit, OnDestroy {
       this.selectTrig.emit(this.itemCtrl.value);
   }
 
-  constructor(public itemService: ItemService) { }
+  constructor(public itemService: ItemService) { 
+  }
 
   ngOnInit() {
-    // set initial selection
-    this.itemCtrl.setValue(this.items[10]);
-
-    // load the initial bank list
-    this.filteredItems.next(this.items.slice());
-
     // listen for search field value changes
-    this.itemFilterCtrl.valueChanges
-      .pipe(takeUntil(this._onDestroy))
-      .subscribe(() => {
-        this.filterItems();
-      });
+    // this.itemFilterCtrl.valueChanges
+    //   .pipe(takeUntil(this._onDestroy))
+    //   .subscribe(() => {
+    //     this.filterItems();
+    //   });
 
     //get item list and pass the data to items variable
+    let _items;
     this.itemService.getItem(this.itemURL)
-    .subscribe(data => this.items = data);
+    .subscribe(
+      data  => _items = data,
+      err   => console.error(err),
+      ()    => this.groupItem( _items, "Items" )
+    );
 
+    //get Package and convert to item format
+    let pack: itemList =  {
+      itemId          : "",
+      itemName        : "",
+      itemPrice       : 0,
+      itemDescription : "",
+      itemType        : "",
+      deletedItem     : 0,
+      neededTest      : 0,
+      creationDate    : "",
+      dateUpdate      : ""
+    };
+    let packs: itemList[] = [];
+    let _packs: itemGroup = {
+      name: "",
+      items: []
+    }
+    this.itemService.getPackage("getPackage")
+    .subscribe((data) => 
+      data.forEach(function (value){
+        pack.itemId          = value.packageName;
+        pack.itemName        = value.packageName;
+        pack.itemPrice       = value.packagePrice;
+        pack.itemDescription = value.packageDescription;
+        pack.itemType        = value.packageType;
+        pack.deletedItem     = value.deletedPackage;
+        pack.neededTest      = undefined;
+        pack.creationDate    = value.creationDate;
+        pack.dateUpdate      = value.dateUpdate;
+        packs.push(pack);
+     }),
+     err => console.error(err),
+     () => this.groupItem(packs, "Packages")
+    );
     this.itemCtrl.valueChanges.subscribe(
       value => this.selectTrig.emit(value)
     );
+
+     // load the initial bank list
+   this.filteredItems.next(this.copyItemGroups(this.items));
+
+   // listen for search field value changes
+   this.itemFilterCtrl.valueChanges
+     .pipe(takeUntil(this._onDestroy))
+     .subscribe(() => {
+       this.filterItemGroups();
+    });
   }
 
   ngAfterViewInit() {
-    this.setInitialValue();
+   
+   
   }
-
+  groupItem(packs, name){
+    this.items.push({
+      name: name,
+      items: packs
+    })
+  }
   ngOnDestroy() {
     this._onDestroy.next();
     this._onDestroy.complete();
   }
-
-  /**
-   * Sets the initial value after the filteredBanks are loaded initially
-   */
-  protected setInitialValue() {
-    this.filteredItems
-      .pipe(take(1), takeUntil(this._onDestroy))
-      .subscribe(() => {
-        // setting the compareWith property to a comparison function
-        // triggers initializing the selection according to the initial value of
-        // the form control (i.e. _initializeSelection())
-        // this needs to be done after the filteredBanks are loaded initially
-        // and after the mat-option elements are available
-        this.singleSelect.compareWith = 
-        (a: itemList, b: itemList) => a && b && a.itemId === b.itemId;
-      });
-  }
-
-  protected filterItems() {
+  
+  protected filterItemGroups() {
     if (!this.items) {
       return;
     }
     // get the search keyword
     let search = this.itemFilterCtrl.value;
+    const itemGroupsCopy = this.copyItemGroups(this.items);
     if (!search) {
-      this.filteredItems.next(this.items.slice());
+      this.filteredItems.next(itemGroupsCopy);
       return;
     } else {
       search = search.toLowerCase();
     }
-    // filter the items
+    // filter the banks
     this.filteredItems.next(
-      this.items.filter(item => item.itemName.toLowerCase().indexOf(search) > -1)
+      itemGroupsCopy.filter(data => {
+        const showItemGroup = data.name.toLowerCase().indexOf(search) > -1;
+        if (!showItemGroup) {
+          data.items = data.items.filter(
+          item => item.itemName.toLowerCase().indexOf(search) > -1);
+         }
+        return data.items.length > 0;
+      })
     );
   }
-
+  protected copyItemGroups(itemGroups: itemGroup[]) {
+    const itemGroupsCopy = [];
+    itemGroups.forEach(data => {
+      itemGroupsCopy.push({
+        name: data.name,
+        items: data.items.slice()
+      });
+    });
+    return itemGroupsCopy;
+  }
 }

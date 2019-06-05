@@ -44,11 +44,8 @@ export class SelectPatientComponent implements OnInit, AfterViewInit, OnDestroy 
   constructor(public patientService: PatientService) { }
 
   ngOnInit() {
-    // set initial selection
-    this.patientCtrl.setValue(this.patient[10]);
-
-    // load the initial patient list
-    this.filteredPatient.next(this.patient.slice());
+    // // set initial selection
+    // this.patientCtrl.setValue(this.patient[10]);
 
     // listen for search field value changes
     this.patientFilterCtrl.valueChanges
@@ -58,7 +55,11 @@ export class SelectPatientComponent implements OnInit, AfterViewInit, OnDestroy 
       });
     //get patient list and pass the data to patient variable
     this.patientService.getPatient(this.patientURL)
-    .subscribe(data => this.patient= data);
+    .subscribe(data => {
+      this.patient= data
+      // load the initial patient list
+      this.filteredPatient.next(this.patient.slice());
+    });
 
     //emit patient value when select value change
     this.patientCtrl.valueChanges.subscribe(

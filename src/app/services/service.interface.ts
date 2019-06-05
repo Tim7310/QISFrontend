@@ -44,7 +44,8 @@ export interface transaction{
     loe             : string,
     an              : string,
     ac              : string,
-    notes           : string
+    notes           : string,
+    transactionDate : any
 }
 export interface patient{
     patientID       : any,

@@ -42,14 +42,15 @@ export class CompanySelectComponent implements OnInit, AfterViewInit, OnDestroy 
   ngOnInit() {
     //get item list and pass the data to items variable
     this.itemService.getCompany(this.companyURL)
-    .subscribe(data => this.company = data);
+    .subscribe(data => {
+      this.company = data;
+       // load the initial bank list
+      this.filteredCompany.next(this.company.slice());
+    });
 
     // set initial selection
     this.companyCtrl.setValue("a");
-
-    // load the initial bank list
-    this.filteredCompany.next(this.company.slice());
-
+     
     // listen for search field value changes
     this.companyFilterCtrl.valueChanges
       .pipe(takeUntil(this._onDestroy))

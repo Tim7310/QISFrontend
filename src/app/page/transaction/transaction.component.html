@@ -124,8 +124,9 @@
                     <button mat-raised-button class="m-1 animated jackInTheBox" 
                     color="primary" *ngFor="let btn of transTypeBTN "
                       (click)="changeTrans(btn)"
-                      [disabled]="patient === undefined || items.length == 0"
+                      
                     >{{btn}}
+                    <!-- [disabled]="patient === undefined || items.length == 0" -->
                     </button>
                   </div>  
                   <div></div>
@@ -172,30 +173,36 @@
 <!-- main container of APE and ACCOUNT transaction type -->
                 <mat-grid-tile *ngIf="transType === 'ACCOUNT' || transType === 'APE'" 
                 colspan="20" rowspan="5">
-                 
+                  <company-select 
+                    companyURL="getCompany" 
+                    placeholder="Biller"
+                    (selectTrig)="getBiller($event)"
+                    [selected]="patCompany">
+                  </company-select>
                 </mat-grid-tile>
-<!-- main container of HMo transaction type -->
+<!-- main container of HMO transaction type -->
                 <mat-grid-tile *ngIf="transType === 'HMO'" colspan="20" rowspan="5">
                   <div  class="input-group input-group-sm mb-3"
-                        style="top: 0px;">
+                        style="top: 50px;">
                     <div class="input-group-prepend">
                       <span class="input-group-text">LOE Number</span>
                     </div>
-                    <input type="text" class="form-control">
-                  </div><br>
+                    <input type="text" class="form-control" [formControl]="LOENumber">
+                  </div>
                   <div  class="input-group input-group-sm mb-3"
-                        style="top: 35px;">
+                        style="top: 85px;">
                     <div class="input-group-prepend">
                       <span class="input-group-text">Account Number</span>
                     </div>
-                    <input type="text" class="form-control">
+                    <input type="text" class="form-control" [formControl]="AccountNumber">
                   </div>
-                  <div  class="input-group input-group-sm mb-3"
-                        style="top: 70px;">
-                    <div class="input-group-prepend">
-                      <span class="input-group-text">Approval Code</span>
-                    </div>
-                    <input type="text" class="form-control">
+                  <div style="position:absolute;top: 0px;width: 80%;">
+                    <company-select 
+                      companyURL="getCompany" 
+                      placeholder="Biller"
+                      (selectTrig)="getBiller($event)"
+                      [selected]="patCompany">
+                    </company-select>
                   </div>
                 </mat-grid-tile>
 <!-- save and save print container -->

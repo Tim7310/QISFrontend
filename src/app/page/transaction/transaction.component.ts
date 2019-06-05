@@ -33,6 +33,9 @@ export class TransactionComponent implements OnInit{
   transaction : transaction;
   patient : patient;
   transactionRef : number;
+  biller: any;
+  LOENumber: FormControl = new FormControl;
+  AccountNumber: FormControl = new FormControl;
 
   constructor(
     public dialog     : MatDialog, 
@@ -138,17 +141,21 @@ export class TransactionComponent implements OnInit{
       loe             : "",
       an              : "",
       ac              : "",
-      notes           : ""
+      notes           : "",
+      transactionDate : this.math.getDateNow()
     }
     if        (this.transType === "CASH"){
-      this.transaction.paidIn = this.receivedAmount.value;
-      this.transaction.paidOut = this.change;
+      this.transaction.paidIn   = this.receivedAmount.value;
+      this.transaction.paidOut  = this.change;
     }else if  (this.transType === "ACCOUNT"){
-
+      this.transaction.biller = this.biller;
     }else if  (this.transType === "HMO"){
+      this.transaction.biller = this.biller;
+      this.transaction.loe    = this.LOENumber.value;
+      this.transaction.an     = this.AccountNumber.value;
 
     }else if  (this.transType === "APE"){
-
+      this.transaction.biller = this.biller;
     }else{
       this.openSnackBar("Please select transaction type", "close");
       return;
@@ -208,6 +215,9 @@ export class TransactionComponent implements OnInit{
   }
   cancel(){
     location.reload();
+  }
+  getBiller(value){
+    this.biller = value.nameCompany;
   }
 
 }

@@ -1,5 +1,6 @@
 <mat-form-field style="width: 100%">
-    <mat-select [formControl]="companyCtrl" [placeholder]="placeholder" #singleSelect>
+    <mat-select [formControl]="companyCtrl" [placeholder]="placeholder" #singleSelect
+    disableOptionCentering>
       <mat-option>
         <ngx-mat-select-search [formControl]="companyFilterCtrl"></ngx-mat-select-search>
       </mat-option>

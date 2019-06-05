@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { DatePipe } from '@angular/common';
 
 @Injectable({
   providedIn: 'root'
@@ -38,6 +39,10 @@ export class MathService {
     }
     while(found !== undefined);
     return rn;
+  }
+  getDateNow(){
+    let d = new DatePipe('en-US');
+    return d.transform(new Date(),"yyyy-MM-dd H:mm:ss");
   }
   
 }

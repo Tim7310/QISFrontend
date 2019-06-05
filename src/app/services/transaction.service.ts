@@ -35,7 +35,7 @@ export class TransactionService {
   
   addTrans(trans: transaction): Observable<transaction> {
     return this.http.post<transaction>(
-      this.global.url + "/addPatient", 
+      this.global.url + "/addTransaction", 
       trans, this.global.httpOptions)
       .pipe(
         retry(1),

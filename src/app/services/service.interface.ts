@@ -26,10 +26,12 @@ export interface packList{
 export interface total{
     id          : number,
     price       : number,
-    subtotal    : number
+    subtotal    : number,
+    quantity    : number,
+    discount    : number
 }
 export interface transaction{
-    transactionID   : number,
+    transactionId   : number,
     transactionRef  : number,
     patientId       : number,
     userId          : number,
@@ -75,6 +77,27 @@ export interface company{
     companyAddress  : string
 }
 export interface itemGroup{
-    name: string,
-    items: itemList[]
+    name    : string,
+    items   : itemList[]
+}
+export interface transExt{
+    transactionID   : number,
+    itemID          : number,
+    packageName     : any,
+    itemQTY         : number,
+    itemDisc        : number
+}
+export interface transRef{
+    transactionID   : number,
+    patientID       : number,
+    xray            : number,
+    blood           : number,
+    urine           : number,
+    stool           : number,
+    physicalExam    : number,
+    specimen        : number,
+    ultrasound      : number,
+    ecg             : number,
+    others          : number,
+    // _2DEcho          : number
 }

@@ -56,6 +56,9 @@ import { PatientFormComponent } from './element/patient-form/patient-form.compon
 import { CompanySelectComponent } from './element/company-select/company-select.component';
 import { ConfirmComponent } from './element/confirm/confirm.component';
 import { CompanyFormComponent } from './element/company-form/company-form.component';
+import { ReceiptComponent } from './element/receipt/receipt.component';
+import {NgxPrintModule} from 'ngx-print';
+import { ClickOutsideModule } from 'ng-click-outside';
 
 @NgModule({
   declarations: [
@@ -68,6 +71,7 @@ import { CompanyFormComponent } from './element/company-form/company-form.compon
     CompanySelectComponent,
     ConfirmComponent,
     CompanyFormComponent,
+    ReceiptComponent,
   ],
   exports: [
     CdkTableModule,
@@ -151,6 +155,8 @@ import { CompanyFormComponent } from './element/company-form/company-form.compon
     MatTooltipModule,
     FlexLayoutModule,
     NgxMatSelectSearchModule,
+    NgxPrintModule,
+    ClickOutsideModule
   ],
   providers: [
     ItemService, 

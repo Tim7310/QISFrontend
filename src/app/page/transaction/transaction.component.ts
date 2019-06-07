@@ -1,5 +1,5 @@
 import { Component, OnInit, SimpleChanges } from '@angular/core';
-import { itemList, total, transaction, patient } from 'src/app/services/service.interface';
+import { itemList, total, transaction, patient, transExt } from 'src/app/services/service.interface';
 import { FormControl } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { PatientFormComponent } from 'src/app/element/patient-form/patient-form.component';
@@ -9,6 +9,7 @@ import { PatientService } from 'src/app/services/patient.service';
 import { TransactionService } from 'src/app/services/transaction.service';
 import { MathService } from 'src/app/services/math.service';
 import { Global } from 'src/app/global.variable';
+
 
 @Component({
   selector: 'transaction',
@@ -43,7 +44,7 @@ export class TransactionComponent implements OnInit{
     private pat       : PatientService,
     private trans     : TransactionService,
     public math       : MathService,
-    public global     : Global
+    public global     : Global,
     ) { 
     this.totalVal = 0;
     }
@@ -126,7 +127,7 @@ export class TransactionComponent implements OnInit{
   }
   save(){
     this.transaction = {
-      transactionID   : undefined,
+      transactionId   : undefined,
       transactionRef  : this.transactionRef,
       patientId       : this.patient.patientID,
       userId          : this.global.userID,
@@ -160,10 +161,12 @@ export class TransactionComponent implements OnInit{
       this.openSnackBar("Please select transaction type", "close");
       return;
     }
-    this.trans.addTrans(this.transaction).subscribe(
-      data => console.log(data),
-      (error: any) => console.error(error)
-      )
+    this.trans.saveTransaction(
+      this.transaction,
+      this.transaction.transactionRef,
+      this.total,
+      this.items
+    )
   }
   getPatient(value){
     this.patient = value;
@@ -218,6 +221,11 @@ export class TransactionComponent implements OnInit{
   }
   getBiller(value){
     this.biller = value.nameCompany;
+  }
+  onPrintInvoice() {
+    const ids = ['101'];
+    this.math
+      .printDocument('', ids);
   }
 
 }

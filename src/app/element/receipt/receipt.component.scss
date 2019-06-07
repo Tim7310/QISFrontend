@@ -1,0 +1,22 @@
+.left{
+    position: absolute;
+    left: 5px; 
+}
+.right{
+    position: absolute;
+    right: 5px;
+}
+.top{
+    position: absolute;
+    top: 5px;
+}
+.bottom{
+    position: absolute;
+    bottom: 5px;
+}
+@media screen {
+    :host {
+      display: none;
+    }
+  }
+  

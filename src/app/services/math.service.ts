@@ -1,12 +1,15 @@
 import { Injectable } from '@angular/core';
 import { DatePipe } from '@angular/common';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
 })
 export class MathService {
-
-  constructor() { }
+  isPrinting = false;
+  constructor(
+    private router: Router
+  ) { }
 
   convertDate(date){
     var dateString = 
@@ -43,6 +46,21 @@ export class MathService {
   getDateNow(){
     let d = new DatePipe('en-US');
     return d.transform(new Date(),"yyyy-MM-dd H:mm:ss");
+  }
+  printDocument(documentName: string, documentData: string[]) {
+    this.isPrinting = true;
+    this.router.navigate(['/',
+      { outlets: {
+        'print': ['print', documentData.join()]
+      }}]);
+  }
+
+  onDataReady() {
+    setTimeout(() => {
+      window.print();
+      this.isPrinting = false;
+      this.router.navigate([{ outlets: { print: null }}]);
+    });
   }
   
 }

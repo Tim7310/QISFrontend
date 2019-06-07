@@ -163,7 +163,6 @@ export class TransactionComponent implements OnInit{
     }
     this.trans.saveTransaction(
       this.transaction,
-      this.transaction.transactionRef,
       this.total,
       this.items
     )

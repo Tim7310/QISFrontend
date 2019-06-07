@@ -107,7 +107,6 @@ export class TransactionService {
   
   saveTransaction(
     transaction     : transaction,
-    transactionRef  : number,
     total           : total[],
     items           : itemList[]
   ){
@@ -118,7 +117,7 @@ export class TransactionService {
       (error: any) => console.error(error),
       () => {
         // get input transaction data
-        let urlRef = "getTransRef/" + transactionRef;
+        let urlRef = "getTransRef/" + transaction.transactionRef;
         this.getOneTrans(urlRef).subscribe(
           transData => {
             total.forEach(item => {
@@ -150,7 +149,6 @@ export class TransactionService {
               transData[0].transactionId, 
               transData[0].patientId              
               )
-            console.log(refGen);
             // insert into transRef table to database
             this.addTransRef(refGen).subscribe(
               extData => { },

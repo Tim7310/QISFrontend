@@ -101,3 +101,7 @@ export interface transRef{
     others          : number,
     // _2DEcho          : number
 }
+export interface packExt{
+    packageName : string,
+    itemID      : number
+}

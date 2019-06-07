@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { itemList, company, packList } from './service.interface';
+import { itemList, company, packList, packExt } from './service.interface';
 import { Observable } from 'rxjs';
 import { retry, catchError } from 'rxjs/operators';
 import { ErrorService } from './error.service';
@@ -28,6 +28,33 @@ export class ItemService {
         retry(1),
         catchError(this.ehs.handleError)
     )
+  }
+
+  getPack(name: string): Observable<packList>{
+    return this.http.get<packList>(this.global.url + "/" + name)
+    .pipe(
+        retry(1),
+        catchError(this.ehs.handleError)
+    )
+  }
+
+  getPackExt(name: string): Observable<packExt[]>{
+    return this.http.get<packExt[]>(this.global.url + "/packext/" + name)
+    .pipe(
+        retry(1),
+        catchError(this.ehs.handleError)
+    )
+  }
+  getItem_Package(name: string){
+    let arr: number[] = [];
+    let pack: packExt[] = [];
+    this.getPackExt(name).subscribe( 
+      data => pack = data
+    )
+    pack.forEach(item => {
+      arr.push(item.itemID);
+    });
+    console.log(pack);
   }
   //  get company list
   getCompany(type: string): Observable<company[]>{

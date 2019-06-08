@@ -24,7 +24,7 @@ export interface packList{
     packageType         : string
 }
 export interface total{
-    id          : number,
+    id          : any,
     price       : number,
     subtotal    : number,
     quantity    : number,
@@ -105,3 +105,4 @@ export interface packExt{
     packageName : string,
     itemID      : number
 }
+

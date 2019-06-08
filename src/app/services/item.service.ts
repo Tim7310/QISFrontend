@@ -21,6 +21,13 @@ export class ItemService {
         catchError(this.ehs.handleError)
     )
   }
+  getItemByID(id: number): Observable<itemList>{
+    return this.http.get<itemList>(this.global.url + "/AllItems/" + id)
+    .pipe(
+        retry(1),
+        catchError(this.ehs.handleError)
+    )
+  }
   //  get Package list
   getPackage(type: string): Observable<packList[]>{
     return this.http.get<packList[]>(this.global.url+"/"+type)
@@ -45,17 +52,29 @@ export class ItemService {
         catchError(this.ehs.handleError)
     )
   }
-  getItem_Package(name: string){
-    let arr: number[] = [];
-    let pack: packExt[] = [];
-    this.getPackExt(name).subscribe( 
-      data => pack = data
+
+  getPack_Test(item: itemList){
+    var testNum: any;
+    this.getPackExt(item.itemId).subscribe(
+      packItem => {
+        packItem.forEach(item => {
+          this.getItemByID(item.itemID).subscribe(
+            test => { 
+              if(testNum == undefined){
+                testNum = test[0].neededTest;
+              }else{
+                testNum += "," + test[0].neededTest;
+              }  
+              console.log(testNum);                      
+            },
+            ( error: any ) => console.error(error),          
+          )
+        });  
+      }
     )
-    pack.forEach(item => {
-      arr.push(item.itemID);
-    });
-    console.log(pack);
+    console.log(testNum);  
   }
+
   //  get company list
   getCompany(type: string): Observable<company[]>{
     return this.http.get<company[]>(this.global.url+"/"+type)

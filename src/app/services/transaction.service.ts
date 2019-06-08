@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { retry, catchError } from 'rxjs/operators';
 import { transaction, transExt, transRef, total, itemList } from './service.interface';
 import { HttpClient } from '@angular/common/http';
+import { ItemService } from './item.service';
 
 @Injectable({
   providedIn: 'root'
@@ -14,6 +15,7 @@ export class TransactionService {
   constructor(
     private http  : HttpClient, 
     public  ehs   : ErrorService,
+    private IS    : ItemService,
     private global: Global
   ) { }
 
@@ -123,8 +125,8 @@ export class TransactionService {
             total.forEach(item => {
               let ext: transExt = {
                 transactionID   : transData[0].transactionId,
-                itemID          : 0,
-                packageName     : "",
+                itemID          : null,
+                packageName     : null,
                 itemQTY         : item.quantity,
                 itemDisc        : item.discount
               }
@@ -142,7 +144,12 @@ export class TransactionService {
             });
             let transRefNum: number[] = [];
             items.forEach(item => {
-              transRefNum.push(item.neededTest);
+              if(Number.isInteger(item.itemId)){
+                transRefNum.push(item.neededTest);
+              }  
+              else{
+                this.IS.getPack_Test(item)
+              }
             });
             let refGen = this.transRefGen(
               transRefNum, 

@@ -54,7 +54,7 @@ export class SelectItemComponent implements OnInit, AfterViewInit, OnDestroy {
     //   .subscribe(() => {
     //     this.filterItems();
     //   });
-    this.itemService.getItem_Package("Basic 5");
+
     //get item list and pass the data to items variable
     let _items;
     this.itemService.getItem(this.itemURL)

@@ -209,13 +209,13 @@
                 <mat-grid-tile *ngIf="transType !== undefined" colspan="20" rowspan="2" >
                     <button mat-raised-button 
                     [disabled]="patient === undefined || items.length == 0"
-                    (click)="save()" color="accent" 
+                    (click)="save('SAVE')" color="accent" 
                     class="mr-2 animated fadeIn">
                         <clr-icon shape="floppy"></clr-icon> SAVE
                     </button>
                     <button mat-raised-button
                     [disabled]="patient === undefined || items.length == 0" 
-                    (click)="onClick" color="primary" 
+                    (click)="save('PRINT')" color="primary" 
                     class="animated fadeIn">
                         <clr-icon shape="printer" ></clr-icon> SAVE & PRINT
                     </button>

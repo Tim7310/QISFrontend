@@ -34,6 +34,14 @@ export class TransactionService {
         catchError(this.ehs.handleError)
     )
   }
+
+  getTransExt(transID: number): Observable<transExt[]>{
+    return this.http.get<transExt[]>(this.global.url + "/" + transID)
+    .pipe(
+      retry(1),
+      catchError(this.ehs.handleError)
+    )
+  }
   
   addTrans(trans: transaction): Observable<transaction> {
     return this.http.post<transaction>(
@@ -111,8 +119,9 @@ export class TransactionService {
     transaction     : transaction,
     total           : total[],
     items           : itemList[]
-  ){
-    this.addTrans(transaction).subscribe(
+  ): Observable<boolean>{
+    return new Observable( observer => 
+      this.addTrans(transaction).subscribe(
       data => {
         // next function
       },
@@ -179,7 +188,7 @@ export class TransactionService {
                             (error: any) => console.error(error),
                           )                           
                         }
-
+                      
                       },
                       (err: any) => console.error(err),
                       () => {
@@ -190,14 +199,19 @@ export class TransactionService {
                 }
               ) 
               }             
-            }   
+            }
+            observer.next(true);   
           },
-          (error: any) => console.error(error),
+          (error: any) => {
+            console.error(error);
+            observer.error(error);
+          },
           () => {
+            observer.complete();
           }
         );
       }
-    )
+    ))
   }
 
 

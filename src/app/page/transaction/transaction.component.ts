@@ -185,8 +185,7 @@ export class TransactionComponent implements OnInit{
 
   onPrintInvoice() {
     const ids = ['1453'];
-    this.math
-      .printDocument('', ids);
+    this.math.printDocument('', ids);
   }
 
   save(saveType: string){
@@ -238,14 +237,30 @@ export class TransactionComponent implements OnInit{
               this.transaction,
               this.total,
               this.items
-            )
+            ).subscribe(success => {
+              this.openSnackBar("Transaction Success", "close");
+            })  
           }else if(saveType == "PRINT"){
-
+            
+            this.trans.saveTransaction(
+              this.transaction,
+              this.total,
+              this.items
+            ).subscribe(success => {
+              const url = "getTransRef/" + this.transaction.transactionRef;                      
+              this.trans.getOneTrans(url)
+              .subscribe(data => {
+              console.log(data);
+              const suffix = [data[0].transactionId];
+              this.math.printDocument('', suffix);
+            })           
+            })
+          
           }else if(saveType == "HOLD"){
 
           }
           
-          this.openSnackBar("Transaction Success", "close");
+         
         }catch(e){
           this.openSnackBar(e.message, "close");
         }  

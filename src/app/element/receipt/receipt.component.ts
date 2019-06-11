@@ -2,9 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { MathService } from 'src/app/services/math.service';
 import { TransactionService } from 'src/app/services/transaction.service';
-import { transaction, patient } from 'src/app/services/service.interface';
+import { transaction, patient, itemList } from 'src/app/services/service.interface';
 import { PatientService } from 'src/app/services/patient.service';
 import * as moment from 'moment';
+import { ItemService } from 'src/app/services/item.service';
 
 @Component({
   selector: 'receipt',
@@ -16,12 +17,14 @@ export class ReceiptComponent implements OnInit {
   transDetails  : Promise<any>[];
   transData     : transaction;
   patient       : patient;
+  item          : itemList[];
 
   constructor(
     route: ActivatedRoute,
     private math: MathService,
     private TS: TransactionService,
-    private PS: PatientService
+    private PS: PatientService,
+    private IS: ItemService
   ) {
     this.trans = route.snapshot.params['ids']
       .split(',');
@@ -43,6 +46,8 @@ export class ReceiptComponent implements OnInit {
             this.patient = pat[0];
             this.patient.age = moment().diff(this.patient.birthdate, 'years');
           })
+
+         
         }   
       )
   }

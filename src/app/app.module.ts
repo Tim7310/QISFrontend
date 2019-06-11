@@ -59,6 +59,7 @@ import { CompanyFormComponent } from './element/company-form/company-form.compon
 import { ReceiptComponent } from './element/receipt/receipt.component';
 import {NgxPrintModule} from 'ngx-print';
 import { ClickOutsideModule } from 'ng-click-outside';
+import { MomentModule } from 'ngx-moment';
 
 @NgModule({
   declarations: [
@@ -156,7 +157,8 @@ import { ClickOutsideModule } from 'ng-click-outside';
     FlexLayoutModule,
     NgxMatSelectSearchModule,
     NgxPrintModule,
-    ClickOutsideModule
+    ClickOutsideModule,
+    MomentModule
   ],
   providers: [
     ItemService, 

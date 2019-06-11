@@ -54,25 +54,11 @@ export class ItemService {
   }
 
   getPack_Test(item: itemList){
-    var testNum: any;
-    this.getPackExt(item.itemId).subscribe(
-      packItem => {
-        packItem.forEach(item => {
-          this.getItemByID(item.itemID).subscribe(
-            test => { 
-              if(testNum == undefined){
-                testNum = test[0].neededTest;
-              }else{
-                testNum += "," + test[0].neededTest;
-              }  
-              console.log(testNum);                      
-            },
-            ( error: any ) => console.error(error),          
-          )
-        });  
-      }
-    )
-    console.log(testNum);  
+    var numArr: number[] = [];
+    var _numArr: any;
+    
+  
+        
   }
 
   //  get company list

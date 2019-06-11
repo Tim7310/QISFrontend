@@ -68,4 +68,8 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     -webkit-font-feature-settings: 'liga';
     -webkit-font-smoothing: antialiased;
   }
+  @media print {
+    transaction > * { display: none; }
+    transaction receipt { display: block; }
+  }
   

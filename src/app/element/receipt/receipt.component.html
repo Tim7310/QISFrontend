@@ -2,7 +2,7 @@
 <mat-grid-list cols="20" rowHeight="10px" >
     <mat-grid-tile colspan="20" rowspan="3">
         <span class="left"> 
-          2019-06-06 09:56:30 
+          {{transData?.transactionDate}}
         </span>
     </mat-grid-tile>
     <mat-grid-tile colspan="20" rowspan="3">
@@ -25,7 +25,7 @@
     </mat-grid-tile>
     <mat-grid-tile colspan="14" rowspan="4">
         <span class="left bold-1"> 
-            MARTINEZ, STEFFANY GRACE VILLAR
+            {{patient?.fullName}}
         </span>
     </mat-grid-tile>
     <mat-grid-tile colspan="6" rowspan="4">
@@ -35,7 +35,7 @@
     </mat-grid-tile>
     <mat-grid-tile colspan="14" rowspan="4" >
         <span class="left bold-1" > 
-            JOLLIBEE
+            {{patient?.companyName}}
         </span>
     </mat-grid-tile>
     <mat-grid-tile colspan="6" rowspan="2">
@@ -45,7 +45,7 @@
     </mat-grid-tile>
     <mat-grid-tile colspan="14" rowspan="2">
         <span class="left bold-1"> 
-            18/FEMALE
+            {{patient?.age}}/{{patient?.gender}}
         </span>
     </mat-grid-tile>
     <mat-grid-tile colspan="6" rowspan="2">
@@ -55,7 +55,7 @@
     </mat-grid-tile>
     <mat-grid-tile colspan="14" rowspan="2">
         <span class="left bold-1"> 
-            2000-08-02
+            {{patient?.birthdate}}
         </span>
     </mat-grid-tile>
     <mat-grid-tile colspan="6" rowspan="2">
@@ -65,7 +65,7 @@
     </mat-grid-tile>
     <mat-grid-tile colspan="14" rowspan="2">
         <span class="left bold-1"> 
-            09297189693
+            {{patient?.contactNo}}
         </span>
     </mat-grid-tile>
     <mat-grid-tile colspan="6" rowspan="4">
@@ -75,7 +75,7 @@
     </mat-grid-tile>
     <mat-grid-tile colspan="14" rowspan="4">
         <span class="left bold-1"> 
-            JOLLIBEE
+            {{transData?.biller}}
         </span>
     </mat-grid-tile>
     <mat-grid-tile colspan="6" rowspan="2">
@@ -85,7 +85,7 @@
     </mat-grid-tile>
     <mat-grid-tile colspan="14" rowspan="2">
         <span class="left bold-1"> 
-            Moises
+            {{transData?.userId}}
         </span>
     </mat-grid-tile>
     <mat-grid-tile colspan="6" rowspan="2">
@@ -95,7 +95,7 @@
     </mat-grid-tile>
     <mat-grid-tile colspan="14" rowspan="2">
         <span class="left bold-1"> 
-            CASH
+            {{transData?.transactionType}}
         </span>
     </mat-grid-tile>
     <mat-grid-tile colspan="6" rowspan="3">
@@ -105,7 +105,7 @@
     </mat-grid-tile>
     <mat-grid-tile colspan="14" rowspan="3">
         <span class="left bold-1 ts-3"> 
-            #0000000004803
+            # {{transData?.transactionId.toString().padStart(13, '0')}}
         </span>
     </mat-grid-tile>
     <mat-grid-tile colspan="15" rowspan="3" class="border-top border-bottom">
@@ -135,7 +135,7 @@
     </mat-grid-tile>
     <mat-grid-tile colspan="7" rowspan="3" class="border-top">
         <span class="bold-1 ts-2"> 
-            ₱:600.00
+            ₱: {{transData?.totalPrice}}
         </span>
     </mat-grid-tile>
     <mat-grid-tile colspan="13" rowspan="2">
@@ -145,7 +145,7 @@
     </mat-grid-tile>
     <mat-grid-tile colspan="7" rowspan="2">
         <span > 
-            ₱: 1000
+            ₱:  {{transData?.paidIn}}
         </span>
     </mat-grid-tile>
     <mat-grid-tile colspan="13" rowspan="2">
@@ -155,7 +155,7 @@
     </mat-grid-tile>
     <mat-grid-tile colspan="7" rowspan="2">
         <span class="bold-1 "> 
-            ₱: 400
+            ₱: {{transData?.paidOut}}
         </span>
     </mat-grid-tile>
     <mat-grid-tile colspan="20" rowspan="2">
@@ -171,6 +171,6 @@
     </mat-grid-tile>
     <mat-grid-tile colspan="3" rowspan="5">
         <!-- margin right -->
-      </mat-grid-tile>
+    </mat-grid-tile>
 </mat-grid-list>
 </div>

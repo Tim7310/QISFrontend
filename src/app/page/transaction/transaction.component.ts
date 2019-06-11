@@ -1,7 +1,7 @@
-import { Component, OnInit, SimpleChanges } from '@angular/core';
+import { Component, OnInit, SimpleChanges, Inject } from '@angular/core';
 import { itemList, total, transaction, patient, transExt } from 'src/app/services/service.interface';
 import { FormControl } from '@angular/forms';
-import { MatDialog } from '@angular/material/dialog';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { PatientFormComponent } from 'src/app/element/patient-form/patient-form.component';
 import { MatSnackBar } from '@angular/material';
 import { CompanyFormComponent } from 'src/app/element/company-form/company-form.component';
@@ -9,6 +9,7 @@ import { PatientService } from 'src/app/services/patient.service';
 import { TransactionService } from 'src/app/services/transaction.service';
 import { MathService } from 'src/app/services/math.service';
 import { Global } from 'src/app/global.variable';
+import { ConfirmComponent } from 'src/app/element/confirm/confirm.component';
 
 
 @Component({
@@ -125,48 +126,6 @@ export class TransactionComponent implements OnInit{
       this.currency = "PHP";
     }
   }
-  save(){
-    this.transaction = {
-      transactionId   : undefined,
-      transactionRef  : this.transactionRef,
-      patientId       : this.patient.patientID,
-      userId          : this.global.userID,
-      transactionType : this.transType,
-      biller          : this.patient.companyName,
-      totalPrice      : this.subTotal,
-      paidIn          : 0,
-      paidOut         : 0,
-      grandTotal      : this.totalVal,
-      status          : 1,
-      salesType       : "sales",
-      loe             : "",
-      an              : "",
-      ac              : "",
-      notes           : "",
-      transactionDate : this.math.getDateNow()
-    }
-    if        (this.transType === "CASH"){
-      this.transaction.paidIn   = this.receivedAmount.value;
-      this.transaction.paidOut  = this.change;
-    }else if  (this.transType === "ACCOUNT"){
-      this.transaction.biller = this.biller;
-    }else if  (this.transType === "HMO"){
-      this.transaction.biller = this.biller;
-      this.transaction.loe    = this.LOENumber.value;
-      this.transaction.an     = this.AccountNumber.value;
-
-    }else if  (this.transType === "APE"){
-      this.transaction.biller = this.biller;
-    }else{
-      this.openSnackBar("Please select transaction type", "close");
-      return;
-    }
-    this.trans.saveTransaction(
-      this.transaction,
-      this.total,
-      this.items
-    )
-  }
   getPatient(value){
     this.patient = value;
   }
@@ -215,16 +174,82 @@ export class TransactionComponent implements OnInit{
       }  
     });   
   }
+
   cancel(){
     location.reload();
   }
+
   getBiller(value){
     this.biller = value.nameCompany;
   }
+
   onPrintInvoice() {
-    const ids = ['101'];
+    const ids = ['1453'];
     this.math
       .printDocument('', ids);
   }
 
+  save(saveType: string){
+    this.transaction = {
+      transactionId   : undefined,
+      transactionRef  : this.transactionRef,
+      patientId       : this.patient.patientID,
+      userId          : this.global.userID,
+      transactionType : this.transType,
+      biller          : this.patient.companyName,
+      totalPrice      : this.subTotal,
+      paidIn          : 0,
+      paidOut         : 0,
+      grandTotal      : this.totalVal,
+      status          : 1,
+      salesType       : "sales",
+      loe             : "",
+      an              : "",
+      ac              : "",
+      notes           : "",
+      transactionDate : this.math.getDateNow()
+    }
+    if        (this.transType === "CASH"){
+      this.transaction.paidIn   = this.receivedAmount.value;
+      this.transaction.paidOut  = this.change;
+    }else if  (this.transType === "ACCOUNT"){
+      this.transaction.biller = this.biller;
+    }else if  (this.transType === "HMO"){
+      this.transaction.biller = this.biller;
+      this.transaction.loe    = this.LOENumber.value;
+      this.transaction.an     = this.AccountNumber.value;
+
+    }else if  (this.transType === "APE"){
+      this.transaction.biller = this.biller;
+    }else{
+      this.openSnackBar("Please select transaction type", "close");
+      return;
+    }
+    // save transaction data to database function
+    const dialogRef = this.dialog.open(ConfirmComponent, {
+      width: '20%',
+      data: {Title: "Are you sure?", Content: "New Patient will be save to database."}
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      if(result == "ok"){ 
+        try{
+          if(saveType == "SAVE"){
+            this.trans.saveTransaction(
+              this.transaction,
+              this.total,
+              this.items
+            )
+          }else if(saveType == "PRINT"){
+
+          }else if(saveType == "HOLD"){
+
+          }
+          
+          this.openSnackBar("Transaction Success", "close");
+        }catch(e){
+          this.openSnackBar(e.message, "close");
+        }  
+      }
+    });  
+  }
 }

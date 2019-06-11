@@ -38,12 +38,7 @@ button {
 .spacer {
     flex: 1 1 auto;
 }
-@media print{
-   
-}
 @media print {
     .mat-toolbar { display: none }
     mat-sidenav { visibility: hidden !important }
-    transaction > * { display: none; }
-    transaction receipt { display: block; }
   }

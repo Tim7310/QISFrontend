@@ -143,24 +143,54 @@ export class TransactionService {
               )
             });
             let transRefNum: number[] = [];
-            items.forEach(item => {
-              if(Number.isInteger(item.itemId)){
-                transRefNum.push(item.neededTest);
-              }  
-              else{
-                this.IS.getPack_Test(item)
+            let packItem: itemList[] = [];
+            for (let ii = 0; ii < items.length; ii++) {
+              if(Number.isInteger(items[ii].itemId)){
+                transRefNum.push(items[ii].neededTest);
               }
-            });
-            let refGen = this.transRefGen(
-              transRefNum, 
-              transData[0].transactionId, 
-              transData[0].patientId              
-              )
-            // insert into transRef table to database
-            this.addTransRef(refGen).subscribe(
-              extData => { },
-              (error: any) => console.error(error),
-            )
+              else{
+                packItem.push(items[ii]);
+              }            
+            }
+            if( packItem.length > 0 ){
+              for (let pi = 0; pi < packItem.length; pi++) { 
+              let _packItem: any;
+              this.IS.getPackExt(packItem[pi].itemId).subscribe(
+                packItem => {
+                    _packItem = packItem;                           
+                },
+                (err: any) => console.error(err),
+                () => {
+                  for (let ri = 0; ri < _packItem.length; ri++) {
+                      this.IS.getItemByID(_packItem[ri].itemID).subscribe(
+                      itemTest => {
+                        transRefNum.push(itemTest[0].neededTest);
+                        
+                        if( packItem.length === pi + 1 && _packItem.length === ri + 1){
+
+                          let refGen = this.transRefGen(
+                            transRefNum, 
+                            transData[0].transactionId, 
+                            transData[0].patientId              
+                          )
+                          // insert into transRef table to database
+                          this.addTransRef(refGen).subscribe(
+                            extData => { },
+                            (error: any) => console.error(error),
+                          )                           
+                        }
+
+                      },
+                      (err: any) => console.error(err),
+                      () => {
+                                          
+                      }                    
+                    )  
+                  }                     
+                }
+              ) 
+              }             
+            }   
           },
           (error: any) => console.error(error),
           () => {

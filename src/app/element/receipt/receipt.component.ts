@@ -17,7 +17,7 @@ export class ReceiptComponent implements OnInit {
   transDetails  : Promise<any>[];
   transData     : transaction;
   patient       : patient;
-  item          : itemList[];
+  item          : itemList[] = [];
 
   constructor(
     route: ActivatedRoute,
@@ -47,7 +47,41 @@ export class ReceiptComponent implements OnInit {
             this.patient.age = moment().diff(this.patient.birthdate, 'years');
           })
 
-         
+          this.TS.getTransExt(data[0].transactionId)
+          .subscribe(
+            item => {
+              item.forEach(itemData => {
+                // if the item is package
+                if(itemData.packageName != null){
+                  this.IS.getPack( "getPackageName/" + itemData.packageName )
+                  .subscribe(
+                    pack => {
+                      var iPack: itemList = {
+                        itemId          : pack[0].packageName,
+                        itemName        : pack[0].packageName,
+                        itemPrice       : pack[0].packagePrice,
+                        itemDescription : pack[0].packageDescription,
+                        itemType        : pack[0].packageType,
+                        deletedItem     : pack[0].deletedPackage,
+                        neededTest      : null,
+                        creationDate    : pack[0].creationDate,
+                        dateUpdate      : pack[0].dateUpdate,
+                      }
+                      this.item.push(iPack);
+                    }
+                  )
+                }else{ 
+                  //if the item is normal item
+                  this.IS.getItemByID(itemData.itemID)
+                  .subscribe(
+                    itemInfo => {
+                      this.item.push(itemInfo[0]);
+                    }
+                  )
+                }
+              });
+            }
+          )
         }   
       )
   }

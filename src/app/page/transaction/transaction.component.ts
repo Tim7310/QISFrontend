@@ -250,21 +250,20 @@ export class TransactionComponent implements OnInit{
               const url = "getTransRef/" + this.transaction.transactionRef;                      
               this.trans.getOneTrans(url)
               .subscribe(data => {
-              console.log(data);
-              const suffix = [data[0].transactionId];
-              this.math.printDocument('', suffix);
-            })           
+                const suffix = [data[0].transactionId];
+                this.math.printDocument('', suffix);
+              })           
             })
           
-          }else if(saveType == "HOLD"){
-
-          }
-          
+          }         
          
         }catch(e){
           this.openSnackBar(e.message, "close");
         }  
       }
     });  
+  }
+  holdTrans(){
+
   }
 }

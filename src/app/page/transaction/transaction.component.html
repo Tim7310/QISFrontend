@@ -126,7 +126,7 @@
                       (click)="changeTrans(btn)"
                       
                     >{{btn}}
-                    <!-- [disabled]="patient === undefined || items.length == 0" -->
+                    <!--  -->
                     </button>
                   </div>  
                   <div></div>
@@ -134,6 +134,9 @@
                     <button mat-raised-button (click)="addCompany()">Add Company</button>
                     <button mat-raised-button (click)="cancel()" 
                     class="bg-danger text-light">Cancel</button>
+                    <button mat-raised-button (click)="holdTrans" color="accent"
+                    [disabled]="patient === undefined && items.length == 0">
+                    Hold Transaction</button>
                   </div>
                 </mat-grid-tile>
 <!-- back button: to reselect transaction type -->
@@ -258,5 +261,4 @@
     </div>
   </div>
 </div>
-<button (click)="onPrintInvoice()">PRINT INVOICE</button>
 <router-outlet name="print"></router-outlet>

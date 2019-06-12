@@ -19,7 +19,7 @@
        <!-- margin -->
     </mat-grid-tile>
     <mat-grid-tile colspan="6" rowspan="4">
-        <span class="right"> 
+        <span class="right" > 
             Name :
         </span>
     </mat-grid-tile>
@@ -117,22 +117,35 @@
         <span class="bold-1 "> 
             Price
         </span>
-    </mat-grid-tile>
-    <mat-grid-tile colspan="15" rowspan="3">
-        <span class="left"> 
-            JOLLIBEE B5+HBSAG+DT
+    </mat-grid-tile> 
+</mat-grid-list>
+    <!-- <div *ngFor="let i of item">
+        <span class="left" style="width: 260px;"> 
+           {{i.itemName}}
         </span>
-    </mat-grid-tile>
-    <mat-grid-tile colspan="5" rowspan="3">
-        <span class="left"> 
-            ₱:600.00
+        <span class="right"> 
+            ₱:{{i.itemPrice}}
         </span>
-    </mat-grid-tile>
+    </div> -->
+    <div class="container-fluid">
+        <div class="row p-1" *ngFor="let i of item" style="line-height: 15px;font-size: 13px">
+            <div class="col-10" >
+                <div>
+                    {{i.itemName}}
+                </div>
+            </div>
+            <div class="col-2">
+                ₱:{{i.itemPrice}}
+            </div>
+        </div>
+    </div>
+<mat-grid-list cols="20" rowHeight="10px" >
     <mat-grid-tile colspan="13" rowspan="3" class="border-top">
         <span class="right bold-1 "> 
             Receipt Total :
         </span>
     </mat-grid-tile>
+
     <mat-grid-tile colspan="7" rowspan="3" class="border-top">
         <span class="bold-1 "> 
             ₱: {{transData?.totalPrice}}

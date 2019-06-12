@@ -35,8 +35,8 @@ export class TransactionService {
     )
   }
 
-  getTransExt(transID: number): Observable<transExt[]>{
-    return this.http.get<transExt[]>(this.global.url + "/" + transID)
+  getTransExt(transID): Observable<transExt[]>{
+    return this.http.get<transExt[]>(this.global.url + "/getTransext/" + transID)
     .pipe(
       retry(1),
       catchError(this.ehs.handleError)

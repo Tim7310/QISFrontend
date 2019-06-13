@@ -99,7 +99,7 @@ export interface transRef{
     ultrasound      : number,
     ecg             : number,
     others          : number,
-    // _2DEcho          : number
+    _2dEcho          : number
 }
 export interface packExt{
     packageName : string,

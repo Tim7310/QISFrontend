@@ -28,14 +28,14 @@ export class TransactionComponent implements OnInit{
   discounted : any = 0;
   transType : string = undefined;
   transTypeBTN = ["CASH", "ACCOUNT", "HMO", "APE" ];
-  receivedAmount = new FormControl();
+  receivedAmount = new FormControl(0);
   change : any = 0;
   arError : string = undefined;
   currency : string = "PHP";
   transaction : transaction;
   patient : patient;
   transactionRef : number;
-  biller: any;
+  biller: any = "";
   LOENumber: FormControl = new FormControl;
   AccountNumber: FormControl = new FormControl;
 
@@ -55,7 +55,7 @@ export class TransactionComponent implements OnInit{
     .subscribe(data => this.updateChange(data)); 
 
     // Generate transaction random numbers
-    this.trans.getTransactions("gettransaction")
+    this.trans.getTransactions("getTransaction")
     .subscribe(data => 
       this.transactionRef = this.math.transcheckRef(data)
     );  
@@ -239,6 +239,7 @@ export class TransactionComponent implements OnInit{
               this.items
             ).subscribe(success => {
               this.openSnackBar("Transaction Success", "close");
+              location.reload();
             })  
           }else if(saveType == "PRINT"){
             
@@ -252,10 +253,24 @@ export class TransactionComponent implements OnInit{
               .subscribe(data => {
                 const suffix = [data[0].transactionId];
                 this.math.printDocument('', suffix);
+
+                window.addEventListener("afterprint", function(event) { 
+                  location.reload();
+                });
               })           
             })
           
-          }         
+          }else if(saveType == "HOLD"){
+            this.transaction.status = 0;
+            this.trans.saveTransaction(
+              this.transaction,
+              this.total,
+              this.items
+            ).subscribe(success => {
+              this.openSnackBar("Transaction HELD", "close");
+              location.reload();
+            })  
+          }       
          
         }catch(e){
           this.openSnackBar(e.message, "close");

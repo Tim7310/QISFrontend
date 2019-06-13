@@ -24,4 +24,9 @@ export class ConfirmComponent implements OnInit {
   ok(){
     this.dialogRef.close("ok");
   }
+  cancel(rel: number = 0){
+    if(rel == 1){
+      location.reload();
+    }
+  }
 }

@@ -6,7 +6,7 @@
       {{Content}}
     </mat-grid-tile>
     <mat-grid-tile colspan="2" rowspan="3">
-      <button mat-button matDialogClose >Cancel</button>
+      <button mat-button matDialogClose (click)="cancel()">Cancel</button>
       <button mat-raised-button color="primary" cdkFocusInitial (click)="ok()">OK</button> 
     </mat-grid-tile>
 </mat-grid-list>

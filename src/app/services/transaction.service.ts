@@ -86,7 +86,7 @@ export class TransactionService {
       ultrasound      : 0,
       ecg             : 0,
       others          : 0,
-      // _2DEcho          : 0
+      _2dEcho         : 0
     }
     arr.forEach(num => {
       if( num === 1){
@@ -108,9 +108,9 @@ export class TransactionService {
       }else if( num === 9 ){
         ref.others = 1;
       }
-      // else if( num === 10 ){
-      //   ref._2DEcho = 1;
-      // }
+      else if( num === 10 ){
+        ref._2dEcho = 1;
+      }
     });
     return ref;
   }

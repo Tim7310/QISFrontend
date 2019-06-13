@@ -60,6 +60,7 @@ import { ReceiptComponent } from './element/receipt/receipt.component';
 import {NgxPrintModule} from 'ngx-print';
 import { ClickOutsideModule } from 'ng-click-outside';
 import { MomentModule } from 'ngx-moment';
+import { HeldTransactionComponent } from './element/held-transaction/held-transaction.component';
 
 @NgModule({
   declarations: [
@@ -73,6 +74,7 @@ import { MomentModule } from 'ngx-moment';
     ConfirmComponent,
     CompanyFormComponent,
     ReceiptComponent,
+    HeldTransactionComponent,
   ],
   exports: [
     CdkTableModule,

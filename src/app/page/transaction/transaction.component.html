@@ -134,9 +134,7 @@
                     <button mat-raised-button (click)="addCompany()">Add Company</button>
                     <button mat-raised-button (click)="cancel()" 
                     class="bg-danger text-light">Cancel</button>
-                    <button mat-raised-button (click)="holdTrans" color="accent"
-                    [disabled]="patient === undefined && items.length == 0">
-                    Hold Transaction</button>
+                    
                   </div>
                 </mat-grid-tile>
 <!-- back button: to reselect transaction type -->
@@ -210,18 +208,24 @@
                 </mat-grid-tile>
 <!-- save and save print container -->
                 <mat-grid-tile *ngIf="transType !== undefined" colspan="20" rowspan="2" >
-                    <button mat-raised-button 
+                    <button mat-raised-button (click)="save('HOLD')"
                     [disabled]="patient === undefined || items.length == 0"
-                    (click)="save('SAVE')" color="accent" 
-                    class="mr-2 animated fadeIn">
-                        <clr-icon shape="floppy"></clr-icon> SAVE
-                    </button>
-                    <button mat-raised-button
-                    [disabled]="patient === undefined || items.length == 0" 
-                    (click)="save('PRINT')" color="primary" 
-                    class="animated fadeIn">
-                        <clr-icon shape="printer" ></clr-icon> SAVE & PRINT
-                    </button>
+                    style="position: absolute; left: 10px">
+                    Hold Transaction</button>
+                    <div style="position: absolute; right: 10px">
+                      <button mat-raised-button 
+                      [disabled]="patient === undefined || items.length == 0"
+                      (click)="save('SAVE')" color="accent" 
+                      class="mr-2 animated fadeIn">
+                          <clr-icon shape="floppy"></clr-icon> SAVE
+                      </button>
+                      <button mat-raised-button
+                      [disabled]="patient === undefined || items.length == 0" 
+                      (click)="save('PRINT')" color="primary" 
+                      class="animated fadeIn">
+                          <clr-icon shape="printer" ></clr-icon> SAVE & PRINT
+                      </button>
+                    </div>
                 </mat-grid-tile>
               </mat-grid-list>
             </div>

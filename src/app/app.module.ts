@@ -61,7 +61,7 @@ import {NgxPrintModule} from 'ngx-print';
 import { ClickOutsideModule } from 'ng-click-outside';
 import { MomentModule } from 'ngx-moment';
 import { HeldTransactionComponent } from './element/held-transaction/held-transaction.component';
-
+import { MatDialogRef} from '@angular/material/dialog';
 @NgModule({
   declarations: [
     AppComponent,
@@ -167,6 +167,8 @@ import { HeldTransactionComponent } from './element/held-transaction/held-transa
     ErrorService,
     PatientService,
     Global,
+    HeldTransactionComponent,
+    {provide: MatDialogRef,useValue:{}},
     PatientFormComponent,
     {provide:MAT_DIALOG_DATA,useValue:{}}
     ],
@@ -174,7 +176,8 @@ import { HeldTransactionComponent } from './element/held-transaction/held-transa
   entryComponents: [
     PatientFormComponent,
     ConfirmComponent,
-    CompanyFormComponent
+    CompanyFormComponent,
+    HeldTransactionComponent
   ]
 })
 export class AppModule { }

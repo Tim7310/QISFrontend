@@ -10,6 +10,7 @@ import { TransactionService } from 'src/app/services/transaction.service';
 import { MathService } from 'src/app/services/math.service';
 import { Global } from 'src/app/global.variable';
 import { ConfirmComponent } from 'src/app/element/confirm/confirm.component';
+import { HeldTransactionComponent } from 'src/app/element/held-transaction/held-transaction.component';
 
 
 @Component({
@@ -279,6 +280,11 @@ export class TransactionComponent implements OnInit{
     });  
   }
   holdTrans(){
+    const dialogRef = this.dialog.open(HeldTransactionComponent, {
+      width: '80%',
+    });
+    dialogRef.afterClosed().subscribe(heldTrans => {
 
+    })
   }
 }

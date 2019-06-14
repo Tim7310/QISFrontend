@@ -128,13 +128,22 @@
                     >{{btn}}
                     <!--  -->
                     </button>
-                  </div>  
-                  <div></div>
-                  <div class="otherBtn">
-                    <button mat-raised-button (click)="addCompany()">Add Company</button>
-                    <button mat-raised-button (click)="cancel()" 
-                    class="bg-danger text-light">Cancel</button>
-                    
+                  </div> 
+                  <div class="otherBtn" style="left: 10px">
+                      <button mat-button (click)="cancel()" 
+                      class="bg-danger text-light" style="left: 10px">
+                        Cancel
+                      </button>
+                  </div> 
+                  <div class="otherBtn" style="right: 10px">
+                    <button mat-raised-button 
+                    (click)="addCompany()" >
+                      Add Company
+                    </button>  
+                    <button mat-raised-button (click)="holdTrans()" 
+                    color="accent" class="ml-1">
+                      Held Transaction
+                    </button>                
                   </div>
                 </mat-grid-tile>
 <!-- back button: to reselect transaction type -->

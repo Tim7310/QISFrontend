@@ -11,6 +11,7 @@ import { MathService } from 'src/app/services/math.service';
 import { Global } from 'src/app/global.variable';
 import { ConfirmComponent } from 'src/app/element/confirm/confirm.component';
 import { HeldTransactionComponent } from 'src/app/element/held-transaction/held-transaction.component';
+import { ItemService } from 'src/app/services/item.service';
 
 
 @Component({
@@ -21,7 +22,7 @@ import { HeldTransactionComponent } from 'src/app/element/held-transaction/held-
 export class TransactionComponent implements OnInit{
   items : itemList[] = [];
   discount : number = 0;
-  discountBtn = [ 5, 10, 15, 20 ];
+  discountBtn = [ 0, 5, 10, 15, 20 ];
   moneyBtn = [ 50, 100, 200, 500, 1000 ];
   total : total[] = [];
   totalVal : any = 0;
@@ -39,6 +40,7 @@ export class TransactionComponent implements OnInit{
   biller: any = "";
   LOENumber: FormControl = new FormControl;
   AccountNumber: FormControl = new FormControl;
+  transID = undefined;
 
   constructor(
     public dialog     : MatDialog, 
@@ -47,6 +49,7 @@ export class TransactionComponent implements OnInit{
     private trans     : TransactionService,
     public math       : MathService,
     public global     : Global,
+    private IS        : ItemService
     ) { 
     this.totalVal = 0;
     }
@@ -191,7 +194,7 @@ export class TransactionComponent implements OnInit{
 
   save(saveType: string){
     this.transaction = {
-      transactionId   : undefined,
+      transactionId   : this.transID,
       transactionRef  : this.transactionRef,
       patientId       : this.patient.patientID,
       userId          : this.global.userID,
@@ -279,12 +282,65 @@ export class TransactionComponent implements OnInit{
       }
     });  
   }
+
   holdTrans(){
     const dialogRef = this.dialog.open(HeldTransactionComponent, {
       width: '80%',
     });
     dialogRef.afterClosed().subscribe(heldTrans => {
-
+      if(heldTrans){
+        this.items = [];
+        this.total = [];
+        this.transID = heldTrans;
+        console.log(this.transID);
+        
+        this.trans.getOneTrans("getTransaction/" + heldTrans)
+        .subscribe(
+          transData => {
+            this.pat.getOnePatient("getPatient/" + transData[0].patientId)
+            .subscribe(
+              pats => {
+                this.patient = pats[0];
+              }
+            )
+            this.transType = transData[0].transactionType;
+            
+            this.trans.getTransExt(heldTrans).subscribe(
+              transExt => {
+                for (let index = 0; index < transExt.length; index++) {
+                  if(transExt[0].packageName != null){
+                      this.IS.getPack("getPackageName/" + transExt[index].packageName)
+                      .subscribe(
+                        pack => {
+                          let packItem : itemList = {
+                            itemId          : pack[0].packageName,
+                            itemName        : pack[0].packageName,
+                            itemPrice       : pack[0].packagePrice,
+                            itemDescription : pack[0].packageDescription,
+                            itemType        : pack[0].packageType,
+                            deletedItem     : pack[0].deletedPackage,
+                            neededTest      : undefined,
+                            creationDate    : pack[0].creationDate,
+                            dateUpdate      : pack[0].dateUpdate,
+                          }
+                          this.items.push(packItem);            
+                        }
+                    )
+                  }else if(transExt[0].itemID != null){
+                      this.IS.getItemByID(transExt[index].itemID)
+                      .subscribe( item => {
+                        this.items.push(item[0]);                                      
+                      });
+                  }
+                     
+                }
+               
+               
+              }
+            )
+          }   
+        )
+      }      
     })
   }
 }

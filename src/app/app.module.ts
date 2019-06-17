@@ -62,6 +62,7 @@ import { ClickOutsideModule } from 'ng-click-outside';
 import { MomentModule } from 'ngx-moment';
 import { HeldTransactionComponent } from './element/held-transaction/held-transaction.component';
 import { MatDialogRef} from '@angular/material/dialog';
+import { TransactionListComponent } from './element/transaction-list/transaction-list.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -75,6 +76,7 @@ import { MatDialogRef} from '@angular/material/dialog';
     CompanyFormComponent,
     ReceiptComponent,
     HeldTransactionComponent,
+    TransactionListComponent,
   ],
   exports: [
     CdkTableModule,

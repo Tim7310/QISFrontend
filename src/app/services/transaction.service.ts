@@ -44,13 +44,23 @@ export class TransactionService {
   }
   
   addTrans(trans: transaction): Observable<transaction> {
-    return this.http.post<transaction>(
-      this.global.url + "/addTransaction", 
-      trans, this.global.httpOptions)
-      .pipe(
-        retry(1),
-        catchError(this.ehs.handleError)
-      );
+    if(trans.transactionId == undefined){
+      return this.http.post<transaction>(
+        this.global.url + "/addTransaction", 
+        trans, this.global.httpOptions)
+        .pipe(
+          retry(1),
+          catchError(this.ehs.handleError)
+        );
+    }else{
+      return this.http.post<transaction>(
+        this.global.url + "/updateTransaction", 
+        trans, this.global.httpOptions)
+        .pipe(
+          retry(1),
+          catchError(this.ehs.handleError)
+        );
+    }
   } 
 
   addTransExt(trans: transExt): Observable<transExt> {
@@ -72,7 +82,10 @@ export class TransactionService {
         catchError(this.ehs.handleError)
       );
   }
+  getItemInfo(transID: number){
+    let itemData: itemList[] = [];
 
+  }
   transRefGen(arr: number[], transID: number, PatID: number){
     let ref : transRef = {
       transactionID   : transID,
@@ -127,8 +140,14 @@ export class TransactionService {
       },
       (error: any) => console.error(error),
       () => {
+        let urlRef;
         // get input transaction data
-        let urlRef = "getTransRef/" + transaction.transactionRef;
+        if(transaction.transactionId == undefined){
+          urlRef = "getTransRef/" + transaction.transactionRef;
+        }else{
+          urlRef = "getTransaction/" + transaction.transactionId;
+        }
+       
         this.getOneTrans(urlRef).subscribe(
           transData => {
             total.forEach(item => {

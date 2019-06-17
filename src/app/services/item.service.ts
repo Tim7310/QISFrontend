@@ -84,5 +84,5 @@ export class ItemService {
         retry(1),
         catchError(this.ehs.handleError)
     )
-  }     
+  } 
 }

@@ -9,7 +9,9 @@ table {
 button {
   outline: none;
 }
-
+.mat-column-items{
+  max-width: 250px;
+}
 .delete-btn{
     color: crimson;
     cursor: pointer;

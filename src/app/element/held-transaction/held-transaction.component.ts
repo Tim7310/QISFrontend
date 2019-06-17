@@ -80,7 +80,7 @@ export class HeldTransactionComponent implements OnInit {
                     // transData.items.push(packItem);
                     // console.log(packItem);
                     if(transData.items != ""){
-                      transData.items += " ,";
+                      transData.items += " | ";
                     }
                     transData.items += pack[0].packageName;
                     
@@ -91,7 +91,7 @@ export class HeldTransactionComponent implements OnInit {
                   this.IS.getItemByID(ext.itemID)
                   .subscribe( item => {
                     if(transData.items != ""){
-                      transData.items += " ,";
+                      transData.items += " | ";
                     }
                     // transData.items.push(item[0]);
                     transData.items += item[0].itemName;
@@ -138,5 +138,9 @@ export class HeldTransactionComponent implements OnInit {
       }
     )
     
+  }
+
+  unHold(value){
+    this.dialogRef.close(value);
   }
 }

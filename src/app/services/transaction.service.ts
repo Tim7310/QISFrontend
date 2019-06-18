@@ -73,6 +73,15 @@ export class TransactionService {
       );
   }
 
+  deleteTransExt(transID: number): Observable<any>{
+    return this.http.delete<any>(this.global.url + "/deleteTransext/" + transID, 
+    this.global.httpOptions )
+    .pipe(
+        retry(1),
+        catchError(this.ehs.handleError)
+    )
+  }
+
   addTransRef(trans: transRef): Observable<transRef> {
     return this.http.post<transRef>(
       this.global.url + "/addTransref", 
@@ -82,6 +91,20 @@ export class TransactionService {
         catchError(this.ehs.handleError)
       );
   }
+
+  updateStatus(transID: number, status: number): Observable<any>{
+    return this.http.post<any>(
+      this.global.url + "/updateStatus", 
+      {
+        status        : status,
+        transactionId : transID
+      }, this.global.httpOptions )
+      .pipe(
+        retry(1),
+        catchError(this.ehs.handleError)
+      );
+  }
+  
   getItemInfo(transID: number){
     let itemData: itemList[] = [];
 
@@ -146,13 +169,16 @@ export class TransactionService {
           urlRef = "getTransRef/" + transaction.transactionRef;
         }else{
           urlRef = "getTransaction/" + transaction.transactionId;
+          this.deleteTransExt(transaction.transactionId).subscribe(
+            delele => console.log("deleted")           
+          )
         }
        
         this.getOneTrans(urlRef).subscribe(
           transData => {
             total.forEach(item => {
               let ext: transExt = {
-                transactionID   : transData[0].transactionId,
+                transactionId   : transData[0].transactionId,
                 itemID          : null,
                 packageName     : null,
                 itemQTY         : item.quantity,
@@ -202,10 +228,10 @@ export class TransactionService {
                             transData[0].patientId              
                           )
                           // insert into transRef table to database
-                          this.addTransRef(refGen).subscribe(
-                            extData => { },
-                            (error: any) => console.error(error),
-                          )                           
+                          // this.addTransRef(refGen).subscribe(
+                          //   extData => { },
+                          //   (error: any) => console.error(error),
+                          // )                           
                         }
                       
                       },

@@ -1,6 +1,21 @@
 <div class="container-fluid">
   <div class="row">
     <div class="col-md-5 mt-2">
+<!-- transaction information -->
+      <mat-grid-list cols="10" rowHeight="10px">
+        <mat-grid-tile *ngIf="transID != undefined"
+        colspan="10" rowspan="4" class="bg-info text-light">
+            <div style="position: absolute; left: 10px">
+              Unhold transaction ID: <span class="bold-1">{{transID}}</span>
+            </div>
+            <div style="position: absolute; right: 20px">
+                <button mat-button (click)="cancel()" 
+                class="bg-danger text-light" style="left: 10px">
+                  Cancel
+                </button>
+            </div> 
+        </mat-grid-tile>
+      </mat-grid-list>
 <!-- Item selection -->
       <select-item itemURL="AllItems" 
         placeholder="Select Items" (selectTrig)="getItem($event)">
@@ -218,7 +233,7 @@
 <!-- save and save print container -->
                 <mat-grid-tile *ngIf="transType !== undefined" colspan="20" rowspan="2" >
                     <button mat-raised-button (click)="save('HOLD')"
-                    [disabled]="patient === undefined || items.length == 0"
+                    [disabled]="patient === undefined || items.length == 0 || transID != undefined"
                     style="position: absolute; left: 10px">
                     Hold Transaction</button>
                     <div style="position: absolute; right: 10px">

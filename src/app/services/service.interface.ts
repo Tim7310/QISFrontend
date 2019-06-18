@@ -81,7 +81,7 @@ export interface itemGroup{
     items   : itemList[]
 }
 export interface transExt{
-    transactionID   : number,
+    transactionId   : number,
     itemID          : number,
     packageName     : any,
     itemQTY         : number,

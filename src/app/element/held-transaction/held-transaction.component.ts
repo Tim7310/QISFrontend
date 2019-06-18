@@ -128,10 +128,18 @@ export class HeldTransactionComponent implements OnInit {
     });
     dialogRef.afterClosed().subscribe(
       result => {
-        if(result == "ok"){
-          let filt = this.heldData.filter(data => data.id === value);
-          this.heldData.splice( this.heldData.indexOf(filt[0]), 1 ); 
-          this.dataSource = new MatTableDataSource(this.heldData);
+        if(result == "ok"){ 
+          this.TS.updateStatus(value, 2).subscribe(
+            status => {
+              if(status == 1){
+                let filt = this.heldData.filter(data => data.id === value);
+                this.heldData.splice( this.heldData.indexOf(filt[0]), 1 ); 
+                this.dataSource = new MatTableDataSource(this.heldData);
+              }else{
+                alert("Transaction not Deleted");
+              }
+            }
+          )
         }else{
           // do nothing
         }

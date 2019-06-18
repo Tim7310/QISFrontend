@@ -7,11 +7,11 @@ import { MatSnackBar } from '@angular/material';
 import { CompanyFormComponent } from 'src/app/element/company-form/company-form.component';
 import { PatientService } from 'src/app/services/patient.service';
 import { TransactionService } from 'src/app/services/transaction.service';
-import { MathService } from 'src/app/services/math.service';
 import { Global } from 'src/app/global.variable';
 import { ConfirmComponent } from 'src/app/element/confirm/confirm.component';
 import { HeldTransactionComponent } from 'src/app/element/held-transaction/held-transaction.component';
 import { ItemService } from 'src/app/services/item.service';
+import { MathService } from 'src/app/services/math.service';
 
 
 @Component({
@@ -307,8 +307,8 @@ export class TransactionComponent implements OnInit{
             
             this.trans.getTransExt(heldTrans).subscribe(
               transExt => {
-                for (let index = 0; index < transExt.length; index++) {
-                  if(transExt[0].packageName != null){
+                for (let index = 0; index < transExt.length; index++) {                  
+                  if(transExt[index].packageName != null){
                       this.IS.getPack("getPackageName/" + transExt[index].packageName)
                       .subscribe(
                         pack => {
@@ -326,7 +326,7 @@ export class TransactionComponent implements OnInit{
                           this.items.push(packItem);            
                         }
                     )
-                  }else if(transExt[0].itemID != null){
+                  }else if(transExt[index].itemID != null){
                       this.IS.getItemByID(transExt[index].itemID)
                       .subscribe( item => {
                         this.items.push(item[0]);                                      

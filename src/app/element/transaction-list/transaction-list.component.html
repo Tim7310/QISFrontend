@@ -1,3 +1,95 @@
-<p>
-  transaction-list works!
-</p>
+<div class="loader-con" *ngIf="showLoading" >
+  <div style="margin-top: 30vh">
+      <loading></loading>
+  </div>
+</div>
+<div class="search-con mt-1" >
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-5">
+          <mat-form-field class="search-field">
+              <input matInput (keyup)="applyFilter($event.target.value)" 
+              placeholder="Search Transaction">
+          </mat-form-field>
+      </div>
+      <div class="col-md-7">
+          <mat-form-field class="mr-4">
+              <mat-label>Month</mat-label>
+              <mat-select [formControl]="monthVal">
+                <mat-option *ngFor="let month of months" [value]="month.value" >
+                  {{month.name}}
+                </mat-option>
+              </mat-select>
+          </mat-form-field>
+            
+          <mat-form-field>
+                <mat-label>Year</mat-label>
+                <mat-select [formControl]="yearVal">
+                  <mat-option *ngFor="let year of years" [value]="year">
+                    {{year}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="mat-elevation-z8 table-con" >
+  
+  <table mat-table [dataSource]="dataSource" matSort multiTemplateDataRows>
+    <ng-container matColumnDef="{{column}}"
+        *ngFor="let column of displayedColumns">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> 
+          <span style="text-transform: uppercase;" class="ls-1 bold-1">
+            {{column}}
+          </span> 
+        </th>     
+        <td mat-cell *matCellDef="let element"  > 
+              <span >{{element[column]}}</span>      
+        </td>
+        
+    </ng-container>    
+    <ng-container matColumnDef="expandedDetail">
+        <td mat-cell *matCellDef="let element" [attr.colspan]="displayedColumns.length">
+          <div class="example-element-detail"
+               [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
+            
+            <div class="example-element-description container-fluid">
+              <div class="row">
+                <div class="col-md-4">
+                    <div class="bold-1">Purchased Items: </div>
+                    <div *ngFor="let item of element.items">
+                      + {{item.itemName}}
+                      <span style="font-size:10px" 
+                      *ngIf="item.itemDescription != '' && item.itemDescription != ' '" >
+                        - ( {{item.itemDescription}} )
+                      </span>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="bold-1">Patient Information: </div>
+                    <div>{{element.patInfo?.contactNo}} || {{element.patInfo?.email}}</div>
+                    <div>{{element.patInfo?.birthdate}} || {{element.patInfo?.gender}}</div>
+                    <div>{{element.patInfo?.companyName}} || {{element.patInfo?.address}}</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </td>
+      </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true" ></tr>
+    <tr mat-row *matRowDef="let element; columns: displayedColumns; "
+      class="example-element-row"
+      [class.example-expanded-row]="expandedElement === element"
+      (click)="expandedElement = expandedElement === element ? null : element">>
+    </tr>
+    <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" 
+    class="example-detail-row"></tr>
+  </table>
+
+  <mat-paginator [pageSizeOptions]="[ 10, 25, 100]" 
+  class="mat-paginator-sticky"></mat-paginator>
+</div>
+

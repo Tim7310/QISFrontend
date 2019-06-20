@@ -74,8 +74,7 @@ export class TransactionService {
   }
 
   deleteTransExt(transID: number): Observable<any>{
-    return this.http.delete<any>(this.global.url + "/deleteTransext/" + transID, 
-    this.global.httpOptions )
+    return this.http.delete<any>( this.global.url + "/deleteTransext/" + transID )
     .pipe(
         retry(1),
         catchError(this.ehs.handleError)

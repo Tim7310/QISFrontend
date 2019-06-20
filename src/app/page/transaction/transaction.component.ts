@@ -252,9 +252,15 @@ export class TransactionComponent implements OnInit{
               this.total,
               this.items
             ).subscribe(success => {
-              const url = "getTransRef/" + this.transaction.transactionRef;                      
+              let url: any;
+              if(this.transaction.transactionId != undefined){
+                url = "getTransaction/" + this.transaction.transactionId;
+              }else{
+                url = "getTransRef/" + this.transaction.transactionRef;
+              }                                   
               this.trans.getOneTrans(url)
               .subscribe(data => {
+                console.log(data);
                 const suffix = [data[0].transactionId];
                 this.math.printDocument('', suffix);
 

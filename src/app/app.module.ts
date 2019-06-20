@@ -63,6 +63,7 @@ import { MomentModule } from 'ngx-moment';
 import { HeldTransactionComponent } from './element/held-transaction/held-transaction.component';
 import { MatDialogRef} from '@angular/material/dialog';
 import { TransactionListComponent } from './element/transaction-list/transaction-list.component';
+import { LoadingComponent } from './element/loading/loading.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -77,6 +78,7 @@ import { TransactionListComponent } from './element/transaction-list/transaction
     ReceiptComponent,
     HeldTransactionComponent,
     TransactionListComponent,
+    LoadingComponent,
   ],
   exports: [
     CdkTableModule,

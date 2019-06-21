@@ -63,7 +63,7 @@ export class TransactionListComponent implements OnInit {
     {value: "12", name: "December"}
   ]
 
-  years: Array<any> = ["2018", "2019", "2020"];
+  years: Array<any> = ["2017", "2018", "2019", "2020", "2021", "2022", "2023", "2024", "2025"];
 
   monthVal  : FormControl = new FormControl(this.d.transform(new Date(),"MM"));
   yearVal   : FormControl = new FormControl(this.d.transform(new Date(),"yyyy"));
@@ -82,7 +82,7 @@ export class TransactionListComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.setData(this.monthVal.value, this.yearVal.value)
+    this.setData();    
   }
 
   applyFilter(filterValue: string) {
@@ -93,14 +93,20 @@ export class TransactionListComponent implements OnInit {
     }
   }
 
-  setData(month, year){
+  setData(){
+    this.showLoading = true;
     let url: any = "getTransactionDate/"+ 
-    year + "-" + month + "-01/" + 
-    year + "-" + month + "-31";
+    this.yearVal.value + "-" + this.monthVal.value + "-01/" + 
+    this.yearVal.value + "-" + this.monthVal.value + "-31";
 
     this.TS.getTransactions(url)
    .subscribe(
      data => {
+      console.log(data);
+      
+      this.heldData = [];
+
+      if(data.length > 0){
       data.forEach(trans => {
         let transData : heldTable = {
           id      : trans.transactionId,
@@ -120,7 +126,8 @@ export class TransactionListComponent implements OnInit {
         this.TS.getTransExt(trans.transactionId)
         .subscribe(
           transExt => {
-            transExt.forEach((ext, index) => {
+            if(transExt.length > 0){
+              transExt.forEach((ext, index) => {
               if(ext.packageName != null){
                 this.IS.getPack("getPackageName/" + ext.packageName)
                 .subscribe(
@@ -149,6 +156,10 @@ export class TransactionListComponent implements OnInit {
                  this.showLoading = false;
               }
             });
+            }
+            else{
+              this.showLoading = false;
+            }
           }
         )
         this.heldData.push(transData);
@@ -156,6 +167,12 @@ export class TransactionListComponent implements OnInit {
       this.dataSource = new MatTableDataSource(this.heldData);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
+      }else{
+        this.showLoading = false;
+        this.dataSource = new MatTableDataSource([]);
+        this.dataSource.paginator = this.paginator;
+        this.dataSource.sort = this.sort;
+      }
       }
    )   
   }

@@ -6,30 +6,35 @@
 <div class="search-con mt-1" >
   <div class="container-fluid">
     <div class="row">
+      <div class="col-md-7">
+          <span class="bold-2 ls-1 mr-3">Filter by DATE: </span>
+          <mat-form-field class="mr-4">
+            <mat-label>Month</mat-label>
+            <mat-select [formControl]="monthVal">
+              <mat-option *ngFor="let month of months" [value]="month.value" >
+                {{month.name}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <mat-form-field>
+            <mat-label>Year</mat-label>
+            <mat-select [formControl]="yearVal">
+              <mat-option *ngFor="let year of years" [value]="year">
+                {{year}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <button mat-raised-button class="ml-4" 
+          (click)="setData()" color="primary">Filter</button>
+
+      </div>
       <div class="col-md-5">
           <mat-form-field class="search-field">
               <input matInput (keyup)="applyFilter($event.target.value)" 
               placeholder="Search Transaction">
           </mat-form-field>
-      </div>
-      <div class="col-md-7">
-          <mat-form-field class="mr-4">
-              <mat-label>Month</mat-label>
-              <mat-select [formControl]="monthVal">
-                <mat-option *ngFor="let month of months" [value]="month.value" >
-                  {{month.name}}
-                </mat-option>
-              </mat-select>
-          </mat-form-field>
-            
-          <mat-form-field>
-                <mat-label>Year</mat-label>
-                <mat-select [formControl]="yearVal">
-                  <mat-option *ngFor="let year of years" [value]="year">
-                    {{year}}
-                  </mat-option>
-                </mat-select>
-              </mat-form-field>
       </div>
     </div>
   </div>

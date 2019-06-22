@@ -69,7 +69,9 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     -webkit-font-smoothing: antialiased;
   }
   @media print {
+    transaction-list > * { display: none; }
     transaction > * { display: none; }
     transaction receipt { display: block; }
+    transaction-list receipt { display: block; }
   }
   

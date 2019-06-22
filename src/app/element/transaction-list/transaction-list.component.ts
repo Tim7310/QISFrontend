@@ -12,6 +12,7 @@ import { ConfirmComponent } from '../confirm/confirm.component';
 import { trigger, state, style, transition, animate } from '@angular/animations';
 import { DatePipe } from '@angular/common';
 import { FormControl } from '@angular/forms';
+import { MathService } from 'src/app/services/math.service';
 
 export interface heldTable{
   id      : number,
@@ -76,6 +77,7 @@ export class TransactionListComponent implements OnInit {
     private TS    : TransactionService,
     private PS    : PatientService,
     private IS    : ItemService,
+    private math  : MathService,
     public dialog : MatDialog
     ) {
     
@@ -175,5 +177,12 @@ export class TransactionListComponent implements OnInit {
       }
       }
    )   
+  }
+
+  receipt(value){
+    const suffix = [value];
+    this.math.printDocument('', suffix);
+    console.log(value);
+    
   }
 }

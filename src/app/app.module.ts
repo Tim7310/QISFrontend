@@ -64,6 +64,8 @@ import { HeldTransactionComponent } from './element/held-transaction/held-transa
 import { MatDialogRef} from '@angular/material/dialog';
 import { TransactionListComponent } from './element/transaction-list/transaction-list.component';
 import { LoadingComponent } from './element/loading/loading.component';
+import { EditHMOComponent } from './element/edit-hmo/edit-hmo.component';
+import { ErrorPageComponent } from './page/error-page/error-page.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -79,6 +81,8 @@ import { LoadingComponent } from './element/loading/loading.component';
     HeldTransactionComponent,
     TransactionListComponent,
     LoadingComponent,
+    EditHMOComponent,
+    ErrorPageComponent,
   ],
   exports: [
     CdkTableModule,
@@ -174,14 +178,18 @@ import { LoadingComponent } from './element/loading/loading.component';
     HeldTransactionComponent,
     {provide: MatDialogRef,useValue:{}},
     PatientFormComponent,
-    {provide:MAT_DIALOG_DATA,useValue:{}}
+    {provide:MAT_DIALOG_DATA,useValue:{}},
+    EditHMOComponent,
+    {provide:MAT_DIALOG_DATA,useValue:{}},
+
     ],
   bootstrap: [AppComponent],
   entryComponents: [
     PatientFormComponent,
     ConfirmComponent,
     CompanyFormComponent,
-    HeldTransactionComponent
+    HeldTransactionComponent,
+    EditHMOComponent,
   ]
 })
 export class AppModule { }

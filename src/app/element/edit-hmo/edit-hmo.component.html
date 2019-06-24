@@ -1,0 +1,33 @@
+<h1 matDialogTitle>EDIT HMO Transaction ( <span class="bold-1">{{  trans }}</span> )
+  </h1>
+<form [formGroup]="transaction">
+  <mat-dialog-content>
+      <mat-form-field style="width: 300px">
+        <input matInput 
+        placeholder="Transaction Date" 
+        formControlName="date" >
+      </mat-form-field><br>
+      <mat-form-field style="width: 300px">
+        <input matInput cdkFocusInitial
+        placeholder="Approval Code" 
+        formControlName="ac" >
+      </mat-form-field><br>
+      <mat-form-field style="width: 300px">
+          <input matInput 
+          placeholder="Account Number" 
+          formControlName="an" >
+      </mat-form-field><br>
+      <mat-form-field style="width: 300px">
+          <input matInput 
+          placeholder="LOE" 
+          formControlName="loe" >
+        </mat-form-field><br>
+  </mat-dialog-content>
+</form>
+<mat-dialog-actions>
+    <button mat-button matDialogClose>cancel</button>
+    <button mat-raised-button 
+    color      = "primary" 
+    (click)    = "update()"
+    >Update</button>   
+</mat-dialog-actions>

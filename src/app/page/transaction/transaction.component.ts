@@ -38,8 +38,8 @@ export class TransactionComponent implements OnInit{
   patient : patient;
   transactionRef : number;
   biller: any = "";
-  LOENumber: FormControl = new FormControl;
-  AccountNumber: FormControl = new FormControl;
+  LOENumber: FormControl = new FormControl("");
+  AccountNumber: FormControl = new FormControl("");
   transID = undefined;
 
   constructor(
@@ -220,6 +220,7 @@ export class TransactionComponent implements OnInit{
     }else if  (this.transType === "HMO"){
       this.transaction.biller = this.biller;
       this.transaction.loe    = this.LOENumber.value;
+      
       this.transaction.an     = this.AccountNumber.value;
 
     }else if  (this.transType === "APE"){

@@ -13,6 +13,7 @@ import { trigger, state, style, transition, animate } from '@angular/animations'
 import { DatePipe } from '@angular/common';
 import { FormControl } from '@angular/forms';
 import { MathService } from 'src/app/services/math.service';
+import { EditHMOComponent } from '../edit-hmo/edit-hmo.component';
 
 export interface heldTable{
   id      : number,
@@ -184,5 +185,11 @@ export class TransactionListComponent implements OnInit {
     this.math.printDocument('', suffix);
     console.log(value);
     
+  }
+
+  edit(value){
+    const dialogRef = this.dialog.open(EditHMOComponent, {
+      data: value
+    });
   }
 }

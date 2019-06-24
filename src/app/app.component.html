@@ -3,6 +3,8 @@
     <button mat-icon-button (click)="snav.toggle()" id="sbIcon"><mat-icon>menu</mat-icon></button>
     <h1 class="app-name">{{title}}</h1>
   <span class="spacer"></span>
+  <button mat-button routerLink="cashier/transact">Transact</button>
+  <button mat-button routerLink="cashier/transactions">Transactions</button>
   <button mat-icon-button [matMenuTriggerFor]="menu" class="toolbar-icon">
     <mat-icon>account_circle</mat-icon>
   </button>
@@ -16,6 +18,9 @@
       <span>Logout</span>
     </button>
   </mat-menu>
+ 
+ 
+ 
   </mat-toolbar>
 
   <mat-sidenav-container class="sidenav-container" 
@@ -32,15 +37,11 @@
     </mat-sidenav>
 
     <mat-sidenav-content>
-      <!-- <transaction></transaction> -->
-      <!-- <patient-form></patient-form> -->
-      <!-- <receipt></receipt> -->
-      <!-- <held-transaction></held-transaction> -->
-      <transaction-list></transaction-list>
-      
+      <router-outlet></router-outlet>
+      <router-outlet name="print"></router-outlet>
     </mat-sidenav-content>
   </mat-sidenav-container>
 </div>
 
 
-<router-outlet></router-outlet>
+

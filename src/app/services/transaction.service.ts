@@ -156,9 +156,11 @@ export class TransactionService {
     items           : itemList[]
   ): Observable<boolean>{
     return new Observable( observer => 
+       
       this.addTrans(transaction).subscribe(
       data => {
         // next function
+        console.log(transaction);
       },
       (error: any) => console.error(error),
       () => {
@@ -175,6 +177,8 @@ export class TransactionService {
        
         this.getOneTrans(urlRef).subscribe(
           transData => {
+            console.log(urlRef);
+            
             total.forEach(item => {
               let ext: transExt = {
                 transactionId   : transData[0].transactionId,

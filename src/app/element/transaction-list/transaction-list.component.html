@@ -54,11 +54,13 @@
               <span >{{element[column]}}</span>  
               <div *ngIf="column == 'action'">
                 <button mat-raised-button (click)="receipt(element['id'])" 
-                color="primary" class="mr-1">
+                color="primary" class="mr-1" 
+                *ngIf="listType == 'transactions' || listType == 'HMO'">
                   Receipt
                 </button>
                 <button mat-raised-button (click)="edit(element['id'])" 
-                color="accent" class="mr-1">
+                color="accent" class="mr-1" 
+                *ngIf="listType == 'HMO'">
                   Edit
                 </button>
               </div>   

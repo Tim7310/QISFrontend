@@ -52,6 +52,7 @@ export class TransactionComponent implements OnInit{
     private IS        : ItemService
     ) { 
     this.totalVal = 0;
+    this.math.navSubs("cashier");
     }
   ngOnInit() {
     // change computation 

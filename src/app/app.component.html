@@ -3,8 +3,9 @@
     <button mat-icon-button (click)="snav.toggle()" id="sbIcon"><mat-icon>menu</mat-icon></button>
     <h1 class="app-name">{{title}}</h1>
   <span class="spacer"></span>
-  <button mat-button routerLink="cashier/transact">Transact</button>
-  <button mat-button routerLink="cashier/transactions">Transactions</button>
+  <button *ngFor="let link of navLink" mat-button [routerLink]="link.route">
+    <mat-icon>{{link.icon}}</mat-icon> {{link.name}}
+  </button>
   <button mat-icon-button [matMenuTriggerFor]="menu" class="toolbar-icon">
     <mat-icon>account_circle</mat-icon>
   </button>

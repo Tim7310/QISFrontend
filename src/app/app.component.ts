@@ -1,21 +1,26 @@
-import { Component, ChangeDetectorRef, OnDestroy } from '@angular/core';
+import { Component, ChangeDetectorRef, OnDestroy, OnInit } from '@angular/core';
 import { MediaMatcher } from '@angular/cdk/layout';
 import { navList } from './services/service.interface';
+import { MathService } from './services/math.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent implements OnDestroy{
+export class AppComponent implements OnDestroy, OnInit{
   title = 'QISFrontend';
   fillerNav: navList[];
+  navLink: navList[];
  
 
   private _mobileQueryListener: () => void;
   mobileQuery: any;
 
-  constructor(changeDetectorRef: ChangeDetectorRef, media: MediaMatcher) {
+  constructor(
+    changeDetectorRef : ChangeDetectorRef, 
+    public media      : MediaMatcher,
+    private math      : MathService) {
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
     this.mobileQuery.addListener(this._mobileQueryListener);
@@ -27,6 +32,13 @@ export class AppComponent implements OnDestroy{
       {name: "Physical Examination", route: ".", icon: "assessment"},
       {name: "Nurse", route: ".", icon: "healing"}
     ];
+  }
+  ngOnInit(){
+    this.math.changeEmitted$.subscribe(
+      data => {
+        this.navLink = data;        
+      }
+    )
   }
 
   ngOnDestroy(): void {

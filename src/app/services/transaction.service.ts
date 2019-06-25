@@ -6,6 +6,7 @@ import { retry, catchError } from 'rxjs/operators';
 import { transaction, transExt, transRef, total, itemList } from './service.interface';
 import { HttpClient } from '@angular/common/http';
 import { ItemService } from './item.service';
+import { MathService } from './math.service';
 
 @Injectable({
   providedIn: 'root'
@@ -16,8 +17,8 @@ export class TransactionService {
     private http  : HttpClient, 
     public  ehs   : ErrorService,
     private IS    : ItemService,
-    private global: Global
-  ) { }
+    private global: Global,
+  ) {  }
 
   getTransactions( type ): Observable<transaction[]>{
     return this.http.get<transaction[]>(this.global.url + "/" + type)

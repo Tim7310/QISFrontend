@@ -22,6 +22,10 @@ const routes: Routes = [
     component: TransactionListComponent,
   },
   {
+    path: 'cashier/hmo',
+    component: TransactionListComponent,
+  },
+  {
     path: '**', component: ErrorPageComponent
   },
 ];

@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, Inject } from '@angular/core';
+import { Component, OnInit, ViewChild, Inject, Input } from '@angular/core';
 import {MatPaginator} from '@angular/material/paginator';
 import {MatSort} from '@angular/material/sort';
 import {MatTableDataSource} from '@angular/material/table';
@@ -44,6 +44,8 @@ export class TransactionListComponent implements OnInit {
   dataSource: MatTableDataSource<heldTable>;
   heldData: heldTable[] = [];
   expandedElement: heldTable | null;
+
+  @Input() listType: string;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
@@ -105,7 +107,6 @@ export class TransactionListComponent implements OnInit {
     this.TS.getTransactions(url)
    .subscribe(
      data => {
-      console.log(data);
       
       this.heldData = [];
 
@@ -177,7 +178,12 @@ export class TransactionListComponent implements OnInit {
         this.dataSource.sort = this.sort;
       }
       }
-   )   
+   ) 
+   
+   if(this.listType == "transactions"){
+      this.math.navSubs("cashier");
+   }
+   console.log(this.listType);
   }
 
   receipt(value){

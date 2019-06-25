@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { DatePipe } from '@angular/common';
 import { Router } from '@angular/router';
+import { Subject } from 'rxjs';
+import { navList } from './service.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -63,4 +65,20 @@ export class MathService {
     });
   }
   
+  protected navObs = new Subject<navList[]>();
+
+  changeEmitted$ = this.navObs.asObservable();
+
+  public navSubs(change: any) {
+    let list: navList[];
+    if(change == "cashier"){
+      list = [
+        {name: "Transact", route: "cashier/transact", icon: "store"},
+        {name: "Transaction List", route: "cashier/transactions", icon: "shop"},
+        {name: "HMO Transaction", route: "cashier/hmo", icon: "shopping_cart"},
+        // {name: "", route: "", icon: ""},
+      ]
+    }
+    this.navObs.next(list);
+  }
 }

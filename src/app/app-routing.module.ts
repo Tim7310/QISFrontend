@@ -4,6 +4,7 @@ import { ReceiptComponent } from './element/receipt/receipt.component';
 import { TransactionComponent } from './page/transaction/transaction.component';
 import { ErrorPageComponent } from './page/error-page/error-page.component';
 import { TransactionListComponent } from './element/transaction-list/transaction-list.component';
+import { HMOListComponent } from './page/hmo-list/hmo-list.component';
 
 const routes: Routes = [
   { path: 'print/:ids',
@@ -23,7 +24,7 @@ const routes: Routes = [
   },
   {
     path: 'cashier/hmo',
-    component: TransactionListComponent,
+    component: HMOListComponent,
   },
   {
     path: '**', component: ErrorPageComponent

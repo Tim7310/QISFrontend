@@ -104,6 +104,17 @@ export class TransactionService {
         catchError(this.ehs.handleError)
       );
   }
+
+  updateHMO(tid, ac, an, loe, date): Observable<any>{
+    return this.http.post<any>(
+      this.global.url + "/updateACANLOE", 
+      {transactionId  : tid, loe : loe, an : an, ac : ac, transactionDate: date}, 
+      this.global.httpOptions )
+      .pipe(
+        retry(1),
+        catchError(this.ehs.handleError)
+      );
+  }
   
   getItemInfo(transID: number){
     let itemData: itemList[] = [];

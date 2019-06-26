@@ -67,6 +67,7 @@ import { LoadingComponent } from './element/loading/loading.component';
 import { EditHMOComponent } from './element/edit-hmo/edit-hmo.component';
 import { ErrorPageComponent } from './page/error-page/error-page.component';
 import { HMOListComponent } from './page/hmo-list/hmo-list.component';
+
 @NgModule({
   declarations: [
     AppComponent,

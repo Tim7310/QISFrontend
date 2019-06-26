@@ -13,6 +13,7 @@ import { HeldTransactionComponent } from 'src/app/element/held-transaction/held-
 import { ItemService } from 'src/app/services/item.service';
 import { MathService } from 'src/app/services/math.service';
 
+import { Angular5Csv } from 'angular5-csv/dist/Angular5-csv';
 
 @Component({
   selector: 'transaction',
@@ -350,5 +351,17 @@ export class TransactionComponent implements OnInit{
         )
       }      
     })
+  }
+
+  genCSV(data){
+   const from: any =  "2019-05-24 16:29:22";
+   const to: any =  "2019-06-24 16:29:22";
+    new Angular5Csv(data, 'My Report', {
+      headers: [
+        "Date and Time", "Receipt No.", "Transaction Type", "Patient Name", 
+        "Company Name", "Items", "QTY", "Subtotal", "Total", "Bill To", "Cashier",
+        "Amount Tendered", "Given Change"
+      ]
+    });
   }
 }

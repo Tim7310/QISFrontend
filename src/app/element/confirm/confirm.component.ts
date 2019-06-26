@@ -15,7 +15,7 @@ export class ConfirmComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public config: any) {
       if(config.title){
         this.Title = config.title;
-        this.Content = config.title;
+        this.Content = config.Content;
       }
      }
 

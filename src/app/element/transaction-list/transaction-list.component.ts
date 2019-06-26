@@ -14,6 +14,7 @@ import { DatePipe } from '@angular/common';
 import { FormControl } from '@angular/forms';
 import { MathService } from 'src/app/services/math.service';
 import { EditHMOComponent } from '../edit-hmo/edit-hmo.component';
+import { MatSnackBar } from '@angular/material';
 
 export interface heldTable{
   id      : number,
@@ -45,7 +46,8 @@ export class TransactionListComponent implements OnInit {
   heldData: heldTable[] = [];
   expandedElement: heldTable | null;
 
-  @Input() listType: string;
+  @Input() listType: string = "transactions";
+  @Input() transType: string;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
@@ -81,7 +83,8 @@ export class TransactionListComponent implements OnInit {
     private PS    : PatientService,
     private IS    : ItemService,
     private math  : MathService,
-    public dialog : MatDialog
+    public dialog : MatDialog,
+    private _snackBar : MatSnackBar,
     ) {
     
   }
@@ -100,10 +103,17 @@ export class TransactionListComponent implements OnInit {
 
   setData(){
     this.showLoading = true;
-    let url: any = "getTransactionDate/"+ 
-    this.yearVal.value + "-" + this.monthVal.value + "-01/" + 
-    this.yearVal.value + "-" + this.monthVal.value + "-31";
-
+    let url: any;
+    if(this.transType == undefined){
+      url = "getTransactionDate/" + 
+      this.yearVal.value + "-" + this.monthVal.value + "-01/" + 
+      this.yearVal.value + "-" + this.monthVal.value + "-31";
+    }else{
+      url = "getTransTypeDate/" + this.transType + "/" +
+      this.yearVal.value + "-" + this.monthVal.value + "-01/" + 
+      this.yearVal.value + "-" + this.monthVal.value + "-31";
+    }
+    
     this.TS.getTransactions(url)
    .subscribe(
      data => {
@@ -183,7 +193,12 @@ export class TransactionListComponent implements OnInit {
    if(this.listType == "transactions"){
       this.math.navSubs("cashier");
    }
-   console.log(this.listType);
+  }
+
+  openSnackBar(message: string, action: string) {
+    this._snackBar.open(message, action, {
+      duration: 3000,
+    });
   }
 
   receipt(value){
@@ -197,5 +212,10 @@ export class TransactionListComponent implements OnInit {
     const dialogRef = this.dialog.open(EditHMOComponent, {
       data: value
     });
+    dialogRef.afterClosed().subscribe(res => {
+      if(res.status){
+        this.openSnackBar(res.message, res.status);
+      }   
+    })
   }
 }

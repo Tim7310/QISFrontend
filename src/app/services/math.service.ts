@@ -77,9 +77,18 @@ export class MathService {
         {name: "Transact", route: "cashier/transact", icon: "store"},
         {name: "Transaction List", route: "cashier/transactions", icon: "shop"},
         {name: "HMO Transaction", route: "cashier/hmo", icon: "shopping_cart"},
+        {name: "Sales Report", route: "cashier/sales", icon: "assessment"},
         // {name: "", route: "", icon: ""},
       ]
     }
     this.navObs.next(list);
+  }
+
+  computeDisc(price:number, disc: number, qty: number){
+    let discount: number = disc / 100;
+    discount = price * discount;
+    let total = price - discount;
+    total = total * qty;
+    return total.toFixed(2);
   }
 }

@@ -5,6 +5,7 @@ import { TransactionComponent } from './page/transaction/transaction.component';
 import { ErrorPageComponent } from './page/error-page/error-page.component';
 import { TransactionListComponent } from './element/transaction-list/transaction-list.component';
 import { HMOListComponent } from './page/hmo-list/hmo-list.component';
+import { ReportListComponent } from './page/report-list/report-list.component';
 
 const routes: Routes = [
   { path: 'print/:ids',
@@ -25,6 +26,10 @@ const routes: Routes = [
   {
     path: 'cashier/hmo',
     component: HMOListComponent,
+  },
+  {
+    path: 'cashier/sales',
+    component: ReportListComponent,
   },
   {
     path: '**', component: ErrorPageComponent

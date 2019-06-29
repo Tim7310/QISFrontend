@@ -67,6 +67,8 @@ import { LoadingComponent } from './element/loading/loading.component';
 import { EditHMOComponent } from './element/edit-hmo/edit-hmo.component';
 import { ErrorPageComponent } from './page/error-page/error-page.component';
 import { HMOListComponent } from './page/hmo-list/hmo-list.component';
+import { ReportListComponent } from './page/report-list/report-list.component';
+import { UserService } from './services/user.service';
 
 @NgModule({
   declarations: [
@@ -86,6 +88,7 @@ import { HMOListComponent } from './page/hmo-list/hmo-list.component';
     EditHMOComponent,
     ErrorPageComponent,
     HMOListComponent,
+    ReportListComponent,
   ],
   exports: [
     CdkTableModule,
@@ -177,6 +180,7 @@ import { HMOListComponent } from './page/hmo-list/hmo-list.component';
     ItemService, 
     ErrorService,
     PatientService,
+    UserService,
     Global,
     HeldTransactionComponent,
     {provide: MatDialogRef,useValue:{}},

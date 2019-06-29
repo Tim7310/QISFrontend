@@ -47,7 +47,8 @@ export interface transaction{
     an              : string,
     ac              : string,
     notes           : string,
-    transactionDate : any
+    transactionDate : any,
+    currency        : string
 }
 export interface patient{
     patientID       : any,
@@ -104,5 +105,14 @@ export interface transRef{
 export interface packExt{
     packageName : string,
     itemID      : number
+}
+export interface user{
+    userID      : number,
+    userName    : string,
+    userEmail   : string,
+    userPass    : string,
+    userStatus  : string,
+    tokenCode   : string,
+    _class      : string
 }
 

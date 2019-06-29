@@ -34,7 +34,7 @@ export class TransactionComponent implements OnInit{
   receivedAmount = new FormControl(0);
   change : any = 0;
   arError : string = undefined;
-  currency : string = "PHP";
+  currency : string = "PESO";
   transaction : transaction;
   patient : patient;
   transactionRef : number;
@@ -212,6 +212,7 @@ export class TransactionComponent implements OnInit{
       an              : "",
       ac              : "",
       notes           : "",
+      currency        : this.currency,
       transactionDate : this.math.getDateNow()
     }
     if        (this.transType === "CASH"){
@@ -353,15 +354,5 @@ export class TransactionComponent implements OnInit{
     })
   }
 
-  genCSV(data){
-   const from: any =  "2019-05-24 16:29:22";
-   const to: any =  "2019-06-24 16:29:22";
-    new Angular5Csv(data, 'My Report', {
-      headers: [
-        "Date and Time", "Receipt No.", "Transaction Type", "Patient Name", 
-        "Company Name", "Items", "QTY", "Subtotal", "Total", "Bill To", "Cashier",
-        "Amount Tendered", "Given Change"
-      ]
-    });
-  }
+
 }

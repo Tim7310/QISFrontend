@@ -166,8 +166,8 @@ export class TransactionListComponent implements OnInit {
                     transData.items.push(item[0]);                    
                   });
               }
-              if(transExt.length - 1 == index ){
-                 this.showLoading = false;
+              if(transExt.length - 1 == index ){          
+                 this.showLoading = false;            
               }
             });
             }

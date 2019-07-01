@@ -69,6 +69,9 @@ import { ErrorPageComponent } from './page/error-page/error-page.component';
 import { HMOListComponent } from './page/hmo-list/hmo-list.component';
 import { ReportListComponent } from './page/report-list/report-list.component';
 import { UserService } from './services/user.service';
+import { ItemListComponent } from './element/item-list/item-list.component';
+import { ManagePackageComponent } from './page/manage-package/manage-package.component';
+import { CreateItemComponent } from './element/create-item/create-item.component';
 
 @NgModule({
   declarations: [
@@ -89,6 +92,9 @@ import { UserService } from './services/user.service';
     ErrorPageComponent,
     HMOListComponent,
     ReportListComponent,
+    ItemListComponent,
+    ManagePackageComponent,
+    CreateItemComponent,
   ],
   exports: [
     CdkTableModule,
@@ -188,7 +194,8 @@ import { UserService } from './services/user.service';
     {provide:MAT_DIALOG_DATA,useValue:{}},
     EditHMOComponent,
     {provide:MAT_DIALOG_DATA,useValue:{}},
-
+    CreateItemComponent,
+    {provide:MAT_DIALOG_DATA,useValue:{}},
     ],
   bootstrap: [AppComponent],
   entryComponents: [
@@ -197,6 +204,8 @@ import { UserService } from './services/user.service';
     CompanyFormComponent,
     HeldTransactionComponent,
     EditHMOComponent,
+    CreateItemComponent,
+    
   ]
 })
 export class AppModule { }

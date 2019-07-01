@@ -1,0 +1,38 @@
+table {
+    width: 100%;
+  }
+  
+  .mat-form-field {
+    font-size: 14px;
+    width: 100%;
+  }
+  .table-con{
+    height: 80vh;
+    overflow: auto;
+}
+.mat-paginator-sticky {
+    bottom: 0px;
+    position: sticky;
+    width: 100%;
+    z-index: 10;
+}
+.mat-column-itemId{
+    width: 15%;
+}
+.mat-column-itemName{
+    width: 40%;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+.mat-column-itemType{
+    font-size: 10px;
+    font-weight: bold;
+    padding-left: 5px;
+    padding-right: 5px; 
+    width: 20%;
+}
+.mat-column-action{
+    width: 5%;
+    padding-left: 5px;
+    padding-right: 5px;
+}

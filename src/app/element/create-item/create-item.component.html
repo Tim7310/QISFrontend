@@ -1,0 +1,44 @@
+<h1 matDialogTitle>
+  <span *ngIf="id == 'undefined'">Add New ITEM</span>
+  <span *ngIf="id != 'undefined'">Update ITEM</span>
+</h1>
+<mat-dialog-content>
+    <mat-form-field style="width: 300px">
+      <input matInput 
+      placeholder="Item Name" 
+      [(value)]="itemName" cdkFocusInitial>
+    </mat-form-field><br>
+    <mat-form-field style="width: 300px">
+      <input matInput 
+      placeholder="Item Description" 
+      [(value)]="description" >
+    </mat-form-field><br>
+    <mat-form-field style="width: 300px">
+        <input matInput 
+        placeholder="Item Price" 
+        [(value)]="price" >
+    </mat-form-field><br>
+    <mat-form-field style="width: 300px">
+        <mat-label>Department</mat-label>
+        <mat-select [(value)]="itemType">
+          <mat-option *ngFor="let dep of IS.itemType" [value]="dep">{{dep}}</mat-option>
+        </mat-select>
+    </mat-form-field><br>
+    <mat-form-field style="width: 300px">
+        <mat-label>Needed Test</mat-label>
+        <mat-select [(value)]="neededTest">
+          <mat-option *ngFor="let test of IS.itemTest" [value]="test.value">{{test.view}}</mat-option>
+        </mat-select>
+    </mat-form-field><br>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-button matDialogClose>cancel</button>
+  <button mat-raised-button *ngIf="id != 'undefined'"
+  color      = "primary" 
+  (click)    = "update()"
+  >Update</button> 
+  <button mat-raised-button *ngIf="id == 'undefined'"
+  color      = "primary" 
+  (click)    = "create()"
+  >Create</button>  
+</mat-dialog-actions>

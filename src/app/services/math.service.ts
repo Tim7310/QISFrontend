@@ -78,6 +78,7 @@ export class MathService {
         {name: "Transaction List", route: "cashier/transactions", icon: "shop"},
         {name: "HMO Transaction", route: "cashier/hmo", icon: "shopping_cart"},
         {name: "Sales Report", route: "cashier/sales", icon: "assessment"},
+        {name: "Manage Items", route: "cashier/manage-items", icon: "settings_applications"},
         // {name: "", route: "", icon: ""},
       ]
     }

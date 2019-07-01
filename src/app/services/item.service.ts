@@ -8,6 +8,23 @@ import { Global } from '../global.variable';
 
 @Injectable()
 export class ItemService {
+  // itemType = ["CASH LAB", "CASH INDUSTRIAL", "CASH IMAGING", "ACCOUNT INDUSTRIAL", 
+  //  "ACCOUNT HMO", "ACCOUNT SURGEON", "CASH SURGEON", "ACCOUNT PHARMACY", "CASH PHARMACY", 
+  //  "CASH DNA", "CASH WLMC", "CASH PSYCH", "ACCOUNT PSYCH" ]
+  itemType = ["ECG", "HOME SERVICE", "INSURANCE", "LABORATORY", "MEDICAL SERVICE", 
+  "SUPPLY", "ULTRASOUND", "XRAY", "PHARMACY"];
+  itemTest = [
+    {value: 1, view: "X-Ray"},
+    {value: 2, view: "Blood"},
+    {value: 3, view: "Urine"},
+    {value: 4, view: "Stool"},
+    {value: 5, view: "Pysical Exam"},
+    {value: 6, view: "Other Specimen"},
+    {value: 7, view: "Ultrasound"},
+    {value: 8, view: "ECG"},
+    {value: 9, view: "Others"},
+    {value: 10, view: "2D_Echo"}
+  ]
   constructor(
     private http: HttpClient, 
     public ehs: ErrorService,

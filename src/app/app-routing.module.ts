@@ -6,6 +6,7 @@ import { ErrorPageComponent } from './page/error-page/error-page.component';
 import { TransactionListComponent } from './element/transaction-list/transaction-list.component';
 import { HMOListComponent } from './page/hmo-list/hmo-list.component';
 import { ReportListComponent } from './page/report-list/report-list.component';
+import { ManagePackageComponent } from './page/manage-package/manage-package.component';
 
 const routes: Routes = [
   { path: 'print/:ids',
@@ -30,6 +31,10 @@ const routes: Routes = [
   {
     path: 'cashier/sales',
     component: ReportListComponent,
+  },
+  {
+    path: 'cashier/manage-items',
+    component: ManagePackageComponent,
   },
   {
     path: '**', component: ErrorPageComponent

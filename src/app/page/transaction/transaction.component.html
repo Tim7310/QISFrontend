@@ -238,13 +238,13 @@
                     Hold Transaction</button>
                     <div style="position: absolute; right: 10px">
                       <button mat-raised-button 
-                      [disabled]="patient === undefined || items.length == 0"
+                      [disabled]="patient === undefined || items.length == 0 || arError !== undefined"
                       (click)="save('SAVE')" color="accent" 
                       class="mr-2 animated fadeIn">
                           <clr-icon shape="floppy"></clr-icon> SAVE
                       </button>
                       <button mat-raised-button
-                      [disabled]="patient === undefined || items.length == 0" 
+                      [disabled]="patient === undefined || items.length == 0 || arError !== undefined" 
                       (click)="save('PRINT')" color="primary" 
                       class="animated fadeIn">
                           <clr-icon shape="printer" ></clr-icon> SAVE & PRINT

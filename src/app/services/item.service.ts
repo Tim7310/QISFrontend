@@ -45,6 +45,27 @@ export class ItemService {
         catchError(this.ehs.handleError)
     )
   }
+
+  addItem(item: itemList): Observable<any>{
+    return this.http.post<any>(
+      this.global.url+"/addItem",
+      item, this.global.httpOptions)
+    .pipe(
+        retry(1),
+        catchError(this.ehs.handleError)
+    )
+  }
+
+  updateItem(item: itemList): Observable<any>{
+    return this.http.post<any>(
+      this.global.url+"/updateItem",
+      item, this.global.httpOptions)
+    .pipe(
+        retry(1),
+        catchError(this.ehs.handleError)
+    )
+  }
+
   //  get Package list
   getPackage(type: string): Observable<packList[]>{
     return this.http.get<packList[]>(this.global.url+"/"+type)

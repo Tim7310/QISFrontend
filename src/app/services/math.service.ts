@@ -92,4 +92,10 @@ export class MathService {
     total = total * qty;
     return total.toFixed(2);
   }
+
+  dateNow(){
+    let d = new DatePipe('en-US');
+    let datenow = d.transform(new Date(),"yyyy-MM-dd hh:mm:ss");
+    return datenow;
+  }
 }

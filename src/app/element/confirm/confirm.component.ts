@@ -13,8 +13,8 @@ export class ConfirmComponent implements OnInit {
   constructor(
     public dialogRef: MatDialogRef<ConfirmComponent>,
     @Inject(MAT_DIALOG_DATA) public config: any) {
-      if(config.title){
-        this.Title = config.title;
+      if(config.Title){
+        this.Title = config.Title;
         this.Content = config.Content;
       }
      }

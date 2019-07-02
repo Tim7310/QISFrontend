@@ -4,7 +4,7 @@ export interface navList{
     route   : string
 }
 export interface itemList{
-    itemId          : any,
+    itemId?         : any,
     itemName        : string,
     itemPrice       : number,
     itemDescription : string,

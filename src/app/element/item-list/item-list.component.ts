@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { itemList } from 'src/app/services/service.interface';
-import { MatTableDataSource, MatPaginator, MatSort, MatDialog } from '@angular/material';
+import { MatTableDataSource, MatPaginator, MatSort, MatDialog, MatSnackBar } from '@angular/material';
 import { ItemService } from 'src/app/services/item.service';
 import { CreateItemComponent } from '../create-item/create-item.component';
 
@@ -20,6 +20,7 @@ export class ItemListComponent implements OnInit {
   constructor(
     private dialog: MatDialog,
     private IS: ItemService,
+    private _snackBar: MatSnackBar
   ) {
     
   }
@@ -32,6 +33,12 @@ export class ItemListComponent implements OnInit {
     })
    
   }
+  openSnackBar(message: string, action: string) {
+    this._snackBar.open(message, action, {
+      duration: 3000,
+    });
+  }
+
   applyFilter(filterValue: string) {
     this.dataSource.filter = filterValue.trim().toLowerCase();
 
@@ -39,15 +46,37 @@ export class ItemListComponent implements OnInit {
       this.dataSource.paginator.firstPage();
     }
   }
+  
   addItem(){
     const dialogRef = this.dialog.open(CreateItemComponent, {
       data: "undefined" 
     });
+    dialogRef.afterClosed().subscribe(result => {
+      if(result.status){
+        this.openSnackBar(result.message, result.status);
+        this.IS.getItem("AllItems").subscribe(item => {
+          this.dataSource = new MatTableDataSource(item);
+          this.dataSource.paginator = this.paginator;
+          this.dataSource.sort = this.sort;
+        })
+      }
+    })
   }
+
   updateItem(id: number){
     const dialogRef = this.dialog.open(CreateItemComponent, {
       data:  id
     });
+    dialogRef.afterClosed().subscribe(result => {
+      if(result.status){
+        this.openSnackBar(result.message, result.status);
+        this.IS.getItem("AllItems").subscribe(item => {
+          this.dataSource = new MatTableDataSource(item);
+          this.dataSource.paginator = this.paginator;
+          this.dataSource.sort = this.sort;
+        })
+      }
+    })
   }
 }
 

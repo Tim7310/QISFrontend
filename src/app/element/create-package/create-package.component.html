@@ -2,34 +2,28 @@
   <span *ngIf="id == 'undefined'">Add New ITEM</span>
   <span *ngIf="id != 'undefined'">Update ITEM</span>
 </h1>
-<form [formGroup]="item">
+<form [formGroup]="package">
 <mat-dialog-content>
     <mat-form-field style="width: 300px">
       <input matInput 
-      placeholder="Item Name" 
-      formControlName="itemName" cdkFocusInitial>
+      placeholder="Package Name" 
+      formControlName="packageName" cdkFocusInitial>
     </mat-form-field><br>
     <mat-form-field style="width: 300px">
       <input matInput 
-      placeholder="Item Description" 
-      formControlName="itemDescription" >
+      placeholder="Package Description" 
+      formControlName="packageDescription" >
     </mat-form-field><br>
     <mat-form-field style="width: 300px">
         <input matInput 
         type = "number"
-        placeholder = "Item Price" 
-        formControlName = "itemPrice" >
+        placeholder = "Package Price" 
+        formControlName = "packagePrice" >
     </mat-form-field><br>
     <mat-form-field style="width: 300px">
         <mat-label>Department</mat-label>
-        <mat-select formControlName="itemType">
+        <mat-select formControlName="packageType">
           <mat-option *ngFor="let dep of IS.itemType" [value]="dep">{{dep}}</mat-option>
-        </mat-select>
-    </mat-form-field><br>
-    <mat-form-field style="width: 300px">
-        <mat-label>Needed Test</mat-label>
-        <mat-select formControlName="neededTest">
-          <mat-option *ngFor="let test of IS.itemTest" [value]="test.value">{{test.view}}</mat-option>
         </mat-select>
     </mat-form-field><br>
 </mat-dialog-content>
@@ -38,13 +32,14 @@
   <button mat-button matDialogClose>cancel</button>
   <button mat-raised-button *ngIf="id != 'undefined'"
   color      = "primary" 
-  [disabled] = "!item.valid"
+  [disabled] = "!package.valid"
   (click)    = "update()"
   >Update</button> 
   <button mat-raised-button *ngIf="id == 'undefined'"
   color      = "primary" 
-  [disabled] = "!item.valid"
+  [disabled] = "!package.valid"
   (click)    = "create()"
   >Create</button>  
 </mat-dialog-actions>
 </form>
+

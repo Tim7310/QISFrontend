@@ -16,15 +16,12 @@ table {
     width: 100%;
     z-index: 10;
 }
-.mat-column-itemId{
-    width: 15%;
-}
-.mat-column-itemName{
+.mat-column-packageName{
     width: 35%;
     padding-left: 5px;
     padding-right: 5px;
 }
-.mat-column-itemType{
+.mat-column-packageType, .mat-column-packageDescription{
     font-size: 10px;
     font-weight: bold;
     padding-left: 5px;

@@ -72,6 +72,8 @@ import { UserService } from './services/user.service';
 import { ItemListComponent } from './element/item-list/item-list.component';
 import { ManagePackageComponent } from './page/manage-package/manage-package.component';
 import { CreateItemComponent } from './element/create-item/create-item.component';
+import { PackageListComponent } from './element/package-list/package-list.component';
+import { CreatePackageComponent } from './element/create-package/create-package.component';
 
 @NgModule({
   declarations: [
@@ -95,6 +97,8 @@ import { CreateItemComponent } from './element/create-item/create-item.component
     ItemListComponent,
     ManagePackageComponent,
     CreateItemComponent,
+    PackageListComponent,
+    CreatePackageComponent,
   ],
   exports: [
     CdkTableModule,
@@ -196,6 +200,8 @@ import { CreateItemComponent } from './element/create-item/create-item.component
     {provide:MAT_DIALOG_DATA,useValue:{}},
     CreateItemComponent,
     {provide:MAT_DIALOG_DATA,useValue:{}},
+    CreatePackageComponent,
+    {provide:MAT_DIALOG_DATA,useValue:{}},
     ],
   bootstrap: [AppComponent],
   entryComponents: [
@@ -205,6 +211,7 @@ import { CreateItemComponent } from './element/create-item/create-item.component
     HeldTransactionComponent,
     EditHMOComponent,
     CreateItemComponent,
+    CreatePackageComponent,
     
   ]
 })

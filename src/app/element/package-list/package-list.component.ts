@@ -52,15 +52,31 @@ export class PackageListComponent implements OnInit {
     const dialogRef = this.dialog.open(CreatePackageComponent, {
       data: "undefined" 
     });
-    // dialogRef.afterClosed().subscribe(result => {
-    //   if(result.status){
-    //     this.openSnackBar(result.message, result.status);
-    //     this.IS.getItem("AllItems").subscribe(item => {
-    //       this.dataSource = new MatTableDataSource(item);
-    //       this.dataSource.paginator = this.paginator;
-    //       this.dataSource.sort = this.sort;
-    //     })
-    //   }
-    // })
+    dialogRef.afterClosed().subscribe(result => {
+      if(result.status){
+        this.openSnackBar(result.message, result.status);
+        this.IS.getPackage("getPackage").subscribe(pack => {
+          this.dataSource = new MatTableDataSource(pack);
+          this.dataSource.paginator = this.paginator;
+          this.dataSource.sort = this.sort;
+        })
+      }
+    })
+  }
+
+  updateItem(value){
+    const dialogRef = this.dialog.open(CreatePackageComponent, {
+      data:  value
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      if(result.status){
+        this.openSnackBar(result.message, result.status);
+        this.IS.getPackage("getPackage").subscribe(pack => {
+          this.dataSource = new MatTableDataSource(pack);
+          this.dataSource.paginator = this.paginator;
+          this.dataSource.sort = this.sort;
+        })
+      }
+    })
   }
 }

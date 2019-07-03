@@ -1,13 +1,31 @@
-<h1 matDialogTitle>
-  <span *ngIf="id == 'undefined'">Add New ITEM</span>
-  <span *ngIf="id != 'undefined'">Update ITEM</span>
-</h1>
 <form [formGroup]="package">
+<h1 matDialogTitle>
+  <span *ngIf="id == 'undefined'">Add New Package</span>
+  <span *ngIf="id != 'undefined'">Update Package
+    - {{id}} -
+  </span>
+</h1>
+
 <mat-dialog-content>
-    <mat-form-field style="width: 300px">
+    <div style="width: 300px">
+      <select-item itemURL="AllItems" isPackage="false"
+          placeholder="Select Items" (selectTrig)="getItem($event)">
+      </select-item>
+      <div style="max-height: 90px; overflow-y: auto">
+          <span class="badge badge-info" *ngFor="let item of items">
+            {{item.itemName}}
+            <button class="text-light" (click)="removeItem(item)"
+            style="background-color: transparent; border: none;outline: none">
+              <clr-icon shape="times"></clr-icon>
+            </button>
+          </span>
+      </div> 
+    </div>
+    <mat-form-field style="width: 300px" *ngIf="id == 'undefined'">
       <input matInput 
       placeholder="Package Name" 
-      formControlName="packageName" cdkFocusInitial>
+      formControlName="packageName">
+      <mat-hint align="start"><strong>Please be careful of package name spelling for this is not editable!!!</strong> </mat-hint>
     </mat-form-field><br>
     <mat-form-field style="width: 300px">
       <input matInput 
@@ -21,11 +39,11 @@
         formControlName = "packagePrice" >
     </mat-form-field><br>
     <mat-form-field style="width: 300px">
-        <mat-label>Department</mat-label>
+        <mat-label>Package Type</mat-label>
         <mat-select formControlName="packageType">
-          <mat-option *ngFor="let dep of IS.itemType" [value]="dep">{{dep}}</mat-option>
+          <mat-option *ngFor="let type of IS.packType" [value]="type">{{type}}</mat-option>
         </mat-select>
-    </mat-form-field><br>
+    </mat-form-field><br> 
 </mat-dialog-content>
 
 <mat-dialog-actions>

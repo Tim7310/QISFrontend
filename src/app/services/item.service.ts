@@ -8,9 +8,9 @@ import { Global } from '../global.variable';
 
 @Injectable()
 export class ItemService {
-  // itemType = ["CASH LAB", "CASH INDUSTRIAL", "CASH IMAGING", "ACCOUNT INDUSTRIAL", 
-  //  "ACCOUNT HMO", "ACCOUNT SURGEON", "CASH SURGEON", "ACCOUNT PHARMACY", "CASH PHARMACY", 
-  //  "CASH DNA", "CASH WLMC", "CASH PSYCH", "ACCOUNT PSYCH" ]
+  packType = ["CASH LAB", "CASH INDUSTRIAL", "CASH IMAGING", "ACCOUNT INDUSTRIAL", 
+   "ACCOUNT HMO", "ACCOUNT SURGEON", "CASH SURGEON", "ACCOUNT PHARMACY", "CASH PHARMACY", 
+   "CASH DNA", "CASH WLMC", "CASH PSYCH", "ACCOUNT PSYCH" ]
   itemType = ["ECG", "HOME SERVICE", "INSURANCE", "LABORATORY", "MEDICAL SERVICE", 
   "SUPPLY", "ULTRASOUND", "XRAY", "PHARMACY"];
   itemTest = [
@@ -90,6 +90,37 @@ export class ItemService {
         catchError(this.ehs.handleError)
     )
   }
+
+  addPackage(pack: packList): Observable<any>{
+    return this.http.post<any>(
+      this.global.url+"/addPackage",
+      pack, this.global.httpOptions)
+    .pipe(
+        retry(1),
+        catchError(this.ehs.handleError)
+    )
+  }
+
+  updatePackage(pack: packList): Observable<any>{
+    return this.http.post<any>(
+      this.global.url+"/updatePackage",
+      pack, this.global.httpOptions)
+    .pipe(
+        retry(1),
+        catchError(this.ehs.handleError)
+    )
+  }
+
+  addPackext(pack: packExt): Observable<any>{
+    return this.http.post<any>(
+      this.global.url+"/addpackext",
+      pack, this.global.httpOptions)
+    .pipe(
+        retry(1),
+        catchError(this.ehs.handleError)
+    )
+  }
+
 
   getPack_Test(item: itemList){
     var numArr: number[] = [];

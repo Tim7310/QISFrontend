@@ -22,6 +22,7 @@ import { ItemService } from 'src/app/services/item.service';
 })
 export class SelectItemComponent implements OnInit, AfterViewInit, OnDestroy {
   @Output() selectTrig = new EventEmitter();
+  @Input() isPackage: boolean = true;
   @Input() itemURL: string;
   @Input() placeholder: string;
   items: itemGroup[] = [];
@@ -65,39 +66,41 @@ export class SelectItemComponent implements OnInit, AfterViewInit, OnDestroy {
     );
 
     //get Package and convert to item format
-    let pack: itemList =  {
-      itemId          : "",
-      itemName        : "",
-      itemPrice       : 0,
-      itemDescription : "",
-      itemType        : "",
-      deletedItem     : 0,
-      neededTest      : 0,
-      creationDate    : "",
-      dateUpdate      : ""
-    };
-    let packs: itemList[] = [];
-    let _packs: itemGroup = {
-      name: "",
-      items: []
+    if(this.isPackage == true){
+      let pack: itemList =  {
+        itemId          : "",
+        itemName        : "",
+        itemPrice       : 0,
+        itemDescription : "",
+        itemType        : "",
+        deletedItem     : 0,
+        neededTest      : 0,
+        creationDate    : "",
+        dateUpdate      : ""
+      };
+      let packs: itemList[] = [];
+      let _packs: itemGroup = {
+        name: "",
+        items: []
+      }
+      this.itemService.getPackage("getPackage")
+      .subscribe((data) => 
+        data.forEach(function (value){
+          pack.itemId          = value.packageName;
+          pack.itemName        = value.packageName;
+          pack.itemPrice       = value.packagePrice;
+          pack.itemDescription = value.packageDescription;
+          pack.itemType        = value.packageType;
+          pack.deletedItem     = value.deletedPackage;
+          pack.neededTest      = undefined;
+          pack.creationDate    = value.creationDate;
+          pack.dateUpdate      = value.dateUpdate;
+          packs.push(pack);
+      }),
+      err => console.error(err),
+      () => this.groupItem(packs, "Packages")
+      );
     }
-    this.itemService.getPackage("getPackage")
-    .subscribe((data) => 
-      data.forEach(function (value){
-        pack.itemId          = value.packageName;
-        pack.itemName        = value.packageName;
-        pack.itemPrice       = value.packagePrice;
-        pack.itemDescription = value.packageDescription;
-        pack.itemType        = value.packageType;
-        pack.deletedItem     = value.deletedPackage;
-        pack.neededTest      = undefined;
-        pack.creationDate    = value.creationDate;
-        pack.dateUpdate      = value.dateUpdate;
-        packs.push(pack);
-     }),
-     err => console.error(err),
-     () => this.groupItem(packs, "Packages")
-    );
     this.itemCtrl.valueChanges.subscribe(
       value => this.selectTrig.emit(value)
     );

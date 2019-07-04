@@ -10,10 +10,12 @@ export class HMOListComponent implements OnInit {
 
   constructor(
     private math : MathService
-  ) { }
+  ) { 
+    this.math.navSubs("cashier");
+  }
 
   ngOnInit() {
-    this.math.navSubs("cashier");
+    
   }
 
 

@@ -33,6 +33,7 @@ export class ReceiptComponent implements OnInit {
   ngOnInit() {
     this.transDetails = this.trans
       .map(id => this.getInvoiceDetails(id));
+      
     Promise.all(this.transDetails)
       .then(() => this.math.onDataReady());
 

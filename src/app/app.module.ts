@@ -74,6 +74,8 @@ import { ManagePackageComponent } from './page/manage-package/manage-package.com
 import { CreateItemComponent } from './element/create-item/create-item.component';
 import { PackageListComponent } from './element/package-list/package-list.component';
 import { CreatePackageComponent } from './element/create-package/create-package.component';
+import { SalesPdfComponent } from './element/sales-pdf/sales-pdf.component';
+import { DateTimePickerModule } from "@syncfusion/ej2-angular-calendars";
 
 @NgModule({
   declarations: [
@@ -99,6 +101,7 @@ import { CreatePackageComponent } from './element/create-package/create-package.
     CreateItemComponent,
     PackageListComponent,
     CreatePackageComponent,
+    SalesPdfComponent
   ],
   exports: [
     CdkTableModule,
@@ -184,7 +187,8 @@ import { CreatePackageComponent } from './element/create-package/create-package.
     NgxMatSelectSearchModule,
     NgxPrintModule,
     ClickOutsideModule,
-    MomentModule
+    MomentModule,
+    DateTimePickerModule
   ],
   providers: [
     ItemService, 

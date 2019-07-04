@@ -1,0 +1,240 @@
+<mat-grid-list cols="20" rowHeight="8px" class="main">
+  <mat-grid-tile colspan="20" rowspan="2">
+    <span class="left">{{today}}</span>
+  </mat-grid-tile>
+  <mat-grid-tile colspan="20" rowspan="2" class="bold-1 fsize" >
+    QUEST INFO SYSTEM
+  </mat-grid-tile>
+  <mat-grid-tile colspan="20" rowspan="2" class="bold-1 fsize">
+      END OF THE DAY REPORT
+    </mat-grid-tile>
+
+  <mat-grid-tile colspan="20" rowspan="2">
+    2019-06-25 05:00:00 to 2019-06-25 20:00:00
+  </mat-grid-tile>
+  <mat-grid-tile colspan="5" rowspan="2">
+    <span class= "left bold-1">SlsActvt</span>
+  </mat-grid-tile>
+  <mat-grid-tile colspan="5" rowspan="2"> 
+     <span class= "bold-1">Sales</span> 
+    </mat-grid-tile>
+  <mat-grid-tile colspan="5" rowspan="2">
+    <span class=" bold-1 ">Return</span>
+  </mat-grid-tile>
+  <mat-grid-tile colspan="5" rowspan="2">
+    <span class="bold-1 ">Net</span>
+  </mat-grid-tile>
+
+  <mat-grid-tile colspan="5" rowspan="2">
+    <span class= "left ">NonTxbl:</span>
+  </mat-grid-tile>
+  <mat-grid-tile colspan="5" rowspan="2"> 
+     <span >{{total}}</span> 
+  </mat-grid-tile>
+  <mat-grid-tile colspan="5" rowspan="2">
+    <span> </span>
+  </mat-grid-tile>
+  <mat-grid-tile colspan="5" rowspan="2">
+    <span>{{total}}</span>
+  </mat-grid-tile>
+
+  <mat-grid-tile colspan="5" rowspan="2">
+    <span class= "left">Subttl:</span>
+  </mat-grid-tile>
+  <mat-grid-tile colspan="5" rowspan="2"> 
+    <span>{{total}}</span> 
+  </mat-grid-tile>
+  <mat-grid-tile colspan="5" rowspan="2">
+    <span> </span>
+  </mat-grid-tile>
+  <mat-grid-tile colspan="5" rowspan="2">
+    <span>{{total}}</span>
+  </mat-grid-tile>
+
+  <mat-grid-tile colspan="5" rowspan="2">
+    <span class= "left">Ttl Act:</span>
+  </mat-grid-tile>
+  <mat-grid-tile colspan="5" rowspan="2"> 
+    <span>{{total}}</span> 
+  </mat-grid-tile>
+  <mat-grid-tile colspan="5" rowspan="2">
+      <span>0.00</span>
+  </mat-grid-tile>
+  <mat-grid-tile colspan="5" rowspan="2">
+      <span>{{total}}</span>
+  </mat-grid-tile>
+        
+  <mat-grid-tile colspan="20" rowspan ="2">
+   <span class="left">Sales Adjustments</span>
+  </mat-grid-tile>
+
+  <mat-grid-tile colspan="15" rowspan="2">
+    <span class="left">Net Sales Activity:</span>
+  </mat-grid-tile>
+  <mat-grid-tile colspan="5" rowspan="2">
+      <span >{{total}}</span>
+  </mat-grid-tile>
+
+  <mat-grid-tile colspan="15" rowspan="2">
+    <span class="left">Charge to Account</span>
+  </mat-grid-tile>
+  <mat-grid-tile colspan="5" rowspan="2">
+    <span >{{at}}</span>
+  </mat-grid-tile>
+
+  <mat-grid-tile colspan="15" rowspan="2">
+    <span class="left">Gift Certificate used:</span>
+  </mat-grid-tile>
+  <mat-grid-tile colspan="5" rowspan="2">
+    <span >0.00</span>
+  </mat-grid-tile>
+
+  <mat-grid-tile colspan="15" rowspan="2">
+    <span class="left">Gift Cards Used:</span>
+  </mat-grid-tile>
+  <mat-grid-tile colspan="5" rowspan="2">
+    <span >0.00</span>
+  </mat-grid-tile>
+
+    
+  <mat-grid-tile colspan="15" rowspan="2">
+    <span class="left">Net Deposits used:</span>
+  </mat-grid-tile>
+  <mat-grid-tile colspan="5" rowspan="2">
+    <span >0.00</span>
+  </mat-grid-tile>
+    
+  <mat-grid-tile colspan="15" rowspan="2">
+    <span class="left">Payouts:</span>
+  </mat-grid-tile>
+  <mat-grid-tile colspan="5" rowspan="2">
+    <span >0.00</span>
+  </mat-grid-tile>
+
+    
+  <mat-grid-tile colspan="15" rowspan="2">
+    <span class="left bold-1">Total Available for Deposit:</span>
+  </mat-grid-tile>
+  <mat-grid-tile colspan="5" rowspan="2">
+  <span>{{total - at}}</span>
+  </mat-grid-tile>
+
+  <mat-grid-tile colspan="20" rowspan="2" class="bold-1 fsize">
+    RECEIPT COUNTS
+  </mat-grid-tile>
+
+  <mat-grid-tile colspan="15" rowspan="2" >
+  <span class="left">Sales:</span>
+  </mat-grid-tile>
+  <mat-grid-tile colspan="5" rowspan="2">
+  <span>{{sales}}</span>
+  </mat-grid-tile>
+
+  <mat-grid-tile colspan="15" rowspan="2">
+    <span class="left">Returns:</span>
+  </mat-grid-tile>
+  <mat-grid-tile colspan="5" rowspan="2">
+    <span>{{return}}</span>
+  </mat-grid-tile>
+
+  <mat-grid-tile colspan="15" rowspan="2">
+    <span class="left">Deposits:</span>
+  </mat-grid-tile>
+  <mat-grid-tile colspan="5" rowspan="2">
+    <span>0</span>
+  </mat-grid-tile>
+
+  <mat-grid-tile colspan="15" rowspan="2">
+    <span class="left">Reversed:</span>
+  </mat-grid-tile>
+  <mat-grid-tile colspan="5" rowspan="2">
+    <span>0</span>
+  </mat-grid-tile>
+
+  <mat-grid-tile colspan="15" rowspan="2">
+    <span class="left">Payouts:</span>
+  </mat-grid-tile>
+  <mat-grid-tile colspan="5" rowspan="2">
+    <span>0</span>
+  </mat-grid-tile>
+
+  <mat-grid-tile colspan="20" rowspan="2">
+  </mat-grid-tile>
+
+  <mat-grid-tile colspan="15" rowspan="2">
+    <span class="left bold-1"  >Dollar(USD)</span>
+  </mat-grid-tile>
+  <mat-grid-tile colspan="5" rowspan="2">
+    <span>0</span>
+  </mat-grid-tile>
+
+  <mat-grid-tile colspan="15" rowspan="2">
+    <span class="left">Paid In:</span>
+  </mat-grid-tile>
+  <mat-grid-tile colspan="5" rowspan="2">
+  <span>{{paidIn}}</span>
+  </mat-grid-tile>
+
+  <mat-grid-tile colspan="15" rowspan="2">
+  <span class="left">Paid Out:</span>
+  </mat-grid-tile>
+  <mat-grid-tile colspan="5" rowspan="2">
+  <span>{{paidOut}}</span>
+  </mat-grid-tile>
+
+  <mat-grid-tile colspan="15" rowspan="2">
+      <span class="left">Net:</span>
+  </mat-grid-tile>
+  <mat-grid-tile colspan="5" rowspan="2">
+    <span>{{net}}</span>
+  </mat-grid-tile>
+
+</mat-grid-list>
+
+<mat-grid-list cols="20" rowHeight="10px" class="main">
+  <mat-grid-tile colspan= "15" rowspan="2" class="bold-1">
+    Account Listing
+  </mat-grid-tile>
+</mat-grid-list>
+
+<div class = "main">
+  <div class = "container-fluid">
+    <div class = "row bold-1">
+      <div class = "col-2">
+        Amount
+      </div>
+      <div class = "col-5">
+          Name
+      </div>
+      <div class = "col-5">
+          BillTo
+      </div>
+    </div>
+
+    <div class = "row" *ngFor="let account of accountData">
+      <div class = "col-2">
+          {{account?.trans.grandTotal}}
+      </div>
+      <div class = "col-5">
+          {{account?.pat.fullName}}
+      </div>
+      <div class = "col-5">
+          {{account?.trans.biller}}
+      </div>
+    </div>
+
+    <div class = "row bold-1">
+      <div class = "col-7">
+       {{at}} Total
+      </div>
+      <div class = "col-5">
+      {{ac}}--ACCOUNTS
+      </div>
+    </div>
+
+  </div>
+
+
+</div>
+
+     

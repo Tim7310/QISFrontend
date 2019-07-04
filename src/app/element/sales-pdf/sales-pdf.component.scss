@@ -1,0 +1,21 @@
+.main{
+    width: 587px;
+    font-size: 12px;
+}
+.left{
+    position: absolute;
+    left: 5px;
+}
+.right{
+    position: absolute;
+    right: 5px;
+}
+
+.fsize{
+   font-size: 14px;
+}
+@media screen {
+    :host {
+      display: none;
+    }
+  }

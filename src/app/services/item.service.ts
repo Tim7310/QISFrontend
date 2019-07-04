@@ -121,6 +121,14 @@ export class ItemService {
     )
   }
 
+  deletePackext(name: string, id: number): Observable<any>{
+    return this.http.delete<any>( this.global.url + "/deletePackext/" + name + "/" + id )
+    .pipe(
+        retry(1),
+        catchError(this.ehs.handleError)
+    )
+  }
+
 
   getPack_Test(item: itemList){
     var numArr: number[] = [];

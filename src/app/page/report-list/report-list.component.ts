@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { patient, itemList, transaction } from 'src/app/services/service.interface';
 import { MatTableDataSource, MatPaginator, MatSort, MatDialog, MatSnackBar } from '@angular/material';
 import { DatePipe } from '@angular/common';
-import { FormControl } from '@angular/forms';
+import { FormControl, Validators } from '@angular/forms';
 import { TransactionService } from 'src/app/services/transaction.service';
 import { ItemService } from 'src/app/services/item.service';
 import { PatientService } from 'src/app/services/patient.service';
@@ -30,8 +30,12 @@ export interface heldTable{
   action  : any,
   cashier : any
 }
+export interface Generate{
+  value: string;
+  viewValue: string;
+}
 @Component({
-  selector: 'app-report-list',
+  selector: 'report-list',
   templateUrl: './report-list.component.html',
   styleUrls: ['./report-list.component.scss'],
   animations: [
@@ -54,25 +58,19 @@ export class ReportListComponent implements OnInit {
   
   showLoading: boolean = true;
   d = new DatePipe('en-US');
-  months: Array<any> = [
-    {value: "01", name: "January"},
-    {value: "02", name: "February"},
-    {value: "03", name: "March"},
-    {value: "04", name: "April"},
-    {value: "05", name: "May"},
-    {value: "06", name: "June"},
-    {value: "07", name: "July"},
-    {value: "08", name: "August"},
-    {value: "09", name: "September"},
-    {value: "10", name: "October"},
-    {value: "11", name: "November"},
-    {value: "12", name: "December"}
-  ]
 
-  years: Array<any> = ["2017", "2018", "2019", "2020", "2021", "2022", "2023", "2024", "2025"];
+  gen: Generate[] = [
+    {value: "sr", viewValue: 'Sales Report'},
+    {value: 'csv', viewValue: 'Generate CSV'}
+    // {value: 'eotd', viewValue: 'End Of The Day'},
+    // {value: 'fpf', viewValue: 'For PF'},
+    // {value: 'fb', viewValue: 'For Billing'},
+    // {value: 'tr', viewValue: 'Today\'s Report'}
+  ];
 
-  monthVal  : FormControl = new FormControl(this.d.transform(new Date(),"MM"));
-  yearVal   : FormControl = new FormControl(this.d.transform(new Date(),"yyyy"));
+  from : FormControl = new FormControl(this.d.transform(new Date(),"yyyy-MM-dd 06:00:00"));
+  to : FormControl = new FormControl(this.d.transform(new Date(),"yyyy-MM-dd 20:00:00"));
+  generateFile: FormControl = new FormControl("", [Validators.required]);
   // myFilter = (d: Date): boolean => {
   //   const day = d.getDay();
   //   return day !== 10;
@@ -87,11 +85,11 @@ export class ReportListComponent implements OnInit {
     private _snackBar : MatSnackBar,
     private user : UserService
     ) {
-    
+      this.math.navSubs("cashier");
   }
 
   ngOnInit() {
-    this.setData();    
+    this.setData(false);    
   }
 
   applyFilter(filterValue: string) {
@@ -102,12 +100,18 @@ export class ReportListComponent implements OnInit {
     }
   }
 
-  setData(){
+  setData(foo: boolean = true){
     this.showLoading = true;
-    let url: any;
-      url = "getTransactionDate/" + 
-      this.yearVal.value + "-" + this.monthVal.value + "-01/" + 
-      this.yearVal.value + "-" + this.monthVal.value + "-31";
+    if(foo === true){
+      let from = new Date(this.from.value);
+      this.from.setValue(this.d.transform(from ,"yyyy-MM-dd HH:mm:ss"));
+      let to = new Date(this.to.value);
+      this.to.setValue(this.d.transform(to ,"yyyy-MM-dd HH:mm:ss"));
+
+      console.log(this.to.value);
+      
+    }
+    const url = "getTransactionDate/" + this.from.value + "/" + this.to.value;
     
     this.TS.getTransactions(url)
    .subscribe(
@@ -284,9 +288,23 @@ export class ReportListComponent implements OnInit {
         "Company Name", "Items", "QTY", "Subtotal", "Total", "Bill To", "Cashier",
         "Amount Tendered", "Given Change"
       ]
-    });
-    console.log(data);
+    });   
     
-    
+  }
+
+  generate(){
+    console.log(this.generateFile.value);
+    if(this.generateFile.value == "csv"){
+      this.genCSV();
+    }
+    else if(this.generateFile.value == "sr"){
+      let from = new Date(this.from.value);
+      this.from.setValue(this.d.transform(from ,"yyyy-MM-dd HH:mm:ss"));
+      let to = new Date(this.to.value);
+      this.to.setValue(this.d.transform(to ,"yyyy-MM-dd HH:mm:ss"));
+      const suffix = [this.from.value, this.to.value];
+
+      this.math.printReport('', suffix);
+    }
   }
 }

@@ -22,6 +22,8 @@ package = new FormGroup({
     dateUpdate      : new FormControl("0000-00-00 00:00:00",[]),
 })
 items: itemList[] = [];
+items2: itemList[] = [];
+deleteItem: itemList[] = [];
 
 constructor(
   public IS     : ItemService,
@@ -44,6 +46,7 @@ ngOnInit() {
       ext.forEach(data => {
         this.IS.getItemByID(data.itemID).subscribe( item => {
           this.items.push(item[0]);
+          this.items2.push(item[0]);
         })
       });
     });
@@ -55,10 +58,18 @@ getItem(value){
     if(found === undefined){
       this.items.push(value);
     }
+  let foundDelete = this.deleteItem.find(delItem => delItem.itemId === value.itemId);
+    if(foundDelete != undefined){
+      this.deleteItem.splice( this.deleteItem.indexOf(value), 1 );
+    }   
 }
 
 removeItem(value){
   this.items.splice( this.items.indexOf(value), 1 );
+  let foundDelete = this.items2.find(defItem => defItem.itemId === value.itemId);
+  if(foundDelete != undefined){
+    this.deleteItem.push(value);
+  }    
 }
 
 create(){
@@ -119,21 +130,34 @@ update(){
       this.IS.updatePackage(this.package.value).subscribe(
         (data: any) => {
           if(data == 1){
-            // this.items.forEach((data, index) => {
-            //   const packName = this.package.get("packageName").value;
-            //   this.IS.addPackext({ packageName: packName, itemID: data.itemId })
-            //     .subscribe(res => {
-            //         if(res == 1){
-            //           if(this.items.length == index + 1){
-            //             this.dialogRef.close({
-            //               message : "New package successfully saved.",
-            //               status  : "ok",
-            //               item    : this.package.value
-            //             });
-            //           }
-            //         }                
-            //     })
-            // })
+           if(this.deleteItem.length > 0){
+             this.deleteItem.forEach(delItem => {
+              this.IS.deletePackext(this.package.get("packageName").value, delItem.itemId)
+              .subscribe( deleted => {
+
+              })
+            })
+           }
+
+            this.items.forEach((data, index) => {
+              let exist = this.items2.find(existItem => existItem.itemId === data.itemId);
+              if(exist === undefined){
+              const packName = this.package.get("packageName").value;
+              this.IS.addPackext({ packageName: packName, itemID: data.itemId })
+                .subscribe(res => {
+                    if(res == 1){
+                      if(this.items.length == index + 1){
+                        this.dialogRef.close({
+                          message : "Package Updated Successfuly.",
+                          status  : "ok",
+                          item    : this.package.value
+                        });
+                      }
+                    }                
+                })
+              }             
+            })
+
             this.dialogRef.close({
               message : "package successfully Updated.",
               status  : "ok",

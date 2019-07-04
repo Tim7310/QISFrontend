@@ -57,12 +57,26 @@ export class MathService {
         'print': ['print', documentData.join()]
       }}]);
   }
+  printReport(documentName: string, documentData: string[]) {
+    this.isPrinting = true;
+    this.router.navigate(['/',
+      { outlets: {
+        'salesReport': ['print', documentData.join()]
+      }}]);
+  }
 
   onDataReady() {
     setTimeout(() => {
       window.print();
       this.isPrinting = false;
       this.router.navigate([{ outlets: { print: null }}]);
+    });
+  }
+  onReportReady() {
+    setTimeout(() => {
+      window.print();
+      this.isPrinting = false;
+      this.router.navigate([{ outlets: { salesReport: null }}]);
     });
   }
   

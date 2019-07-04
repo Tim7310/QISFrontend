@@ -204,7 +204,6 @@ export class TransactionListComponent implements OnInit {
   receipt(value){
     const suffix = [value];
     this.math.printDocument('', suffix);
-    console.log(value);
     
   }
 

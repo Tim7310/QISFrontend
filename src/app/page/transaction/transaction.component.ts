@@ -14,6 +14,7 @@ import { ItemService } from 'src/app/services/item.service';
 import { MathService } from 'src/app/services/math.service';
 
 import { Angular5Csv } from 'angular5-csv/dist/Angular5-csv';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'transaction',
@@ -43,6 +44,8 @@ export class TransactionComponent implements OnInit{
   AccountNumber: FormControl = new FormControl("");
   transID = undefined;
 
+  
+
   constructor(
     public dialog     : MatDialog, 
     private _snackBar : MatSnackBar,
@@ -50,7 +53,7 @@ export class TransactionComponent implements OnInit{
     private trans     : TransactionService,
     public math       : MathService,
     public global     : Global,
-    private IS        : ItemService
+    private IS        : ItemService,
     ) { 
     this.totalVal = 0;
     this.math.navSubs("cashier");
@@ -181,9 +184,7 @@ export class TransactionComponent implements OnInit{
     });   
   }
 
-  cancel(){
-    location.reload();
-  }
+  
 
   getBiller(value){
     this.biller = value.nameCompany;
@@ -247,7 +248,7 @@ export class TransactionComponent implements OnInit{
               this.items
             ).subscribe(success => {
               this.openSnackBar("Transaction Success", "close");
-              location.reload();
+              this.cancel();
             })  
           }else if(saveType == "PRINT"){
             
@@ -267,10 +268,8 @@ export class TransactionComponent implements OnInit{
                 console.log(data);
                 const suffix = [data[0].transactionId];
                 this.math.printDocument('', suffix);
-
-                window.addEventListener("afterprint", function(event) { 
-                  location.reload();
-                });
+                this.cancel();
+               
               })           
             })
           
@@ -282,7 +281,7 @@ export class TransactionComponent implements OnInit{
               this.items
             ).subscribe(success => {
               this.openSnackBar("Transaction HELD", "close");
-              location.reload();
+              this.cancel();
             })  
           }       
          
@@ -354,5 +353,29 @@ export class TransactionComponent implements OnInit{
     })
   }
 
+  cancel(){
+    this.items = [];
+    this.discount = 0;
+    this.total = [];
+    this.totalVal  = 0;
+    this.subTotal  = 0;
+    this.discounted  = 0;
+    this.transType = undefined;
+    this.receivedAmount.setValue(0);
+    this.change = 0;
+    this.arError = undefined;
+    this.currency  = "PESO";
+    this.biller = "";
+    this.LOENumber.setValue("");
+    this.AccountNumber.setValue("");
+    this.transID = undefined;
+    this.patient = undefined;
+    
+    this.trans.getTransactions("getTransaction")
+    .subscribe(data => 
+      this.transactionRef = this.math.transcheckRef(data)
+    );  
+   
+  }
 
 }

@@ -67,25 +67,26 @@ export class SelectItemComponent implements OnInit, AfterViewInit, OnDestroy {
 
     //get Package and convert to item format
     if(this.isPackage == true){
-      let pack: itemList =  {
-        itemId          : "",
-        itemName        : "",
-        itemPrice       : 0,
-        itemDescription : "",
-        itemType        : "",
-        deletedItem     : 0,
-        neededTest      : 0,
-        creationDate    : "",
-        dateUpdate      : ""
-      };
+      
       let packs: itemList[] = [];
       let _packs: itemGroup = {
         name: "",
         items: []
       }
       this.itemService.getPackage("getPackage")
-      .subscribe((data) => 
-        data.forEach(function (value){
+      .subscribe((data) => {
+        data.forEach((value, index) => {
+          let pack: itemList =  {
+            itemId          : "",
+            itemName        : "",
+            itemPrice       : 0,
+            itemDescription : "",
+            itemType        : "",
+            deletedItem     : 0,
+            neededTest      : 0,
+            creationDate    : "",
+            dateUpdate      : ""
+          };
           pack.itemId          = value.packageName;
           pack.itemName        = value.packageName;
           pack.itemPrice       = value.packagePrice;
@@ -95,10 +96,17 @@ export class SelectItemComponent implements OnInit, AfterViewInit, OnDestroy {
           pack.neededTest      = undefined;
           pack.creationDate    = value.creationDate;
           pack.dateUpdate      = value.dateUpdate;
+          
           packs.push(pack);
-      }),
+          if(data.length - 1 == index){
+            this.groupItem(packs, "Packages");
+          }
+      })   
+      },
       err => console.error(err),
-      () => this.groupItem(packs, "Packages")
+      () => {
+        
+      }
       );
     }
     this.itemCtrl.valueChanges.subscribe(

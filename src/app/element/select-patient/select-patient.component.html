@@ -1,7 +1,8 @@
 <mat-form-field style="width: 100%">
     <mat-select [formControl]="patientCtrl" [placeholder]="placeholder" #singleSelect>
       <mat-option>
-        <ngx-mat-select-search [formControl]="patientFilterCtrl"></ngx-mat-select-search>
+        <ngx-mat-select-search [formControl]="patientFilterCtrl" 
+        placeholderLabel="Search Patient"></ngx-mat-select-search>
       </mat-option>
   
       <mat-option *ngFor="let patient of filteredPatient |async" [value]="patient" >

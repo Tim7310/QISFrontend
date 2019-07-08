@@ -76,6 +76,7 @@ import { PackageListComponent } from './element/package-list/package-list.compon
 import { CreatePackageComponent } from './element/create-package/create-package.component';
 import { SalesPdfComponent } from './element/sales-pdf/sales-pdf.component';
 import { DateTimePickerModule } from "@syncfusion/ej2-angular-calendars";
+import { AuthenticationComponent } from './page/authentication/authentication.component';
 
 @NgModule({
   declarations: [
@@ -101,7 +102,8 @@ import { DateTimePickerModule } from "@syncfusion/ej2-angular-calendars";
     CreateItemComponent,
     PackageListComponent,
     CreatePackageComponent,
-    SalesPdfComponent
+    SalesPdfComponent,
+    AuthenticationComponent
   ],
   exports: [
     CdkTableModule,

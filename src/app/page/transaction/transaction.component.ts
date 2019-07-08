@@ -25,7 +25,7 @@ export class TransactionComponent implements OnInit{
   items : itemList[] = [];
   discount : number = 0;
   discountBtn = [ 0, 5, 10, 15, 20 ];
-  moneyBtn = [ 50, 100, 200, 500, 1000 ];
+  moneyBtn = [ 20, 50, 100, 200, 500, 1000 ];
   total : total[] = [];
   totalVal : any = 0;
   subTotal : any = 0;
@@ -113,10 +113,11 @@ export class TransactionComponent implements OnInit{
   }
   changeTrans(type){
     this.transType = type;
-    this.currency = "PHP";
+    this.currency = "PESO";
   }
   addMoney(money){
-    this.receivedAmount.setValue(money);
+    let den = this.receivedAmount.value + money;
+    this.receivedAmount.setValue(den);
   }
   updateChange(data){
     if(data < this.totalVal){
@@ -129,10 +130,10 @@ export class TransactionComponent implements OnInit{
     }
   }
   changeCurrency(){
-    if(this.currency === "PHP"){
+    if(this.currency === "PESO"){
       this.currency = "USD";
     }else{
-      this.currency = "PHP";
+      this.currency = "PESO";
     }
   }
   getPatient(value){

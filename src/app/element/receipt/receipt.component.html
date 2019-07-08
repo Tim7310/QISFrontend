@@ -135,7 +135,9 @@
                 </div>
             </div>
             <div class="col-2">
-                ₱:{{i.itemPrice}}
+                <span *ngIf="transData?.currency == 'PESO'">₱:</span>
+                <span *ngIf="transData?.currency == 'USD'" class="bold-1">$:</span>               
+                {{i.itemPrice}}
             </div>
         </div>
     </div>
@@ -148,7 +150,9 @@
 
     <mat-grid-tile colspan="7" rowspan="3" class="border-top">
         <span class="bold-1 "> 
-            ₱: {{transData?.totalPrice}}
+            <span *ngIf="transData?.currency == 'PESO'">₱:</span>
+            <span *ngIf="transData?.currency == 'USD'" class="bold-1">$:</span> 
+             {{transData?.totalPrice}}
         </span>
     </mat-grid-tile>
     <mat-grid-tile colspan="13" rowspan="2">
@@ -158,7 +162,9 @@
     </mat-grid-tile>
     <mat-grid-tile colspan="7" rowspan="2">
         <span > 
-            ₱:  {{transData?.paidIn}}
+            <span *ngIf="transData?.currency == 'PESO'">₱:</span>
+            <span *ngIf="transData?.currency == 'USD'" class="bold-1">$:</span> 
+            {{transData?.paidIn}}
         </span>
     </mat-grid-tile>
     <mat-grid-tile colspan="13" rowspan="2">
@@ -168,7 +174,9 @@
     </mat-grid-tile>
     <mat-grid-tile colspan="7" rowspan="2">
         <span class="bold-1 "> 
-            ₱: {{transData?.paidOut}}
+            <span *ngIf="transData?.currency == 'PESO'">₱:</span>
+            <span *ngIf="transData?.currency == 'USD'" class="bold-1">$:</span> 
+            {{transData?.paidOut}}
         </span>
     </mat-grid-tile>
     <mat-grid-tile colspan="20" rowspan="2">

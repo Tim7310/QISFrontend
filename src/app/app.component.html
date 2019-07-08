@@ -1,5 +1,5 @@
-<div class="nav-container" [class.example-is-mobile]="mobileQuery.matches">
-  <mat-toolbar color="primary" class="toolbar">
+<div class="nav-container mat-elevation-z6" [class.example-is-mobile]="mobileQuery.matches">
+  <mat-toolbar color="primary" class="toolbar ">
     <button mat-icon-button (click)="snav.toggle()" id="sbIcon"><mat-icon>menu</mat-icon></button>
     <h1 class="app-name">{{title}}</h1>
   <span class="spacer"></span>
@@ -10,11 +10,11 @@
     <mat-icon>account_circle</mat-icon>
   </button>
   <mat-menu #menu="matMenu" x-position="after">
-    <button mat-menu-item>
+    <button mat-menu-item routerLink="/authentication">
       <mat-icon>perm_identity</mat-icon>
       <span>Profile</span>
     </button>
-    <button mat-menu-item>
+    <button mat-menu-item >
       <mat-icon>exit_to_app</mat-icon>
       <span>Logout</span>
     </button>

@@ -260,7 +260,9 @@ export class ReportListComponent implements OnInit {
           cashTotal += trans.trans.grandTotal;
         }
 
-      }else if(trans.trans.transactionType == "ACCOUNT" || trans.trans.transactionType == "APE"){
+      }else if(trans.trans.transactionType == "ACCOUNT" 
+      || trans.trans.transactionType == "APE" 
+      || trans.trans.transactionType == "HMO"){
           account = account.concat(transArr);       
           accountTotal += trans.trans.grandTotal;
       }else if(trans.trans.transactionType == "CREDIT"){

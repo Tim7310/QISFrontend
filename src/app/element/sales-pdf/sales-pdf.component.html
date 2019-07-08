@@ -72,14 +72,14 @@
     <span class="left">Net Sales Activity:</span>
   </mat-grid-tile>
   <mat-grid-tile colspan="5" rowspan="2">
-      <span >{{total}}</span>
+      <span class="bold-1">{{total}}</span>
   </mat-grid-tile>
 
   <mat-grid-tile colspan="15" rowspan="2">
     <span class="left">Charge to Account</span>
   </mat-grid-tile>
   <mat-grid-tile colspan="5" rowspan="2">
-    <span >{{at}}</span>
+    <span class="bold-1">{{at}}</span>
   </mat-grid-tile>
 
   <mat-grid-tile colspan="15" rowspan="2">
@@ -116,7 +116,7 @@
     <span class="left bold-1">Total Available for Deposit:</span>
   </mat-grid-tile>
   <mat-grid-tile colspan="5" rowspan="2">
-  <span>{{total - at}}</span>
+  <span class="bold-1">{{total - at}}</span>
   </mat-grid-tile>
 
   <mat-grid-tile colspan="20" rowspan="2" class="bold-1 fsize">
@@ -201,7 +201,7 @@
   <div class = "container-fluid">
     <div class = "row bold-1">
       <div class = "col-2">
-        Amount
+        <span class="left">Amount</span>
       </div>
       <div class = "col-5">
           Name
@@ -213,7 +213,7 @@
 
     <div class = "row" *ngFor="let account of accountData">
       <div class = "col-2">
-          {{account?.trans.grandTotal}}
+          <span class="right pr-5">{{account?.trans.grandTotal}}</span>
       </div>
       <div class = "col-5">
           {{account?.pat.fullName}}
@@ -224,8 +224,11 @@
     </div>
 
     <div class = "row bold-1">
-      <div class = "col-7">
-       {{at}} Total
+      <div class = "col-2">
+        <span class="right pr-5">{{at}}</span> 
+      </div>
+      <div class="col-5">
+        Total
       </div>
       <div class = "col-5">
       {{ac}}--ACCOUNTS

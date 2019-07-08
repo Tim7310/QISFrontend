@@ -64,7 +64,9 @@ export class SalesPdfComponent implements OnInit {
           this.return += 1;
         }
 
-        if(trans.transactionType == "ACCOUNT"){
+        if(trans.transactionType == "ACCOUNT" 
+        || trans.transactionType == "APE" 
+        || trans.transactionType == "HMO"){
           this.PAT.getOnePatient("getPatient/" + trans.patientId)
           .subscribe(data =>{
             this.at = this.at + trans.grandTotal;

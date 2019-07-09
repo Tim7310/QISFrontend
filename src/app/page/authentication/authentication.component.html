@@ -1,46 +1,33 @@
 <div class="container-fluid mt-4">
   <div class="row">
-      <div class="col-md-3"></div>
-      <div class="col-md-6 ">
-        <mat-tab-group mat-stretch-tabs  class="mat-elevation-z8">
-            <mat-tab>
-              <ng-template mat-tab-label style="width: 50%">
-                  <clr-icon shape="login" size="25"></clr-icon>
+      <div class="col-md-4"></div>
+      <div class="col-md-4 " >
+        <div class="mat-elevation-z8">
+          <nav mat-tab-nav-bar mat-stretch-tabs  >
+              <a mat-tab-link
+                 routerLink="signin"
+                 routerLinkActive #rli="routerLinkActive"
+                 [active]="rli.isActive">
+                  <clr-icon shape="login"></clr-icon>
                   <span class="tab-text">
                     &nbsp;&nbsp;SIGN IN
                   </span>
-              </ng-template>
-              <mat-grid-list cols="2" rowHeight="25px" class="mt-4">
-                  <mat-grid-tile rowspan="3" colspan="2">
-                      <mat-form-field class="full-width">
-                          <input type="text" matInput placeholder="User Name">
-                          <clr-icon shape="user" matSuffix></clr-icon>
-                      </mat-form-field>
-                  </mat-grid-tile>
-                  <mat-grid-tile rowspan="3" colspan="2">
-                      <mat-form-field class="full-width">
-                          <input type="password" matInput placeholder="Password">
-                          <clr-icon shape="eye" matSuffix></clr-icon>
-                      </mat-form-field>
-                  </mat-grid-tile>
-                  <mat-grid-tile rowspan="3" colspan="2">
-                    <button mat-button (click)="onClick">Action</button>
-                  </mat-grid-tile>
-              </mat-grid-list>
-            </mat-tab>
-          
-            <mat-tab>
-              <ng-template mat-tab-label>
-                  <clr-icon shape="id-badge" size="25"></clr-icon>
-                <span class="tab-text">
-                    &nbsp;&nbsp;SIGN UP
-                </span>               
-              </ng-template>
-              Content 2
-            </mat-tab>
-        </mat-tab-group>
+              </a>
+              <a mat-tab-link
+                routerLink="signup"
+                routerLinkActive #rlu="routerLinkActive"
+                [active]="rlu.isActive">
+                  <clr-icon shape="id-badge"></clr-icon>
+                  <span class="tab-text">
+                      &nbsp;&nbsp;SIGN UP
+                  </span>  
+              </a>
+            </nav>            
+            <router-outlet></router-outlet>
+          </div>
       </div>
-      <div class="col-md-3"></div>
+      <div class="col-md-4">
+      </div>
   </div>
   
 </div>

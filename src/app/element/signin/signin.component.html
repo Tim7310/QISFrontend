@@ -1,0 +1,26 @@
+<form [formGroup]="user">
+<mat-grid-list cols="2" rowHeight="25px" class="mt-4">
+    <mat-grid-tile rowspan="3" colspan="2">
+        <mat-form-field class="full-width">
+            <input type="text" matInput placeholder="User Name"
+            formControlName="user">
+            <clr-icon shape="user" matSuffix></clr-icon>
+        </mat-form-field>
+    </mat-grid-tile>
+    <mat-grid-tile rowspan="3" colspan="2">
+        <mat-form-field class="full-width">
+            <input type="password" matInput placeholder="Password"
+            formControlName="pass">
+            <clr-icon shape="eye" matSuffix></clr-icon>
+        </mat-form-field>
+    </mat-grid-tile>
+    <mat-grid-tile rowspan="2" colspan="2" *ngIf="errorMessage != undefined">
+      {{errorMessage}}
+    </mat-grid-tile>
+    <mat-grid-tile rowspan="3" colspan="2">
+      <button mat-raised-button (click)="signin()" color="primary"
+      [disabled]="!user.valid"
+      >SIGN IN</button>
+    </mat-grid-tile>
+</mat-grid-list>
+</form>

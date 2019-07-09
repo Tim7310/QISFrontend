@@ -9,6 +9,8 @@ import { ReportListComponent } from './page/report-list/report-list.component';
 import { ManagePackageComponent } from './page/manage-package/manage-package.component';
 import { SalesPdfComponent } from './element/sales-pdf/sales-pdf.component';
 import { AuthenticationComponent } from './page/authentication/authentication.component';
+import { SigninComponent } from './element/signin/signin.component';
+import { SignupComponent } from './element/signup/signup.component';
 
 const routes: Routes = [
   { path: 'print/:ids',
@@ -43,7 +45,12 @@ const routes: Routes = [
     component: ManagePackageComponent,
   },{
     path: "authentication",
-    component: AuthenticationComponent
+    component: AuthenticationComponent,
+    children: [
+      {path: "", redirectTo: "signin", pathMatch: 'full'},
+      {path: "signin", component: SigninComponent},
+      {path: "signup", component: SignupComponent},
+    ]
   },
   {
     path: '**', component: ErrorPageComponent

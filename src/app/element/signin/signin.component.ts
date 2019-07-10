@@ -27,9 +27,12 @@ export class SigninComponent implements OnInit {
    this.US.checkUser(user, pass).subscribe(priv => {
      if(priv.isUser == 0){
       this.errorMessage = "User Not Exist!!!";
-     }else if(priv.isUser == 1 && priv.isPass == 0){
+     }else if(priv.isUser == 1 && priv.isPass == 0 ){
       this.errorMessage = "Wrong Password!!!";
-     }else if(priv.isUser == 1 && priv.isPass == 1){
+     }else if( priv.isVerify == 0 ){
+      this.errorMessage = "Account not Verified!!!";
+     }
+    else if(priv.isUser == 1 && priv.isPass == 1){
       this.errorMessage = undefined;
      }
    })

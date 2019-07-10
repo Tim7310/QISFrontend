@@ -79,6 +79,7 @@ import { DateTimePickerModule } from "@syncfusion/ej2-angular-calendars";
 import { AuthenticationComponent } from './page/authentication/authentication.component';
 import { SigninComponent } from './element/signin/signin.component';
 import { SignupComponent } from './element/signup/signup.component';
+import { PrivErrorComponent } from './page/priv-error/priv-error.component';
 
 @NgModule({
   declarations: [
@@ -107,7 +108,8 @@ import { SignupComponent } from './element/signup/signup.component';
     SalesPdfComponent,
     AuthenticationComponent,
     SigninComponent,
-    SignupComponent
+    SignupComponent,
+    PrivErrorComponent
   ],
   exports: [
     CdkTableModule,

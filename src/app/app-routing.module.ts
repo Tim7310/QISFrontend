@@ -11,15 +11,19 @@ import { SalesPdfComponent } from './element/sales-pdf/sales-pdf.component';
 import { AuthenticationComponent } from './page/authentication/authentication.component';
 import { SigninComponent } from './element/signin/signin.component';
 import { SignupComponent } from './element/signup/signup.component';
+import { AuthGuard } from './services/auth.guard';
+import { PrivErrorComponent } from './page/priv-error/priv-error.component';
 
 const routes: Routes = [
   { path: 'print/:ids',
     outlet: 'print',
-    component: ReceiptComponent
+    component: ReceiptComponent,
+    canActivate: [AuthGuard]
   },
   { path: 'print/:dates',
     outlet: 'salesReport',
-    component: SalesPdfComponent
+    component: SalesPdfComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: '', redirectTo: '/cashier/transact', pathMatch: 'full'
@@ -27,22 +31,27 @@ const routes: Routes = [
   {
     path: 'cashier/transact',
     component: TransactionComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'cashier/transactions',
     component: TransactionListComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'cashier/hmo',
     component: HMOListComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'cashier/sales',
     component: ReportListComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'cashier/manage-items',
     component: ManagePackageComponent,
+    canActivate: [AuthGuard]
   },{
     path: "authentication",
     component: AuthenticationComponent,
@@ -51,6 +60,8 @@ const routes: Routes = [
       {path: "signin", component: SigninComponent},
       {path: "signup", component: SignupComponent},
     ]
+  },{
+    path: "error/privilege", component: PrivErrorComponent
   },
   {
     path: '**', component: ErrorPageComponent

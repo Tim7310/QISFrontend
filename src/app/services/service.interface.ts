@@ -115,4 +115,16 @@ export interface user{
     tokenCode   : string,
     _class      : string
 }
+export interface priv{
+     privID?         : number,
+     userID?         : number,
+     cashierCash?    : number,
+     imaging?        : number,
+     laboratory?     : number,
+     admin?          : number,
+     medical?        : number,
+     doctor?         : number,
+     qualityControl? : number,
+     cashierAccount? : number
+}
 

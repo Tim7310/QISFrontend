@@ -14,8 +14,8 @@
             <clr-icon shape="eye" matSuffix></clr-icon>
         </mat-form-field>
     </mat-grid-tile>
-    <mat-grid-tile rowspan="2" colspan="2" *ngIf="errorMessage != undefined">
-      {{errorMessage}}
+    <mat-grid-tile rowspan="2" colspan="2" *ngIf="errorMessage != undefined" class="animated fadeIn">
+      <span class="errMessage">{{errorMessage}}</span>
     </mat-grid-tile>
     <mat-grid-tile rowspan="3" colspan="2">
       <button mat-raised-button (click)="signin()" color="primary"

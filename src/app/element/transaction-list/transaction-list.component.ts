@@ -86,11 +86,14 @@ export class TransactionListComponent implements OnInit {
     public dialog : MatDialog,
     private _snackBar : MatSnackBar,
     ) {
-    
+      if(this.listType == "transactions") {
+        this.math.navSubs("cashier");
+      } 
   }
 
   ngOnInit() {
-    this.setData();    
+    this.setData(); 
+    
   }
 
   applyFilter(filterValue: string) {

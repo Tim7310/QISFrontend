@@ -66,6 +66,7 @@ export class UserService {
               if(user[0].userStatus == "Y"){
                 priv.isVerify = 1;  
                 let role = user[0]._class;
+                
                 if(role == "CashierACCOUNT" || role == "CASHIER" || role == "Medical Service" 
                   || role == "Cashier" || role == "CashierCASH" || role == "Registry"){
                     this.login(user[0].userID, "cashier/transact");
@@ -95,4 +96,6 @@ export class UserService {
       sessionStorage.removeItem('token');
       this.router.navigate(['authentication']);
     } 
+
+    
 }

@@ -3,6 +3,7 @@ import { MediaMatcher } from '@angular/cdk/layout';
 import { navList } from './services/service.interface';
 import { MathService } from './services/math.service';
 import { UserService } from './services/user.service';
+import { AuthGuard } from './services/auth.guard';
 
 @Component({
   selector: 'app-root',
@@ -13,7 +14,7 @@ export class AppComponent implements OnDestroy, OnInit{
   title = 'QISFrontend';
   fillerNav: navList[];
   navLink: navList[];
-  isNav: boolean = false;
+  isNav: boolean = true;
 
   private _mobileQueryListener: () => void;
   mobileQuery: any;
@@ -22,7 +23,11 @@ export class AppComponent implements OnDestroy, OnInit{
     changeDetectorRef : ChangeDetectorRef, 
     public media      : MediaMatcher,
     private math      : MathService,
-    private user      : UserService) {
+    private user      : UserService,
+    private auth      : AuthGuard) {
+
+    
+
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
     this.mobileQuery.addListener(this._mobileQueryListener);
@@ -34,6 +39,7 @@ export class AppComponent implements OnDestroy, OnInit{
       {name: "Physical Examination", route: ".", icon: "assessment"},
       {name: "Nurse", route: ".", icon: "healing"}
     ];
+    
   }
   ngOnInit(){
     this.math.changeEmitted$.subscribe(
@@ -41,6 +47,7 @@ export class AppComponent implements OnDestroy, OnInit{
         this.navLink = data;        
       }
     )
+    
   }
 
   ngOnDestroy(): void {

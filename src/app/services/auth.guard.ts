@@ -19,13 +19,9 @@ export class AuthGuard implements  CanActivate{
       let userID = parseInt(sessionStorage.getItem("token"))
       this.user.getUserPriv(userID)
       .subscribe( priv => {
-        if(url == "/cashier/transact"){
-          if( priv[0].cashierCash == 1 || priv[0].cashierCash == 2 || 
-              priv[0].cashierAccount == 1 || priv[0].cashierAccount == 2){
-            // do nothing
-          }else{
-            this.router.navigate(['error/privilege']);
-          }
+        
+        if(!this.userRules(priv[0], url)){
+          this.router.navigate(['error/privilege']);
         }
       })  
       }
@@ -51,5 +47,64 @@ export class AuthGuard implements  CanActivate{
         status = false;
       }
       return status;
+  }
+
+  userRules(priv: priv, url): boolean{
+    let st = false;
+    if(priv.admin == 2){
+      st = true;
+    }else{
+      if(url.match("/cashier/transact")){
+        if( priv.cashierCash == 1 || priv.cashierCash == 2 || 
+          priv.cashierAccount == 1 || priv.cashierAccount == 2){
+          st = true;
+        }else{
+          st = false;
+        }
+      }
+      if(url.match("/cashier/transactions")){
+        if( priv.cashierCash == 1 || priv.cashierCash == 2 || 
+          priv.cashierAccount == 1 || priv.cashierAccount == 2){
+          st = true;
+        }else{
+          st = false;
+        }
+      }
+      if(url.match("/cashier/sales")){
+        if( priv.cashierCash == 1 || priv.cashierCash == 2 || 
+          priv.cashierAccount == 1 || priv.cashierAccount == 2){
+          st = true;
+          console.log("why 2");
+        }else{
+          st = false;
+          console.log("why");
+          
+        }
+      }
+      if(url.match("/cashier/hmo")){
+        if( priv.cashierCash == 2 ){
+          st = true;
+        }else{
+          st = false;
+        }
+      }
+      if(url.match("/cashier/manage-items")){
+        if( priv.cashierCash == 2 ){
+          st = true;
+        }else{
+          st = false;
+        }
+      }
+      if(url.match("/cashier/refund-exchange")){
+        if( priv.cashierCash == 2 ){
+          st = true;
+        }else{
+          st = false;
+        }
+      }
+    }
+    
+
+    return st;
   }
 }

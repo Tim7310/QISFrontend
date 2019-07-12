@@ -13,6 +13,7 @@ import { SigninComponent } from './element/signin/signin.component';
 import { SignupComponent } from './element/signup/signup.component';
 import { AuthGuard } from './services/auth.guard';
 import { PrivErrorComponent } from './page/priv-error/priv-error.component';
+import { RefundComponent } from './page/refund/refund.component';
 
 const routes: Routes = [
   { path: 'print/:ids',
@@ -52,7 +53,13 @@ const routes: Routes = [
     path: 'cashier/manage-items',
     component: ManagePackageComponent,
     canActivate: [AuthGuard]
-  },{
+  },
+  {
+    path: 'cashier/refund-exchange',
+    component: RefundComponent,
+    canActivate: [AuthGuard]
+  },
+  {
     path: "authentication",
     component: AuthenticationComponent,
     children: [

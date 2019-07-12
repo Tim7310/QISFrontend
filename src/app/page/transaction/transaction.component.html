@@ -138,9 +138,9 @@
                   <div class="transbtn">
                     <button mat-raised-button class="m-1 animated jackInTheBox" 
                     color="primary" *ngFor="let btn of transTypeBTN "
-                      (click)="changeTrans(btn)"
-                      
-                    >{{btn}}
+                      (click)="changeTrans(btn.name)"
+                      [disabled]="!btn.status"
+                    >{{btn.name}}
                     <!--  -->
                     </button>
                   </div> 

@@ -15,6 +15,7 @@ import { MathService } from 'src/app/services/math.service';
 
 import { Angular5Csv } from 'angular5-csv/dist/Angular5-csv';
 import { Router } from '@angular/router';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'transaction',
@@ -31,7 +32,12 @@ export class TransactionComponent implements OnInit{
   subTotal : any = 0;
   discounted : any = 0;
   transType : string = undefined;
-  transTypeBTN = ["CASH", "ACCOUNT", "HMO", "APE" ];
+  transTypeBTN = [
+    {name: "CASH", status: true}, 
+    {name: "ACCOUNT", status: true}, 
+    {name: "HMO", status: true}, 
+    {name: "APE", status: true} 
+  ];
   receivedAmount = new FormControl(0);
   change : any = 0;
   arError : string = undefined;
@@ -43,7 +49,7 @@ export class TransactionComponent implements OnInit{
   LOENumber: FormControl = new FormControl("");
   AccountNumber: FormControl = new FormControl("");
   transID = undefined;
-
+  userID: number = parseInt(sessionStorage.getItem("token"));
   
 
   constructor(
@@ -54,11 +60,21 @@ export class TransactionComponent implements OnInit{
     public math       : MathService,
     public global     : Global,
     private IS        : ItemService,
+    private user      : UserService
     ) { 
     this.totalVal = 0;
     this.math.navSubs("cashier");
     }
   ngOnInit() {
+    //user privilege
+    this.user.getUserPriv(this.userID).subscribe(
+      priv => {
+        if(priv[0].cashierCash == 0){
+          this.transTypeBTN[0].status = false;
+        }
+      }
+    )
+
     // change computation 
     this.receivedAmount.valueChanges
     .subscribe(data => this.updateChange(data)); 
@@ -115,8 +131,8 @@ export class TransactionComponent implements OnInit{
     this.transType = type;
     this.currency = "PESO";
   }
-  addMoney(money){
-    let den = this.receivedAmount.value + money;
+  addMoney(money: number){
+    let den = parseInt(this.receivedAmount.value) + money;
     this.receivedAmount.setValue(den);
   }
   updateChange(data){
@@ -201,7 +217,7 @@ export class TransactionComponent implements OnInit{
       transactionId   : this.transID,
       transactionRef  : this.transactionRef,
       patientId       : this.patient.patientID,
-      userId          : this.global.userID,
+      userId          : this.userID,
       transactionType : this.transType,
       biller          : this.patient.companyName,
       totalPrice      : this.subTotal,
@@ -237,7 +253,7 @@ export class TransactionComponent implements OnInit{
     // save transaction data to database function
     const dialogRef = this.dialog.open(ConfirmComponent, {
       width: '20%',
-      data: {Title: "Are you sure?", Content: "New Patient will be save to database."}
+      data: {Title: "Are you sure?", Content: "New Transaction will be save to database."}
     });
     dialogRef.afterClosed().subscribe(result => {
       if(result == "ok"){ 

@@ -4,7 +4,7 @@ import { HttpHeaders } from '@angular/common/http';
 @Injectable()
 export class Global {
 url: string = "http://creatives:8088";
-userID: number = 12;
+userID: number = parseInt(sessionStorage.getItem("token"));
 public httpOptions = {
   headers: new HttpHeaders({
     'Content-Type'  : 'application/json',

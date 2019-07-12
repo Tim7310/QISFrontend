@@ -5,7 +5,7 @@
     </mat-option>
   <mat-optgroup *ngFor="let items of filteredItems | async" [label]="items.name">
     <mat-option *ngFor="let item of items.items" [value]="item" style="font-size: 12px">
-      <span style="white-space: pre">{{item.itemName}}</span><span class="price bold-1">{{item.itemPrice}}</span>
+      <span style="white-space: pre">{{item.itemName}}</span><span class="price bold-1"> {{item.itemPrice}}</span>
     </mat-option>
   </mat-optgroup>
   </mat-select>

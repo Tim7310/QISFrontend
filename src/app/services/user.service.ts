@@ -85,6 +85,21 @@ export class UserService {
      return observ;
     }
 
+    // checkAdmin(userName: any, password: any): Observable<any> {
+    //   const observ = new Observable(observer => {
+    //     this.getUserByName(userName).subscribe( user => {
+    //       let priv = false;
+    //       if( user.length == 1 ){       
+    //           if(Md5.init(password) == user[0].userPass){
+    //              if
+    //           }        
+    //       }
+    //       observer.next(priv);
+    //     })
+    //   })
+    //   return observ;
+    // }
+    
     login(userID, url):void{
       sessionStorage.setItem('isLoggedIn', "true");
       sessionStorage.setItem('token', userID);

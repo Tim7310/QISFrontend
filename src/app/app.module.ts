@@ -80,6 +80,7 @@ import { AuthenticationComponent } from './page/authentication/authentication.co
 import { SigninComponent } from './element/signin/signin.component';
 import { SignupComponent } from './element/signup/signup.component';
 import { PrivErrorComponent } from './page/priv-error/priv-error.component';
+import { RefundComponent } from './page/refund/refund.component';
 
 @NgModule({
   declarations: [
@@ -109,7 +110,8 @@ import { PrivErrorComponent } from './page/priv-error/priv-error.component';
     AuthenticationComponent,
     SigninComponent,
     SignupComponent,
-    PrivErrorComponent
+    PrivErrorComponent,
+    RefundComponent
   ],
   exports: [
     CdkTableModule,

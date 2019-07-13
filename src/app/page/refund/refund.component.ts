@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MathService } from 'src/app/services/math.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-refund',
@@ -15,7 +16,8 @@ export class RefundComponent implements OnInit {
 
   constructor(
     private _formBuilder: FormBuilder,
-    private math  : MathService
+    private math  : MathService,
+    private user  : UserService
   ) {
     this.math.navSubs("cashier");
   }
@@ -29,5 +31,22 @@ export class RefundComponent implements OnInit {
     this.secondFormGroup = this._formBuilder.group({
       secondCtrl: ['', Validators.required]
     });
+
+    this.verify.valueChanges.subscribe(val => {
+      this.verifyAdmnin();
+    })
+  }
+
+  verifyAdmnin(){
+    if(this.verify.get("username").value){
+      this.user.getUserByName(this.verify.get("username").value)
+      .subscribe(user => {
+        if(user.length > 0){
+          this.verify.get("verified").setValue("asd");
+        }
+      })
+    }else{
+      this.verify.get("verified").setValue("");
+    }
   }
 }

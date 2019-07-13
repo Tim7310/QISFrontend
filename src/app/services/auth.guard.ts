@@ -74,11 +74,8 @@ export class AuthGuard implements  CanActivate{
         if( priv.cashierCash == 1 || priv.cashierCash == 2 || 
           priv.cashierAccount == 1 || priv.cashierAccount == 2){
           st = true;
-          console.log("why 2");
         }else{
           st = false;
-          console.log("why");
-          
         }
       }
       if(url.match("/cashier/hmo")){

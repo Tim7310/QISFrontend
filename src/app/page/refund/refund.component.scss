@@ -5,3 +5,26 @@ button {
     margin:0 auto;
     display:block;
 }
+.refund span{
+    font-size: 12px;
+}   
+.left{
+    position: absolute;
+    left: 10px;
+}
+.item{
+    font-size: 12px;
+    line-height: 12px;
+}
+.item div{
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 10px;
+    text-align: center;
+}
+.delete{
+    cursor: pointer;
+    background-color: transparent; 
+    border: none;
+    outline: none
+}

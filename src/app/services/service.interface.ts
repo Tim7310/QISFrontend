@@ -12,7 +12,7 @@ export interface itemList{
     deletedItem     : number,
     neededTest      : number,
     creationDate    : any,
-    dateUpdate      : any,
+    dateUpdate      : any
 }
 export interface packList{
     packageName         : any,
@@ -126,5 +126,9 @@ export interface priv{
      doctor?         : number,
      qualityControl? : number,
      cashierAccount? : number
+}
+export interface trans_items{
+    ext: transExt,
+    item: itemList
 }
 

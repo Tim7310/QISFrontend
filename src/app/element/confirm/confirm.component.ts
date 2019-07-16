@@ -8,7 +8,7 @@ import { PatientFormComponent } from '../patient-form/patient-form.component';
   styleUrls: ['./confirm.component.scss']
 })
 export class ConfirmComponent implements OnInit {
-  Title = "Are You Sure?";
+  Title = "Are you sure?";
   Content = "";
   constructor(
     public dialogRef: MatDialogRef<ConfirmComponent>,

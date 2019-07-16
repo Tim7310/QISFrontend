@@ -150,8 +150,8 @@
                 </div>
                 <div class="col-md-6 ">
                   <div class="container-fluid">
-                    <div class="row refund mt-4 bold-1">
-                      <div class="col-5">
+                    <div class="row itemLabel mt-4 bold-1">
+                      <div class="col-4">
                           <span>ITEM NAME</span>
                       </div>
                       <div class="col-2">
@@ -160,12 +160,12 @@
                       <div class="col-2">
                           <span>DISC</span>
                       </div>
-                      <div class="col-2">
+                      <div class="col-3">
                           <span>PRICE</span>
                       </div>
                     </div>
                     <div class="row mat-elevation-z2 item mt-1" *ngFor="let item of items">
-                        <div class="col-5" style="border-left:#673ab7 solid 1px">
+                        <div class="col-4" style="border-left:#673ab7 solid 1px">
                             {{item.item.itemName}}
                         </div>
                         <div class="col-2">
@@ -174,14 +174,23 @@
                         <div class="col-2">
                             {{item.ext.itemDisc}}
                         </div>
-                        <div class="col-2">
-                            20
+                        <div class="col-3">
+                            {{math.computeDisc(item.item.itemPrice, item.ext.itemDisc, item.ext.itemQTY)}}
                         </div>
                         <div class="col-1 pl-1">
-                            <button class="delete" >
+                            <button class="delete" (click)="delete(item)">
                               <clr-icon shape="trash" class="is-solid is-error"></clr-icon>
                             </button>
                         </div>
+                    </div>
+                    <div class="row mt-3" style="text-align: center">
+                      <div class="col-8 bold-1">REFUND TOTAL</div>
+                      <div class="col-3 bold-1">{{refundTotal}}</div>
+                    </div>
+                    <div class="row mt-3">
+                      <div class="col-12">
+                        <button mat-raised-button (click)="refundTrans()" color="warn">REFUND</button>
+                      </div>
                     </div>
                   </div>                  
                 </div>

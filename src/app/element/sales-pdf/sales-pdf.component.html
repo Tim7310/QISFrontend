@@ -164,8 +164,8 @@
   <mat-grid-tile colspan="15" rowspan="2">
     <span class="left bold-1"  >Dollar(USD)</span>
   </mat-grid-tile>
-  <mat-grid-tile colspan="5" rowspan="2">
-    <span>0</span>
+  <mat-grid-tile colspan="5" rowspan="2" class="bold-1">
+    <span>{{usd}}</span>
   </mat-grid-tile>
 
   <mat-grid-tile colspan="15" rowspan="2">
@@ -186,7 +186,7 @@
       <span class="left">Net:</span>
   </mat-grid-tile>
   <mat-grid-tile colspan="5" rowspan="2">
-    <span>{{net}}</span>
+    <span>{{total - at}}</span>
   </mat-grid-tile>
 
 </mat-grid-list>

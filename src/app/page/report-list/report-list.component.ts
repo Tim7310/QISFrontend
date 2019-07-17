@@ -28,7 +28,8 @@ export interface heldTable{
   type    : string,
   biller  : string,
   action  : any,
-  cashier : any
+  cashier : any,
+  color   : string
 }
 export interface Generate{
   value: string;
@@ -121,6 +122,10 @@ export class ReportListComponent implements OnInit {
 
       if(data.length > 0){
       data.forEach(trans => {
+        let color = "black";
+        if(trans.salesType == "refund"){
+          color = "red";
+        }
         let transData : heldTable = {
           id      : trans.transactionId,
           trans   : trans,
@@ -131,7 +136,8 @@ export class ReportListComponent implements OnInit {
           date    : trans.transactionDate,
           biller  : trans.biller,
           action  : "",
-          cashier : ""
+          cashier : "",
+          color   : color
         }
         this.user.getUser(trans.userId)
         .subscribe(user => {

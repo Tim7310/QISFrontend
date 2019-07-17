@@ -24,7 +24,8 @@ export interface heldTable{
   date    : any,
   type    : string,
   biller  : string,
-  action  : any
+  action  : any,
+  color   : string
 }
 /** Constants used to fill up our data base. */
 @Component({
@@ -125,6 +126,11 @@ export class TransactionListComponent implements OnInit {
 
       if(data.length > 0){
       data.forEach(trans => {
+        let color = "black";
+        if(trans.salesType == "refund"){
+          color = "red";
+        }
+
         let transData : heldTable = {
           id      : trans.transactionId,
           patient : undefined,
@@ -133,7 +139,8 @@ export class TransactionListComponent implements OnInit {
           type    : trans.transactionType,
           date    : trans.transactionDate,
           biller  : trans.biller,
-          action  : ""
+          action  : "",
+          color   : color
         }
         this.PS.getOnePatient("getPatient/" + trans.patientId)
         .subscribe( pat => {

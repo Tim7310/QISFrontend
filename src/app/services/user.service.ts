@@ -51,7 +51,7 @@ export class UserService {
       )
     }  
 
-    checkUser(userName: any, password: any):Observable<any>{
+    checkUser(userName: any, password: any, check: boolean = false):Observable<any>{
     const observ = new Observable(observer => {
       this.getUserByName(userName).subscribe( user => {
         let priv = {
@@ -61,7 +61,7 @@ export class UserService {
         }
         if( user.length == 1 ){
           priv.isUser = 1;        
-            if(Md5.init(password) == user[0].userPass){
+            if(Md5.init(password) == user[0].userPass || check === true){
               priv.isPass = 1;
               if(user[0].userStatus == "Y"){
                 priv.isVerify = 1;  

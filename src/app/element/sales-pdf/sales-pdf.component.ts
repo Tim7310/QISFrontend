@@ -20,6 +20,7 @@ export class SalesPdfComponent implements OnInit {
   from: any = "2019-05-25 05:00:00";
   to: any = "2019-06-25 20:00:00";
   total: number = 0;
+  usd: number = 0;
   paidIn: number = 0;
   paidOut: number = 0;
   net: number = 0;
@@ -54,13 +55,19 @@ export class SalesPdfComponent implements OnInit {
     this.TS.getTransactions(url)
     .subscribe(data => {
       data.forEach(trans => {
-        this.total = this.total + trans.grandTotal;
-        this.paidIn = this.paidIn + trans.paidIn;
-        this.paidOut = this.paidOut + trans.paidOut;
+        if(trans.currency == "USD"){
+          this.usd = this.usd + trans.grandTotal;
+        }else{
+          this.total = this.total + trans.grandTotal;
+        
+          this.paidIn = this.paidIn + trans.paidIn;
+          this.paidOut = this.paidOut + trans.paidOut;
+        }
+        
         if(trans.salesType == "sales"){
           this.sales += 1 ;
         }
-        else if(trans.salesType == "return"){
+        else if(trans.salesType == "refund"){
           this.return += 1;
         }
 

@@ -206,8 +206,12 @@ export class RefundComponent implements OnInit {
         this.trans.transactionRef = this.transactionRef;
         this.trans.paidIn = 0;
         this.trans.paidOut = 0;
+        this.trans.grandTotal = 0 - this.trans.grandTotal;
+        this.trans.totalPrice = 0 - this.trans.totalPrice;
         this.trans.userId = parseInt(sessionStorage.getItem("token"));
         this.trans.notes = "Verify by: " + this.cashier.userName;
+        this.trans.transactionDate = this.math.dateNow();
+
         this.items.forEach((item, index) => {
           let _total: total = {
             id          : item.item.itemId,

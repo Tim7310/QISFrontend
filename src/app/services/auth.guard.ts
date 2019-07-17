@@ -10,7 +10,7 @@ import { priv } from './service.interface';
 export class AuthGuard implements  CanActivate{
   userPriv: priv;
   constructor(private user: UserService, private router : Router){ }
-
+ 
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {

@@ -1,4 +1,6 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { UserService } from 'src/app/services/user.service';
+import { AuthGuard } from 'src/app/services/auth.guard';
 
 @Component({
   selector: 'app-authentication',
@@ -9,10 +11,28 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 export class AuthenticationComponent implements OnInit {
 
 
-  constructor() { }
+  constructor(
+    private user: UserService,
+    private auth: AuthGuard
+    ) { 
+      
+    }
 
   ngOnInit() {
-  
+    let userID = parseInt(sessionStorage.getItem('token'));
+      if(userID){
+        this.user.getUser(userID).subscribe(
+          user => {
+            if(user[0]){         
+              this.user.checkUser(user[0].userName, '', true).subscribe(
+                data => {
+
+                }
+              )
+            } 
+          }
+        )
+      }
   }
 
 }

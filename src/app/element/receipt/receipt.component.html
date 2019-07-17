@@ -17,6 +17,9 @@
     </mat-grid-tile>
     <mat-grid-tile colspan="20" rowspan="2">
        <!-- margin -->
+       <span *ngIf="transData?.salesType == 'refund'" class="bold-1 ls-2">
+            REFUND TRANSACTION
+        </span> 
     </mat-grid-tile>
     <mat-grid-tile colspan="6" rowspan="4">
         <span class="right" > 
@@ -110,7 +113,9 @@
     </mat-grid-tile>
     <mat-grid-tile colspan="15" rowspan="3" class="border-top border-bottom">
         <span class="left bold-1"> 
-           Items
+          <span *ngIf="transData?.salesType == 'refund'">
+              Refund
+          </span> Items
         </span>
     </mat-grid-tile>
     <mat-grid-tile colspan="5" rowspan="3" class="border-top border-bottom">
@@ -129,15 +134,17 @@
     </div> -->
     <div class="container-fluid">
         <div class="row pt-1 pb-1" *ngFor="let i of item" style="line-height: 15px;font-size: 13px">
-            <div class="col-10" >
-                <div>
-                    {{i.itemName}}
-                </div>
+            <div class="col-sm-9" >              
+                {{i.item.itemName}}
             </div>
-            <div class="col-2">
+            
+            <div class="col-sm-3">    
+                <div style="font-size: 10px">( A.P ) {{i.item.itemPrice}}</div>          
                 <span *ngIf="transData?.currency == 'PESO'">₱:</span>
                 <span *ngIf="transData?.currency == 'USD'" class="bold-1">$:</span>               
-                {{i.itemPrice}}
+                <span class="bold-1">
+                    {{math.computeDisc(i.item.itemPrice, i.ext.itemDisc, i.ext.itemQTY)}}
+                </span>			
             </div>
         </div>
     </div>
@@ -152,7 +159,7 @@
         <span class="bold-1 "> 
             <span *ngIf="transData?.currency == 'PESO'">₱:</span>
             <span *ngIf="transData?.currency == 'USD'" class="bold-1">$:</span> 
-             {{transData?.totalPrice}}
+             {{transData?.grandTotal}}
         </span>
     </mat-grid-tile>
     <mat-grid-tile colspan="13" rowspan="2">

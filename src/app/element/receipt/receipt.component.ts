@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { MathService } from 'src/app/services/math.service';
 import { TransactionService } from 'src/app/services/transaction.service';
-import { transaction, patient, itemList } from 'src/app/services/service.interface';
+import { transaction, patient, itemList, trans_items } from 'src/app/services/service.interface';
 import { PatientService } from 'src/app/services/patient.service';
 import * as moment from 'moment';
 import { ItemService } from 'src/app/services/item.service';
@@ -17,7 +17,7 @@ export class ReceiptComponent implements OnInit {
   transDetails  : Promise<any>[];
   transData     : transaction;
   patient       : patient;
-  item          : itemList[] = [];
+  item          : trans_items[] = [];
 
   constructor(
     route: ActivatedRoute,
@@ -68,7 +68,7 @@ export class ReceiptComponent implements OnInit {
                         creationDate    : pack[0].creationDate,
                         dateUpdate      : pack[0].dateUpdate,
                       }
-                      this.item.push(iPack);
+                      this.item.push({item: iPack, ext: itemData});
                     }
                   )
                 }else{ 
@@ -76,7 +76,7 @@ export class ReceiptComponent implements OnInit {
                   this.IS.getItemByID(itemData.itemID)
                   .subscribe(
                     itemInfo => {
-                      this.item.push(itemInfo[0]);
+                      this.item.push({item: itemInfo[0], ext: itemData});
                     }
                   )
                 }

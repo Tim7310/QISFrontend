@@ -110,7 +110,7 @@ export class MathService {
 
   dateNow(){
     let d = new DatePipe('en-US');
-    let datenow = d.transform(new Date(),"yyyy-MM-dd hh:mm:ss");
+    let datenow = d.transform(new Date(),"yyyy-MM-dd HH:mm:ss");
     return datenow;
   }
 }

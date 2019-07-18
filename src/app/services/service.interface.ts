@@ -107,13 +107,14 @@ export interface packExt{
     itemID      : number
 }
 export interface user{
-    userID      : number,
+    userID?     : number,
     userName    : string,
     userEmail   : string,
     userPass    : string,
     userStatus  : string,
     tokenCode   : string,
-    _class      : string
+    _class      : string,
+    conPass?    : string
 }
 export interface priv{
      privID?         : number,

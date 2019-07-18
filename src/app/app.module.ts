@@ -81,6 +81,7 @@ import { SigninComponent } from './element/signin/signin.component';
 import { SignupComponent } from './element/signup/signup.component';
 import { PrivErrorComponent } from './page/priv-error/priv-error.component';
 import { RefundComponent } from './page/refund/refund.component';
+import { PendingAccountComponent } from './element/pending-account/pending-account.component';
 
 
 @NgModule({
@@ -113,6 +114,7 @@ import { RefundComponent } from './page/refund/refund.component';
     SignupComponent,
     PrivErrorComponent,
     RefundComponent,
+    PendingAccountComponent,
   ],
   exports: [
     CdkTableModule,

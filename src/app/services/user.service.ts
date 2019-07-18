@@ -51,6 +51,16 @@ export class UserService {
       )
     }  
 
+    addUser(user: user):Observable<any>{
+      return this.http.post<any>(
+        this.global.url+"/addUser",
+        user, this.global.httpOptions)
+      .pipe(
+          retry(1),
+          catchError(this.ehs.handleError)
+      )
+    }
+
     checkUser(userName: any, password: any, check: boolean = false):Observable<any>{
     const observ = new Observable(observer => {
       this.getUserByName(userName).subscribe( user => {
@@ -76,6 +86,8 @@ export class UserService {
                     this.login(user[0].userID, "imaging");
                 }
                 
+              }else{
+
               }             
             }        
         }

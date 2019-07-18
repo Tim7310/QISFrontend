@@ -14,6 +14,7 @@ import { SignupComponent } from './element/signup/signup.component';
 import { AuthGuard } from './services/auth.guard';
 import { PrivErrorComponent } from './page/priv-error/priv-error.component';
 import { RefundComponent } from './page/refund/refund.component';
+import { PendingAccountComponent } from './element/pending-account/pending-account.component';
 
 const routes: Routes = [
   { path: 'print/:ids',
@@ -58,7 +59,7 @@ const routes: Routes = [
     path: 'cashier/refund-exchange',
     component: RefundComponent,
     canActivate: [AuthGuard]
-  },
+  }, 
   {
     path: "authentication",
     component: AuthenticationComponent,
@@ -67,7 +68,12 @@ const routes: Routes = [
       {path: "signin", component: SigninComponent},
       {path: "signup", component: SignupComponent},
     ]
-  },{
+  },
+  {
+    path: 'authentication/pending',
+    component: PendingAccountComponent,
+  },
+  {
     path: "error/privilege", component: PrivErrorComponent
   },
   {

@@ -64,7 +64,7 @@ export class SignupComponent implements OnInit {
     return pass === confirmPass ? null : { notSame: true }     
   }
 
-  upload(){
+  register(){
     let pass = Md5.init(this.signup.controls.userPass.value);
     this.signup.controls.userPass.setValue(pass);
     this.user.addUser(this.signup.value).subscribe(

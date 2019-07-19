@@ -97,7 +97,21 @@ export class MathService {
         // {name: "", route: "", icon: ""},
       ]
     }
+    if(change == "admin"){
+      list = [
+        {name: "Manage User", route: "admin/manage-user", icon: "assignment_ind"},
+      ]
+    }
+    this.navVis.next(true);
     this.navObs.next(list);
+  }
+
+  protected navVis = new Subject<boolean>();
+
+  changeVis = this.navVis.asObservable();
+
+  public navVisibility(change: boolean) {
+    this.navVis.next(change);
   }
 
   computeDisc(price:number, disc: number, qty: number){

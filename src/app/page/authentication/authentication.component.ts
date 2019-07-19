@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { UserService } from 'src/app/services/user.service';
 import { AuthGuard } from 'src/app/services/auth.guard';
+import { MathService } from 'src/app/services/math.service';
 
 @Component({
   selector: 'app-authentication',
@@ -13,9 +14,10 @@ export class AuthenticationComponent implements OnInit {
 
   constructor(
     private user: UserService,
-    private auth: AuthGuard
+    private auth: AuthGuard,
+    private math: MathService
     ) { 
-      
+      this.math.navVisibility(false);
     }
 
   ngOnInit() {

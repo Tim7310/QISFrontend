@@ -50,11 +50,14 @@
         <mat-option *ngFor="let role of roles" [value]="role.value" >
             {{role.value}}
         </mat-option>
+        <mat-error *ngIf="signup.get('_class').hasError('required')">
+            This is required, Please fill out.
+        </mat-error>
         </mat-select>
     </mat-form-field>
     </mat-grid-tile>    
     <mat-grid-tile rowspan="3" colspan="2">
-        <button mat-raised-button (click)="upload()" color="primary" 
+        <button mat-raised-button (click)="register()" color="primary" 
         [disabled]="!signup.valid || userError != undefined" >
             SIGN UP
         </button>

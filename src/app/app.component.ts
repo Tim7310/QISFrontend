@@ -47,7 +47,11 @@ export class AppComponent implements OnDestroy, OnInit{
         this.navLink = data;        
       }
     )
-    
+    this.math.changeVis.subscribe(
+      data => {
+        this.isNav = data;
+      }
+    )
   }
 
   ngOnDestroy(): void {

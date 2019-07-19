@@ -27,6 +27,13 @@ export class UserService {
           catchError(this.ehs.handleError)
       )
     }  
+    verifyUsers(foo: string): Observable<user[]>{
+      return this.http.get<user[]>(this.global.url + "/verifyUser/" + foo)
+      .pipe(
+          retry(1),
+          catchError(this.ehs.handleError)
+      )
+    }  
     getUser(type: number): Observable<user>{
       return this.http.get<user>(this.global.url + "/getUser/" + type)
       .pipe(
@@ -84,10 +91,12 @@ export class UserService {
                     this.login(user[0].userID, "laboratory");
                 }else if(role == "Imaging" || role == "IMAGING"){
                     this.login(user[0].userID, "imaging");
+                }else if(role == "admin" || role == "Admin" || role == "ADMIN"){
+                    this.login(user[0].userID, "admin/manage-user"); 
                 }
                 
               }else{
-
+                this.router.navigate(['authentication/pending']);
               }             
             }        
         }

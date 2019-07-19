@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from 'src/app/services/user.service';
+import { MathService } from 'src/app/services/math.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-pending-account',
@@ -9,8 +11,12 @@ import { UserService } from 'src/app/services/user.service';
 export class PendingAccountComponent implements OnInit {
 
   constructor( 
-    private user : UserService
-  ) { }
+    private user : UserService,
+    private math : MathService,
+    public  route : Router
+  ) {
+    this.math.navVisibility(false);
+   }
 
   ngOnInit() {
     let userID = parseInt(sessionStorage.getItem('token'));
@@ -20,7 +26,7 @@ export class PendingAccountComponent implements OnInit {
             if(user[0]){         
               this.user.checkUser(user[0].userName, '', true).subscribe(
                 data => {
-
+                  
                 }
               )
             } 
@@ -29,4 +35,7 @@ export class PendingAccountComponent implements OnInit {
       }
   }
 
+  redirect(){
+    this.route.navigate(['authentication/signin']);
+  }
 }

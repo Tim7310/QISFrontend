@@ -82,6 +82,9 @@ import { SignupComponent } from './element/signup/signup.component';
 import { PrivErrorComponent } from './page/priv-error/priv-error.component';
 import { RefundComponent } from './page/refund/refund.component';
 import { PendingAccountComponent } from './element/pending-account/pending-account.component';
+import { ManageUserComponent } from './admin/manage-user/manage-user.component';
+import { UserListComponent } from './admin/element/user-list/user-list.component';
+import { UserFormComponent } from './admin/element/user-form/user-form.component';
 
 
 @NgModule({
@@ -115,6 +118,9 @@ import { PendingAccountComponent } from './element/pending-account/pending-accou
     PrivErrorComponent,
     RefundComponent,
     PendingAccountComponent,
+    ManageUserComponent,
+    UserListComponent,
+    UserFormComponent,
   ],
   exports: [
     CdkTableModule,

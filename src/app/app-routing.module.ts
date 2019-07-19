@@ -15,6 +15,7 @@ import { AuthGuard } from './services/auth.guard';
 import { PrivErrorComponent } from './page/priv-error/priv-error.component';
 import { RefundComponent } from './page/refund/refund.component';
 import { PendingAccountComponent } from './element/pending-account/pending-account.component';
+import { ManageUserComponent } from './admin/manage-user/manage-user.component';
 
 const routes: Routes = [
   { path: 'print/:ids',
@@ -72,6 +73,11 @@ const routes: Routes = [
   {
     path: 'authentication/pending',
     component: PendingAccountComponent,
+  },
+  {
+    path: 'admin/manage-user',
+    component: ManageUserComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: "error/privilege", component: PrivErrorComponent

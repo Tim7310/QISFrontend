@@ -1,3 +1,29 @@
-<p>
-  Your Account is not Verified!!!
-</p>
+<mat-grid-list cols="2" rowHeight="100vh" >
+    <mat-grid-tile colspan="2" rowspan="1">
+      <div class="bg" style="background-image: url('../../assets/image/bg-1.jpg')"></div>
+      <div class="bg filter"></div>
+      <!-- <div class="box mat-elevation-z3"></div> -->
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-md-5">
+          </div>
+          <div class="col-md-6 ">
+            <div class="mat-elevation-z3 box">
+              <div class="header">Account is successfuly registered...</div>
+              <div class="subtitle">Please wait for admin verification</div>
+              <div class="redirect">
+                <div class="mb-4 mt-5 pt-5">
+                    You can contact your administrator for further assistance, for now please go to<br>
+                </div>              
+                <button mat-raised-button (click)="redirect()" color="primary">
+                  SIGN IN
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-1">
+          </div>
+        </div>
+      </div>
+    </mat-grid-tile>
+</mat-grid-list>

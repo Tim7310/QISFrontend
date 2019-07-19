@@ -99,6 +99,13 @@ export class AuthGuard implements  CanActivate{
           st = false;
         }
       }
+      if(url.match("/admin/manage-user")){
+        if( priv.admin == 2 ){
+          st = true;
+        }else{
+          st = false;
+        }
+      }
     }
     
 

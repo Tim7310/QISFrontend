@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild, Input } from '@angular/core';
 import { MatTableDataSource, MatPaginator, MatSort, MatDialog, MatSnackBar } from '@angular/material';
 import { user } from 'src/app/services/service.interface';
 import { UserService } from 'src/app/services/user.service';
+import { UserAccessComponent } from '../user-access/user-access.component';
 
 @Component({
   selector: 'user-list',
@@ -45,5 +46,16 @@ export class UserListComponent implements OnInit {
     if (this.dataSource.paginator) {
       this.dataSource.paginator.firstPage();
     }
+  }
+
+  verify(userID: number){
+    const dialogRef = this.dialog.open(UserAccessComponent, {
+      data: userID
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      if(result == "ok"){ 
+
+      }
+    })
   }
 }

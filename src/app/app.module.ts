@@ -85,6 +85,7 @@ import { PendingAccountComponent } from './element/pending-account/pending-accou
 import { ManageUserComponent } from './admin/manage-user/manage-user.component';
 import { UserListComponent } from './admin/element/user-list/user-list.component';
 import { UserFormComponent } from './admin/element/user-form/user-form.component';
+import { UserAccessComponent } from './admin/element/user-access/user-access.component';
 
 
 @NgModule({
@@ -121,6 +122,7 @@ import { UserFormComponent } from './admin/element/user-form/user-form.component
     ManageUserComponent,
     UserListComponent,
     UserFormComponent,
+    UserAccessComponent,
   ],
   exports: [
     CdkTableModule,
@@ -225,9 +227,12 @@ import { UserFormComponent } from './admin/element/user-form/user-form.component
     {provide:MAT_DIALOG_DATA,useValue:{}},
     CreatePackageComponent,
     {provide:MAT_DIALOG_DATA,useValue:{}},
+    UserAccessComponent,
+    {provide:MAT_DIALOG_DATA,useValue:{}},
     ],
   bootstrap: [AppComponent],
   entryComponents: [
+    UserAccessComponent,
     PatientFormComponent,
     ConfirmComponent,
     CompanyFormComponent,

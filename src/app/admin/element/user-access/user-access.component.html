@@ -1,0 +1,68 @@
+<h1 matDialogTitle>USER ACCESS & VERIFICATION</h1>
+<form [formGroup]="access">
+  <mat-dialog-content>
+    <div class=" ls-1 pb-4" style="font-size:12px;">
+        USER NAME: sample | ROLE: CASHIER 
+    </div>
+    <mat-form-field style="width: 150px" class="mr-4">
+      <mat-select placeholder="ACCOUNT CASHIER" formControlName="cashierAccount">
+        <mat-option *ngFor="let lvl of level" [value]="lvl.value">
+          {{lvl.name}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field style="width: 150px">
+      <mat-select placeholder="CASH CASHIER" formControlName="cashierCash">
+        <mat-option *ngFor="let lvl of level" [value]="lvl.value">
+          {{lvl.name}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field><br>
+    <mat-form-field style="width: 150px" class="mr-4">
+      <mat-select placeholder="LABORATORY" formControlName="laboratory">
+        <mat-option *ngFor="let lvl of level" [value]="lvl.value">
+          {{lvl.name}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field style="width: 150px">
+      <mat-select placeholder="IMAGING" formControlName="imaging">
+        <mat-option *ngFor="let lvl of level" [value]="lvl.value">
+          {{lvl.name}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field><br>
+    <mat-form-field style="width: 150px" class="mr-4">
+      <mat-select placeholder="ADMIN" formControlName="admin">
+        <mat-option *ngFor="let lvl of level" [value]="lvl.value">
+          {{lvl.name}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field style="width: 150px" >
+      <mat-select placeholder="MEDICAL / NURSE" formControlName="medical">
+        <mat-option *ngFor="let lvl of level" [value]="lvl.value">
+          {{lvl.name}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field><br>
+    <mat-form-field style="width: 150px" class="mr-4">
+      <mat-select placeholder="DOCTOR" formControlName="doctor">
+        <mat-option *ngFor="let lvl of level" [value]="lvl.value">
+          {{lvl.name}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field style="width: 150px">
+        <mat-select placeholder="QUALITY CONTROL" formControlName="qualityControl">
+          <mat-option *ngFor="let lvl of level" [value]="lvl.value">
+            {{lvl.name}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field><br>
+  </mat-dialog-content>
+</form>
+<mat-dialog-actions class="pb-4">
+  <button mat-button matDialogClose>cancel</button>
+  <button mat-raised-button color="primary" (click)="add()" [disabled]="">VERIFY</button>
+</mat-dialog-actions>

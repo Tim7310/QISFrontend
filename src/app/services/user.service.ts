@@ -67,6 +67,15 @@ export class UserService {
           catchError(this.ehs.handleError)
       )
     }
+    addUserPriv(priv: priv):Observable<any>{
+      return this.http.post<any>(
+        this.global.url+"/addPrivilege",
+        priv, this.global.httpOptions)
+      .pipe(
+          retry(1),
+          catchError(this.ehs.handleError)
+      )
+    }
 
     checkUser(userName: any, password: any, check: boolean = false):Observable<any>{
     const observ = new Observable(observer => {

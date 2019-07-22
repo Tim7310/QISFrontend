@@ -1,7 +1,10 @@
 <div class="container-fluid">
     <div class="row mt-2">
-      <div class="col-8 bold-3 ls-2 p-3">
+      <div class="col-6 bold-3 ls-2 p-3">
         {{title}}
+      </div>
+      <div class="col-2 pt-2">
+        <button mat-raised-button (click)="getData()"><clr-icon shape="refresh"></clr-icon></button>
       </div>
       <div class="col-4">
         <mat-form-field>
@@ -42,7 +45,7 @@
       <ng-container matColumnDef="action">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> ACTION </th>
         <td mat-cell *matCellDef="let row"> 
-          <button mat-mini-fab (click)="updateItem(row.userID)" color="warn" *ngIf="url === 'Y' ">        
+          <button mat-mini-fab (click)="verify(row.userID)" color="warn" *ngIf="url === 'Y' ">        
             <clr-icon shape="pencil" ></clr-icon>
           </button>  
           <button mat-mini-fab (click)="verify(row.userID)" color="primary" *ngIf="url === 'N' ">        

@@ -27,12 +27,7 @@ export class UserListComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.user.verifyUsers(this.url).subscribe(user => {
-      this.dataSource = new MatTableDataSource(user);
-      this.dataSource.paginator = this.paginator;
-      this.dataSource.sort = this.sort;
-    })
-   
+    this.getData();  
   }
   openSnackBar(message: string, action: string) {
     this._snackBar.open(message, action, {
@@ -53,9 +48,26 @@ export class UserListComponent implements OnInit {
       data: userID
     });
     dialogRef.afterClosed().subscribe(result => {
-      if(result == "ok"){ 
-
+      if(result.status == "ok"){ 
+        this.user.updateUserStatus(userID, "Y").subscribe(
+          stat => {
+            if(stat == 1){
+              this.openSnackBar(result.message, result.status);
+              this.getData();
+            }else{
+              this.openSnackBar("Error acquired on updating user Information", "error");
+            }
+          }
+        )        
       }
+    })
+  }
+
+  getData(){
+    this.user.verifyUsers(this.url).subscribe(user => {
+      this.dataSource = new MatTableDataSource(user);
+      this.dataSource.paginator = this.paginator;
+      this.dataSource.sort = this.sort;
     })
   }
 }

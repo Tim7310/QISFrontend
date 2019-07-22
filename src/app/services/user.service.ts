@@ -77,6 +77,26 @@ export class UserService {
       )
     }
 
+    updateUserPriv(priv: priv):Observable<any>{
+      return this.http.post<any>(
+        this.global.url+"/updatePrivilege",
+        priv, this.global.httpOptions)
+      .pipe(
+          retry(1),
+          catchError(this.ehs.handleError)
+      )
+    }
+
+    updateUserStatus(userID: number, status: string):Observable<any>{
+      return this.http.post<any>(
+        this.global.url+"/updateUserStatus",
+        {userID: userID, userStatus: status}, this.global.httpOptions)
+      .pipe(
+          retry(1),
+          catchError(this.ehs.handleError)
+      )
+    }
+
     checkUser(userName: any, password: any, check: boolean = false):Observable<any>{
     const observ = new Observable(observer => {
       this.getUserByName(userName).subscribe( user => {

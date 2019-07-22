@@ -2,7 +2,7 @@
 <form [formGroup]="access">
   <mat-dialog-content>
     <div class=" ls-1 pb-4" style="font-size:12px;">
-        USER NAME: sample | ROLE: CASHIER 
+        USER NAME: {{userValue?.userName}} | ROLE: {{userValue?._class}} 
     </div>
     <mat-form-field style="width: 150px" class="mr-4">
       <mat-select placeholder="ACCOUNT CASHIER" formControlName="cashierAccount">
@@ -64,5 +64,5 @@
 </form>
 <mat-dialog-actions class="pb-4">
   <button mat-button matDialogClose>cancel</button>
-  <button mat-raised-button color="primary" (click)="add()" [disabled]="">VERIFY</button>
+  <button mat-raised-button color="primary" (click)="addPriv()" [disabled]="">VERIFY</button>
 </mat-dialog-actions>

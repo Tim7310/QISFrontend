@@ -47,7 +47,7 @@ export class TransactionListComponent implements OnInit {
   heldData: heldTable[] = [];
   expandedElement: heldTable | null;
 
-  @Input() listType: string = "transactions";
+  @Input() listType: string;
   @Input() transType: string;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -87,14 +87,15 @@ export class TransactionListComponent implements OnInit {
     public dialog : MatDialog,
     private _snackBar : MatSnackBar,
     ) {
-      if(this.listType == "transactions") {
-        this.math.navSubs("cashier");
-      } 
+      
   }
 
   ngOnInit() {
     this.setData(); 
-    
+    if(!this.listType) {
+      this.math.navSubs("cashier");
+      this.listType = "transactions";
+    } 
   }
 
   applyFilter(filterValue: string) {

@@ -16,6 +16,7 @@ import { PrivErrorComponent } from './page/priv-error/priv-error.component';
 import { RefundComponent } from './page/refund/refund.component';
 import { PendingAccountComponent } from './element/pending-account/pending-account.component';
 import { ManageUserComponent } from './admin/manage-user/manage-user.component';
+import { BillingComponent } from './admin/billing/billing.component';
 
 const routes: Routes = [
   { path: 'print/:ids',
@@ -77,6 +78,11 @@ const routes: Routes = [
   {
     path: 'admin/manage-user',
     component: ManageUserComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'admin/billing',
+    component: BillingComponent,
     canActivate: [AuthGuard]
   },
   {

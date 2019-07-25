@@ -106,6 +106,13 @@ export class AuthGuard implements  CanActivate{
           st = false;
         }
       }
+      if(url.match("/admin/billing")){
+        if( priv.admin >= 1 ){
+          st = true;
+        }else{
+          st = false;
+        }
+      }
     }
     
 

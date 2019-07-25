@@ -100,6 +100,7 @@ export class MathService {
     if(change == "admin"){
       list = [
         {name: "Manage User", route: "admin/manage-user", icon: "assignment_ind"},
+        {name: "Billing", route: "admin/billing", icon: "library_books"},
       ]
     }
     this.navVis.next(true);

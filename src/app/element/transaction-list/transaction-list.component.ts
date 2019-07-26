@@ -1,8 +1,8 @@
-import { Component, OnInit, ViewChild, Inject, Input } from '@angular/core';
+import { Component, OnInit, ViewChild, Inject, Input, Output, EventEmitter } from '@angular/core';
 import {MatPaginator} from '@angular/material/paginator';
 import {MatSort} from '@angular/material/sort';
 import {MatTableDataSource} from '@angular/material/table';
-import { transaction, patient, itemList } from 'src/app/services/service.interface';
+import { transaction, patient, itemList, heldTable } from 'src/app/services/service.interface';
 import { TransactionService } from 'src/app/services/transaction.service';
 import { Observable } from 'rxjs';
 import { PatientService } from 'src/app/services/patient.service';
@@ -16,17 +16,7 @@ import { MathService } from 'src/app/services/math.service';
 import { EditHMOComponent } from '../edit-hmo/edit-hmo.component';
 import { MatSnackBar } from '@angular/material';
 
-export interface heldTable{
-  id      : number,
-  patInfo : patient,
-  patient : string,
-  items   : itemList[],
-  date    : any,
-  type    : string,
-  biller  : string,
-  action  : any,
-  color   : string
-}
+
 /** Constants used to fill up our data base. */
 @Component({
   selector: 'transaction-list',
@@ -49,6 +39,7 @@ export class TransactionListComponent implements OnInit {
 
   @Input() listType: string;
   @Input() transType: string;
+  @Output() addTrans = new EventEmitter();
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
@@ -227,5 +218,9 @@ export class TransactionListComponent implements OnInit {
         this.openSnackBar(res.message, res.status);
       }   
     })
+  }
+
+  getTrans(data: heldTable){
+    this.addTrans.emit(data);
   }
 }

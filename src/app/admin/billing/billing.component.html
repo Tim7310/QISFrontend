@@ -1,7 +1,67 @@
 <div class="container-fluid">
   <div class="row">
     <div class="col-md-8">
-      <transaction-list listType="billing"></transaction-list>
+      <transaction-list listType="billing" (addTrans)="getTrans($event)"></transaction-list>
+    </div>
+    <div class="col-md-4">
+      <div style="width: 100%;" class="mat-elevation-z2 p-1">
+        <mat-form-field>
+          <input matInput placeholder="Address" >
+        </mat-form-field>
+        <div style="font-size: 10px;height: 60vh;overflow-y: auto" #scrollMe [scrollTop]="scrollMe.scrollHeight">
+          <div class="container-fluid border-top mat-elevation-z2 mt-2 animated fadeIn " *ngFor="let tran of trans">
+            <div class="row ">
+              <div class="col-3 bold-1">
+                Date
+              </div>
+              <div class="col-3 bold-1">
+                Receipt #
+              </div>
+              <div class="col-3 bold-1">
+                Full Name
+              </div>
+              <div class="col-3 bold-1">
+                Company
+              </div>
+              <!-- values -->
+              <div class="col-3">
+                {{tran.date}}
+              </div>
+              <div class="col-3">
+                {{tran.id}}
+              </div>
+              <div class="col-3">
+                {{tran.patInfo.lastName}}, {{tran.patInfo.firstName}}
+              </div>
+              <div class="col-3">
+                {{tran.biller}}
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-8 bold-1">
+                Procedure
+              </div>
+              <div class="col-2 bold-1">
+                Subtotal
+              </div>
+              <div class="col-2 bold-1">
+                Total
+              </div>
+            </div>
+            <div class="row" *ngFor="let item of tran.items">
+              <div class="col-8">
+                {{item.itemName}}
+              </div>
+              <div class="col-2">
+                  {{item.itemPrice}}
+              </div>
+              <div class="col-2">
+                Total
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>

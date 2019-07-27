@@ -1,15 +1,43 @@
+<form [formGroup]="soa">
 <div class="container-fluid">
   <div class="row">
     <div class="col-md-8">
       <transaction-list listType="billing" (addTrans)="getTrans($event)"></transaction-list>
     </div>
     <div class="col-md-4">
-      <div style="width: 100%;" class="mat-elevation-z2 p-1">
-        <mat-form-field>
-          <input matInput placeholder="Address" >
-        </mat-form-field>
-        <div style="font-size: 10px;height: 60vh;overflow-y: auto" #scrollMe [scrollTop]="scrollMe.scrollHeight">
-          <div class="container-fluid border-top mat-elevation-z2 mt-2 animated fadeIn " *ngFor="let tran of trans">
+      <div style="width: 100%;" class="mat-elevation-z2  mt-3">
+        <div class="bold-2 p-2 ls-1" style="width:100%; text-align: center; background-color: #673ab7;color: white">
+          CREATE SOA
+        </div>
+        <div class="container mt-2">
+          <div class="row">
+            <div class="col-7">
+              <company-select companyURL="getCompany" placeholder="Company List" (selectTrig)="getCompany($event)"
+                [selected]="patCompany">
+              </company-select>
+            </div>
+            <div class="col-5" >
+              <mat-form-field style="width: 100%" >
+                <input matInput placeholder="SOA Code" formControlName="soaCode">
+              </mat-form-field>
+            </div>
+            <div class="col-6">
+              <mat-form-field style="width: 100%">
+                <input matInput placeholder="Address" formControlName="address">
+              </mat-form-field>
+            </div>
+            <div class="col-6">
+                <mat-form-field style="width: 100%">
+                  <input matInput placeholder="Attention" formControlName="attention">
+                </mat-form-field>
+              </div>
+          </div>
+        </div>
+
+
+        <div class="p-2 transCon" #scrollMe [scrollTop]="scrollMe.scrollHeight">
+          <div class="container-fluid border-top mat-elevation-z2 mt-2 animated fadeIn trans"
+            *ngFor="let tran of trans">
             <div class="row ">
               <div class="col-3 bold-1">
                 Date
@@ -48,16 +76,37 @@
                 Total
               </div>
             </div>
-            <div class="row" *ngFor="let item of tran.items">
+            <div class="row" *ngFor="let item of tran.items; let i = index">
               <div class="col-8">
                 {{item.itemName}}
               </div>
               <div class="col-2">
-                  {{item.itemPrice}}
+                {{item.itemPrice}}
               </div>
-              <div class="col-2">
-                Total
+              <div class="col-2" *ngIf="i == 0">
+                {{compTotal(tran.items)}}
               </div>
+            </div>
+            <div class="row mt-1">
+              <div class="col-12">
+                <div class="delete">
+                  <button mat-mini-fab color="warn" style="margin: 0 auto; display: none" class="animated rubberBand"
+                    (click)="delete(tran)">
+                    <clr-icon shape="times"></clr-icon>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="container">
+          <div class="row">
+            <div class="col-12 p-3">
+              <div style="margin: 0 auto; display: block; width: 190px;">
+                  <button mat-button (click)="cancel()">Cancel</button>
+                  <button mat-raised-button color="primary" [disabled]="!soa.valid">Save & Print</button>
+              </div>         
             </div>
           </div>
         </div>
@@ -65,3 +114,4 @@
     </div>
   </div>
 </div>
+</form>

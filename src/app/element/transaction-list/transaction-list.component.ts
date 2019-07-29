@@ -104,7 +104,12 @@ export class TransactionListComponent implements OnInit {
       url = "getTransactionDate/" + 
       this.yearVal.value + "-" + this.monthVal.value + "-01/" + 
       this.yearVal.value + "-" + this.monthVal.value + "-31";
-    }else{
+    }else if(this.transType == "billing"){
+      url = "getTransBillingDate/" + 
+      this.yearVal.value + "-" + this.monthVal.value + "-01/" + 
+      this.yearVal.value + "-" + this.monthVal.value + "-31";
+    }
+    else{
       url = "getTransTypeDate/" + this.transType + "/" +
       this.yearVal.value + "-" + this.monthVal.value + "-01/" + 
       this.yearVal.value + "-" + this.monthVal.value + "-31";

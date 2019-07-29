@@ -3,6 +3,7 @@ import { DatePipe } from '@angular/common';
 import { Router } from '@angular/router';
 import { Subject } from 'rxjs';
 import { navList } from './service.interface';
+import { MatSnackBar } from '@angular/material';
 
 
 @Injectable({
@@ -11,7 +12,8 @@ import { navList } from './service.interface';
 export class MathService {
   isPrinting = false;
   constructor(
-    private router: Router
+    private router: Router,
+    public _snackBar: MatSnackBar
   ) { }
 
   convertDate(date){
@@ -127,5 +129,11 @@ export class MathService {
     let d = new DatePipe('en-US');
     let datenow = d.transform(new Date(),"yyyy-MM-dd HH:mm:ss");
     return datenow;
+  }
+
+  openSnackBar(message: string, action: string) {
+    this._snackBar.open(message, action, {
+      duration: 4000,
+    });
   }
 }

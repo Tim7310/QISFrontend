@@ -17,6 +17,7 @@ import { RefundComponent } from './page/refund/refund.component';
 import { PendingAccountComponent } from './element/pending-account/pending-account.component';
 import { ManageUserComponent } from './admin/manage-user/manage-user.component';
 import { BillingComponent } from './admin/billing/billing.component';
+import { BillingPdfComponent } from './admin/element/billing-pdf/billing-pdf.component';
 
 const routes: Routes = [
   { path: 'print/:ids',
@@ -83,6 +84,10 @@ const routes: Routes = [
   {
     path: 'admin/billing',
     component: BillingComponent,
+    canActivate: [AuthGuard]
+  },{
+    path: 'admin/billing/pdf',
+    component: BillingPdfComponent,
     canActivate: [AuthGuard]
   },
   {

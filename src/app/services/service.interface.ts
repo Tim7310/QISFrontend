@@ -150,5 +150,31 @@ export interface heldTable{
     biller  : string,
     action  : any,
     color   : string
-  }
+}
+
+export interface billing{
+    soaCode     : string,
+    fromDate    : any,
+    toDate      : any,
+    soaDate     : any,
+    transIds    : any,
+    address     : string,
+    companyID   : number,
+    billID?     : number,
+    attention   : string
+}
+
+export interface accPayment{
+    apID?           : number,
+    companyID       : number,
+    transactionID   : number,
+    billID          : number,
+    checkNo         : number,
+    checkDate       : any,
+    paymentDate     : any,
+    debit           : number,
+    paymentCur      : string,
+    bank            : string,
+    paymentType     : string
+}
 

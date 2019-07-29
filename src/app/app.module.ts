@@ -88,6 +88,7 @@ import { UserFormComponent } from './admin/element/user-form/user-form.component
 import { UserAccessComponent } from './admin/element/user-access/user-access.component';
 import { AccountPaymentComponent } from './admin/account-payment/account-payment.component';
 import { BillingComponent } from './admin/billing/billing.component';
+import { BillingPdfComponent } from './admin/element/billing-pdf/billing-pdf.component';
 
 
 @NgModule({
@@ -127,6 +128,7 @@ import { BillingComponent } from './admin/billing/billing.component';
     UserAccessComponent,
     AccountPaymentComponent,
     BillingComponent,
+    BillingPdfComponent,
   ],
   exports: [
     CdkTableModule,

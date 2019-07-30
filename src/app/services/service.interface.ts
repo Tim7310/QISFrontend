@@ -161,7 +161,10 @@ export interface billing{
     address     : string,
     companyID   : number,
     billID?     : number,
-    attention   : string
+    attention   : string,
+    prepared    : string,
+    verified    : string,
+    validated   : string
 }
 
 export interface accPayment{
@@ -176,5 +179,16 @@ export interface accPayment{
     paymentCur      : string,
     bank            : string,
     paymentType     : string
+}
+
+export interface personnel{
+    personnelID?    : number,
+    position        : string,
+    firstName       : string,
+    middleName      : string,
+    lastName        : string,
+    positionEXT     : string,
+    licenseNO       : string,
+    department      : string
 }
 

@@ -1,119 +1,147 @@
 <form [formGroup]="soa">
-<div class="container-fluid">
-  <div class="row">
-    <div class="col-md-8">
-      <transaction-list listType="billing" (addTrans)="getTrans($event)" transType="billing"></transaction-list>
-    </div>
-    <div class="col-md-4">
-      <div style="width: 100%;" class="mat-elevation-z2  mt-3">
-        <div class="bold-2 p-2 ls-1" style="width:100%; text-align: center; background-color: #673ab7;color: white">
-          CREATE SOA
-        </div>
-        <div class="container mt-2">
-          <div class="row">
-            <div class="col-7">
-              <company-select companyURL="getCompany" placeholder="Company List" (selectTrig)="getCompany($event)"
-                [selected]="patCompany">
-              </company-select>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-8">
+        <transaction-list listType="billing" (addTrans)="getTrans($event)" transType="billing"></transaction-list>
+      </div>
+      <div class="col-md-4">
+        <div style="width: 100%;" class="mat-elevation-z2  mt-3">
+          <div class="bold-2 p-2 ls-1" style="width:100%; text-align: center; background-color: #673ab7;color: white">
+            CREATE SOA
+          </div>
+          <div class="p-2 transCon">
+            <div class="container-fluid border-top mat-elevation-z2 mt-2 animated fadeIn trans"
+              *ngFor="let tran of trans.reverse()">
+              <div class="row ">
+                <div class="col-3 bold-1">
+                  Date
+                </div>
+                <div class="col-3 bold-1">
+                  Receipt #
+                </div>
+                <div class="col-3 bold-1">
+                  Full Name
+                </div>
+                <div class="col-3 bold-1">
+                  Company
+                </div>
+                <!-- values -->
+                <div class="col-3">
+                  {{tran.date}}
+                </div>
+                <div class="col-3">
+                  {{tran.id}}
+                </div>
+                <div class="col-3">
+                  {{tran.patInfo.lastName}}, {{tran.patInfo.firstName}}
+                </div>
+                <div class="col-3">
+                  {{tran.biller}}
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-8 bold-1">
+                  Procedure
+                </div>
+                <div class="col-2 bold-1">
+                  Subtotal
+                </div>
+                <div class="col-2 bold-1">
+                  Total
+                </div>
+              </div>
+              <div class="row" *ngFor="let item of tran.items; let i = index">
+                <div class="col-8">
+                  {{item.itemName}}
+                </div>
+                <div class="col-2">
+                  {{item.itemPrice}}
+                </div>
+                <div class="col-2" *ngIf="i == 0">
+                  {{compTotal(tran.items)}}
+                </div>
+              </div>
+              <div class="row mt-1">
+                <div class="col-12">
+                  <div class="delete">
+                    <button mat-mini-fab color="warn" style="margin: 0 auto; display: none" class="animated rubberBand"
+                      (click)="delete(tran)">
+                      <clr-icon shape="times"></clr-icon>
+                    </button>
+                  </div>
+                </div>
+              </div>
             </div>
-            <div class="col-5" >
-              <mat-form-field style="width: 100%" >
-                <input matInput placeholder="SOA Code" formControlName="soaCode">
-              </mat-form-field>
-            </div>
-            <div class="col-6">
-              <mat-form-field style="width: 100%">
-                <input matInput placeholder="Address" formControlName="address">
-              </mat-form-field>
-            </div>
-            <div class="col-6">
+          </div>
+          <div class="container mt-2">
+            <div class="row">
+              <div class="col-7">
+                <company-select companyURL="getCompany" placeholder="Company List" (selectTrig)="getCompany($event)"
+                  [selected]="patCompany">
+                </company-select>
+              </div>
+              <div class="col-5">
+                <mat-form-field style="width: 100%">
+                  <input matInput placeholder="SOA Code" formControlName="soaCode">
+                </mat-form-field>
+              </div>
+              <div class="col-12">
+                <mat-form-field style="width: 100%">
+                  <input matInput placeholder="Address" formControlName="address">
+                </mat-form-field>
+              </div>
+              <div class="col-6">
                 <mat-form-field style="width: 100%">
                   <input matInput placeholder="Attention" formControlName="attention">
                 </mat-form-field>
               </div>
+
+              <div class="col-6">
+                <mat-form-field style="width: 100%">
+                  <mat-select placeholder="Prepared By: " formControlName="prepared">
+                    <mat-option *ngFor="let person of personnel" [value]="person.personnelID">
+                      {{person.firstName}} {{person.middleName}} {{person.lastName}}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+
+              <div class="col-6">
+                <mat-form-field style="width: 100%">
+                  <mat-select placeholder="Verified By" formControlName="verified">
+                    <mat-option *ngFor="let person of personnel" [value]="person.personnelID">
+                      {{person.firstName}} {{person.middleName}} {{person.lastName}}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+
+              <div class="col-6">
+                <mat-form-field style="width: 100%">
+                  <mat-select placeholder="Validated By" formControlName="validated">
+                    <mat-option *ngFor="let person of personnel" [value]="person.personnelID">
+                      {{person.firstName}} {{person.middleName}} {{person.lastName}}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+            </div>
           </div>
-        </div>
 
-
-        <div class="p-2 transCon">
-          <div class="container-fluid border-top mat-elevation-z2 mt-2 animated fadeIn trans"
-            *ngFor="let tran of trans.reverse()">
-            <div class="row ">
-              <div class="col-3 bold-1">
-                Date
-              </div>
-              <div class="col-3 bold-1">
-                Receipt #
-              </div>
-              <div class="col-3 bold-1">
-                Full Name
-              </div>
-              <div class="col-3 bold-1">
-                Company
-              </div>
-              <!-- values -->
-              <div class="col-3">
-                {{tran.date}}
-              </div>
-              <div class="col-3">
-                {{tran.id}}
-              </div>
-              <div class="col-3">
-                {{tran.patInfo.lastName}}, {{tran.patInfo.firstName}}
-              </div>
-              <div class="col-3">
-                {{tran.biller}}
-              </div>
-            </div>
+          <div class="container">
             <div class="row">
-              <div class="col-8 bold-1">
-                Procedure
-              </div>
-              <div class="col-2 bold-1">
-                Subtotal
-              </div>
-              <div class="col-2 bold-1">
-                Total
-              </div>
-            </div>
-            <div class="row" *ngFor="let item of tran.items; let i = index">
-              <div class="col-8">
-                {{item.itemName}}
-              </div>
-              <div class="col-2">
-                {{item.itemPrice}}
-              </div>
-              <div class="col-2" *ngIf="i == 0">
-                {{compTotal(tran.items)}}
-              </div>
-            </div>
-            <div class="row mt-1">
-              <div class="col-12">
-                <div class="delete">
-                  <button mat-mini-fab color="warn" style="margin: 0 auto; display: none" class="animated rubberBand"
-                    (click)="delete(tran)">
-                    <clr-icon shape="times"></clr-icon>
+              <div class="col-12 p-3">
+                <div style="margin: 0 auto; display: block; width: 190px;">
+                  <button mat-button (click)="cancel()">Cancel</button>
+                  <button mat-raised-button color="primary" [disabled]="!soa.valid" (click)="save()">
+                    Save & Print
                   </button>
                 </div>
               </div>
             </div>
           </div>
         </div>
-
-        <div class="container">
-          <div class="row">
-            <div class="col-12 p-3">
-              <div style="margin: 0 auto; display: block; width: 190px;">
-                  <button mat-button (click)="cancel()">Cancel</button>
-                  <button mat-raised-button color="primary" [disabled]="!soa.valid" (click)="save()">
-                    Save & Print
-                  </button>
-              </div>         
-            </div>
-          </div>
-        </div>
       </div>
     </div>
   </div>
-</div>
 </form>

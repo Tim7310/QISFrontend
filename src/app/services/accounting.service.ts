@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { ErrorService } from './error.service';
 import { Global } from '../global.variable';
 import { Observable } from 'rxjs';
-import { billing, accPayment } from './service.interface';
+import { billing, accPayment, personnel } from './service.interface';
 import { retry, catchError } from 'rxjs/operators';
 
 
@@ -37,6 +37,22 @@ export class AccountingService {
       foo = "/bilSC/";
     }
     return this.http.get<billing[]>(this.global.url + foo + id)
+    .pipe(
+        retry(1),
+        catchError(this.ehs.handleError)
+    )
+  }
+
+  getPersonnel(id = ""): Observable<personnel[]>{
+    return this.http.get<personnel[]>(this.global.url + "/getPersonnel/" + id)
+    .pipe(
+        retry(1),
+        catchError(this.ehs.handleError)
+    )
+  }
+
+  getPersonnelDep(type: string): Observable<personnel[]>{
+    return this.http.get<personnel[]>(this.global.url + "/getPersonnelDep/" + type)
     .pipe(
         retry(1),
         catchError(this.ehs.handleError)
@@ -98,6 +114,8 @@ export class AccountingService {
         catchError(this.ehs.handleError)
     )
   }
+
+  
 
 }
 

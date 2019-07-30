@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MathService } from 'src/app/services/math.service';
-import { transData, itemGroup, itemList, company, accPayment, billing } from 'src/app/services/service.interface';
+import { transData, itemGroup, itemList, company, accPayment, billing, personnel } from 'src/app/services/service.interface';
 import { TransactionService } from 'src/app/services/transaction.service';
 import { PatientService } from 'src/app/services/patient.service';
 import { ItemService } from 'src/app/services/item.service';
@@ -19,6 +19,7 @@ import { MatDialog } from '@angular/material';
 export class BillingComponent implements OnInit {
 
   trans : Array<heldTable> = [];
+  personnel : personnel[];
   soa = new FormGroup({
     companyID: new FormControl("",[
       Validators.required,
@@ -32,6 +33,13 @@ export class BillingComponent implements OnInit {
     attention: new FormControl("",[
       Validators.required,
     ]),
+    prepared: new FormControl("",[
+      Validators.required,
+    ]),
+    verified: new FormControl("",[
+      Validators.required,
+    ]),
+    validated: new FormControl(""),
   })
 
 
@@ -44,6 +52,12 @@ export class BillingComponent implements OnInit {
    }
 
   ngOnInit() {
+
+    this.AS.getPersonnelDep("ACC").subscribe(
+      data => {
+        this.personnel = data;
+      }
+    )    
   }
 
   getTrans(value){
@@ -114,7 +128,10 @@ export class BillingComponent implements OnInit {
           transIds    : ids,
           address     : this.soa.controls.address.value,
           companyID   : this.soa.controls.companyID.value,
-          attention   : this.soa.controls.attention.value
+          attention   : this.soa.controls.attention.value,
+          prepared    : this.soa.controls.prepared.value,
+          verified    : this.soa.controls.verified.value,
+          validated   : this.soa.controls.validated.value
         }
         this.AS.addBilling(bill).subscribe( res => {
           if( res == 1 ){

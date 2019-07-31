@@ -102,7 +102,8 @@ export class MathService {
     if(change == "admin"){
       list = [
         {name: "Manage User", route: "admin/manage-user", icon: "assignment_ind"},
-        {name: "Billing", route: "admin/billing", icon: "library_books"},
+        {name: "Billing", route: "admin/billing", icon: "library_add"},
+        {name: "SOA List", route: "admin/soa-list", icon: "library_books"},
       ]
     }
     this.navVis.next(true);

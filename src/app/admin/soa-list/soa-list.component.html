@@ -1,0 +1,62 @@
+<div class="container-fluid">
+    <div class="row mt-2">
+      <div class="col-6 bold-3 ls-2 p-3">
+        SOA LIST
+      </div>
+      <div class="col-6">
+        <mat-form-field style="float: right;width: 100%">
+            <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+        </mat-form-field>
+      </div>
+    </div>
+  </div>
+  
+  <div class="mat-elevation-z2 table-con">
+    <table mat-table [dataSource]="dataSource" matSort>
+  
+      <!-- ID Column -->
+      <ng-container matColumnDef="billID">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> ID </th>
+        <td mat-cell *matCellDef="let row"> {{ row.billID }} </td>
+      </ng-container>
+  
+      <!-- Name Column -->
+      <ng-container matColumnDef="soaCode">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> SOA CODE </th>
+        <td mat-cell *matCellDef="let row"> {{ row.soaCode }} </td>
+      </ng-container>
+  
+      <!-- Type Column -->
+      <ng-container matColumnDef="transIds">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> TRANSACTIONS </th>
+        <td mat-cell *matCellDef="let row"> {{row.transIds}} </td>
+      </ng-container>
+  
+      <!-- Price Column -->
+      <ng-container matColumnDef="prepared">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> PREPARED BY </th>
+        <td mat-cell *matCellDef="let row"> {{row.prepared}} </td>
+      </ng-container>
+  
+      <!-- Action column -->
+      <ng-container matColumnDef="action">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> ACTION </th>
+        <td mat-cell *matCellDef="let row"> 
+          <button mat-mini-fab (click)="updateItem(row.itemId)" color="warn">
+            <clr-icon shape="pencil" ></clr-icon>
+          </button>  
+        </td>
+      </ng-container>
+  
+      <tr mat-header-row *matHeaderRowDef="displayedColumns;sticky: true"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;">
+      </tr>
+    </table>
+  
+    <mat-paginator [pageSizeOptions]="[ 25, 50, 75, 100]" class="mat-paginator-sticky"></mat-paginator>
+  </div>
+  
+  
+  <!-- Copyright 2019 Google Inc. All Rights Reserved.
+      Use of this source code is governed by an MIT-style license that
+      can be found in the LICENSE file at http://angular.io/license -->

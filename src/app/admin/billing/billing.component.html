@@ -6,10 +6,23 @@
       </div>
       <div class="col-md-4">
         <div style="width: 100%;" class="mat-elevation-z2  mt-3">
-          <div class="bold-2 p-2 ls-1" style="width:100%; text-align: center; background-color: #673ab7;color: white">
-            CREATE SOA
+          <div class="bold-2 p-2 ls-1 pl-3" 
+          style="width:100%; background-color: #673ab7;color: white;">
+          <div class="container">
+            <div class="row">
+              <div class="col-6 pt-1">CREATE SOA</div>
+              <div class="col-6">
+                <button mat-raised-button style="float:right" (click)="openList()">SOA List</button>
+              </div>
+            </div>
+          </div>
+            
           </div>
           <div class="p-2 transCon">
+              <div style="line-height: 300px;font-size: 14px; color: grey; text-align: center" 
+              class="ls-1" *ngIf="trans.length == 0">
+                No transaction selected...
+              </div> 
             <div class="container-fluid border-top mat-elevation-z2 mt-2 animated fadeIn trans"
               *ngFor="let tran of trans.reverse()">
               <div class="row ">

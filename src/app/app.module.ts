@@ -89,6 +89,7 @@ import { UserAccessComponent } from './admin/element/user-access/user-access.com
 import { AccountPaymentComponent } from './admin/account-payment/account-payment.component';
 import { BillingComponent } from './admin/billing/billing.component';
 import { BillingPdfComponent } from './admin/element/billing-pdf/billing-pdf.component';
+import { SoaListComponent } from './admin/soa-list/soa-list.component';
 
 
 @NgModule({
@@ -129,6 +130,7 @@ import { BillingPdfComponent } from './admin/element/billing-pdf/billing-pdf.com
     AccountPaymentComponent,
     BillingComponent,
     BillingPdfComponent,
+    SoaListComponent,
   ],
   exports: [
     CdkTableModule,
@@ -235,6 +237,8 @@ import { BillingPdfComponent } from './admin/element/billing-pdf/billing-pdf.com
     {provide:MAT_DIALOG_DATA,useValue:{}},
     UserAccessComponent,
     {provide:MAT_DIALOG_DATA,useValue:{}},
+    SoaListComponent,
+    {provide:MAT_DIALOG_DATA,useValue:{}},
     ],
   bootstrap: [AppComponent],
   entryComponents: [
@@ -246,6 +250,7 @@ import { BillingPdfComponent } from './admin/element/billing-pdf/billing-pdf.com
     EditHMOComponent,
     CreateItemComponent,
     CreatePackageComponent,
+    SoaListComponent
     
   ]
 })

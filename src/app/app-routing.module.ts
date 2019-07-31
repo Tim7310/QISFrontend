@@ -18,6 +18,7 @@ import { PendingAccountComponent } from './element/pending-account/pending-accou
 import { ManageUserComponent } from './admin/manage-user/manage-user.component';
 import { BillingComponent } from './admin/billing/billing.component';
 import { BillingPdfComponent } from './admin/element/billing-pdf/billing-pdf.component';
+import { SoaListComponent } from './admin/soa-list/soa-list.component';
 
 const routes: Routes = [
   { path: 'print/:ids',
@@ -79,6 +80,11 @@ const routes: Routes = [
   {
     path: 'admin/manage-user',
     component: ManageUserComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'admin/soa-list',
+    component: SoaListComponent,
     canActivate: [AuthGuard]
   },
   {

@@ -9,6 +9,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { AccountingService } from 'src/app/services/accounting.service';
 import { ConfirmComponent } from 'src/app/element/confirm/confirm.component';
 import { MatDialog } from '@angular/material';
+import { SoaListComponent } from '../soa-list/soa-list.component';
 
 
 @Component({
@@ -87,6 +88,12 @@ export class BillingComponent implements OnInit {
 
   getCompany(value){
     this.soa.controls.companyID.setValue(value.companyID);
+  }
+
+  openList(){
+    this.dialog.open(SoaListComponent, {
+      width: '80%'
+    })
   }
 
   save(){

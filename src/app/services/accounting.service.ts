@@ -43,7 +43,7 @@ export class AccountingService {
     )
   }
 
-  getPersonnel(id = ""): Observable<personnel[]>{
+  getPersonnel(id: any = ""): Observable<personnel[]>{
     return this.http.get<personnel[]>(this.global.url + "/getPersonnel/" + id)
     .pipe(
         retry(1),

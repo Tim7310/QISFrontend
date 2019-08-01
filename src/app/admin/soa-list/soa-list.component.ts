@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialogRef, MatDialog, MatSnackBar, MatTableDataSource, MatPaginator, MatSort } from '@angular/material';
 import { ItemService } from 'src/app/services/item.service';
-import { billing } from 'src/app/services/service.interface';
+import { billing, transaction, personnel } from 'src/app/services/service.interface';
 import { AccountingService } from 'src/app/services/accounting.service';
 import { TransactionService } from 'src/app/services/transaction.service';
 
@@ -12,8 +12,11 @@ import { TransactionService } from 'src/app/services/transaction.service';
 })
 export class SoaListComponent implements OnInit {
 
-  displayedColumns: string[] = ['billID', 'soaCode', 'transIds', 'prepared', 'action'];
+  displayedColumns: string[] = ['billID', 'soaCode', 'prepared', 'verified', 'soaDate', 'action'];
   dataSource: MatTableDataSource<billing>;
+
+  trans: transaction[];
+  personnel: personnel[];
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
@@ -26,43 +29,16 @@ export class SoaListComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+
+    this.AS.getPersonnel().subscribe(
+      person => {
+        this.personnel = person;
+      }
+    )
+
     let bill: billing;
     let billing: billing[];
     this.AS.getBilling().subscribe(bills => {
-      bills.forEach(data => {
-        bill = {
-          soaCode: data.soaCode,
-          fromDate: data.fromDate,
-          toDate: data.toDate,
-          soaDate: data.soaDate,
-          transIds: data.transIds,
-          address: data.address,
-          companyID: data.companyID,
-          billID: data.billID,
-          attention: data.attention,
-          prepared: data.prepared,
-          verified: data.verified,
-          validated: data.validated,
-          trans: [],
-          personnel: undefined
-        }
-        this.AS.getPersonnel(data.prepared).subscribe(
-          person => {
-            bill.personnel = person[0];
-            let ids = data.transIds.split(",");
-            ids.forEach((id, i) => {
-              this.TS.getOneTrans("getTransaction/" + id).subscribe(
-                transact => bill.trans.push(transact[0])
-              )
-              if (i + 1 == ids.length) {
-
-              }
-            });
-          }
-        )
-
-
-      });
       this.dataSource = new MatTableDataSource(bills);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
@@ -79,8 +55,12 @@ export class SoaListComponent implements OnInit {
   }
 
   getPersonnel(id: number) {
-    let name: string;
-
+    let found = this.personnel.find(person => person.personnelID === id);
+    if(found){
+      return found.firstName + " " + found.middleName + " " + found.lastName;
+    }else{
+      return "";
+    }    
   }
 
 }

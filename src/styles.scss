@@ -83,6 +83,9 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     transaction-list receipt { display: block; }
 
     report-list > * { display: none; }
-    report-list sales-pdf { display: block; }  
+    report-list sales-pdf { display: block; } 
+    
+    app-billing > * { display: none; }
+    app-billing billing-pdf { display: block; } 
   }
   

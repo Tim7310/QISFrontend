@@ -31,6 +31,11 @@ const routes: Routes = [
     component: SalesPdfComponent,
     canActivate: [AuthGuard]
   },
+  { path: 'print/:ids',
+    outlet: 'billing',
+    component: BillingPdfComponent,
+    canActivate: [AuthGuard]
+  },
   {
     path: '', redirectTo: '/cashier/transact', pathMatch: 'full'
   },

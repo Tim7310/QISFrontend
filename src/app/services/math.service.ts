@@ -67,6 +67,14 @@ export class MathService {
       }}]);
   }
 
+  printBilling(documentName: string, documentData: string[]) {
+    this.isPrinting = true;
+    this.router.navigate(['/',
+      { outlets: {
+        'billing': ['print', documentData.join()]
+      }}]);
+  }
+
   onDataReady() {
     setTimeout(() => {
       window.print();
@@ -79,6 +87,14 @@ export class MathService {
       window.print();
       this.isPrinting = false;
       this.router.navigate([{ outlets: { salesReport: null }}]);
+    });
+  }
+
+  onBillingReady() {
+    setTimeout(() => {
+      window.print();
+      this.isPrinting = false;
+      this.router.navigate([{ outlets: { billing: null }}]);
     });
   }
   

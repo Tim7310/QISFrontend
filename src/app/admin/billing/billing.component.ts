@@ -91,9 +91,18 @@ export class BillingComponent implements OnInit {
   }
 
   openList(){
-    this.dialog.open(SoaListComponent, {
+    let dial = this.dialog.open(SoaListComponent, {
       width: '80%'
     })
+
+    dial.afterClosed().subscribe(res => {
+      this.print(res);
+    })
+  }
+
+  print(id){
+    const suffix = [id];
+    this.math.printBilling('', suffix);
   }
 
   save(){

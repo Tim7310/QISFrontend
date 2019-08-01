@@ -20,30 +20,36 @@
         <td mat-cell *matCellDef="let row"> {{ row.billID }} </td>
       </ng-container>
   
-      <!-- Name Column -->
+      <!-- SOA Code Column -->
       <ng-container matColumnDef="soaCode">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> SOA CODE </th>
         <td mat-cell *matCellDef="let row"> {{ row.soaCode }} </td>
       </ng-container>
   
-      <!-- Type Column -->
-      <ng-container matColumnDef="transIds">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> TRANSACTIONS </th>
-        <td mat-cell *matCellDef="let row"> {{row.transIds}} </td>
-      </ng-container>
-  
-      <!-- Price Column -->
+      <!-- Prepared Column -->
       <ng-container matColumnDef="prepared">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> PREPARED BY </th>
-        <td mat-cell *matCellDef="let row"> {{row.prepared}} </td>
+        <td mat-cell *matCellDef="let row"> {{getPersonnel(row.prepared)}} </td>
       </ng-container>
   
+      <!-- Verified Column -->
+      <ng-container matColumnDef="verified">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> VERIFIED BY </th>
+        <td mat-cell *matCellDef="let row"> {{getPersonnel(row.verified)}} </td>
+      </ng-container>
+
+      <!-- Created Date Column -->
+      <ng-container matColumnDef="soaDate">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> CREATED </th>
+        <td mat-cell *matCellDef="let row"> {{row.soaDate}} </td>
+      </ng-container>
+
       <!-- Action column -->
       <ng-container matColumnDef="action">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> ACTION </th>
         <td mat-cell *matCellDef="let row"> 
-          <button mat-mini-fab (click)="updateItem(row.itemId)" color="warn">
-            <clr-icon shape="pencil" ></clr-icon>
+          <button mat-mini-fab (click)="dialogRef.close(row.billID)" color="primary">
+            <clr-icon shape="printer"></clr-icon>
           </button>  
         </td>
       </ng-container>

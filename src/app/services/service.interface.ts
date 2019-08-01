@@ -164,9 +164,7 @@ export interface billing{
     attention   : string,
     prepared    : string,
     verified    : string,
-    validated   : string,
-    trans?      : transaction[],
-    personnel?  : personnel
+    validated   : string
 }
 
 export interface accPayment{

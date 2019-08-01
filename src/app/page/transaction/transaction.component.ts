@@ -282,7 +282,7 @@ export class TransactionComponent implements OnInit{
               }                                   
               this.trans.getOneTrans(url)
               .subscribe(data => {
-                console.log(data);
+                // console.log(data);
                 const suffix = [data[0].transactionId];
                 this.math.printDocument('', suffix);
                 this.cancel();

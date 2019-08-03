@@ -6,6 +6,7 @@ import { transaction, patient, itemList, trans_items } from 'src/app/services/se
 import { PatientService } from 'src/app/services/patient.service';
 import * as moment from 'moment';
 import { ItemService } from 'src/app/services/item.service';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'receipt',
@@ -18,13 +19,14 @@ export class ReceiptComponent implements OnInit {
   transData     : transaction;
   patient       : patient;
   item          : trans_items[] = [];
-
+  cashier       : string;
   constructor(
     route: ActivatedRoute,
-    private math: MathService,
+    public math: MathService,
     private TS: TransactionService,
     private PS: PatientService,
-    private IS: ItemService
+    private IS: ItemService,
+    private user: UserService
   ) {
     this.trans = route.snapshot.params['ids']
       .split(',');
@@ -42,6 +44,12 @@ export class ReceiptComponent implements OnInit {
         data => {
           this.transData = data[0];
           
+          this.user.getUser(data[0].userId).subscribe(
+            user => {
+              this.cashier = user[0].userName;
+            }
+          )
+
           this.PS.getOnePatient("getPatient/" + data[0].patientId)
           .subscribe( pat => {
             this.patient = pat[0];

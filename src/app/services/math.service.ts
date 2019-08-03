@@ -4,6 +4,8 @@ import { Router } from '@angular/router';
 import { Subject } from 'rxjs';
 import { navList } from './service.interface';
 import { MatSnackBar } from '@angular/material';
+import * as moment from 'moment';
+
 
 
 @Injectable({
@@ -119,7 +121,7 @@ export class MathService {
       list = [
         {name: "Manage User", route: "admin/manage-user", icon: "assignment_ind"},
         {name: "Billing", route: "admin/billing", icon: "library_add"},
-        {name: "SOA List", route: "admin/soa-list", icon: "library_books"},
+        {name: "Account Payment", route: "admin/account-payment", icon: "library_books"},
       ]
     }
     this.navVis.next(true);
@@ -152,5 +154,9 @@ export class MathService {
     this._snackBar.open(message, action, {
       duration: 4000,
     });
+  }
+
+  computeAge(dob: any): number{
+    return moment().diff(dob, 'years');
   }
 }

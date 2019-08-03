@@ -48,7 +48,7 @@
     </mat-grid-tile>
     <mat-grid-tile colspan="14" rowspan="2">
         <span class="left bold-1"> 
-            {{patient?.age}}/{{patient?.gender}}
+            {{math.computeAge(patient?.birthdate)}}/{{patient?.gender}}
         </span>
     </mat-grid-tile>
     <mat-grid-tile colspan="6" rowspan="2">
@@ -88,7 +88,7 @@
     </mat-grid-tile>
     <mat-grid-tile colspan="14" rowspan="2">
         <span class="left bold-1"> 
-            {{transData?.userId}}
+            {{cashier}}
         </span>
     </mat-grid-tile>
     <mat-grid-tile colspan="6" rowspan="2">

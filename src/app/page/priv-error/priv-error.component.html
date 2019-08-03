@@ -1,1 +1,31 @@
-<p>Ooops!!! It seems like you're trying to access a page that not allowed by an Admin</p>
+
+<mat-grid-list cols="2" rowHeight="100vh" >
+        <mat-grid-tile colspan="2" rowspan="1">
+          <div class="bg" style="background-image: url('../../assets/image/bg-1.jpg')"></div>
+          <div class="bg filter"></div>
+          <!-- <div class="box mat-elevation-z3"></div> -->
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col-md-5">
+              </div>
+              <div class="col-md-6 ">
+                <div class="mat-elevation-z3 box" style="background-image: url('../../assets/image/403.jpg')">
+                  <div class="header">403</div>
+                  <div class="subtitle">This is a forbidden area!</div>
+                  <div class="redirect">
+                    <div class="mb-4" style="margin-top: 200px">
+                        You can contact your administrator for further assistance, for now please go to<br>
+                    </div>              
+                    <button mat-raised-button (click)="redirect()" >
+                      HOME
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-1">
+              </div>
+            </div>
+          </div>
+        </mat-grid-tile>
+    </mat-grid-list>
+    

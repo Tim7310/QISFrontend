@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { MathService } from 'src/app/services/math.service';
 
 @Component({
   selector: 'app-priv-error',
@@ -7,9 +9,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PrivErrorComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    public  route : Router,
+    private math: MathService
+    ) {
+      this.math.navVisibility(false);
+     }
 
   ngOnInit() {
+    
+  }
+  redirect(){
+    this.route.navigate(['authentication/signin']);
   }
 
+  
 }

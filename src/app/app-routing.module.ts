@@ -88,7 +88,7 @@ const routes: Routes = [
     canActivate: [AuthGuard]
   },
   {
-    path: 'admin/soa-list',
+    path: 'admin/account-payment',
     component: SoaListComponent,
     canActivate: [AuthGuard]
   },

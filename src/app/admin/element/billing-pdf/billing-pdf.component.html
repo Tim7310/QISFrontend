@@ -7,9 +7,12 @@
     <div class="row mt-4">
       <div class="col-7 bold-1"></div>
       <div class="col-5 bold-1 right">{{billing?.soaCode}}</div>
-      <div class="col-7 bold-1">Name of Company: {{billing?.soaCode}}</div>
+      <div class="col-7 bold-1">Name of Company: {{companyName}}</div>
       <div class="col-5 bold-1 right">DATE OF COVERAGE:
-        {{convertDate(billing?.fromDate)}} - {{convertDate(billing?.toDate)}}
+        {{convertDate(billing?.fromDate)}} 
+        <span *ngIf="convertDate(billing?.fromDate) != convertDate(billing?.toDate)">
+            - {{convertDate(billing?.toDate)}}
+        </span>
       </div>
       <div class="col-7 bold-1">Address: {{billing?.address}}</div>
       <div class="col-5 bold-1 right">DATE OF STATEMENT: {{convertDate(billing?.soaDate)}}</div>
@@ -29,11 +32,17 @@
       <div class="row " *ngFor="let t of trans">
         <div class="col-2">{{t.trans.transactionDate}}</div>
         <div class="col-2">{{t.trans.transactionId}}</div>
-        <div class="col-2 bold-1">ALVIZ, MARIA MONIQUE LYN GUILAS</div>
-        <div class="col-2">DEMAND SCIENCE</div>
-        <div class="col-2">DEMAND SCIENCE ( B5 + DT )</div>
-        <div class="col-1">500.00</div>
-        <div class="col-1">500.00</div>
+        <div class="col-2 bold-1">
+          {{t.patient?.lastName}}, {{t.patient?.firstName}} {{t.patient?.middleName}}
+        </div>
+        <div class="col-2">{{t?.trans.biller}}</div>
+        <div class="col-3">
+            <div *ngFor="let item of t.items">
+              {{item?.itemName}}
+              <span style="float: right">{{item?.itemPrice}}</span>
+            </div>
+          </div>
+        <div class="col-1">{{computeTotal(t.items)}}</div>
       </div>
     </div>
     <div class="row mt-4" *ngIf="type == 0">
@@ -47,16 +56,18 @@
     </div>
     <div *ngIf="type == 0">
       <div class="row" *ngFor="let t of trans">
-        <div class="col-2">{{t.trans.transactionDate}}</div>
-        <div class="col-2">{{t.trans.transactionId}}</div>
-        <div class="col-3 bold-1">ALVIZ, MARIA MONIQUE LYN GUILAS</div>
+        <div class="col-2">{{t?.trans.transactionDate}}</div>
+        <div class="col-2">{{t?.trans.transactionId}}</div>
+        <div class="col-3 bold-1">
+          {{t.patient?.lastName}}, {{t.patient?.firstName}} {{t.patient?.middleName}}
+        </div>
         <div class="col-4">
           <div *ngFor="let item of t.items">
-            {{item.itemName}}
-            <span style="float: right">{{item.itemPrice}}</span>
+            {{item?.itemName}}
+            <span style="float: right">{{item?.itemPrice}}</span>
           </div>
         </div>
-        <div class="col-1">500.00</div>
+        <div class="col-1">{{computeTotal(t.items)}}</div>
       </div>
     </div>
     <div class="row">
@@ -66,8 +77,10 @@
     <div class="row">
       <div class="col-7"></div>
       <div class="col-3 bold-1">TOTAL</div>
-      <div class="col-1">500</div>
-      <div class="col-1">500</div>
+      <div class="col-1">
+        <span style="float: right">{{computeTotals(trans)}}</span>
+      </div>
+      <div class="col-1">{{computeTotals(trans)}}</div>
     </div>
     <div class="row">
       <div class="col-8 mt-5">

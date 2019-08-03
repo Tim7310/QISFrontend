@@ -113,7 +113,7 @@ export class AuthGuard implements  CanActivate{
           st = false;
         }
       }
-      if(url.match("/admin/soa-list")){
+      if(url.match("/admin/account-payment")){
         if( priv.admin >= 1 ){
           st = true;
         }else{

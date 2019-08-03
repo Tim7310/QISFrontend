@@ -93,6 +93,12 @@ export class PatientFormComponent implements OnInit {
         this.getRN(this.math.patcheckRef(data)) 
       );
     } 
+    this.patientForm.get("birthdate").valueChanges.subscribe(
+      date => {
+        const bday = this.math.convertDate(date);
+        const age = this.math.computeAge(bday);
+        this.patientForm.get("age").setValue(age);
+    })
   }
   getRN(data){
     this.patientForm.get('patientRef').setValue(data);

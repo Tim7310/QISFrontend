@@ -96,7 +96,10 @@ export class BillingComponent implements OnInit {
     })
 
     dial.afterClosed().subscribe(res => {
-      this.print(res);
+      if(res){
+        this.print(res);
+      }
+      
     })
   }
 

@@ -1,0 +1,22 @@
+<div matDialogTitle>
+  Account Payment<br/>
+  <span *ngIf="billing"  style="font-size: 12px">SOA Code: {{billing?.soaCode}}</span>
+</div>
+<form [formGroup]="payment">
+  <mat-dialog-content>
+      <mat-form-field style="width: 300px">
+        <input matInput cdkFocusInitial
+        placeholder="Payment Amount" 
+        formControlName="debit" >
+      </mat-form-field><br>
+  </mat-dialog-content>
+</form>
+<mat-dialog-actions>
+    <button mat-button matDialogClose>cancel</button>
+    <button mat-raised-button 
+    color      = "primary" 
+    (click)    = "add()"
+    [disabled] = "!payment.valid" 
+    >Add</button>   
+</mat-dialog-actions>
+

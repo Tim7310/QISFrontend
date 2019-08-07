@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { MathService } from 'src/app/services/math.service';
+import { AccountingService } from 'src/app/services/accounting.service';
+import { MatDialog } from '@angular/material';
 
 @Component({
   selector: 'app-account-payment',
@@ -7,9 +10,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AccountPaymentComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    public math : MathService,
+    private AS  : AccountingService,
+    public dialog : MatDialog
+  ) {
+    this.math.navSubs("admin");
+   }
 
   ngOnInit() {
   }
-
 }

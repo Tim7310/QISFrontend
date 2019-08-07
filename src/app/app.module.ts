@@ -91,6 +91,7 @@ import { BillingComponent } from './admin/billing/billing.component';
 import { BillingPdfComponent } from './admin/element/billing-pdf/billing-pdf.component';
 import { SoaListComponent } from './admin/soa-list/soa-list.component';
 import { DatePipe } from '@angular/common';
+import { PaymentComponent } from './admin/element/payment/payment.component';
 
 
 @NgModule({
@@ -132,6 +133,7 @@ import { DatePipe } from '@angular/common';
     BillingComponent,
     BillingPdfComponent,
     SoaListComponent,
+    PaymentComponent,
   ],
   exports: [
     CdkTableModule,
@@ -241,6 +243,8 @@ import { DatePipe } from '@angular/common';
     {provide:MAT_DIALOG_DATA,useValue:{}},
     SoaListComponent,
     {provide:MAT_DIALOG_DATA,useValue:{}},
+    PaymentComponent,
+    {provide:MAT_DIALOG_DATA,useValue:{}},
     ],
   bootstrap: [AppComponent],
   entryComponents: [
@@ -252,7 +256,8 @@ import { DatePipe } from '@angular/common';
     EditHMOComponent,
     CreateItemComponent,
     CreatePackageComponent,
-    SoaListComponent
+    SoaListComponent,
+    PaymentComponent
     
   ]
 })

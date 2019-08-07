@@ -19,6 +19,7 @@ import { ManageUserComponent } from './admin/manage-user/manage-user.component';
 import { BillingComponent } from './admin/billing/billing.component';
 import { BillingPdfComponent } from './admin/element/billing-pdf/billing-pdf.component';
 import { SoaListComponent } from './admin/soa-list/soa-list.component';
+import { AccountPaymentComponent } from './admin/account-payment/account-payment.component';
 
 const routes: Routes = [
   { path: 'print/:ids',
@@ -89,7 +90,7 @@ const routes: Routes = [
   },
   {
     path: 'admin/account-payment',
-    component: SoaListComponent,
+    component: AccountPaymentComponent,
     canActivate: [AuthGuard]
   },
   {

@@ -44,12 +44,22 @@
         <td mat-cell *matCellDef="let row"> {{row.soaDate}} </td>
       </ng-container>
 
+      <!-- Created Date Column -->
+      <ng-container matColumnDef="debit">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> PAID </th>
+        <td mat-cell *matCellDef="let row"> {{getDebit(row.billID)}} </td>
+      </ng-container>
+
       <!-- Action column -->
       <ng-container matColumnDef="action">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> ACTION </th>
         <td mat-cell *matCellDef="let row"> 
-          <button mat-mini-fab (click)="dialogRef.close(row.billID)" color="primary">
+          <button mat-mini-fab (click)="dialogRef.close(row.billID)" color="primary" *ngIf="!type">
             <clr-icon shape="printer"></clr-icon>
+          </button>
+          <button mat-mini-fab (click)="payment(row.billID)" color="primary" 
+          *ngIf="type == 'payment'">
+            <clr-icon shape="wallet"></clr-icon>
           </button>  
         </td>
       </ng-container>

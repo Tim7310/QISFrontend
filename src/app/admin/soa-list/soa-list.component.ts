@@ -1,22 +1,26 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, Input } from '@angular/core';
 import { MatDialogRef, MatDialog, MatSnackBar, MatTableDataSource, MatPaginator, MatSort } from '@angular/material';
 import { ItemService } from 'src/app/services/item.service';
-import { billing, transaction, personnel } from 'src/app/services/service.interface';
+import { billing, transaction, personnel, accPayment } from 'src/app/services/service.interface';
 import { AccountingService } from 'src/app/services/accounting.service';
 import { TransactionService } from 'src/app/services/transaction.service';
+import { PaymentComponent } from '../element/payment/payment.component';
 
 @Component({
-  selector: 'app-soa-list',
+  selector: 'soa-list',
   templateUrl: './soa-list.component.html',
   styleUrls: ['./soa-list.component.scss']
 })
 export class SoaListComponent implements OnInit {
 
-  displayedColumns: string[] = ['billID', 'soaCode', 'prepared', 'verified', 'soaDate', 'action'];
+  displayedColumns: string[] = ['billID', 'soaCode', 'prepared', 'verified', 'soaDate', 'debit', 'action'];
   dataSource: MatTableDataSource<billing>;
 
   trans: transaction[];
   personnel: personnel[];
+  accounting: accPayment[];
+
+  @Input() type;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
@@ -26,9 +30,13 @@ export class SoaListComponent implements OnInit {
     private dialog: MatDialog,
     private AS: AccountingService,
     private TS: TransactionService
-  ) { }
+  ) { 
+  }
 
   ngOnInit() {
+    this.AS.getAccPay().subscribe(acc => {
+      this.accounting = acc;
+    })
 
     this.AS.getPersonnel().subscribe(
       person => {
@@ -63,4 +71,25 @@ export class SoaListComponent implements OnInit {
     }    
   }
 
+  getDebit(id){
+    let found = this.accounting.find(acc => acc.apID === id);
+    if(found){
+      return found.debit;
+    }else{
+      return 0;
+    } 
+  }
+
+  payment(id){
+    let dial = this.dialog.open(PaymentComponent, {
+      data: {id: id, type: 0}
+    })
+
+    dial.afterClosed().subscribe(res => {
+      if(res){
+        
+      }
+      
+    })
+  }
 }

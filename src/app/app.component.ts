@@ -32,8 +32,8 @@ export class AppComponent implements OnDestroy, OnInit{
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
     this.mobileQuery.addListener(this._mobileQueryListener);
     this.fillerNav = [
-      {name: "Cashier", route: ".", icon: "attach_money"},
-      {name: "Laboratory", route: ".", icon: "business_center"},
+      {name: "Cashier", route: "cashier/transact", icon: "attach_money"},
+      {name: "Laboratory", route: "laboratory/microscopy", icon: "business_center"},
       {name: "Imaging", route: ".", icon: "flip"},
       {name: "Quality Control", route: ".", icon: "assignment_ind"},
       {name: "Physical Examination", route: ".", icon: "assessment"},

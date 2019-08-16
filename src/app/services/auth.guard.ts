@@ -120,6 +120,13 @@ export class AuthGuard implements  CanActivate{
           st = false;
         }
       }
+      if(url.match("/laboratory/microscopy")){
+        if( priv.laboratory >= 1 ){
+          st = true;
+        }else{
+          st = false;
+        }
+      }
     }
     
 

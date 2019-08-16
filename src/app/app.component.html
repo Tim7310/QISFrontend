@@ -4,7 +4,7 @@
     <h1 class="app-name">{{title}}</h1>
   <span class="spacer"></span>
   <button *ngFor="let link of navLink" mat-button [routerLink]="link.route">
-    <mat-icon>{{link.icon}}</mat-icon> {{link.name}}
+    <mat-icon *ngIf="link.icon">{{link.icon}}</mat-icon> {{link.name}}
   </button>
   <button mat-icon-button [matMenuTriggerFor]="menu" class="toolbar-icon">
     <mat-icon>account_circle</mat-icon>

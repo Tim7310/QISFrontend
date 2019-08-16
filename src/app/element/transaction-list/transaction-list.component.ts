@@ -15,6 +15,7 @@ import { FormControl } from '@angular/forms';
 import { MathService } from 'src/app/services/math.service';
 import { EditHMOComponent } from '../edit-hmo/edit-hmo.component';
 import { MatSnackBar } from '@angular/material';
+import { PaymentComponent } from 'src/app/admin/element/payment/payment.component';
 
 
 /** Constants used to fill up our data base. */
@@ -104,7 +105,7 @@ export class TransactionListComponent implements OnInit {
       url = "getTransactionDate/" + 
       this.yearVal.value + "-" + this.monthVal.value + "-01/" + 
       this.yearVal.value + "-" + this.monthVal.value + "-31";
-    }else if(this.transType == "billing"){
+    }else if(this.transType == "billing" || this.transType == "accounting"){
       url = "getTransBillingDate/" + 
       this.yearVal.value + "-" + this.monthVal.value + "-01/" + 
       this.yearVal.value + "-" + this.monthVal.value + "-31";
@@ -227,5 +228,18 @@ export class TransactionListComponent implements OnInit {
 
   getTrans(data: heldTable){
     this.addTrans.emit(data);
+  }
+
+  payment(id){
+    let dial = this.dialog.open(PaymentComponent, {
+      data: {id: id, type: 1}
+    })
+
+    dial.afterClosed().subscribe(res => {
+      if(res){
+        this.math.openSnackBar(res.message,res.status);
+      }
+      
+    })
   }
 }

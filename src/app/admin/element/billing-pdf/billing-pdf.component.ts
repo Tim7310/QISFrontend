@@ -54,8 +54,6 @@ export class BillingPdfComponent implements OnInit {
       data => {
         this.IS.getCompanyByID(data[0].companyID).subscribe(
           com => {   
-            console.log(com);
-              
              this.companyName = com[0].nameCompany;
           }
         )

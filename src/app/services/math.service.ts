@@ -124,6 +124,14 @@ export class MathService {
         {name: "Account Payment", route: "admin/account-payment", icon: "library_books"},
       ]
     }
+    if(change == "lab"){
+      list = [
+        {name: "Clinical Microscopy", route: "laboratory/microscopy", icon: ""},
+        {name: "Hematology", route: "laboratory/microscopy", icon: ""},
+        {name: "Chemistry", route: "laboratory/microscopy", icon: ""},
+        {name: "Serology & Toxicology", route: "laboratory/microscopy", icon: ""},
+      ]
+    }
     this.navVis.next(true);
     this.navObs.next(list);
   }

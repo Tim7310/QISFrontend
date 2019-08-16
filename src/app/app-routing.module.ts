@@ -20,6 +20,7 @@ import { BillingComponent } from './admin/billing/billing.component';
 import { BillingPdfComponent } from './admin/element/billing-pdf/billing-pdf.component';
 import { SoaListComponent } from './admin/soa-list/soa-list.component';
 import { AccountPaymentComponent } from './admin/account-payment/account-payment.component';
+import { MicroscopyComponent } from './laboratory/microscopy/microscopy.component';
 
 const routes: Routes = [
   { path: 'print/:ids',
@@ -100,6 +101,11 @@ const routes: Routes = [
   },{
     path: 'admin/billing/pdf',
     component: BillingPdfComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'laboratory/microscopy',
+    component: MicroscopyComponent,
     canActivate: [AuthGuard]
   },
   {

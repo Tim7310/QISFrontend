@@ -92,6 +92,7 @@ import { BillingPdfComponent } from './admin/element/billing-pdf/billing-pdf.com
 import { SoaListComponent } from './admin/soa-list/soa-list.component';
 import { DatePipe } from '@angular/common';
 import { PaymentComponent } from './admin/element/payment/payment.component';
+import { MicroscopyComponent } from './laboratory/microscopy/microscopy.component';
 
 
 @NgModule({
@@ -134,6 +135,7 @@ import { PaymentComponent } from './admin/element/payment/payment.component';
     BillingPdfComponent,
     SoaListComponent,
     PaymentComponent,
+    MicroscopyComponent,
   ],
   exports: [
     CdkTableModule,

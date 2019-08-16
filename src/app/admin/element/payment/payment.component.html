@@ -1,22 +1,51 @@
 <div matDialogTitle>
   Account Payment<br/>
   <span *ngIf="billing"  style="font-size: 12px">SOA Code: {{billing?.soaCode}}</span>
+  <span *ngIf="transaction"  style="font-size: 12px">Transaction No: {{transaction?.transactionId}}</span>
 </div>
 <form [formGroup]="payment">
   <mat-dialog-content>
-      <mat-form-field style="width: 300px">
-        <input matInput cdkFocusInitial
+    <mat-form-field style="width: 150px; margin-right: 20px" >
+      <mat-select placeholder="Payment Type" formControlName="paymentType" cdkFocusInitial>
+        <mat-option value="CASH">
+          CASH
+        </mat-option>
+        <mat-option value="CHECK">
+          CHECK
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field style="width: 130px">
+        <input matInput type="number"
         placeholder="Payment Amount" 
         formControlName="debit" >
-      </mat-form-field><br>
+    </mat-form-field><br>
+    <div *ngIf="payment.controls.paymentType.value == 'CHECK'">
+        <mat-form-field style="width: 140px;margin-right: 20px">
+            <input matInput 
+            placeholder="Check Number" 
+            formControlName="checkNo" >
+        </mat-form-field>
+        <mat-form-field style="width: 140px">
+            <input matInput 
+            placeholder="Bank" 
+            formControlName="bank" >
+        </mat-form-field><br/>
+        <mat-form-field style="width: 300px">
+            <input matInput [matDatepickerFilter]="myFilter" 
+            [matDatepicker]="picker" placeholder="Check Date" formControlName="checkDate">
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field><br/>
+    </div>
   </mat-dialog-content>
 </form>
 <mat-dialog-actions>
     <button mat-button matDialogClose>cancel</button>
     <button mat-raised-button 
     color      = "primary" 
-    (click)    = "add()"
+    (click)    = "pay()"
     [disabled] = "!payment.valid" 
-    >Add</button>   
+    ><clr-icon shape="peso"></clr-icon> Pay</button>   
 </mat-dialog-actions>
 

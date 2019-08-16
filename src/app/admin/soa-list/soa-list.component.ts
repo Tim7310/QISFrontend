@@ -5,6 +5,10 @@ import { billing, transaction, personnel, accPayment } from 'src/app/services/se
 import { AccountingService } from 'src/app/services/accounting.service';
 import { TransactionService } from 'src/app/services/transaction.service';
 import { PaymentComponent } from '../element/payment/payment.component';
+import { __values } from 'tslib';
+import { MathService } from 'src/app/services/math.service';
+import { FormControl } from '@angular/forms';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'soa-list',
@@ -19,6 +23,10 @@ export class SoaListComponent implements OnInit {
   trans: transaction[];
   personnel: personnel[];
   accounting: accPayment[];
+  
+  d = new DatePipe('en-US');
+  monthVal  : FormControl = new FormControl(this.d.transform(new Date(),"MM"));
+  yearVal   : FormControl = new FormControl(this.d.transform(new Date(),"yyyy"));
 
   @Input() type;
 
@@ -27,6 +35,7 @@ export class SoaListComponent implements OnInit {
 
   constructor(
     public dialogRef: MatDialogRef<SoaListComponent>,
+    private math: MathService,
     private dialog: MatDialog,
     private AS: AccountingService,
     private TS: TransactionService
@@ -34,6 +43,8 @@ export class SoaListComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.monthVal.disable();
+    this.yearVal.disable();
     this.AS.getAccPay().subscribe(acc => {
       this.accounting = acc;
     })
@@ -43,15 +54,15 @@ export class SoaListComponent implements OnInit {
         this.personnel = person;
       }
     )
+   this.getbillData();
+  }
 
-    let bill: billing;
-    let billing: billing[];
+  getbillData(){
     this.AS.getBilling().subscribe(bills => {
       this.dataSource = new MatTableDataSource(bills);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
     })
-
   }
 
   applyFilter(filterValue: string) {
@@ -87,7 +98,7 @@ export class SoaListComponent implements OnInit {
 
     dial.afterClosed().subscribe(res => {
       if(res){
-        
+        this.math.openSnackBar(res.message,res.status);
       }
       
     })

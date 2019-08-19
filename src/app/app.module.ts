@@ -93,6 +93,8 @@ import { SoaListComponent } from './admin/soa-list/soa-list.component';
 import { DatePipe } from '@angular/common';
 import { PaymentComponent } from './admin/element/payment/payment.component';
 import { MicroscopyComponent } from './laboratory/microscopy/microscopy.component';
+import { MicroscopyFormComponent } from './laboratory/microscopy-form/microscopy-form.component';
+import { PatientInfoComponent } from './laboratory/patient-info/patient-info.component';
 
 
 @NgModule({
@@ -136,6 +138,8 @@ import { MicroscopyComponent } from './laboratory/microscopy/microscopy.componen
     SoaListComponent,
     PaymentComponent,
     MicroscopyComponent,
+    MicroscopyFormComponent,
+    PatientInfoComponent,
   ],
   exports: [
     CdkTableModule,

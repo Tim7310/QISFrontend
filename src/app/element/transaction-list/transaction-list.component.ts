@@ -16,6 +16,7 @@ import { MathService } from 'src/app/services/math.service';
 import { EditHMOComponent } from '../edit-hmo/edit-hmo.component';
 import { MatSnackBar } from '@angular/material';
 import { PaymentComponent } from 'src/app/admin/element/payment/payment.component';
+import { Router, ActivatedRouteSnapshot, ActivatedRoute } from '@angular/router';
 
 
 /** Constants used to fill up our data base. */
@@ -32,6 +33,8 @@ import { PaymentComponent } from 'src/app/admin/element/payment/payment.componen
   ],
 })
 export class TransactionListComponent implements OnInit {
+
+  private snapshot: ActivatedRouteSnapshot;
 
   displayedColumns: string[] = ['id', 'date', 'type', 'patient', 'biller', 'action'];
   dataSource: MatTableDataSource<heldTable>;
@@ -77,6 +80,8 @@ export class TransactionListComponent implements OnInit {
     private IS    : ItemService,
     private math  : MathService,
     public dialog : MatDialog,
+    private router: Router,
+    public state : ActivatedRoute,
     private _snackBar : MatSnackBar,
     ) {
       
@@ -241,5 +246,12 @@ export class TransactionListComponent implements OnInit {
       }
       
     })
+  }
+  labNavigate(id){
+    this.snapshot = this.state.snapshot;    
+    this.router.navigate([this.snapshot.routeConfig.path + "/form", id]);
+  }
+  checkMicroscopy(){
+    
   }
 }

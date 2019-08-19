@@ -82,7 +82,7 @@
             <clr-icon shape="printer"></clr-icon>
           </button>
           <button mat-mini-fab (click)="payment(row.billID)" color="primary" 
-          *ngIf="type == 'payment'"  matTooltip="account payment">
+          *ngIf="type == 'payment' && row.companyID"  matTooltip="account payment">
             <clr-icon shape="wallet"></clr-icon>
           </button>  
         </td>

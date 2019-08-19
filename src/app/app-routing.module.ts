@@ -21,6 +21,7 @@ import { BillingPdfComponent } from './admin/element/billing-pdf/billing-pdf.com
 import { SoaListComponent } from './admin/soa-list/soa-list.component';
 import { AccountPaymentComponent } from './admin/account-payment/account-payment.component';
 import { MicroscopyComponent } from './laboratory/microscopy/microscopy.component';
+import { MicroscopyFormComponent } from './laboratory/microscopy-form/microscopy-form.component';
 
 const routes: Routes = [
   { path: 'print/:ids',
@@ -106,6 +107,11 @@ const routes: Routes = [
   {
     path: 'laboratory/microscopy',
     component: MicroscopyComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'laboratory/microscopy/form/:id',
+    component: MicroscopyFormComponent,
     canActivate: [AuthGuard]
   },
   {

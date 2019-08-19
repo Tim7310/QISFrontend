@@ -67,11 +67,13 @@ export class PaymentComponent implements OnInit {
       this.TS.getOneTrans("getTransaction/" + this.data.id).subscribe(
         data => {
           this.transaction = data[0];
-          this.IS.getCompany("getCompanyName/" + data[0].biller).subscribe(
-            com => {
-              this.payment.controls.companyID.setValue(com[0].companyID);
-            }
-          )
+          if(data[0].biller){
+            this.IS.getCompany("getCompanyName/" + data[0].biller).subscribe(
+              com => {
+                this.payment.controls.companyID.setValue(com[0].companyID);
+              }
+            )
+          }     
         }
       )
     }

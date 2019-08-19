@@ -15,6 +15,7 @@ export class AuthGuard implements  CanActivate{
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
       let url: string = state.url; 
+      
       if(this.verifyLogin(url)){
       let userID = parseInt(sessionStorage.getItem("token"))
       this.user.getUserPriv(userID)

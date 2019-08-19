@@ -7,7 +7,12 @@
   <div class="container-fluid">
     <div class="row">
       <div class="col-12 bold-3 ls-2 p-3">
-           TRANSACTION LIST
+          <span *ngIf="listType == 'transactions' || listType == 'HMO' || listType == 'accounting'">
+            TRANSACTION LIST
+          </span> 
+          <span *ngIf="listType == 'microscopy'">
+              MICROSCOPY LIST
+            </span>
       </div>
       <div class="col-md-7">
           <!-- <span class="bold-2 ls-1 mr-3">Filter by DATE: </span> -->
@@ -74,9 +79,13 @@
                   ADD
                 </button>
                 <button mat-mini-fab (click)="payment(element['id'])" color="primary" 
-                *ngIf="listType == 'accounting'"  matTooltip="account payment">
+                *ngIf="listType == 'accounting' && element['biller']"  matTooltip="account payment">
                   <clr-icon shape="wallet"></clr-icon>
                 </button> 
+                <button mat-raised-button (click)="labNavigate(element['id'])" color="primary" 
+                *ngIf="listType == 'microscopy'"  >
+                  ADD
+                </button>
               </div>   
         </td>
         

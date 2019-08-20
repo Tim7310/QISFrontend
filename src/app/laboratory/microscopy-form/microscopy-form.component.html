@@ -2,8 +2,259 @@
 <div class="container">
   <div class="row">
     <div class="header mt-1 ls-2">
+        <span class="bold-2">C</span>LI<span class="bold-2">N</span>ICAL
         <span class="bold-2">M</span>ICRO<span class="bold-2">S</span>COPY 
-        <span class="bold-2">F</span>ORM
     </div>
   </div>
+
+  <div class="row">
+      <div class="col-12 bold-1">Complete Urinalysis</div>
+      <div class="col-md-3 mt-2">
+        <div class="row mt-2">
+          <div class="bold-1 p-3 des">
+            <div class="bold-1 title pl-2 pr-2">Physical/Macroscopic</div>
+            <mat-form-field class="col">
+              <mat-label>Color</mat-label>
+              <mat-select name="item">
+                <mat-option value=""> - </mat-option>
+                <mat-option *ngFor="let uc of urineColor" [value]="uc">
+                  {{uc}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+            <mat-form-field class="col">
+              <mat-label>Transparency</mat-label>
+              <mat-select name="item">
+                <mat-option value=""> - </mat-option>
+                <mat-option *ngFor="let ut of urineTransparency" [value]="ut">
+                  {{ut}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>   
+            <mat-form-field class="col">
+                <textarea matInput placeholder="Other Notes" style="height:153px;"></textarea>
+            </mat-form-field>
+          </div>
+        </div>  
+      </div>
+
+      <div class="col-md-5 mt-2">
+        <div class="row mt-2 ml-1">
+          <div class="bold-1 p-3 des">
+            <div class="bold-1 title pl-2 pr-2">Urine Chemical</div>
+            <mat-form-field class="col-6">
+              <mat-label>pH</mat-label>
+              <mat-select name="item">
+                <mat-option value=""> - </mat-option>
+                <mat-option *ngFor="let ph of ucpH" [value]="ph">
+                  {{ph}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+            <mat-form-field class="col-6">
+              <mat-label>Sp. Gravity</mat-label>
+              <mat-select name="item">
+                <mat-option value=""> - </mat-option>
+                <mat-option *ngFor="let spg of ucSPG" [value]="spg">
+                  {{spg}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field> 
+            <mat-form-field class="col-6">
+              <mat-label>Protein</mat-label>
+              <mat-select name="item">
+                <mat-option value=""> - </mat-option>
+                <mat-option *ngFor="let uc of ucValue" [value]="uc">
+                  {{uc}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>  
+            <mat-form-field class="col-6">
+              <mat-label>Glucose</mat-label>
+              <mat-select name="item">
+                <mat-option value=""> - </mat-option>
+                <mat-option *ngFor="let uc of ucValue" [value]="uc">
+                  {{uc}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>  
+            <mat-form-field class="col-6">
+              <mat-label>Leukocyte Esterase</mat-label>
+              <mat-select name="item">
+                <mat-option value=""> - </mat-option>
+                <mat-option *ngFor="let uc of ucValue" [value]="uc">
+                  {{uc}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>  
+            <mat-form-field class="col-6">
+              <mat-label>Nitrite</mat-label>
+              <mat-select name="item">
+                <mat-option value=""> - </mat-option>
+                <mat-option *ngFor="let uc of ucValue" [value]="uc">
+                  {{uc}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>  
+            <mat-form-field class="col-6">
+              <mat-label>Urobilinogen</mat-label>
+              <mat-select name="item">
+                <mat-option value=""> - </mat-option>
+                <mat-option *ngFor="let uc of ucValue" [value]="uc">
+                  {{uc}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>  
+            <mat-form-field class="col-6">
+              <mat-label>Blood</mat-label>
+              <mat-select name="item">
+                <mat-option value=""> - </mat-option>
+                <mat-option *ngFor="let uc of ucValue" [value]="uc">
+                  {{uc}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>  
+            <mat-form-field class="col-6">
+              <mat-label>Ketone</mat-label>
+              <mat-select name="item">
+                <mat-option value=""> - </mat-option>
+                <mat-option *ngFor="let uc of ucValue" [value]="uc">
+                  {{uc}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>  
+            <mat-form-field class="col-6">
+              <mat-label>Bilirubin</mat-label>
+              <mat-select name="item">
+                <mat-option value=""> - </mat-option>
+                <mat-option *ngFor="let uc of ucValue" [value]="uc">
+                  {{uc}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>  
+          </div>
+        </div>  
+      </div>
+
+      <div class="col-md-4 mt-2">
+          <div class="row mt-2 ml-1">
+            <div class="bold-1 p-3 des">
+              <div class="bold-1 title pl-2 pr-2">Microscopic</div>
+              <div class="row">
+                <div class="col-6">
+                  <mat-form-field class="col">
+                    <input matInput placeholder="RBC" value="">
+                  </mat-form-field>
+                </div>
+                <div class="col-3 mt-4">/hpf</div>
+                <div class="col-3 mt-4">0-3</div>
+              </div>
+              <div class="row">
+                <div class="col-6">
+                  <mat-form-field class="col">
+                    <input matInput placeholder="WBC" value="">
+                  </mat-form-field>
+                </div>
+                <div class="col-3 mt-4">/hpf</div>
+                <div class="col-3 mt-4">0-5</div>
+              </div>
+                <mat-form-field class="col-6">
+                  <mat-label>E.Cells</mat-label>
+                  <mat-select name="item">
+                    <mat-option value=""> - </mat-option>
+                    <mat-option *ngFor="let mv of microscopicVal" [value]="mv">
+                      {{mv}}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>  
+                <mat-form-field class="col-6">
+                  <mat-label>M.Threads</mat-label>
+                  <mat-select name="item">
+                    <mat-option value=""> - </mat-option>
+                    <mat-option *ngFor="let mv of microscopicVal" [value]="mv">
+                      {{mv}}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>  
+                <mat-form-field class="col-6">
+                  <mat-label>Bacteria</mat-label>
+                  <mat-select name="item">
+                    <mat-option value=""> - </mat-option>
+                    <mat-option *ngFor="let mv of microscopicVal" [value]="mv">
+                      {{mv}}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>  
+                <mat-form-field class="col-6">
+                  <mat-label>Amorphous</mat-label>
+                  <mat-select name="item">
+                    <mat-option value=""> - </mat-option>
+                    <mat-option *ngFor="let mv of microscopicVal" [value]="mv">
+                      {{mv}}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>  
+                <mat-form-field class="col">
+                  <mat-label>CaOX</mat-label>
+                  <mat-select name="item">
+                    <mat-option value=""> - </mat-option>
+                    <mat-option *ngFor="let mv of microscopicVal" [value]="mv">
+                      {{mv}}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>  
+            </div>
+          </div>  
+        </div>
+  </div>
+  <div class="row mb-2">
+    <div class="col-md-6 mt-2">
+      <div class="row mt-2">
+        <div class="bold-1 p-3 des">
+          <div class="bold-1 title pl-2 pr-2">Fecalysis</div>
+          <div class="row">
+            <div class="col-6">
+              <mat-form-field class="col">
+                <mat-label>Color</mat-label>
+                <mat-select name="item">
+                  <mat-option value=""> - </mat-option>
+                  <mat-option *ngFor="let fc of fecColor" [value]="fc">
+                    {{fc}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+              <mat-form-field class="col">
+                <mat-label>Consistency</mat-label>
+                <mat-select name="item">
+                  <mat-option value=""> - </mat-option>
+                  <mat-option *ngFor="let cons of fecCons" [value]="cons">
+                    {{cons}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>  
+            </div>
+            <div class="col-6">
+                <mat-form-field class="col">
+                    <textarea matInput placeholder="Other Notes" style="height:87px;"></textarea>
+                </mat-form-field>
+            </div>
+          </div>
+          <mat-form-field class="col">
+            <input matInput placeholder="Microscopic Findings" value="">
+          </mat-form-field>
+        </div>
+      </div>  
+    </div>
+    <div class="col-md-3 mt-2">
+      <div class="row mt-2 ml-1">
+        <div class="bold-1 p-3 des">
+          <div class="bold-1 title pl-2 pr-2">Pregnancy Test</div>       
+          <mat-form-field class="col">
+              <input matInput placeholder="Pregnancy Test Result" value="">
+          </mat-form-field>
+        </div>
+      </div>  
+    </div>
+  </div>
+  
 </div>

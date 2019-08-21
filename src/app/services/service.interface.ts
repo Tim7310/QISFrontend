@@ -192,3 +192,52 @@ export interface personnel{
     department      : string
 }
 
+export interface microscopy{
+    microID? : any,
+    transactionID: number,
+    patientID: number,
+    pathID: number,
+    medID: number,
+    qualityID: number,
+    creationDate: any,
+    dateUpdate: any,
+
+    uriColor: any,
+    uriTrans: any,
+    uriOt: any,
+
+    uriPh: any,
+    uriSp: any,
+    uriPro: any,
+    uriGlu: any,
+    le: any,
+    nit: any,
+    uro: any,
+    bld: any,
+    ket: any,
+    bil: any,
+
+    rbc: any,
+    wbc: any,
+    ecells: any,
+    mthreads: any,
+    bac: any,
+    amorph: any,
+    coAx: any,
+
+    fecColor: any,
+    fecCon: any,
+    fecMicro: any,
+    fecOt: any,
+
+    pregTest: any,
+
+    occultBLD: any,
+
+    afbva1: any,
+    afbva2: any,
+    afbr1: any,
+    afbr2: any,
+    afbd: any
+}
+

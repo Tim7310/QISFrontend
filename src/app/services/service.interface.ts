@@ -241,3 +241,14 @@ export interface microscopy{
     afbd: any
 }
 
+export interface medtech{
+    personnelID? : number,
+    position: any,
+    lastName: any,
+    firstName: any,
+    middleName: any,
+    department: any,
+    licenseNO: any,
+    positionEXT: any
+}
+

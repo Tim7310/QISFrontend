@@ -17,6 +17,7 @@ import { EditHMOComponent } from '../edit-hmo/edit-hmo.component';
 import { MatSnackBar } from '@angular/material';
 import { PaymentComponent } from 'src/app/admin/element/payment/payment.component';
 import { Router, ActivatedRouteSnapshot, ActivatedRoute } from '@angular/router';
+import { LaboratoryService } from 'src/app/services/laboratory.service';
 
 
 /** Constants used to fill up our data base. */
@@ -35,6 +36,8 @@ import { Router, ActivatedRouteSnapshot, ActivatedRoute } from '@angular/router'
 export class TransactionListComponent implements OnInit {
 
   private snapshot: ActivatedRouteSnapshot;
+
+  laboratory: any[] = [];
 
   displayedColumns: string[] = ['id', 'date', 'type', 'patient', 'biller', 'action'];
   dataSource: MatTableDataSource<heldTable>;
@@ -79,9 +82,10 @@ export class TransactionListComponent implements OnInit {
     private PS    : PatientService,
     private IS    : ItemService,
     private math  : MathService,
+    private lab   : LaboratoryService,
     public dialog : MatDialog,
     private router: Router,
-    public state : ActivatedRoute,
+    public state  : ActivatedRoute,
     private _snackBar : MatSnackBar,
     ) {
       
@@ -129,6 +133,17 @@ export class TransactionListComponent implements OnInit {
 
       if(data.length > 0){
       data.forEach(trans => {
+
+        if(this.listType == "microscopy"){
+            this.lab.getMicroscopy(trans.transactionId).subscribe(
+              micro => {
+                if(micro[0]){
+                  this.laboratory.push(micro[0]);
+                }
+              }
+            )
+        }
+
         let color = "black";
         if(trans.salesType == "refund"){
           color = "red";
@@ -251,7 +266,13 @@ export class TransactionListComponent implements OnInit {
     this.snapshot = this.state.snapshot;    
     this.router.navigate([this.snapshot.routeConfig.path + "/form", id]);
   }
-  checkMicroscopy(){
-    
+
+  checkLab(id): boolean{
+    let found = this.laboratory.find(lab => lab.transactionID === id);
+    if(found){
+      return true;
+    }else{
+      return false;
+    }
   }
 }

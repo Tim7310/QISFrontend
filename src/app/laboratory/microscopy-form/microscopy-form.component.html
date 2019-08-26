@@ -1,9 +1,11 @@
-<patient-info id="1570"></patient-info>
+<patient-info [id]="id" class="sticky-top"></patient-info>
 <form [formGroup]="micro">
   <div class="container">
     <div class="row">
       <div class="header mt-1 ls-2">
-        <span class="bold-2">C</span>LI<span class="bold-2">N</span>ICAL
+        <span *ngIf="update"><span class="bold-2">U</span>P<span class="bold-2">D</span>ATE</span>
+        <span *ngIf="!update"><span class="bold-2">A</span>DD</span>
+        <span class="bold-2"> C</span>LI<span class="bold-2">N</span>ICAL
         <span class="bold-2">M</span>ICRO<span class="bold-2">S</span>COPY
       </div>
     </div>
@@ -258,7 +260,7 @@
               <div class="bold-1 p-3 des">
                 <div class="bold-1 title pl-2 pr-2">Pregnancy Test</div>
                 <mat-form-field class="col">
-                  <input matInput placeholder="Result" formControlName="fecMicro">
+                  <input matInput placeholder="Result" formControlName="pregTest">
                 </mat-form-field>
               </div>
             </div>
@@ -320,6 +322,7 @@
         </div>
       </div>
     </div>
+    <!-- lab pesonnel -->
     <div class="row mb-4">
       <div class="col-md-12 mt-2">
         <div class="row mt-2">
@@ -327,14 +330,32 @@
             <div class="bold-1 title pl-2 pr-2">Laboratory Personnel</div>
             <mat-form-field class="col-3">
               <!-- Get from transaction biller -->
-              <input matInput placeholder="Clinician/Walk-In">
+              <input matInput placeholder="Clinician/Walk-In" [value]="transaction?.biller" disabled>
             </mat-form-field>
             <mat-form-field class="col-3">
-              <mat-label>Result</mat-label>
-              <mat-select formControlName="fecMicro">
+              <mat-label>Medical Technologist</mat-label>
+              <mat-select formControlName="medID">
                 <mat-option value=""> - </mat-option>
-                <mat-option *ngFor="let m of medtech" [value]="m">
-                  {{f}}
+                <mat-option *ngFor="let m of medtech" [value]="m.personnelID">
+                  {{m.lastName}}, {{m.firstName}}{{middleName}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+            <mat-form-field class="col-3">
+              <mat-label>Quality Control</mat-label>
+              <mat-select formControlName="qualityID">
+                <mat-option value=""> - </mat-option>
+                <mat-option *ngFor="let m of medtech" [value]="m.personnelID">
+                  {{m.lastName}}, {{m.firstName}}{{middleName}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+            <mat-form-field class="col-3">
+              <mat-label>Pathologist</mat-label>
+              <mat-select formControlName="pathID">
+                <mat-option value=""> - </mat-option>
+                <mat-option *ngFor="let m of medtech" [value]="m.personnelID">
+                  {{m.lastName}}, {{m.firstName}}{{middleName}}
                 </mat-option>
               </mat-select>
             </mat-form-field>
@@ -342,5 +363,9 @@
         </div>
       </div>
     </div>
+  </div>
+  <div class="mx-auto" style="width: 65px;">
+    <button mat-raised-button color="primary" class="mb-3" (click)="addMicro()" *ngIf="!update">ADD</button>
+    <button mat-raised-button color="accent" class="mb-3" (click)="updateMicro()" *ngIf="update">UPDATE</button>
   </div>
 </form>

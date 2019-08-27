@@ -82,22 +82,27 @@
                 *ngIf="listType == 'accounting' && element['biller']"  matTooltip="account payment">
                   <clr-icon shape="wallet"></clr-icon>
                 </button> 
-                <div *ngIf="!checkLab(element['id'])">
-                  <button mat-mini-fab (click)="labNavigate(element['id'])" color="primary" 
-                  *ngIf="listType == 'microscopy' "  matTooltip="Add Data">
-                    <clr-icon shape="plus"></clr-icon>
-                  </button>
+
+                <!-- microscopy action -->
+                <div *ngIf="listType == 'microscopy'">
+                  <div *ngIf="!checkLab(element['id'])">
+                    <button mat-mini-fab (click)="labNavigate(element['id'])" color="primary" 
+                    *ngIf="listType == 'microscopy' "  matTooltip="Add Data">
+                      <clr-icon shape="plus"></clr-icon>
+                    </button>
+                  </div>
+                  <div *ngIf="checkLab(element['id'])">
+                    <button mat-mini-fab (click)="labNavigate(element['id'])" color="accent" 
+                    *ngIf="listType == 'microscopy'"  matTooltip="Update Data" class="mr-2">
+                    <clr-icon shape="sync"></clr-icon>
+                    </button>
+                    <button mat-mini-fab (click)="labNavigate(element['id'])" color="primary" 
+                    *ngIf="listType == 'microscopy'"  matTooltip="Print Result">
+                    <clr-icon shape="printer"></clr-icon>
+                    </button>
+                  </div>
                 </div>
-                <div *ngIf="checkLab(element['id'])">
-                  <button mat-mini-fab (click)="labNavigate(element['id'])" color="accent" 
-                  *ngIf="listType == 'microscopy'"  matTooltip="Update Data" class="mr-2">
-                  <clr-icon shape="download"></clr-icon>
-                  </button>
-                  <button mat-mini-fab (click)="labNavigate(element['id'])" color="primary" 
-                  *ngIf="listType == 'microscopy'"  matTooltip="Print Result">
-                  <clr-icon shape="printer"></clr-icon>
-                  </button>
-                </div>
+
               </div>   
         </td>
         

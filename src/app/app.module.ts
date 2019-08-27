@@ -95,6 +95,12 @@ import { PaymentComponent } from './admin/element/payment/payment.component';
 import { MicroscopyComponent } from './laboratory/microscopy/microscopy.component';
 import { MicroscopyFormComponent } from './laboratory/microscopy-form/microscopy-form.component';
 import { PatientInfoComponent } from './laboratory/patient-info/patient-info.component';
+import { LabResultComponent } from './laboratory/lab-result/lab-result.component';
+import { MicroscopyResultComponent } from './laboratory/lab-result/microscopy-result/microscopy-result.component';
+import { HematologyResultComponent } from './laboratory/lab-result/hematology-result/hematology-result.component';
+import { ChemistryResultComponent } from './laboratory/lab-result/chemistry-result/chemistry-result.component';
+import { SerologyyResultComponent } from './laboratory/lab-result/serologyy-result/serologyy-result.component';
+import { ToxicologyResultComponent } from './laboratory/lab-result/toxicology-result/toxicology-result.component';
 
 
 @NgModule({
@@ -140,6 +146,12 @@ import { PatientInfoComponent } from './laboratory/patient-info/patient-info.com
     MicroscopyComponent,
     MicroscopyFormComponent,
     PatientInfoComponent,
+    LabResultComponent,
+    MicroscopyResultComponent,
+    HematologyResultComponent,
+    ChemistryResultComponent,
+    SerologyyResultComponent,
+    ToxicologyResultComponent,
   ],
   exports: [
     CdkTableModule,

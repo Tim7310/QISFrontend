@@ -101,6 +101,8 @@ import { HematologyResultComponent } from './laboratory/lab-result/hematology-re
 import { ChemistryResultComponent } from './laboratory/lab-result/chemistry-result/chemistry-result.component';
 import { SerologyyResultComponent } from './laboratory/lab-result/serologyy-result/serologyy-result.component';
 import { ToxicologyResultComponent } from './laboratory/lab-result/toxicology-result/toxicology-result.component';
+import { LabHeaderComponent } from './laboratory/lab-result/lab-header/lab-header.component';
+import { LabFooterComponent } from './laboratory/lab-result/lab-footer/lab-footer.component';
 
 
 @NgModule({
@@ -152,6 +154,8 @@ import { ToxicologyResultComponent } from './laboratory/lab-result/toxicology-re
     ChemistryResultComponent,
     SerologyyResultComponent,
     ToxicologyResultComponent,
+    LabHeaderComponent,
+    LabFooterComponent,
   ],
   exports: [
     CdkTableModule,

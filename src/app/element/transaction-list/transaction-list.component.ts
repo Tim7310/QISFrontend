@@ -275,4 +275,9 @@ export class TransactionListComponent implements OnInit {
       return false;
     }
   }
+
+  labRes(value = '1566'){
+    const suffix = [value, "microscopy"];
+    this.math.printLab('', suffix);
+  }
 }

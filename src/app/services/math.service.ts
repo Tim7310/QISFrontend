@@ -77,6 +77,14 @@ export class MathService {
       }}]);
   }
 
+  printLab(documentName: string, documentData: string[]) {
+    this.isPrinting = true;
+    this.router.navigate(['/',
+      { outlets: {
+        'lab': ['print', documentData.join()]
+      }}]);
+  }
+
   onDataReady() {
     setTimeout(() => {
       window.print();
@@ -97,6 +105,14 @@ export class MathService {
       window.print();
       this.isPrinting = false;
       this.router.navigate([{ outlets: { billing: null }}]);
+    });
+  }
+
+  onLabReady() {
+    setTimeout(() => {
+      window.print();
+      this.isPrinting = false;
+      this.router.navigate([{ outlets: { lab: null }}]);
     });
   }
   

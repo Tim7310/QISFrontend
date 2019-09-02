@@ -82,6 +82,7 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   @media print {
     transaction-list > * { display: none; }
     transaction > * { display: none; }
+
     transaction receipt { display: block; }
     transaction-list receipt { display: block; }
 
@@ -90,5 +91,7 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     
     app-billing > * { display: none; }
     app-billing billing-pdf { display: block; } 
+
+    transaction-list lab-result { display: block; }
   }
   

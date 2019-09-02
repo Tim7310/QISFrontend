@@ -22,6 +22,7 @@ import { SoaListComponent } from './admin/soa-list/soa-list.component';
 import { AccountPaymentComponent } from './admin/account-payment/account-payment.component';
 import { MicroscopyComponent } from './laboratory/microscopy/microscopy.component';
 import { MicroscopyFormComponent } from './laboratory/microscopy-form/microscopy-form.component';
+import { LabResultComponent } from './laboratory/lab-result/lab-result.component';
 
 const routes: Routes = [
   { path: 'print/:ids',
@@ -37,6 +38,11 @@ const routes: Routes = [
   { path: 'print/:ids',
     outlet: 'billing',
     component: BillingPdfComponent,
+    canActivate: [AuthGuard]
+  },
+  { path: 'print/:ids',
+    outlet: 'lab',
+    component: LabResultComponent,
     canActivate: [AuthGuard]
   },
   {

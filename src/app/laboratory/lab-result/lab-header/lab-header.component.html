@@ -1,0 +1,62 @@
+<div class="col-md-14" style="margin-top: 5px;padding: 5px">
+	<img src="../../../../assets/image/QPDHeader.jpg" height="100px" width="100%">
+</div>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-2 bold-1 ls-1">
+      Name:
+    </div>
+    <div class="col-5">
+      {{patient?.lastName}}, {{patient?.firstName}} {{patient?.middleName}}
+    </div>
+    <div class="col-2 bold-1 ls-1">
+      Lab Number:
+    </div>
+    <div class="col-3">
+        {{transaction?.transactionId}}
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-2 bold-1 ls-1">
+      Gender:
+    </div>
+    <div class="col-2">
+      {{patient?.gender}}
+    </div>
+    <div class="col-1 bold-1 ls-1">
+      Age:
+    </div>
+    <div class="col-2">
+      {{patient?.age}}
+    </div>
+    <div class="col-2 bold-1 ls-1">
+      QuestID:
+    </div>
+    <div class="col-3">
+      {{patient?.patientID}}
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-2 bold-1 ls-1">
+      Referred by:
+    </div>
+    <div class="col-5">
+      {{patient?.companyName}}
+    </div>
+  </div>
+  <div class="row date mt-1">
+    <div class="col-4">
+      <span class="bold-1 ls-1">Date Received: &nbsp;&nbsp;</span> 
+      <span class="line">{{transaction?.transactionDate}}</span>
+    </div>
+    <div class="col-4">
+      <span class="bold-1 ls-1">Reported: &nbsp;&nbsp;</span>
+      <span class="line">{{createdDate}}</span>
+    </div>
+    <div class="col-4">
+      <span class="bold-1 ls-1">Printed: &nbsp;&nbsp;</span> 
+      <span class="line">{{math.getDateNow()}}</span>
+    </div>
+  </div>
+</div>
+

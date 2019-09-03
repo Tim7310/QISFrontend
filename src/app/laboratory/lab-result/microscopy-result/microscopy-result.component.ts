@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-microscopy-result',
+  selector: 'microscopy-result',
   templateUrl: './microscopy-result.component.html',
   styleUrls: ['./microscopy-result.component.scss']
 })

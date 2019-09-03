@@ -1,3 +1,38 @@
-<p>
-  lab-footer works!
-</p>
+<div class="container">
+  <span style="font-size: 12px;">Note: Specimen rechecked, result/s verified.</span>
+  <div class="row p-3 pt-4 border m-1">
+    <div class="col-4">
+      <div class="underline">
+          <div class="med">{{mt.firstName}} {{mt.middleName}} {{mt.lastName}}, {{mt.positionEXT}}</div>
+          <div class="lic">LIC NO. {{mt.licenseNO}}</div>
+      </div>
+    </div>
+    <div class="col-4">
+      <div class="underline">
+          <div class="med">{{qc.firstName}} {{qc.middleName}} {{qc.lastName}}, {{qc.positionEXT}}</div>
+          <div class="lic">LIC NO. {{mt.licenseNO}}</div>
+      </div>
+    </div>
+    <div class="col-4">
+      <div class="underline">
+          <div class="sig">
+              <img src="../../../../assets/image/Emil_Sig.png" width="100%">
+            </div>
+          <div class="med">{{path.firstName}} {{path.middleName}} {{path.lastName}}, {{path.positionEXT}}</div>
+          <div class="lic">LIC NO. {{mt.licenseNO}}</div>
+      </div>
+    </div>
+    <div class="col-4 label">
+        Registered Medical Technologist
+    </div>
+    <div class="col-4 label">
+        Quality Control
+    </div>
+    <div class="col-4 label">
+        Pathologist
+    </div>
+  </div>
+</div>
+<div class="col-md-14" style="margin-top: 5px;padding: 5px">
+	<img src="../../../../assets/image/QISFooter.png" height="50px" width="100%">
+</div>

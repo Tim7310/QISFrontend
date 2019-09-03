@@ -18,7 +18,15 @@ export class LaboratoryService {
   ) { }
 
   getMedtech():Observable<medtech[]>{
-    return this.http.get<medtech[]>(this.global.url+"/getPersonnelDep/LAB")
+    return this.http.get<medtech[]>( this.global.url+"/getPersonnelDep/LAB" )
+    .pipe(
+        retry(1),
+        catchError(this.ehs.handleError)
+    )
+  }
+
+  getPersonnel( id: number):Observable<medtech[]>{
+    return this.http.get<medtech[]>( this.global.url+"/getPersonnel/" + id )
     .pipe(
         retry(1),
         catchError(this.ehs.handleError)

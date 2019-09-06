@@ -183,4 +183,12 @@ export class MathService {
   computeAge(dob: any): number{
     return moment().diff(dob, 'years');
   }
+
+  hideRes(res): boolean{
+    if(res == "" || res == "N/A" || res == "null" || res == null || res == undefined){
+      return false;
+    }else{
+      return true;
+    }
+  }
 }

@@ -1,5 +1,5 @@
-<div style="height: 8.7in">
-    <div class="container-fluid">
+<div style="height: 8.6in" class="ml-2 mr-1">
+    <div class="container">
         <div class="row">
             <div class="col-12">
                 <div class="bold-1 mt-2">CLINICAL MICROSCOPY</div>
@@ -7,7 +7,7 @@
         </div>
         <!-- left side -->
         <div class="row">
-            <div class="col-6">
+            <div class="col-6" *ngIf="math.hideRes(microscopy?.uriColor)">
                 <div class="row">
                     <div class="col-12 label-1">
                         Complete Urinalysis
@@ -18,7 +18,7 @@
                         <span class="r-label">Color</span>
                     </div>
                     <div class="col-3 r-text">
-                        <span>STRAW</span>
+                        <span>{{microscopy?.uriColor}}</span>
                     </div>
                 </div>
                 <div class="row">
@@ -26,7 +26,7 @@
                         <span class="r-label">Transparency</span>
                     </div>
                     <div class="col-3 r-text">
-                        <span>CLEAR</span>
+                        <span>{{microscopy?.uriTrans}}</span>
                     </div>
                 </div>
                 <div class="row">
@@ -39,7 +39,7 @@
                         <span class="r-label">pH</span>
                     </div>
                     <div class="col-3 r-text">
-                        <span>5.0</span>
+                        <span>{{microscopy?.uriPh}}</span>
                     </div>
                 </div>
                 <div class="row">
@@ -47,7 +47,7 @@
                         <span class="r-label">Specific Gravity</span>
                     </div>
                     <div class="col-3 r-text">
-                        <span>1.010</span>
+                        <span>{{microscopy?.uriSp}}</span>
                     </div>
                 </div>
                 <div class="row">
@@ -55,7 +55,7 @@
                         <span class="r-label">Protein</span>
                     </div>
                     <div class="col-3 r-text">
-                        <span>NEGATIVE</span>
+                        <span>{{microscopy?.uriPro}}</span>
                     </div>
                 </div>
                 <div class="row">
@@ -63,7 +63,7 @@
                         <span class="r-label">Glucose</span>
                     </div>
                     <div class="col-3 r-text">
-                        <span>Negative</span>
+                        <span>{{microscopy?.uriGlu}}</span>
                     </div>
                 </div>
                 <div class="row">
@@ -71,7 +71,7 @@
                         <span class="r-label">Leukocyte Esterase</span>
                     </div>
                     <div class="col-3 r-text">
-                        <span></span>
+                        <span>{{microscopy?.uriColor}}</span>
                     </div>
                 </div>
                 <div class="row">
@@ -79,7 +79,7 @@
                         <span class="r-label">Nitrite</span>
                     </div>
                     <div class="col-3 r-text">
-                        <span>1.010</span>
+                        <span>{{microscopy?.nit}}</span>
                     </div>
                 </div>
                 <div class="row">
@@ -87,7 +87,7 @@
                         <span class="r-label">Urobilinogen</span>
                     </div>
                     <div class="col-3 r-text">
-                        <span>1.010 mg/dl</span>
+                        <span>{{microscopy?.uro}}</span>
                     </div>
                     <div class="col-4 n-value">
                         mg/dl 0.2~0.9
@@ -98,7 +98,7 @@
                         <span class="r-label">Blood</span>
                     </div>
                     <div class="col-3 r-text">
-                        <span>1.010</span>
+                        <span>{{microscopy?.bld}}</span>
                     </div>
                 </div>
                 <div class="row">
@@ -106,7 +106,7 @@
                         <span class="r-label">Ketone</span>
                     </div>
                     <div class="col-3 r-text">
-                        <span>1.010</span>
+                        <span>{{microscopy?.ket}}</span>
                     </div>
                 </div>
                 <div class="row">
@@ -114,7 +114,7 @@
                         <span class="r-label">Bilirubin</span>
                     </div>
                     <div class="col-3 r-text">
-                        <span>1.010</span>
+                        <span>{{microscopy?.bil}}</span>
                     </div>
                 </div>
             </div>
@@ -129,7 +129,7 @@
                         <span class="r-label">RBC</span>
                     </div>
                     <div class="col-3 r-text">
-                        <span>0-1</span>
+                        <span>{{microscopy?.rbc}}</span>
                     </div>
                     <div class="col-4 n-value">
                         /hpf 0~3
@@ -140,10 +140,178 @@
                         <span class="r-label">WBC</span>
                     </div>
                     <div class="col-3 r-text">
-                        <span>0-2</span>
+                        <span>{{microscopy?.wbc}}</span>
                     </div>
                     <div class="col-4 n-value">
                         /hpf 0~5
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-5">
+                        <span class="r-label">E.Cells</span>
+                    </div>
+                    <div class="col-3 r-text">
+                        <span>{{microscopy?.ecells}}</span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-5">
+                        <span class="r-label">M.Threads</span>
+                    </div>
+                    <div class="col-3 r-text">
+                        <span>{{microscopy?.mthreads}}</span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-5">
+                        <span class="r-label">Amorphous</span>
+                    </div>
+                    <div class="col-3 r-text">
+                        <span>{{microscopy?.amorph}}</span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-5">
+                        <span class="r-label">CoAx</span>
+                    </div>
+                    <div class="col-3 r-text">
+                        <span>{{microscopy?.coAx}}</span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-5">
+                        <span class="r-label">Bacteria</span>
+                    </div>
+                    <div class="col-3 r-text">
+                        <span>1.010</span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-5">
+                        <span class="r-label">Other Notes:</span>
+                    </div>
+                    <div class="col-6 r-text">
+                        <span>{{microscopy?.uriOt}}</span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <div class="row">
+                            <div class="col-12 label-1">
+                                Routine Fecalysis
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-6">
+                                <span class="r-label">Color</span>
+                            </div>
+                            <div class="col-5 r-text">
+                                <span>{{microscopy?.fecColor}}</span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-6">
+                                <span class="r-label">Consistency</span>
+                            </div>
+                            <div class="col-5 r-text">
+                                <span>{{microscopy?.fecCon}}</span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-6">
+                                <span class="r-label">Microscopic Findings</span>
+                            </div>
+                            <div class="col-5 r-text">
+                                <span>{{microscopy?.fecMicro}}</span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-5">
+                                <span class="r-label">Other Notes:</span>
+                            </div>
+                            <div class="col-6 r-text">
+                                <span>{{microscopy?.fecOt}}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <div class="row">
+                    <div class="col-12 label-1">
+                        Pregnancy Test
+                    </div>
+                    <div class="col-3">
+                        <span class="r-label">Result</span>
+                    </div>
+                    <div class="col-3 r-text">
+                        <span>{{microscopy?.pregTest}}</span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 label-1">
+                        Occult Blood Test
+                    </div>
+                    <div class="col-3">
+                        <span class="r-label">Result</span>
+                    </div>
+                    <div class="col-3 r-text">
+                        <span>{{microscopy?.occultBLD}}</span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 label-1">
+                        Acid - Fast Bacilli ( AFB )
+                    </div>
+                    <div class="col-12">
+                        <div class="row">
+                            <div class="col-3">
+                                <span class="r-label">Visual Appearance</span>
+                            </div>
+                            <div class="col-1">
+                                SPEC 1
+                            </div>
+                            <div class="col-2 r-text">
+                                <span>{{microscopy?.afbva1}}</span>
+                            </div>
+                            <div class="col-1">
+                                SPEC 2
+                            </div>
+                            <div class="col-2 r-text">
+                                <span>{{microscopy?.afbva2}}</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="row">
+                            <div class="col-3">
+                                <span class="r-label">Reading</span>
+                            </div>
+                            <div class="col-1">
+                                SPEC 1
+                            </div>
+                            <div class="col-2 r-text">
+                                <span>{{microscopy?.afbr1}}</span>
+                            </div>
+                            <div class="col-1">
+                                SPEC 2
+                            </div>
+                            <div class="col-2 r-text">
+                                <span>{{microscopy?.afbr2}}</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="row">
+                            <div class="col-4">
+                                <span class="r-label">Diagnosis</span>
+                            </div>
+                            <div class="col-5 r-text">
+                                {{microscopy?.fecOt}}
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

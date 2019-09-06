@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { microscopy } from 'src/app/services/service.interface';
+import { MathService } from 'src/app/services/math.service';
 
 @Component({
   selector: 'microscopy-result',
@@ -6,10 +8,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./microscopy-result.component.scss']
 })
 export class MicroscopyResultComponent implements OnInit {
+  
+  @Input() microscopy: microscopy;
 
-  constructor() { }
+  constructor(
+   public math: MathService
+  ) { }
 
   ngOnInit() {
+    
   }
 
 }

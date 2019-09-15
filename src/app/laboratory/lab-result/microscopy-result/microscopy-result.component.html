@@ -194,7 +194,7 @@
                         <span>{{microscopy?.uriOt}}</span>
                     </div>
                 </div>
-                <div class="row">
+                <div class="row" *ngIf="math.hideRes(microscopy?.fecColor)">
                     <div class="col-12">
                         <div class="row">
                             <div class="col-12 label-1">
@@ -239,7 +239,7 @@
         </div>
         <div class="row">
             <div class="col-12">
-                <div class="row">
+                <div class="row" *ngIf="math.hideRes(microscopy?.pregTest)">
                     <div class="col-12 label-1">
                         Pregnancy Test
                     </div>
@@ -250,8 +250,8 @@
                         <span>{{microscopy?.pregTest}}</span>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-12 label-1">
+                <div class="row" *ngIf="math.hideRes(microscopy?.occultBLD)">
+                    <div class="col-12 label-1" >
                         Occult Blood Test
                     </div>
                     <div class="col-3">
@@ -261,7 +261,7 @@
                         <span>{{microscopy?.occultBLD}}</span>
                     </div>
                 </div>
-                <div class="row">
+                <div class="row" *ngIf="math.hideRes(microscopy?.Diagnosis)">
                     <div class="col-12 label-1">
                         Acid - Fast Bacilli ( AFB )
                     </div>

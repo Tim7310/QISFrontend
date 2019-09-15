@@ -23,6 +23,8 @@ import { AccountPaymentComponent } from './admin/account-payment/account-payment
 import { MicroscopyComponent } from './laboratory/microscopy/microscopy.component';
 import { MicroscopyFormComponent } from './laboratory/microscopy-form/microscopy-form.component';
 import { LabResultComponent } from './laboratory/lab-result/lab-result.component';
+import { HematologyComponent } from './laboratory/hematology/hematology.component';
+import { HematologyFormComponent } from './laboratory/hematology-form/hematology-form.component';
 
 const routes: Routes = [
   { path: 'print/:ids',
@@ -118,6 +120,16 @@ const routes: Routes = [
   {
     path: 'laboratory/microscopy/form/:id',
     component: MicroscopyFormComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'laboratory/hematology',
+    component: HematologyComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'laboratory/hematology/form/:id',
+    component: HematologyFormComponent,
     canActivate: [AuthGuard]
   },
   {

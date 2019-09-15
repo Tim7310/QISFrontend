@@ -143,7 +143,7 @@ export class MathService {
     if(change == "lab"){
       list = [
         {name: "Clinical Microscopy", route: "laboratory/microscopy", icon: ""},
-        {name: "Hematology", route: "laboratory/microscopy", icon: ""},
+        {name: "Hematology", route: "laboratory/hematology", icon: ""},
         {name: "Chemistry", route: "laboratory/microscopy", icon: ""},
         {name: "Serology & Toxicology", route: "laboratory/microscopy", icon: ""},
       ]

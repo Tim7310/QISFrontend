@@ -1,13 +1,13 @@
 import { Component, OnInit, ViewChild, Inject, Input, Output, EventEmitter } from '@angular/core';
-import {MatPaginator} from '@angular/material/paginator';
-import {MatSort} from '@angular/material/sort';
-import {MatTableDataSource} from '@angular/material/table';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
+import { MatTableDataSource } from '@angular/material/table';
 import { transaction, patient, itemList, heldTable } from 'src/app/services/service.interface';
 import { TransactionService } from 'src/app/services/transaction.service';
 import { Observable } from 'rxjs';
 import { PatientService } from 'src/app/services/patient.service';
 import { ItemService } from 'src/app/services/item.service';
-import { MatDialog} from '@angular/material/dialog';
+import { MatDialog } from '@angular/material/dialog';
 import { ConfirmComponent } from '../confirm/confirm.component';
 import { trigger, state, style, transition, animate } from '@angular/animations';
 import { DatePipe } from '@angular/common';
@@ -27,8 +27,8 @@ import { LaboratoryService } from 'src/app/services/laboratory.service';
   styleUrls: ['./transaction-list.component.scss'],
   animations: [
     trigger('detailExpand', [
-      state('collapsed', style({height: '0px', minHeight: '0'})),
-      state('expanded', style({height: '*'})),
+      state('collapsed', style({ height: '0px', minHeight: '0' })),
+      state('expanded', style({ height: '*' })),
       transition('expanded <=> collapsed', animate('225ms cubic-bezier(0.4, 0.0, 0.2, 1)')),
     ]),
   ],
@@ -50,53 +50,53 @@ export class TransactionListComponent implements OnInit {
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
-  
+
   showLoading: boolean = true;
   d = new DatePipe('en-US');
   months: Array<any> = [
-    {value: "01", name: "January"},
-    {value: "02", name: "February"},
-    {value: "03", name: "March"},
-    {value: "04", name: "April"},
-    {value: "05", name: "May"},
-    {value: "06", name: "June"},
-    {value: "07", name: "July"},
-    {value: "08", name: "August"},
-    {value: "09", name: "September"},
-    {value: "10", name: "October"},
-    {value: "11", name: "November"},
-    {value: "12", name: "December"}
+    { value: "01", name: "January" },
+    { value: "02", name: "February" },
+    { value: "03", name: "March" },
+    { value: "04", name: "April" },
+    { value: "05", name: "May" },
+    { value: "06", name: "June" },
+    { value: "07", name: "July" },
+    { value: "08", name: "August" },
+    { value: "09", name: "September" },
+    { value: "10", name: "October" },
+    { value: "11", name: "November" },
+    { value: "12", name: "December" }
   ]
 
   years: Array<any> = ["2017", "2018", "2019", "2020", "2021", "2022", "2023", "2024", "2025"];
 
-  monthVal  : FormControl = new FormControl(this.d.transform(new Date(),"MM"));
-  yearVal   : FormControl = new FormControl(this.d.transform(new Date(),"yyyy"));
+  monthVal: FormControl = new FormControl(this.d.transform(new Date(), "MM"));
+  yearVal: FormControl = new FormControl(this.d.transform(new Date(), "yyyy"));
   // myFilter = (d: Date): boolean => {
   //   const day = d.getDay();
   //   return day !== 10;
   // }
 
   constructor(
-    private TS    : TransactionService,
-    private PS    : PatientService,
-    private IS    : ItemService,
-    private math  : MathService,
-    private lab   : LaboratoryService,
-    public dialog : MatDialog,
+    private TS: TransactionService,
+    private PS: PatientService,
+    private IS: ItemService,
+    private math: MathService,
+    private lab: LaboratoryService,
+    public dialog: MatDialog,
     private router: Router,
-    public state  : ActivatedRoute,
-    private _snackBar : MatSnackBar,
-    ) {
-      
+    public state: ActivatedRoute,
+    private _snackBar: MatSnackBar,
+  ) {
+
   }
 
   ngOnInit() {
-    this.setData(); 
-    if(!this.listType) {
+    this.setData();
+    if (!this.listType) {
       this.math.navSubs("cashier");
       this.listType = "transactions";
-    } 
+    }
   }
 
   applyFilter(filterValue: string) {
@@ -107,120 +107,128 @@ export class TransactionListComponent implements OnInit {
     }
   }
 
-  setData(){
+  setData() {
     this.showLoading = true;
     let url: any;
-    if(this.transType == undefined){
-      url = "getTransactionDate/" + 
-      this.yearVal.value + "-" + this.monthVal.value + "-01/" + 
-      this.yearVal.value + "-" + this.monthVal.value + "-31";
-    }else if(this.transType == "billing" || this.transType == "accounting"){
-      url = "getTransBillingDate/" + 
-      this.yearVal.value + "-" + this.monthVal.value + "-01/" + 
-      this.yearVal.value + "-" + this.monthVal.value + "-31";
+    if (this.transType == undefined) {
+      url = "getTransactionDate/" +
+        this.yearVal.value + "-" + this.monthVal.value + "-01/" +
+        this.yearVal.value + "-" + this.monthVal.value + "-31";
+    } else if (this.transType == "billing" || this.transType == "accounting") {
+      url = "getTransBillingDate/" +
+        this.yearVal.value + "-" + this.monthVal.value + "-01/" +
+        this.yearVal.value + "-" + this.monthVal.value + "-31";
     }
-    else{
+    else {
       url = "getTransTypeDate/" + this.transType + "/" +
-      this.yearVal.value + "-" + this.monthVal.value + "-01/" + 
-      this.yearVal.value + "-" + this.monthVal.value + "-31";
+        this.yearVal.value + "-" + this.monthVal.value + "-01/" +
+        this.yearVal.value + "-" + this.monthVal.value + "-31";
     }
-    
+
     this.TS.getTransactions(url)
-   .subscribe(
-     data => {
-      
-      this.heldData = [];
+      .subscribe(
+        data => {
 
-      if(data.length > 0){
-      data.forEach(trans => {
+          this.heldData = [];
 
-        if(this.listType == "microscopy"){
-            this.lab.getMicroscopy(trans.transactionId).subscribe(
-              micro => {
-                if(micro[0]){
-                  this.laboratory.push(micro[0]);
-                }
-              }
-            )
-        }
+          if (data.length > 0) {
+            data.forEach(trans => {
 
-        let color = "black";
-        if(trans.salesType == "refund"){
-          color = "red";
-        }
-
-        let transData : heldTable = {
-          id      : trans.transactionId,
-          patient : undefined,
-          patInfo : undefined,
-          items   : [],
-          type    : trans.transactionType,
-          date    : trans.transactionDate,
-          biller  : trans.biller,
-          action  : "",
-          color   : color
-        }
-        this.PS.getOnePatient("getPatient/" + trans.patientId)
-        .subscribe( pat => {
-          transData.patient = pat[0].fullName;
-          transData.patInfo = pat[0];
-        });
-        this.TS.getTransExt(trans.transactionId)
-        .subscribe(
-          transExt => {
-            if(transExt.length > 0){
-              transExt.forEach((ext, index) => {
-              if(ext.packageName != null){
-                this.IS.getPack("getPackageName/" + ext.packageName)
-                .subscribe(
-                  pack => {
-                    let packItem : itemList = {
-                      itemId          : pack[0].packageName,
-                      itemName        : pack[0].packageName,
-                      itemPrice       : pack[0].packagePrice,
-                      itemDescription : pack[0].packageDescription,
-                      itemType        : pack[0].packageType,
-                      deletedItem     : pack[0].deletedPackage,
-                      neededTest      : undefined,
-                      creationDate    : pack[0].creationDate,
-                      dateUpdate      : pack[0].dateUpdate,
+              if (this.listType == "microscopy") {
+                this.lab.getMicroscopy(trans.transactionId).subscribe(
+                  micro => {
+                    if (micro[0]) {
+                      this.laboratory.push(micro[0]);
                     }
-                    transData.items.push(packItem); 
                   }
                 )
-              }else if(ext.itemID){
-                  this.IS.getItemByID(ext.itemID)
-                  .subscribe( item => {
-                    transData.items.push(item[0]);                    
-                  });
+              } else if (this.listType == "hematology") {
+                this.lab.getHematology(trans.transactionId).subscribe(
+                  hema => {
+                    if (hema[0]) {
+                      this.laboratory.push(hema[0]);
+                    }
+                  }
+                )
               }
-              if(transExt.length - 1 == index ){          
-                 this.showLoading = false;            
+
+              let color = "black";
+              if (trans.salesType == "refund") {
+                color = "red";
               }
+
+              let transData: heldTable = {
+                id: trans.transactionId,
+                patient: undefined,
+                patInfo: undefined,
+                items: [],
+                type: trans.transactionType,
+                date: trans.transactionDate,
+                biller: trans.biller,
+                action: "",
+                color: color
+              }
+              this.PS.getOnePatient("getPatient/" + trans.patientId)
+                .subscribe(pat => {
+                  transData.patient = pat[0].fullName;
+                  transData.patInfo = pat[0];
+                });
+              this.TS.getTransExt(trans.transactionId)
+                .subscribe(
+                  transExt => {
+                    if (transExt.length > 0) {
+                      transExt.forEach((ext, index) => {
+                        if (ext.packageName != null) {
+                          this.IS.getPack("getPackageName/" + ext.packageName)
+                            .subscribe(
+                              pack => {
+                                let packItem: itemList = {
+                                  itemId: pack[0].packageName,
+                                  itemName: pack[0].packageName,
+                                  itemPrice: pack[0].packagePrice,
+                                  itemDescription: pack[0].packageDescription,
+                                  itemType: pack[0].packageType,
+                                  deletedItem: pack[0].deletedPackage,
+                                  neededTest: undefined,
+                                  creationDate: pack[0].creationDate,
+                                  dateUpdate: pack[0].dateUpdate,
+                                }
+                                transData.items.push(packItem);
+                              }
+                            )
+                        } else if (ext.itemID) {
+                          this.IS.getItemByID(ext.itemID)
+                            .subscribe(item => {
+                              transData.items.push(item[0]);
+                            });
+                        }
+                        if (transExt.length - 1 == index) {
+                          this.showLoading = false;
+                        }
+                      });
+                    }
+                    else {
+                      this.showLoading = false;
+                    }
+                  }
+                )
+              this.heldData.push(transData);
             });
-            }
-            else{
-              this.showLoading = false;
-            }
+            this.dataSource = new MatTableDataSource(this.heldData);
+            this.dataSource.paginator = this.paginator;
+            this.dataSource.sort = this.sort;
+          } else {
+            this.showLoading = false;
+            this.dataSource = new MatTableDataSource([]);
+            this.dataSource.paginator = this.paginator;
+            this.dataSource.sort = this.sort;
           }
-        )
-        this.heldData.push(transData);
-      });
-      this.dataSource = new MatTableDataSource(this.heldData);
-      this.dataSource.paginator = this.paginator;
-      this.dataSource.sort = this.sort;
-      }else{
-        this.showLoading = false;
-        this.dataSource = new MatTableDataSource([]);
-        this.dataSource.paginator = this.paginator;
-        this.dataSource.sort = this.sort;
-      }
-      }
-   ) 
-   
-   if(this.listType == "transactions"){
+        }
+      )
+
+    if (this.listType == "transactions") {
       this.math.navSubs("cashier");
-   }
+    }
   }
 
   openSnackBar(message: string, action: string) {
@@ -229,55 +237,55 @@ export class TransactionListComponent implements OnInit {
     });
   }
 
-  receipt(value){
+  receipt(value) {
     const suffix = [value];
     this.math.printDocument('', suffix);
-    
+
   }
 
-  edit(value){
+  edit(value) {
     const dialogRef = this.dialog.open(EditHMOComponent, {
       data: value
     });
     dialogRef.afterClosed().subscribe(res => {
-      if(res.status){
+      if (res.status) {
         this.openSnackBar(res.message, res.status);
-      }   
+      }
     })
   }
 
-  getTrans(data: heldTable){
+  getTrans(data: heldTable) {
     this.addTrans.emit(data);
   }
 
-  payment(id){
+  payment(id) {
     let dial = this.dialog.open(PaymentComponent, {
-      data: {id: id, type: 1}
+      data: { id: id, type: 1 }
     })
 
     dial.afterClosed().subscribe(res => {
-      if(res){
-        this.math.openSnackBar(res.message,res.status);
+      if (res) {
+        this.math.openSnackBar(res.message, res.status);
       }
-      
+
     })
   }
-  labNavigate(id){
-    this.snapshot = this.state.snapshot;    
+  labNavigate(id) {
+    this.snapshot = this.state.snapshot;
     this.router.navigate([this.snapshot.routeConfig.path + "/form", id]);
   }
 
-  checkLab(id): boolean{
+  checkLab(id): boolean {
     let found = this.laboratory.find(lab => lab.transactionID === id);
-    if(found){
+    if (found) {
       return true;
-    }else{
+    } else {
       return false;
     }
   }
 
-  labRes(value = '1566'){
-    const suffix = [value, "microscopy"];
+  labRes(id, section) {
+    const suffix = [id, section];
     this.math.printLab('', suffix);
   }
 }

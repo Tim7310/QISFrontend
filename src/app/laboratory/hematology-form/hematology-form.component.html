@@ -1,0 +1,429 @@
+<patient-info [id]="id" class="sticky-top"></patient-info>
+<form [formGroup]="hema">
+    <div class="container mb-3">
+        <div class="row">
+            <div class="header mt-1 ls-2">
+                <span *ngIf="update"><span class="bold-2">U</span>P<span class="bold-2">D</span>ATE</span>
+                <span *ngIf="!update"><span class="bold-2">A</span>DD</span>
+                <span class="bold-2"> HEMATOLOGY</span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-9 mt-2">
+                <div class="row mt-2">
+                    <div class="bold-1 p-3 des">
+                        <div class="bold-1 title pl-2 pr-2">Complete Blood Count</div>
+                        <div class="row">
+                            <div class="col-6">
+                                <div class="row">
+                                    <mat-form-field class="col-5">
+                                        <input matInput placeholder="White Blood Cells" formControlName="whiteBlood">
+                                    </mat-form-field>
+                                    <div class="col-3 pt-3">
+                                        <span class="nvText">% x10^9/L</span>
+                                    </div>
+                                    <div class="col-4 pt-3">
+                                        <span class="nvText">4.23~11.07</span>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <mat-form-field class="col-5">
+                                        <input matInput placeholder="Neutrophils" formControlName="neutrophils">
+                                    </mat-form-field>
+                                    <div class="col-3 pt-3">
+                                        <span class="nvText">%</span>
+                                    </div>
+                                    <div class="col-4 pt-3">
+                                        <span class="nvText">34.00~71.00</span>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <mat-form-field class="col-5">
+                                        <input matInput placeholder="Lymphocytes" formControlName="lymphocytes">
+                                    </mat-form-field>
+                                    <div class="col-3 pt-3">
+                                        <span class="nvText">%</span>
+                                    </div>
+                                    <div class="col-4 pt-3">
+                                        <span class="nvText">22.00~53.00</span>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <mat-form-field class="col-5">
+                                        <input matInput placeholder="Monocytes" formControlName="monocytes">
+                                    </mat-form-field>
+                                    <div class="col-3 pt-3">
+                                        <span class="nvText">%</span>
+                                    </div>
+                                    <div class="col-4 pt-3">
+                                        <span class="nvText">5.00~12.00</span>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <mat-form-field class="col-5">
+                                        <input matInput placeholder="Eosinophils" formControlName="eos">
+                                    </mat-form-field>
+                                    <div class="col-3 pt-3">
+                                        <span class="nvText">%</span>
+                                    </div>
+                                    <div class="col-4 pt-3">
+                                        <span class="nvText">1.00~7.00</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="row">
+                                    <mat-form-field class="col-5">
+                                        <input matInput placeholder="Basophils" formControlName="bas">
+                                    </mat-form-field>
+                                    <div class="col-3 pt-3">
+                                        <span class="nvText">%</span>
+                                    </div>
+                                    <div class="col-4 pt-3">
+                                        <span class="nvText">0.00~1.00</span>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <mat-form-field class="col-5">
+                                        <input matInput placeholder="Red Blood Cells" formControlName="cbcrbc">
+                                    </mat-form-field>
+                                    <div class="col-3 pt-3">
+                                        <span class="nvText">X10 ^6/L</span>
+                                    </div>
+                                    <div class="col-4 pt-3">
+                                        <span class="nvText">4.32~5.72</span>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <mat-form-field class="col-5">
+                                        <input matInput placeholder="Hemoglobin" formControlName="hemoglobin">
+                                    </mat-form-field>
+                                    <div class="col-3 pt-3">
+                                        <span class="nvText">g/L</span>
+                                    </div>
+                                    <div class="col-4">
+                                        <span class="nvText">
+                                            M: 137.00~175.00<br />
+                                            F: 112.00~157.00
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <mat-form-field class="col-5">
+                                        <input matInput placeholder="Hematocrit" formControlName="hematocrit">
+                                    </mat-form-field>
+                                    <div class="col-3 pt-3">
+                                        <span class="nvText">Vol. Fraction</span>
+                                    </div>
+                                    <div class="col-4">
+                                        <span class="nvText">
+                                            M: 0.40~0.51<br />
+                                            F: 0.34~0.45
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <mat-form-field class="col-5">
+                                        <input matInput placeholder="Platelet" formControlName="plt">
+                                    </mat-form-field>
+                                    <div class="col-3 pt-3">
+                                        <span class="nvText">x10^3/mm3</span>
+                                    </div>
+                                    <div class="col-4 pt-3">
+                                        <span class="nvText">150~400</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-5 mt-2">
+                        <div class="row mt-2">
+                            <div class="bold-1 p-3 des">
+                                <div class="bold-1 title pl-2 pr-2">Erythrocyte Sedimentation Rate ( ESR )</div>
+                                <div class="row">
+                                    <div class="col-5">
+                                        <mat-form-field class="col">
+                                            <input matInput placeholder="Rate" formControlName="esr">
+                                        </mat-form-field>
+                                    </div>
+                                    <div class="col-2 pt-3">
+                                        <span class="nvText ">mm/hr</span>
+                                    </div>
+                                    <div class="col-5">
+                                        <span class="nvText">
+                                            M: 0~15 mm/hr <br />
+                                            F: 1~20 mm/hr
+                                        </span>
+                                    </div>
+                                </div>
+                                <mat-form-field class="col">
+                                    <input matInput placeholder="ESR Method" formControlName="esrmethod">
+                                </mat-form-field>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-7 mt-2">
+                        <div class="row mt-2 ml-1">
+                            <div class="bold-1 p-3 des">
+                                <div class="bold-1 title pl-2 pr-2">Activated Partial Thromboplastin Time ( APTT )</div>
+                                <div class="row">
+                                    <div class="col-4">
+                                        <mat-form-field class="col">
+                                            <input matInput placeholder="Patient Time" formControlName="apttime">
+                                        </mat-form-field>
+                                    </div>
+                                    <div class="col-2 pt-3">
+                                        <span class="nvText ">SECS</span>
+                                    </div>
+                                    <div class="col-4">
+                                        <mat-form-field class="col">
+                                            <input matInput placeholder="Normal Value" formControlName="apttimeNV">
+                                        </mat-form-field>
+                                    </div>
+                                    <div class="col-2 pt-3">
+                                        <span class="nvText ">SECS</span>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-4">
+                                        <mat-form-field class="col">
+                                            <input matInput placeholder="Control" formControlName="aptcontrol">
+                                        </mat-form-field>
+                                    </div>
+                                    <div class="col-2 pt-3">
+                                        <span class="nvText ">SECS</span>
+                                    </div>
+                                    <div class="col-4">
+                                        <mat-form-field class="col">
+                                            <input matInput placeholder="Normal Value" formControlName="aptcontrolNV">
+                                        </mat-form-field>
+                                    </div>
+                                    <div class="col-2 pt-3">
+                                        <span class="nvText ">SECS</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 ">
+                <div class="row">
+                    <div class="col-12 mt-2">
+                        <div class="row mt-2 ml-1">
+                            <div class="bold-1 p-3 des">
+                                <div class="bold-1 title pl-2 pr-2">Blood Typing</div>
+
+                                <mat-form-field class="col">
+                                    <input matInput placeholder="Blood Type" formControlName="bloodType">
+                                </mat-form-field>
+                                <mat-form-field class="col">
+                                    <input matInput placeholder="Rhesus (Rh) Factor" formControlName="rh">
+                                </mat-form-field>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 mt-2">
+                        <div class="row mt-2 ml-1">
+                            <div class="bold-1 p-3 des">
+                                <div class="bold-1 title pl-2 pr-2">Clotting Time</div>
+                                <div class="row">
+                                    <div class="col-7">
+                                        <mat-form-field class="col">
+                                            <input matInput placeholder="Time" formControlName="clottingTime">
+                                        </mat-form-field>
+                                    </div>
+                                    <div class="col-5 p-3">
+                                        <span class="nvText">4-10 Minutes</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 mt-2">
+                        <div class="row mt-2 ml-1">
+                            <div class="bold-1 p-3 des">
+                                <div class="bold-1 title pl-2 pr-2">Bleeding Time</div>
+                                <div class="row">
+                                    <div class="col-7">
+                                        <mat-form-field class="col">
+                                            <input matInput placeholder="Time" formControlName="bleedingTime">
+                                        </mat-form-field>
+                                    </div>
+                                    <div class="col-5 p-3">
+                                        <span class="nvText">1-5 Minutes</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 mt-2">
+                        <div class="row mt-2 ml-1">
+                            <div class="bold-1 p-3 des">
+                                <div class="bold-1 title pl-2 pr-2">Malarial Smear</div>
+                                <mat-form-field class="col">
+                                    <mat-label>Result</mat-label>
+                                    <mat-select formControlName="ms">
+                                        <mat-option value=""> - </mat-option>
+                                        <mat-option *ngFor="let f of foo" [value]="f">
+                                            {{f}}
+                                        </mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-10 mt-2">
+                <div class="row mt-2">
+                    <div class="bold-1 p-3 des">
+                        <div class="bold-1 title pl-2 pr-2">PROTHROMBIN TIME</div>
+                        <div class="row">
+                            <div class="col-2">
+                                <mat-form-field class="col">
+                                    <input matInput placeholder="Patient Time" formControlName="ptime">
+                                </mat-form-field>
+                            </div>
+                            <div class="col-1 pt-3">
+                                <span class="nvText ">SECS</span>
+                            </div>
+                            <div class="col-2">
+                                <mat-form-field class="col">
+                                    <input matInput placeholder="Normal Value" formControlName="ptimeNV">
+                                </mat-form-field>
+                            </div>
+                            <div class="col-1 pt-3">
+                                <span class="nvText ">SECS</span>
+                            </div>
+
+                            <div class="col-2">
+                                <mat-form-field class="col">
+                                    <input matInput placeholder="Control" formControlName="ptcontrol">
+                                </mat-form-field>
+                            </div>
+                            <div class="col-1 pt-3">
+                                <span class="nvText ">SECS</span>
+                            </div>
+                            <div class="col-2">
+                                <mat-form-field class="col">
+                                    <input matInput placeholder="Normal Value" formControlName="ptcontrolNV">
+                                </mat-form-field>
+                            </div>
+                            <div class="col-1 pt-3">
+                                <span class="nvText ">SECS</span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-2">
+                                <mat-form-field class="col">
+                                    <input matInput placeholder="% Activity" formControlName="actPercent">
+                                </mat-form-field>
+                            </div>
+                            <div class="col-1 pt-3">
+                                <span class="nvText ">SECS</span>
+                            </div>
+                            <div class="col-2">
+                                <mat-form-field class="col">
+                                    <input matInput placeholder="Normal Value" formControlName="actPercentNV">
+                                </mat-form-field>
+                            </div>
+                            <div class="col-1 pt-3">
+                                <span class="nvText ">SECS</span>
+                            </div>
+
+                            <div class="col-2">
+                                <mat-form-field class="col">
+                                    <input matInput placeholder="INR" formControlName="inr">
+                                </mat-form-field>
+                            </div>
+                            <div class="col-1 pt-3">
+                                <span class="nvText ">SECS</span>
+                            </div>
+                            <div class="col-2">
+                                <mat-form-field class="col">
+                                    <input matInput placeholder="Normal Value" formControlName="inrnv">
+                                </mat-form-field>
+                            </div>
+                            <div class="col-1 pt-3">
+                                <span class="nvText ">SECS</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-2 mt-2">
+                <div class="row mt-2 ml-1">
+                    <div class="bold-1 p-3 des">
+                        <div class="bold-1 title pl-2 pr-2">PR1.31</div>
+                        <mat-form-field class="col">
+                            <input matInput placeholder="PR1.31" formControlName="pr131">
+                        </mat-form-field>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 mt-2">
+                <div class="row mt-2">
+                    <div class="bold-1 p-3 des">
+                        <div class="bold-1 title pl-2 pr-2">Other Notes</div>
+                        <mat-form-field class="col">
+                            <input matInput placeholder="Notes" formControlName="cbcot">
+                        </mat-form-field>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- lab pesonnel -->
+        <div class="row mb-4">
+            <div class="col-md-12 mt-2">
+                <div class="row mt-2">
+                    <div class="bold-1 p-3 des">
+                        <div class="bold-1 title pl-2 pr-2">Laboratory Personnel</div>
+                        <mat-form-field class="col-3">
+                            <!-- Get from transaction biller -->
+                            <input matInput placeholder="Clinician/Walk-In" [value]="transaction?.biller" disabled>
+                        </mat-form-field>
+                        <mat-form-field class="col-3">
+                            <mat-label>Medical Technologist</mat-label>
+                            <mat-select formControlName="medID">
+                                <mat-option value=""> - </mat-option>
+                                <mat-option *ngFor="let m of medtech" [value]="m.personnelID">
+                                    {{m.lastName}}, {{m.firstName}}{{middleName}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                        <mat-form-field class="col-3">
+                            <mat-label>Quality Control</mat-label>
+                            <mat-select formControlName="qualityID">
+                                <mat-option value=""> - </mat-option>
+                                <mat-option *ngFor="let m of medtech" [value]="m.personnelID">
+                                    {{m.lastName}}, {{m.firstName}}{{middleName}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                        <mat-form-field class="col-3">
+                            <mat-label>Pathologist</mat-label>
+                            <mat-select formControlName="pathID">
+                                <mat-option value=""> - </mat-option>
+                                <mat-option *ngFor="let m of medtech" [value]="m.personnelID">
+                                    {{m.lastName}}, {{m.firstName}}{{middleName}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="mx-auto" style="width: 65px;">
+        <button mat-raised-button color="primary" class="mb-3" (click)="addMicro()" *ngIf="!update">ADD</button>
+        <button mat-raised-button color="accent" class="mb-3" (click)="updateMicro()" *ngIf="update">UPDATE</button>
+    </div>
+</form>

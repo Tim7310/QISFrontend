@@ -1,4 +1,5 @@
 <lab-header [transaction]="transaction" [patient]="patient"></lab-header>
-<microscopy-result [microscopy]="microscopy"></microscopy-result>
+<microscopy-result [microscopy]="microscopy" *ngIf="id[1] === 'microscopy'"></microscopy-result>
+<hematology-result [hematology]="hematology" *ngIf="id[1] === 'hematology'"></hematology-result>
 <lab-footer [path]="path" [qc]="qc" [mt]="mt"></lab-footer>
 

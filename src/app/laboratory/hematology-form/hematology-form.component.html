@@ -17,7 +17,8 @@
                             <div class="col-6">
                                 <div class="row">
                                     <mat-form-field class="col-5">
-                                        <input matInput placeholder="White Blood Cells" formControlName="whiteBlood">
+                                        <input matInput type="number" placeholder="White Blood Cells"
+                                            formControlName="whiteBlood">
                                     </mat-form-field>
                                     <div class="col-3 pt-3">
                                         <span class="nvText">% x10^9/L</span>
@@ -28,7 +29,8 @@
                                 </div>
                                 <div class="row">
                                     <mat-form-field class="col-5">
-                                        <input matInput placeholder="Neutrophils" formControlName="neutrophils">
+                                        <input matInput type="number" placeholder="Neutrophils"
+                                            formControlName="neutrophils">
                                     </mat-form-field>
                                     <div class="col-3 pt-3">
                                         <span class="nvText">%</span>
@@ -39,7 +41,8 @@
                                 </div>
                                 <div class="row">
                                     <mat-form-field class="col-5">
-                                        <input matInput placeholder="Lymphocytes" formControlName="lymphocytes">
+                                        <input matInput type="number" placeholder="Lymphocytes"
+                                            formControlName="lymphocytes">
                                     </mat-form-field>
                                     <div class="col-3 pt-3">
                                         <span class="nvText">%</span>
@@ -50,7 +53,8 @@
                                 </div>
                                 <div class="row">
                                     <mat-form-field class="col-5">
-                                        <input matInput placeholder="Monocytes" formControlName="monocytes">
+                                        <input matInput type="number" placeholder="Monocytes"
+                                            formControlName="monocytes">
                                     </mat-form-field>
                                     <div class="col-3 pt-3">
                                         <span class="nvText">%</span>
@@ -61,7 +65,7 @@
                                 </div>
                                 <div class="row">
                                     <mat-form-field class="col-5">
-                                        <input matInput placeholder="Eosinophils" formControlName="eos">
+                                        <input matInput type="number" placeholder="Eosinophils" formControlName="eos">
                                     </mat-form-field>
                                     <div class="col-3 pt-3">
                                         <span class="nvText">%</span>
@@ -74,7 +78,7 @@
                             <div class="col-6">
                                 <div class="row">
                                     <mat-form-field class="col-5">
-                                        <input matInput placeholder="Basophils" formControlName="bas">
+                                        <input matInput type="number" placeholder="Basophils" formControlName="bas">
                                     </mat-form-field>
                                     <div class="col-3 pt-3">
                                         <span class="nvText">%</span>
@@ -85,7 +89,8 @@
                                 </div>
                                 <div class="row">
                                     <mat-form-field class="col-5">
-                                        <input matInput placeholder="Red Blood Cells" formControlName="cbcrbc">
+                                        <input matInput type="number" placeholder="Red Blood Cells"
+                                            formControlName="cbcrbc">
                                     </mat-form-field>
                                     <div class="col-3 pt-3">
                                         <span class="nvText">X10 ^6/L</span>
@@ -96,7 +101,8 @@
                                 </div>
                                 <div class="row">
                                     <mat-form-field class="col-5">
-                                        <input matInput placeholder="Hemoglobin" formControlName="hemoglobin">
+                                        <input matInput type="number" placeholder="Hemoglobin"
+                                            formControlName="hemoglobin">
                                     </mat-form-field>
                                     <div class="col-3 pt-3">
                                         <span class="nvText">g/L</span>
@@ -110,7 +116,8 @@
                                 </div>
                                 <div class="row">
                                     <mat-form-field class="col-5">
-                                        <input matInput placeholder="Hematocrit" formControlName="hematocrit">
+                                        <input matInput type="number" placeholder="Hematocrit"
+                                            formControlName="hematocrit">
                                     </mat-form-field>
                                     <div class="col-3 pt-3">
                                         <span class="nvText">Vol. Fraction</span>
@@ -124,7 +131,7 @@
                                 </div>
                                 <div class="row">
                                     <mat-form-field class="col-5">
-                                        <input matInput placeholder="Platelet" formControlName="plt">
+                                        <input matInput type="number" placeholder="Platelet" formControlName="plt">
                                     </mat-form-field>
                                     <div class="col-3 pt-3">
                                         <span class="nvText">x10^3/mm3</span>
@@ -423,7 +430,7 @@
         </div>
     </div>
     <div class="mx-auto" style="width: 65px;">
-        <button mat-raised-button color="primary" class="mb-3" (click)="addMicro()" *ngIf="!update">ADD</button>
-        <button mat-raised-button color="accent" class="mb-3" (click)="updateMicro()" *ngIf="update">UPDATE</button>
+        <button mat-raised-button color="primary" class="mb-3" (click)="addHema()" *ngIf="!update">ADD</button>
+        <button mat-raised-button color="accent" class="mb-3" (click)="updateHema()" *ngIf="update">UPDATE</button>
     </div>
 </form>

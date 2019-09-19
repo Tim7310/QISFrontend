@@ -6,6 +6,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { MatDialog } from '@angular/material';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { medtech, transaction } from 'src/app/services/service.interface';
+import { ConfirmComponent } from 'src/app/element/confirm/confirm.component';
 
 @Component({
   selector: 'app-hematology-form',
@@ -23,7 +24,7 @@ export class HematologyFormComponent implements OnInit {
 
   hema = new FormGroup({
 
-    microID: new FormControl(undefined),
+    hemaID: new FormControl(undefined),
     transactionID: new FormControl(""),
     patientID: new FormControl(""),
 
@@ -103,6 +104,79 @@ export class HematologyFormComponent implements OnInit {
         this.medtech = medtech;
       }
     )
+
+    this.TS.getOneTrans("getTransaction/" + this.id).subscribe(
+      data => {
+        if(data[0].length == 0){
+          this.router.navigate(['error/404']);
+        }else{
+          this.transaction = data[0];
+          
+          this.hema.controls.transactionID.setValue(data[0].transactionId);
+          this.hema.controls.patientID.setValue(data[0].patientId);  
+          
+          this.lab.getHematology(data[0].transactionId).subscribe(
+            hema => {
+              if(hema.length != 0){
+                this.update = true;
+                for(var i in hema[0]){
+
+                 this.hema.get(i).setValue(hema[0][i]);                 
+                }
+                
+              }
+            }
+          )
+        }  
+      }
+    )
+
   }
 
+  addHema(){
+    this.hema.controls.creationDate.setValue(this.math.dateNow());
+
+    const dialogRef = this.dialog.open(ConfirmComponent, {
+      width: '20%',
+      data: {Title: "Are you sure?", Content: "Data will be saved to database!"}
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      if(result == "ok"){
+        this.lab.addHematology(this.hema.value).subscribe(
+          data => {
+            if(data == 1){
+              this.math.openSnackBar("Data successfuly saved","ok");
+            }else{
+              this.math.openSnackBar("Data not saved!!!","ok");
+            }
+          }
+        )
+       }
+
+    })
+  }
+
+  updateHema(){
+    this.hema.controls.dateUpdate.setValue(this.math.dateNow());
+
+    const dialogRef = this.dialog.open(ConfirmComponent, {
+      width: '20%',
+      data: {Title: "Are you sure?", Content: "Data will be updated!"}
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      if(result == "ok"){
+        this.lab.addHematology(this.hema.value, "/updateHematology").subscribe(
+          data => {
+            if(data == 1){
+              this.math.openSnackBar("Data successfuly update","ok");
+            }else{
+              this.math.openSnackBar("Error Updating data!!!","ok");
+            }
+          }
+        )
+       }
+
+    })
+    
+  }
 }

@@ -35,7 +35,7 @@ export class MicroscopyFormComponent implements OnInit {
 
   micro = new FormGroup({
 
-    microID: new FormControl(undefined),
+    microID: new FormControl(""),
     transactionID: new FormControl(""),
     patientID: new FormControl(""),
 

@@ -3,7 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { MathService } from 'src/app/services/math.service';
 import { PatientService } from 'src/app/services/patient.service';
 import { TransactionService } from 'src/app/services/transaction.service';
-import { patient, transaction, medtech, microscopy } from 'src/app/services/service.interface';
+import { patient, transaction, medtech, microscopy, hematology } from 'src/app/services/service.interface';
 import { LaboratoryService } from 'src/app/services/laboratory.service';
 
 @Component({
@@ -20,6 +20,7 @@ export class LabResultComponent implements OnInit {
   qc: medtech;
   mt: medtech;
   microscopy: microscopy;
+  hematology: hematology;
 
   constructor(
     route: ActivatedRoute,
@@ -68,6 +69,33 @@ export class LabResultComponent implements OnInit {
                 )
                 // pathology
                 this.LS.getPersonnel(mic[0].pathID).subscribe(
+                  med => {
+                    this.path = med[0];
+                  }
+                )
+
+              }
+            )
+          }
+          if(this.id[1] == "hematology") {
+            this.LS.getHematology(this.id[0]).subscribe(
+              hema => {
+                this.hematology = hema[0];
+                
+                // medtech
+                this.LS.getPersonnel(hema[0].medID).subscribe(
+                  med => {
+                    this.mt = med[0];
+                  }
+                )
+                // Quality Control
+                this.LS.getPersonnel(hema[0].qualityID).subscribe(
+                  med => {
+                    this.qc = med[0];
+                  }
+                )
+                // pathology
+                this.LS.getPersonnel(hema[0].pathID).subscribe(
                   med => {
                     this.path = med[0];
                   }

@@ -1,3 +1,293 @@
-<p>
-  hematology-result works!
-</p>
+<div style="height: 8.6in" class="ml-2 mr-1">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <div class="bold-1 mt-2">HEMATOLOGY</div>
+      </div>
+    </div>
+    <!-- complere blood count here -->
+    <div class="row">
+      <div class="col-12">
+        <div class="row">
+          <div class="col-12 label-1">
+            Complete Blood Count
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-3">
+            <span class="r-label">White Blood Cell</span>
+          </div>
+          <div class="col-1 r-text">
+            <span>{{hematology?.whiteBlood}}</span>
+          </div>
+          <div class="col-3 n-value">
+            x10^9/L
+          </div>
+          <div class="col-4 n-value">
+            4:23~11.07z
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-3">
+            <span class="r-label">Neutrophilis</span>
+          </div>
+          <div class="col-1 r-text">
+            <span>{{hematology?.neutrophils}}</span>
+          </div>
+          <div class="col-3 n-value">
+            %
+          </div>
+          <div class="col-4 n-value">
+            34.00~71.00
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-3">
+            <span class="r-label">Lymphocytes</span>
+          </div>
+          <div class="col-1 r-text">
+            <span>{{hematology?.lymphocytes}}</span>
+          </div>
+          <div class="col-3 n-value">
+            %
+          </div>
+          <div class="col-4 n-value">
+            22.00~53.00
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-3">
+            <span class="r-label">Monocytes</span>
+          </div>
+          <div class="col-1 r-text">
+            <span>{{hematology?.monocytes}}</span>
+          </div>
+          <div class="col-3 n-value">
+            %
+          </div>
+          <div class="col-4 n-value">
+            5.00~12.00
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-3">
+            <span class="r-label">Eosinophils</span>
+          </div>
+          <div class="col-1 r-text">
+            <span>{{hematology?.eos}}</span>
+          </div>
+          <div class="col-3 n-value">
+            %
+          </div>
+          <div class="col-4 n-value">
+            1.00~7.00
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-3">
+            <span class="r-label">Basophils</span>
+          </div>
+          <div class="col-1 r-text">
+            <span>{{hematology?.bas}}</span>
+          </div>
+          <div class="col-3 n-value">
+            %
+          </div>
+          <div class="col-4 n-value">
+            0.00~1.00
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-3">
+            <span class="r-label">RBC</span>
+          </div>
+          <div class="col-1 r-text">
+            <span>{{hematology?.cbcrbc}}</span>
+          </div>
+          <div class="col-3 n-value">
+            x 10^12/L
+          </div>
+          <div class="col-4 n-value">
+            4.32~5.72
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-3">
+            <span class="r-label">Hemoglobin</span>
+          </div>
+          <div class="col-1 r-text">
+            <span>{{hematology?.hemoglobin}}</span>
+          </div>
+          <div class="col-3 n-value">
+            %
+          </div>
+          <div class="col-2 n-value">
+            M: 137.00~175.00
+          </div>
+          <div class="col-2 n-value">
+            F: 112.00~157.00
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-3">
+            <span class="r-label">Hematocrit</span>
+          </div>
+          <div class="col-1 r-text">
+            <span>{{hematology?.hematocrit}}</span>
+          </div>
+          <div class="col-3 n-value">
+            g/L
+          </div>
+          <div class="col-2 n-value">
+            M: 137.00~175.00
+          </div>
+          <div class="col-2 n-value">
+            F: 112.00~157.00
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-3">
+            <span class="r-label">Platelet</span>
+          </div>
+          <div class="col-1 r-text">
+            <span>{{hematology?.plt}}</span>
+          </div>
+          <div class="col-3 n-value">
+            x 10^9/L
+          </div>
+          <div class="col-4 n-value">
+            150~400
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- cbc ended -->
+    <!-- begin esr -->
+    <div class="row">
+      <div class="col-12">
+        <div class="row">
+          <div class="col-12 label-1">
+            Erythrocyte Sedimentation Rate ( ESR )
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-3">
+            <span class="r-label">ESR Rate</span>
+          </div>
+          <div class="col-1 r-text">
+            <span>{{hematology?.esr}}</span>
+          </div>
+          <div class="col-3 n-value">
+            mm/hr
+          </div>
+          <div class="col-2 n-value">
+            M: 0~15 mm/hr
+          </div>
+          <div class="col-2 n-value">
+            F: 1~20 mm/hr
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-3">
+            <span class="r-label">ESR Method</span>
+          </div>
+          <div class="col-4 r-text">
+            <span>{{hematology?.esrmethod}}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- esr end -->
+    <!-- begin aptt -->
+    <div class="row">
+      <div class="col-12">
+        <div class="row">
+          <div class="col-12 label-1">
+            Activated Partial Thromboplastin Time ( APTT )
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-3">
+            <span class="r-label">Patient Time</span>
+          </div>
+          <div class="col-1 r-text">
+            <span>{{hematology?.apttime}}</span>
+          </div>
+          <div class="col-3 n-value">
+            secs
+          </div>
+          <div class="col-4 n-value">
+            {{hematology?.apttimeNV}}
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-3">
+            <span class="r-label">ESR Method</span>
+          </div>
+          <div class="col-1 r-text">
+            <span>{{hematology?.aptcontrol}}</span>
+          </div>
+          <div class="col-3 n-value">
+            secs
+          </div>
+          <div class="col-4 n-value">
+            {{hematology?.aptcontrolNV}}
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- esr end -->
+    <!-- blood typing start -->
+    <div class="row">
+      <div class="col-12">
+        <div class="row">
+          <div class="col-12 label-1">
+            Blood Typing
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-3">
+            <span class="r-label">Blood Type</span>
+          </div>
+          <div class="col-2 r-text">
+            <span>{{hematology?.bloodType}}</span>
+          </div>
+          <div class="col-1"></div>
+          <div class="col-3">
+            <span class="r-label">Rhesus (Rh) Factor</span>
+          </div>
+          <div class="col-2 r-text">
+            <span>{{hematology?.rh}}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- blood typing end -->
+    <!-- clotting time start -->
+    <div class="row">
+      <div class="col-12">
+        <div class="row">
+          <div class="col-12 label-1">
+            Clotting Time
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-3">
+            <span class="r-label">Time</span>
+          </div>
+          <div class="col-1 r-text">
+            <span>{{hematology?.clottingTime}}</span>
+          </div>
+          <div class="col-3 n-value">
+            Minutes
+          </div>
+          <div class="col-4 n-value">
+            4-10 Minutes
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- clotting time end -->
+
+  </div>
+</div>

@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { hematology } from 'src/app/services/service.interface';
+import { MathService } from 'src/app/services/math.service';
 
 @Component({
   selector: 'hematology-result',
@@ -10,7 +11,9 @@ export class HematologyResultComponent implements OnInit {
 
   @Input() hematology: hematology;
   
-  constructor() { }
+  constructor(
+    public math: MathService
+  ) { }
 
   ngOnInit() {
   }

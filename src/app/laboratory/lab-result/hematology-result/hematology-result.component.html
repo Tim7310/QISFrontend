@@ -5,8 +5,8 @@
         <div class="bold-1 mt-2">HEMATOLOGY</div>
       </div>
     </div>
-    <!-- complere blood count here -->
-    <div class="row">
+    <!-- complete blood count here -->
+    <div class="row" *ngIf="math.hideRes(!hematology?.whiteBlood)">
       <div class="col-12">
         <div class="row">
           <div class="col-12 label-1">
@@ -217,12 +217,12 @@
             secs
           </div>
           <div class="col-4 n-value">
-            {{hematology?.apttimeNV}}
+            {{hematology?.apttimeNV}} secs
           </div>
         </div>
         <div class="row">
           <div class="col-3">
-            <span class="r-label">ESR Method</span>
+            <span class="r-label">Control</span>
           </div>
           <div class="col-1 r-text">
             <span>{{hematology?.aptcontrol}}</span>
@@ -231,12 +231,12 @@
             secs
           </div>
           <div class="col-4 n-value">
-            {{hematology?.aptcontrolNV}}
+            {{hematology?.aptcontrolNV}} secs
           </div>
         </div>
       </div>
     </div>
-    <!-- esr end -->
+    <!-- aptt end -->
     <!-- blood typing start -->
     <div class="row">
       <div class="col-12">
@@ -253,6 +253,8 @@
             <span>{{hematology?.bloodType}}</span>
           </div>
           <div class="col-1"></div>
+        </div>
+        <div class="row">
           <div class="col-3">
             <span class="r-label">Rhesus (Rh) Factor</span>
           </div>
@@ -288,6 +290,130 @@
       </div>
     </div>
     <!-- clotting time end -->
+    <!-- bleeding time start -->
+    <div class="row">
+      <div class="col-12">
+        <div class="row">
+          <div class="col-12 label-1">
+            Bleeding Time
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-3">
+            <span class="r-label">Time</span>
+          </div>
+          <div class="col-1 r-text">
+            <span>{{hematology?.bleedingTime}}</span>
+          </div>
+          <div class="col-3 n-value">
+            Minutes
+          </div>
+          <div class="col-4 n-value">
+            1-5 Minutes
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- bleeding time end -->
+    <!-- ms time start -->
+    <div class="row">
+      <div class="col-12">
+        <div class="row">
+          <div class="col-12 label-1">
+            Malarial Smear
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-3">
+            <span class="r-label">Result</span>
+          </div>
+          <div class="col-2 r-text">
+            <span>{{hematology?.ms}}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- ms end -->
+    <!-- PROTHROMBIN TIME begin -->
+    <div class="row">
+      <div class="col-12">
+        <div class="row">
+          <div class="col-12 label-1">
+            Prothrombin Time
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-3">
+            <span class="r-label">Patient Time</span>
+          </div>
+          <div class="col-1 r-text">
+            <span>{{hematology?.ptime}}</span>
+          </div>
+          <div class="col-3 n-value">
+            secs
+          </div>
+          <div class="col-4 n-value">
+            {{hematology?.ptimeNV}}
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-3">
+            <span class="r-label">Control</span>
+          </div>
+          <div class="col-1 r-text">
+            <span>{{hematology?.ptcontrol}}</span>
+          </div>
+          <div class="col-3 n-value">
+            secs
+          </div>
+          <div class="col-4 n-value">
+            {{hematology?.ptcontrolNV}}
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-3">
+            <span class="r-label">% Activity</span>
+          </div>
+          <div class="col-1 r-text">
+            <span>{{hematology?.actPercent}}</span>
+          </div>
+          <div class="col-3 n-value">
+            %
+          </div>
+          <div class="col-4 n-value">
+            {{hematology?.actPercentNV}}
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-3">
+            <span class="r-label">INR</span>
+          </div>
+          <div class="col-1 r-text">
+            <span>{{hematology?.inr}}</span>
+          </div>
+          <div class="col-3 n-value">
 
+          </div>
+          <div class="col-4 n-value">
+            {{hematology?.inrnv}}
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- aptt end -->
+    <!-- other Notes -->
+    <div class="row">
+      <div class="col-12">
+        <div class="row">
+          <div class="col-3">
+            <span class="r-label">Other Notes</span>
+          </div>
+          <div class="col-4 r-text">
+            <span>{{hematology?.cbcot}}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- end of other notes -->
   </div>
 </div>

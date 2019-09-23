@@ -105,6 +105,8 @@ import { LabHeaderComponent } from './laboratory/lab-result/lab-header/lab-heade
 import { LabFooterComponent } from './laboratory/lab-result/lab-footer/lab-footer.component';
 import { HematologyComponent } from './laboratory/hematology/hematology.component';
 import { HematologyFormComponent } from './laboratory/hematology-form/hematology-form.component';
+import { ChemistryComponent } from './laboratory/chemistry/chemistry.component';
+import { ChemistryFormComponent } from './laboratory/chemistry-form/chemistry-form.component';
 
 
 @NgModule({
@@ -160,6 +162,8 @@ import { HematologyFormComponent } from './laboratory/hematology-form/hematology
     LabFooterComponent,
     HematologyComponent,
     HematologyFormComponent,
+    ChemistryComponent,
+    ChemistryFormComponent,
   ],
   exports: [
     CdkTableModule,

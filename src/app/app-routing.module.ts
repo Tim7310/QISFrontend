@@ -25,6 +25,7 @@ import { MicroscopyFormComponent } from './laboratory/microscopy-form/microscopy
 import { LabResultComponent } from './laboratory/lab-result/lab-result.component';
 import { HematologyComponent } from './laboratory/hematology/hematology.component';
 import { HematologyFormComponent } from './laboratory/hematology-form/hematology-form.component';
+import { ChemistryComponent } from './laboratory/chemistry/chemistry.component';
 
 const routes: Routes = [
   { path: 'print/:ids',
@@ -130,6 +131,11 @@ const routes: Routes = [
   {
     path: 'laboratory/hematology/form/:id',
     component: HematologyFormComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'laboratory/chemistry',
+    component: ChemistryComponent,
     canActivate: [AuthGuard]
   },
   {

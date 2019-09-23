@@ -123,6 +123,26 @@
                   </div>
                 </div>
 
+                <!-- chemistry action -->
+                <div *ngIf="listType == 'chemistry'">
+                  <div *ngIf="!checkLab(element['id'])">
+                    <button mat-mini-fab (click)="labNavigate(element['id'], 'chemistry')" color="primary" 
+                    *ngIf="listType == 'chemistry' "  matTooltip="Add Data">
+                      <clr-icon shape="plus"></clr-icon>
+                    </button>
+                  </div>
+                  <div *ngIf="checkLab(element['id'])">
+                    <button mat-mini-fab (click)="labNavigate(element['id'], 'chemistry')" color="accent" 
+                    *ngIf="listType == 'chemistry'"  matTooltip="Update Data" class="mr-2">
+                    <clr-icon shape="sync"></clr-icon>
+                    </button>
+                    <button mat-mini-fab (click)="labRes(element['id'],'chemistry')" color="primary" 
+                    *ngIf="listType == 'chemistry'"  matTooltip="Print Result">
+                    <clr-icon shape="printer"></clr-icon>
+                    </button>
+                  </div>
+                </div>
+
               </div>   
         </td>
         

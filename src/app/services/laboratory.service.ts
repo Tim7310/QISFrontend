@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { ErrorService } from './error.service';
 import { Global } from '../global.variable';
 import { Observable } from 'rxjs';
-import { microscopy, medtech, hematology } from './service.interface';
+import { microscopy, medtech, hematology, chemistry } from './service.interface';
 import { HttpClient } from '@angular/common/http';
 import { retry, catchError } from 'rxjs/operators';
 
@@ -73,6 +73,14 @@ export class LaboratoryService {
     return this.http.post<any>(
       this.global.url + url ,
       form, this.global.httpOptions)
+    .pipe(
+        retry(1),
+        catchError(this.ehs.handleError)
+    )
+  }
+
+  getChemistry(id: any = ""): Observable<chemistry[]>{
+    return this.http.get<chemistry[]>(this.global.url + "/getChemistry/" + id)
     .pipe(
         retry(1),
         catchError(this.ehs.handleError)

@@ -150,6 +150,14 @@ export class TransactionListComponent implements OnInit {
                     }
                   }
                 )
+              } else if (this.listType == "chemistry") {
+                this.lab.getChemistry(trans.transactionId).subscribe(
+                  chem => {
+                    if (chem[0]) {
+                      this.laboratory.push(chem[0]);
+                    }
+                  }
+                )
               }
 
               let color = "black";

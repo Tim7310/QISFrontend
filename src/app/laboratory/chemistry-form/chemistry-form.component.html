@@ -1,3 +1,80 @@
-<p>
-  chemistry-form works!
-</p>
+<patient-info [id]="id" class="sticky-top"></patient-info>
+<form [formGroup]="chem">
+  <div class="container mb-3">
+    <div class="row">
+      <div class="header mt-1 ls-2">
+        <span *ngIf="update" class="bold-2">UPDATE</span>
+        <span *ngIf="!update" class="bold-2">ADD</span>
+        <span class="bold-2"> CHEMISTRY</span>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6 mt-2">
+        <div class="row mt-2">
+          <div class="bold-1 p-3 des">
+            <div class="bold-1 title pl-2 pr-2">Fasting Blood Sugar</div>
+            <div class="row">
+              <div class="col-12">
+                <div class="row">
+                  <mat-form-field class="col-3">
+                    <input matInput type="number" placeholder="Result" formControlName="fbs">
+                  </mat-form-field>
+                  <div class="col-3 pt-3">
+                    <span class="nvText">mmol/L 4.1-5.9</span>
+                  </div>
+                  <mat-form-field class="col-3">
+                    <input matInput type="number" placeholder="Conventional" formControlName="fbscon">
+                  </mat-form-field>
+                  <div class="col-3 pt-3">
+                    <span class="nvText">mg/dl 75 -107</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- lab pesonnel -->
+    <div class="row mb-4">
+      <div class="col-md-12 mt-2">
+        <div class="row mt-2">
+          <div class="bold-1 p-3 des">
+            <div class="bold-1 title pl-2 pr-2">Laboratory Personnel</div>
+            <mat-form-field class="col-3">
+              <!-- Get from transaction biller -->
+              <input matInput placeholder="Clinician/Walk-In" [value]="transaction?.biller" disabled>
+            </mat-form-field>
+            <mat-form-field class="col-3">
+              <mat-label>Medical Technologist</mat-label>
+              <mat-select formControlName="medID">
+                <mat-option value=""> - </mat-option>
+                <mat-option *ngFor="let m of medtech" [value]="m.personnelID">
+                  {{m.lastName}}, {{m.firstName}}{{middleName}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+            <mat-form-field class="col-3">
+              <mat-label>Quality Control</mat-label>
+              <mat-select formControlName="qualityID">
+                <mat-option value=""> - </mat-option>
+                <mat-option *ngFor="let m of medtech" [value]="m.personnelID">
+                  {{m.lastName}}, {{m.firstName}}{{middleName}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+            <mat-form-field class="col-3">
+              <mat-label>Pathologist</mat-label>
+              <mat-select formControlName="pathID">
+                <mat-option value=""> - </mat-option>
+                <mat-option *ngFor="let m of medtech" [value]="m.personnelID">
+                  {{m.lastName}}, {{m.firstName}}{{middleName}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>

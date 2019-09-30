@@ -18,6 +18,8 @@ export class ChemistryFormComponent implements OnInit {
   medtech: medtech[];
   transaction: transaction;
   update: boolean = false;
+  
+  foo = ["NEGATIVE", "POSITIVE"];
 
   chem = new FormGroup({
     chemID: new FormControl(undefined),
@@ -31,58 +33,97 @@ export class ChemistryFormComponent implements OnInit {
     creationDate: new FormControl("0000-00-00 00:00:00"),
     dateUpdate: new FormControl("0000-00-00 00:00:00"),
 
-    totalCPK: new FormControl(""),
-    agratio: new FormControl(""),
-    buncon: new FormControl(""),
-    bun: new FormControl(""),
     fbs: new FormControl(""),
     fbscon: new FormControl(""),
-    trig: new FormControl(""),
+
+    rbs: new FormControl(""),
+    rbscon: new FormControl(""),
+
+    bua: new FormControl(""),
+    buacon: new FormControl(""),
+
+    bun: new FormControl(""),
+    buncon: new FormControl(""),
+
     crea: new FormControl(""),
     creacon: new FormControl(""),
+
+    hb: new FormControl(""),
+
+    alp: new FormControl(""),
+
+    ggtp: new FormControl(""),
+
+    ldh: new FormControl(""),
+
+    calcium: new FormControl(""),
+
+    protein: new FormControl(""),
+
+    inPhos: new FormControl(""),
+
+    albumin: new FormControl(""),
+
+    globulin: new FormControl(""),
+
+    magnesium: new FormControl(""),
+
+    ionCalcium: new FormControl(""),
+
+    agratio: new FormControl(""),
+
+
+    totalCPK: new FormControl(""),
+    
+
+    
+    
+    
+    trig: new FormControl(""),
+    
     hdlcon: new FormControl(""),
     ldl: new FormControl(""),
     trigcon: new FormControl(""),
     alt: new FormControl(""),
     chol: new FormControl(""),
     ldlcon: new FormControl(""),
-    bua: new FormControl(""),
+    
     cholcon: new FormControl(""),
     ch: new FormControl(""),
     na: new FormControl(""),
-    buacon: new FormControl(""),
+    
     cl: new FormControl(""),
     ast: new FormControl(""),
-    hb: new FormControl(""),
+    
     vldl: new FormControl(""),
     k: new FormControl(""),
-    alp: new FormControl(""),
+    
     psa: new FormControl(""),
     hdl: new FormControl(""),
     lipase: new FormControl(""),
     biltotal: new FormControl(""),
     ogtt1: new FormControl(""),
     ogtt1con: new FormControl(""),
-    calcium: new FormControl(""),
-    albumin: new FormControl(""),
-    ldh: new FormControl(""),
+    
+    
+    
     amylase: new FormControl(""),
     ogtt2: new FormControl(""),
-    rbs: new FormControl(""),
-    globulin: new FormControl(""),
-    ggtp: new FormControl(""),
+    
+    
+    
     ogctcon: new FormControl(""),
     cpkmm: new FormControl(""),
-    ionCalcium: new FormControl(""),
+    
     bildirect: new FormControl(""),
-    protein: new FormControl(""),
+    
     ogct: new FormControl(""),
     bilindirect: new FormControl(""),
-    rbscon: new FormControl(""),
-    magnesium: new FormControl(""),
+    
+    
     ogtt2con: new FormControl(""),
     cpkmb: new FormControl(""),
-    inPhos: new FormControl("")
+    
   });
 
   constructor(

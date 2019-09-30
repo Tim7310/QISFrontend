@@ -10,7 +10,7 @@
     </div>
     <div class="row">
       <div class="col-md-6 mt-2">
-        <div class="row mt-2">
+        <div class="row mt-2 m-custom">
           <div class="bold-1 p-3 des">
             <div class="bold-1 title pl-2 pr-2">Fasting Blood Sugar</div>
             <div class="row">
@@ -27,6 +27,349 @@
                   </mat-form-field>
                   <div class="col-3 pt-3">
                     <span class="nvText">mg/dl 75 -107</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 mt-2">
+        <div class="row mt-2 m-custom">
+          <div class="bold-1 p-3 des">
+            <div class="bold-1 title pl-2 pr-2">Random Blood Sugar</div>
+            <div class="row">
+              <div class="col-12">
+                <div class="row">
+                  <mat-form-field class="col-3">
+                    <input matInput type="number" placeholder="Result" formControlName="rbs">
+                  </mat-form-field>
+                  <div class="col-3 pt-3">
+                    <span class="nvText">mmol/L < 7.7</span>
+                  </div>
+                  <mat-form-field class="col-3">
+                    <input matInput type="number" placeholder="Conventional" formControlName="rbscon">
+                  </mat-form-field>
+                  <div class="col-3 pt-3">
+                    <span class="nvText">mg/dl < 140</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 mt-2">
+        <div class="row mt-2 m-custom">
+          <div class="bold-1 p-3 des">
+            <div class="bold-1 title pl-2 pr-2">Uric Acid</div>
+            <div class="row">
+              <div class="col-12">
+                <div class="row">
+                  <mat-form-field class="col-3">
+                    <input matInput type="number" placeholder="Result" formControlName="bua">
+                  </mat-form-field>
+                  <div class="col-3 pt-3">
+                    <span class="nvText">mmol/L 155 - 428</span>
+                  </div>
+                  <mat-form-field class="col-3">
+                    <input matInput type="number" placeholder="Conventional" formControlName="buacon">
+                  </mat-form-field>
+                  <div class="col-3 pt-3">
+                    <span class="nvText">mg/dl 2.60 - 7.18</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 mt-2">
+        <div class="row mt-2 m-custom">
+          <div class="bold-1 p-3 des">
+            <div class="bold-1 title pl-2 pr-2">Blood Urea Nitrogen</div>
+            <div class="row">
+              <div class="col-12">
+                <div class="row">
+                  <mat-form-field class="col-3">
+                    <input matInput type="number" placeholder="Result" formControlName="bun">
+                  </mat-form-field>
+                  <div class="col-3 pt-3">
+                    <span class="nvText">mmol/L 2.5 - 7.5</span>
+                  </div>
+                  <mat-form-field class="col-3">
+                    <input matInput type="number" placeholder="Conventional" formControlName="buncon">
+                  </mat-form-field>
+                  <div class="col-3 pt-3">
+                    <span class="nvText">mg/dl 7 - 21</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 mt-2">
+        <div class="row mt-2 m-custom">
+          <div class="bold-1 p-3 des">
+            <div class="bold-1 title pl-2 pr-2">Creatinine</div>
+            <div class="row">
+              <div class="col-12">
+                <div class="row">
+                  <mat-form-field class="col-2">
+                    <input matInput type="number" placeholder="Result" formControlName="crea">
+                  </mat-form-field>
+                  <div class="col-1 pt-3">
+                    <span class="nvText">umol/L</span>
+                  </div>
+                  <div class="col-3">
+                    <span class="nvText">
+                      &nbsp;Female : 53 - 106<br />
+                      &nbsp;Male &nbsp;&nbsp;&nbsp; : 71 - 115
+                    </span>
+                  </div>
+                  <mat-form-field class="col-2">
+                    <input matInput type="number" placeholder="Conventional" formControlName="creacon">
+                  </mat-form-field>
+                  <div class="col-1 pt-3">
+                    <span class="nvText">mg/dl</span>
+                  </div>
+                  <div class="col-3">
+                    <span class="nvText">
+                      &nbsp;F &nbsp; : 0.60 - 1.20<br />
+                      &nbsp;M : 0.80 - 1.30
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3 mt-2">
+        <div class="row mt-2 m-custom">
+          <div class="bold-1 p-3 des">
+            <div class="bold-1 title pl-2 pr-2">Hemoglobin A1C</div>
+            <div class="row">
+              <div class="col-12">
+                <div class="row">
+                  <mat-form-field class="col-6">
+                    <input matInput type="number" placeholder="Result" formControlName="hb">
+                  </mat-form-field>
+                  <div class="col-6 pt-3">
+                    <span class="nvText">% 4.3 - 6.3</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3 mt-2">
+        <div class="row mt-2 m-custom">
+          <div class="bold-1 p-3 des">
+            <div class="bold-1 title pl-2 pr-2">Alkaline Phosphatase (ALP)</div>
+            <div class="row">
+              <div class="col-12">
+                <div class="row">
+                  <mat-form-field class="col-6">
+                    <input matInput type="number" placeholder="Result" formControlName="alp">
+                  </mat-form-field>
+                  <div class="col-6 pt-3">
+                    <span class="nvText">U/L up to 105</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3 mt-2">
+        <div class="row mt-2 m-custom">
+          <div class="bold-1 p-3 des">
+            <div class="bold-1 title pl-2 pr-2">GGTP</div>
+            <div class="row">
+              <div class="col-12">
+                <div class="row">
+                  <mat-form-field class="col">
+                    <mat-label>Result</mat-label>
+                    <mat-select formControlName="ggtp">
+                        <mat-option value=""> - </mat-option>
+                        <mat-option *ngFor="let f of foo" [value]="f">
+                            {{f}}
+                        </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div> 
+      <div class="col-md-3 mt-2">
+        <div class="row mt-2 m-custom">
+          <div class="bold-1 p-3 des">
+            <div class="bold-1 title pl-2 pr-2">LDH</div>
+            <div class="row">
+              <div class="col-12">
+                <div class="row">
+                  <mat-form-field class="col-6">
+                    <input matInput type="number" placeholder="Result" formControlName="ldh">
+                  </mat-form-field>
+                  <div class="col-6 pt-3">
+                    <span class="nvText">U/L 225-450</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3 mt-2">
+        <div class="row mt-2 m-custom">
+          <div class="bold-1 p-3 des">
+            <div class="bold-1 title pl-2 pr-2">Total Calcium</div>
+            <div class="row">
+              <div class="col-12">
+                <div class="row">
+                  <mat-form-field class="col-6">
+                    <input matInput type="number" placeholder="Result" formControlName="calcium">
+                  </mat-form-field>
+                  <div class="col-6 pt-3">
+                    <span class="nvText">mmol/L 2.10-2.63</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3 mt-2">
+        <div class="row mt-2 m-custom">
+          <div class="bold-1 p-3 des">
+            <div class="bold-1 title pl-2 pr-2">Total Protein</div>
+            <div class="row">
+              <div class="col-12">
+                <div class="row">
+                  <mat-form-field class="col-6">
+                    <input matInput type="number" placeholder="Result" formControlName="protein">
+                  </mat-form-field>
+                  <div class="col-6 pt-3">
+                    <span class="nvText">g/L 66-83</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3 mt-2">
+        <div class="row mt-2 m-custom">
+          <div class="bold-1 p-3 des">
+            <div class="bold-1 title pl-2 pr-2">Inorganic Phosphorus</div>
+            <div class="row">
+              <div class="col-12">
+                <div class="row">
+                  <mat-form-field class="col-6">
+                    <input matInput type="number" placeholder="Result" formControlName="inPhos">
+                  </mat-form-field>
+                  <div class="col-6 pt-3">
+                    <span class="nvText">mmol/L 0.8-1.50</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3 mt-2">
+        <div class="row mt-2 m-custom">
+          <div class="bold-1 p-3 des">
+            <div class="bold-1 title pl-2 pr-2">Albumin</div>
+            <div class="row">
+              <div class="col-12">
+                <div class="row">
+                  <mat-form-field class="col-6">
+                    <input matInput type="number" placeholder="Result" formControlName="albumin">
+                  </mat-form-field>
+                  <div class="col-6 pt-3">
+                    <span class="nvText">g/L 38-51</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3 mt-2">
+        <div class="row mt-2 m-custom">
+          <div class="bold-1 p-3 des">
+            <div class="bold-1 title pl-2 pr-2">Globulin</div>
+            <div class="row">
+              <div class="col-12">
+                <div class="row">
+                  <mat-form-field class="col-6">
+                    <input matInput type="number" placeholder="Result" formControlName="globulin">
+                  </mat-form-field>
+                  <div class="col-6 pt-3">
+                    <span class="nvText">g/L 23-35</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3 mt-2">
+        <div class="row mt-2 m-custom">
+          <div class="bold-1 p-3 des">
+            <div class="bold-1 title pl-2 pr-2">Magnesium</div>
+            <div class="row">
+              <div class="col-12">
+                <div class="row">
+                  <mat-form-field class="col-6">
+                    <input matInput type="number" placeholder="Result" formControlName="magnesium">
+                  </mat-form-field>
+                  <div class="col-6 pt-3">
+                    <span class="nvText">mmol/L 0.70-0.98</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3 mt-2">
+        <div class="row mt-2 m-custom">
+          <div class="bold-1 p-3 des">
+            <div class="bold-1 title pl-2 pr-2">Ionized Calcium</div>
+            <div class="row">
+              <div class="col-12">
+                <div class="row">
+                  <mat-form-field class="col-6">
+                    <input matInput type="number" placeholder="Result" formControlName="ionCalcium">
+                  </mat-form-field>
+                  <div class="col-6 pt-3">
+                    <span class="nvText">mmol/L 0.93-1.32</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3 mt-2">
+        <div class="row mt-2 m-custom">
+          <div class="bold-1 p-3 des">
+            <div class="bold-1 title pl-2 pr-2">A/G Ratio</div>
+            <div class="row">
+              <div class="col-12">
+                <div class="row">
+                  <mat-form-field class="col-6">
+                    <input matInput type="number" placeholder="Result" formControlName="agratio">
+                  </mat-form-field>
+                  <div class="col-6 pt-3">
+                    <span class="nvText">1.5 - 3.0</span>
                   </div>
                 </div>
               </div>

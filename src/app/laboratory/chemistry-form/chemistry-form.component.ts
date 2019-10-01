@@ -68,48 +68,61 @@ export class ChemistryFormComponent implements OnInit {
 
     magnesium: new FormControl(""),
 
+    chol: new FormControl(""),
+    cholcon: new FormControl(""),
+    trig: new FormControl(""),
+    trigcon: new FormControl(""),
+    hdl: new FormControl(""),
+    hdlcon: new FormControl(""),
+    ldl: new FormControl(""),
+    ldlcon: new FormControl(""),
+    ch: new FormControl(""),
+    vldl: new FormControl(""),
+
     ionCalcium: new FormControl(""),
 
     agratio: new FormControl(""),
 
+    ogtt1: new FormControl(""),
+    ogtt1con: new FormControl(""),
+    ogtt2: new FormControl(""),
+    ogtt2con: new FormControl(""),
 
+    
+    
     totalCPK: new FormControl(""),
     
 
     
     
     
-    trig: new FormControl(""),
     
-    hdlcon: new FormControl(""),
-    ldl: new FormControl(""),
-    trigcon: new FormControl(""),
+    
+    
+    
     alt: new FormControl(""),
-    chol: new FormControl(""),
-    ldlcon: new FormControl(""),
     
-    cholcon: new FormControl(""),
-    ch: new FormControl(""),
+    
+    
+   
+    
     na: new FormControl(""),
     
     cl: new FormControl(""),
     ast: new FormControl(""),
     
-    vldl: new FormControl(""),
+    
     k: new FormControl(""),
     
     psa: new FormControl(""),
-    hdl: new FormControl(""),
+   
     lipase: new FormControl(""),
     biltotal: new FormControl(""),
-    ogtt1: new FormControl(""),
-    ogtt1con: new FormControl(""),
     
     
     
     amylase: new FormControl(""),
-    ogtt2: new FormControl(""),
-    
+   
     
     
     ogctcon: new FormControl(""),
@@ -121,7 +134,7 @@ export class ChemistryFormComponent implements OnInit {
     bilindirect: new FormControl(""),
     
     
-    ogtt2con: new FormControl(""),
+    
     cpkmb: new FormControl(""),
     
   });

@@ -88,55 +88,30 @@ export class ChemistryFormComponent implements OnInit {
     ogtt2: new FormControl(""),
     ogtt2con: new FormControl(""),
 
-    
-    
-    totalCPK: new FormControl(""),
-    
-
-    
-    
-    
-    
-    
-    
-    
-    alt: new FormControl(""),
-    
-    
-    
-   
-    
-    na: new FormControl(""),
-    
-    cl: new FormControl(""),
-    ast: new FormControl(""),
-    
-    
-    k: new FormControl(""),
-    
-    psa: new FormControl(""),
-   
-    lipase: new FormControl(""),
-    biltotal: new FormControl(""),
-    
-    
-    
-    amylase: new FormControl(""),
-   
-    
-    
+    ogct: new FormControl(""),
     ogctcon: new FormControl(""),
+    
+    na: new FormControl(""),   
+    k: new FormControl(""),
+    cl: new FormControl(""),
+
+    alt: new FormControl(""),
+    ast: new FormControl(""), 
+    amylase: new FormControl(""), 
+    lipase: new FormControl(""),
+
+    cpkmb: new FormControl(""),
+    totalCPK: new FormControl(""),
     cpkmm: new FormControl(""),
     
+    biltotal: new FormControl(""),
     bildirect: new FormControl(""),
+    bilindirect: new FormControl(""),   
+
+    chemNotes: new FormControl(""),
+  
     
-    ogct: new FormControl(""),
-    bilindirect: new FormControl(""),
-    
-    
-    
-    cpkmb: new FormControl(""),
-    
+    psa: new FormControl(""),
   });
 
   constructor(

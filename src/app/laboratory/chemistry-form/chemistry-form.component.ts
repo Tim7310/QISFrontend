@@ -163,6 +163,18 @@ export class ChemistryFormComponent implements OnInit {
         }
       }
     )
+
+    this.computeCon("fbs", "fbscon", 0.055);
+  }
+
+  computeCon(control_name, con_name, divider){
+    this.chem.get(control_name).valueChanges.subscribe(
+      value => {
+        const con: number = this.chem.get(control_name).value / divider;
+        const con_value: string = con.toFixed(3);
+        this.chem.get(con_name).setValue(con_value)
+      }
+    )
   }
 
 }

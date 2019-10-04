@@ -165,14 +165,53 @@ export class ChemistryFormComponent implements OnInit {
     )
 
     this.computeCon("fbs", "fbscon", 0.055);
+    this.computeCon("rbs", "rbscon", 0.055);
+    this.computeCon("bua", "buacon", 59.48);
+    this.computeCon("bun", "buncon", 0.357);
+    this.computeCon("crea", "creacon", 88.4);
+    this.computeCon("chol", "cholcon", 0.0259);
+    this.computeCon("trig", "trigcon", 0.0113);
+    this.computeCon("hdl", "hdlcon", 0.0259);
+    this.computeCon("ldl", "ldlcon", 0.0259);
+    this.computeCon("ogtt1", "ogtt1con", 0.055);
+    this.computeCon("ogtt2", "ogtt2con", 0.055);
+    this.computeCon("ogct", "ogctcon", 0.055);
+    this.computeCon("ogct", "ogctcon", 0.055);
+
+    this.computeLipidProfile("hdl");
+    this.computeLipidProfile("trig");
+    this.computeLipidProfile("chol");
   }
 
   computeCon(control_name, con_name, divider){
     this.chem.get(control_name).valueChanges.subscribe(
       value => {
-        const con: number = this.chem.get(control_name).value / divider;
+        const con: number = value / divider;
         const con_value: string = con.toFixed(3);
-        this.chem.get(con_name).setValue(con_value)
+        this.chem.get(con_name).setValue(con_value);
+      }
+    )
+  }
+  computeLipidProfile(control_name){
+    this.chem.get(control_name).valueChanges.subscribe(
+      value => {
+        var chole = this.chem.get("chol").value;
+        var trig = this.chem.get("trig").value;
+        var hdl = this.chem.get("hdl").value;
+        var _ldlval =  chole - (trig / 2.175) - hdl;
+        var _chdl = chole / hdl;
+        var _vldl = trig / 2.175;
+        // convert numeric to three decimal text
+        const ldlval = _ldlval.toFixed(3);
+        const chdl = _chdl.toFixed(3);
+        const vldl = _vldl.toFixed(3);
+        if (chole != "" && trig != "" && hdl != "") {
+          if (chdl != "Infinity") {
+            this.chem.get('ch').setValue(chdl);
+          }		
+          this.chem.get('vldl').setValue(vldl);
+          this.chem.get('ldl').setValue(ldlval);
+        }
       }
     )
   }

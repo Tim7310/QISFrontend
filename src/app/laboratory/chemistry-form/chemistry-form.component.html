@@ -735,4 +735,8 @@
       </div>
     </div>
   </div>
+  <div class="mx-auto" style="width: 65px;">
+    <button mat-raised-button color="primary" class="mb-3" (click)="addChem()" *ngIf="!update">ADD</button>
+    <button mat-raised-button color="accent" class="mb-3" (click)="updateChem()" *ngIf="update">UPDATE</button>
+</div>
 </form>

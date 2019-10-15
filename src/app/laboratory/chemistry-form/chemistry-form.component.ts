@@ -6,6 +6,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { MatDialog } from '@angular/material';
 import { medtech, transaction } from 'src/app/services/service.interface';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { ConfirmComponent } from 'src/app/element/confirm/confirm.component';
 
 @Component({
   selector: 'app-chemistry-form',
@@ -214,6 +215,54 @@ export class ChemistryFormComponent implements OnInit {
         }
       }
     )
+  }
+
+  addChem(){
+    this.chem.controls.creationDate.setValue(this.math.dateNow());
+
+    const dialogRef = this.dialog.open(ConfirmComponent, {
+      width: '20%',
+      data: {Title: "Are you sure?", Content: "Data will be saved to database!"}
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      if(result == "ok"){
+        this.lab.addChemistry(this.chem.value).subscribe(
+          data => {
+            if(data == 1){
+              this.math.openSnackBar("Data successfuly saved","ok");
+              this.router.navigate(['laboratory/chemistry']);
+            }else{
+              this.math.openSnackBar("Data not saved!!!","ok");
+            }
+          }
+        )
+       }
+
+    })
+  }
+
+  updateChem(){
+    this.chem.controls.dateUpdate.setValue(this.math.dateNow());
+
+    const dialogRef = this.dialog.open(ConfirmComponent, {
+      width: '20%',
+      data: {Title: "Are you sure?", Content: "Data will be saved to database!"}
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      if(result == "ok"){
+        this.lab.addChemistry(this.chem.value, "/updateChemistry").subscribe(
+          data => {
+            if(data == 1){
+              this.math.openSnackBar("Data successfuly saved","ok");
+              this.router.navigate(['laboratory/chemistry']);
+            }else{
+              this.math.openSnackBar("Data not saved!!!","ok");
+            }
+          }
+        )
+       }
+
+    })
   }
 
 }

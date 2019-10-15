@@ -86,4 +86,14 @@ export class LaboratoryService {
         catchError(this.ehs.handleError)
     )
   }
+
+  addChemistry(form : chemistry, url = "/addChemistry"): Observable<any>{
+    return this.http.post<any>(
+      this.global.url + url ,
+      form, this.global.httpOptions)
+    .pipe(
+        retry(1),
+        catchError(this.ehs.handleError)
+    )
+  }
 }

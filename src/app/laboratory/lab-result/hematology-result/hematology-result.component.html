@@ -6,7 +6,7 @@
       </div>
     </div>
     <!-- complete blood count here -->
-    <div class="row" *ngIf="math.hideRes(!hematology?.whiteBlood)">
+    <div class="row" *ngIf="math.hideRes(hematology?.whiteBlood)">
       <div class="col-12">
         <div class="row">
           <div class="col-12 label-1">
@@ -163,7 +163,7 @@
     </div>
     <!-- cbc ended -->
     <!-- begin esr -->
-    <div class="row">
+    <div class="row" *ngIf="math.hideRes(hematology?.esr)">
       <div class="col-12">
         <div class="row">
           <div class="col-12 label-1">
@@ -199,7 +199,7 @@
     </div>
     <!-- esr end -->
     <!-- begin aptt -->
-    <div class="row">
+    <div class="row" *ngIf="math.hideRes(hematology?.apttime)">
       <div class="col-12">
         <div class="row">
           <div class="col-12 label-1">
@@ -238,7 +238,7 @@
     </div>
     <!-- aptt end -->
     <!-- blood typing start -->
-    <div class="row">
+    <div class="row" *ngIf="math.hideRes(hematology?.bloodType)">
       <div class="col-12">
         <div class="row">
           <div class="col-12 label-1">
@@ -266,7 +266,7 @@
     </div>
     <!-- blood typing end -->
     <!-- clotting time start -->
-    <div class="row">
+    <div class="row" *ngIf="math.hideRes(hematology?.clottingTime)">
       <div class="col-12">
         <div class="row">
           <div class="col-12 label-1">
@@ -291,7 +291,7 @@
     </div>
     <!-- clotting time end -->
     <!-- bleeding time start -->
-    <div class="row">
+    <div class="row" *ngIf="math.hideRes(hematology?.bleedingTime)">
       <div class="col-12">
         <div class="row">
           <div class="col-12 label-1">
@@ -316,7 +316,7 @@
     </div>
     <!-- bleeding time end -->
     <!-- ms time start -->
-    <div class="row">
+    <div class="row" *ngIf="math.hideRes(hematology?.ms)">
       <div class="col-12">
         <div class="row">
           <div class="col-12 label-1">
@@ -335,7 +335,7 @@
     </div>
     <!-- ms end -->
     <!-- PROTHROMBIN TIME begin -->
-    <div class="row">
+    <div class="row" *ngIf="math.hideRes(hematology?.ptime)">
       <div class="col-12">
         <div class="row">
           <div class="col-12 label-1">
@@ -402,7 +402,7 @@
     </div>
     <!-- aptt end -->
     <!-- other Notes -->
-    <div class="row">
+    <div class="row" *ngIf="math.hideRes(hematology?.cbcot)">
       <div class="col-12">
         <div class="row">
           <div class="col-3">
